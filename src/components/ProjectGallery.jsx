@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { PhotoAlbum } from 'react-photo-album';
 import Lightbox from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css';
-import { FiExternalLink, FiGithub, FiEye } from 'react-icons/fi';
+import { FiExternalLink, FiGithub, FiEye, FiFileText } from 'react-icons/fi';
 
 const ProjectGallery = () => {
   const [index, setIndex] = useState(-1);
@@ -11,6 +11,32 @@ const ProjectGallery = () => {
   const projects = [
     {
       id: 1,
+      title: 'Work Essentials to Office Live Blue Sky Vision',
+      category: 'UX Case Study',
+      description: 'A comprehensive UX case study showcasing the transformation from Work Essentials to Office Live, including user research, wireframing, and prototype development.',
+      technologies: ['Figma', 'Sketch', 'Axure RP', 'Adobe Suite', 'Invision'],
+      images: [
+        {
+          src: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop',
+          width: 800,
+          height: 600,
+          alt: 'Work Essentials Case Study'
+        },
+        {
+          src: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop',
+          width: 800,
+          height: 600,
+          alt: 'Work Essentials Case Study Detail'
+        }
+      ],
+      links: {
+        live: 'https://example.com',
+        github: 'https://github.com',
+        caseStudy: '/case-study/work-essentials'
+      }
+    },
+    {
+      id: 2,
       title: 'E-Commerce Platform',
       category: 'Web Application',
       description: 'A modern e-commerce platform with advanced filtering, search, and payment integration.',
@@ -36,7 +62,7 @@ const ProjectGallery = () => {
       }
     },
     {
-      id: 2,
+      id: 3,
       title: 'Mobile Banking App',
       category: 'Mobile Application',
       description: 'A secure and intuitive mobile banking application with biometric authentication.',
@@ -62,7 +88,7 @@ const ProjectGallery = () => {
       }
     },
     {
-      id: 3,
+      id: 4,
       title: 'Design System',
       category: 'Design System',
       description: 'A comprehensive design system with reusable components and design tokens.',
@@ -79,32 +105,6 @@ const ProjectGallery = () => {
           width: 800,
           height: 600,
           alt: 'Design System Detail'
-        }
-      ],
-      links: {
-        live: 'https://example.com',
-        github: 'https://github.com',
-        caseStudy: 'https://example.com/case-study'
-      }
-    },
-    {
-      id: 4,
-      title: 'Analytics Dashboard',
-      category: 'Data Visualization',
-      description: 'Real-time analytics dashboard with interactive charts and data insights.',
-      technologies: ['D3.js', 'React', 'WebSocket', 'Chart.js'],
-      images: [
-        {
-          src: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
-          width: 800,
-          height: 600,
-          alt: 'Analytics Dashboard'
-        },
-        {
-          src: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
-          width: 800,
-          height: 600,
-          alt: 'Analytics Dashboard Detail'
         }
       ],
       links: {
@@ -250,8 +250,8 @@ const ProjectGallery = () => {
                     whileTap={{ scale: 0.95 }}
                     className="flex items-center gap-2 px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
                   >
-                    <FiEye className="w-4 h-4" />
-                    Case Study
+                    <FiFileText className="w-4 h-4" />
+                    View Case Study
                   </motion.a>
                 </div>
               </div>

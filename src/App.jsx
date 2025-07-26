@@ -6,6 +6,7 @@ import PartnersShowcase from './components/PartnersShowcase';
 import ProjectGallery from './components/ProjectGallery';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
+import CaseStudy from './components/CaseStudy';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <ToolsIntegration />
       <PartnersShowcase />
       <ProjectGallery />
+      <CaseStudy />
       <ContactForm />
       <Footer />
     </div>
