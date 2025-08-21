@@ -1,51 +1,69 @@
 {
   "name": "q10ux-portfolio",
   "version": "1.0.0",
-  "description": "Q10UX Design Portfolio - High-contrast, accessible UX design showcase",
-  "main": "index.html",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "serve": "python3 -m http.server 8000",
-    "lint": "eslint . --ext js,jsx,ts,tsx",
-    "format": "prettier --write ."
-  },
+  "description": "Q10UX Professional UX Portfolio with NDA Firewall and Smart Upload System",
+  "main": "backend/admin-server.js",
   "keywords": [
-    "ux-design",
+    "ux",
     "portfolio",
-    "accessibility",
+    "design",
     "case-studies",
-    "q10ux"
+    "nda",
+    "admin",
+    "bulk-tagging",
+    "smart-upload",
+    "media-processing",
+    "cloud-integration"
   ],
-  "author": "Quentin Little (Q10UX)",
+  "author": "Quentin Little",
   "license": "MIT",
-  "devDependencies": {
-    "@types/react": "^18.2.43",
-    "@types/react-dom": "^18.2.17",
-    "@vitejs/plugin-react": "^4.2.1",
-    "eslint": "^8.55.0",
-    "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.5",
-    "prettier": "^3.1.1",
-    "vite": "^5.0.8"
+  "scripts": {
+    "start": "node backend/admin-server.js",
+    "dev": "python3 -m http.server 8001",
+    "admin": "node backend/admin-server.js",
+    "serve": "python3 -m http.server 8001",
+    "smart-upload": "node scripts/smart-upload.js",
+    "setup": "npm install && npm run setup-deps",
+    "setup-deps": "echo 'Installing system dependencies...' && brew install ffmpeg imagemagick",
+    "build": "echo 'Static site - no build required'",
+    "test": "echo 'No tests specified'",
+    "clean": "rm -rf node_modules package-lock.json",
+    "reset": "npm run clean && npm install"
   },
   "dependencies": {
-    "bcryptjs": "^3.0.2",
+    "express": "^4.18.2",
+    "multer": "^1.4.5-lts.1",
+    "sharp": "^0.32.6",
     "cors": "^2.8.5",
-    "dotenv": "^17.2.1",
-    "express": "^5.1.0",
-    "express-rate-limit": "^8.0.1",
-    "helmet": "^8.1.0",
+    "bcryptjs": "^2.4.3",
     "jsonwebtoken": "^9.0.2",
-    "multer": "^2.0.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "sharp": "^0.34.3",
-    "uuid": "^11.1.0"
+    "uuid": "^9.0.1",
+    "aws-sdk": "^2.1531.0",
+    "@sanity/client": "^6.12.0",
+    "chokidar": "^3.5.3",
+    "inquirer": "^9.2.12",
+    "ora": "^7.0.1",
+    "chalk": "^5.3.0"
   },
-  "directories": {
-    "test": "test"
-  }
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/quentstyle/q10ux-portfolio.git"
+  },
+  "bin": {
+    "q10ux-smart-upload": "./scripts/smart-upload.js"
+  },
+  "files": [
+    "src/",
+    "backend/",
+    "scripts/",
+    "public/",
+    "README.md",
+    "package.json"
+  ]
 }
