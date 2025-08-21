@@ -767,7 +767,7 @@ footer .logo-image {
 .q10ux-nav .navbar-nav .nav-link {
   color: var(--text-primary) !important;
   font-family: 'Roboto Condensed', sans-serif;
-  font-weight: 400;
+  font-weight: 700;
   font-size: 1.125rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -780,7 +780,7 @@ footer .logo-image {
 .q10ux-nav .navbar-nav .nav-link:focus {
   color: var(--accent-1) !important;
   background: rgba(0, 229, 255, 0.1);
-  border-radius: var(--radius);
+  border-radius: 50px;
 }
 
 .q10ux-nav .navbar-nav .nav-link.active {
