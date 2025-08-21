@@ -19,6 +19,37 @@
   --transition-fast: 0.15s ease;
 }
 
+/* Global Roboto Condensed All Caps Default */
+*[style*="font-family: 'Roboto Condensed'"],
+*[style*="font-family: Roboto Condensed"],
+.btn,
+.nav-link,
+.logo-text,
+.tooltip-title,
+.feature-card h3,
+.metric-value,
+.demo-header h1,
+.demo-metrics h2,
+.demo-features h2,
+.hero-title,
+.hero-subtitle,
+.section-title,
+.section-subtitle,
+.portfolio-title,
+.card-title,
+.modal-title,
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto Condensed', sans-serif !important;
+  text-transform: uppercase !important;
+  letter-spacing: -0.02em !important;
+  font-feature-settings: "kern" 1, "liga" 1 !important;
+}
+
+/* Exception for body text and descriptions */
+p, span, div, .description, .caption, .text, .content {
+  text-transform: none !important;
+}
+
 /* Hero Section */
 .hero-section {
   position: relative;
@@ -173,11 +204,36 @@
   box-shadow: var(--shadow);
   transition: transform var(--transition), box-shadow var(--transition);
   height: 100%;
+  position: relative;
+  border: 2px solid transparent;
+}
+
+.portfolio-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transition: left 0.5s ease;
+  z-index: 2;
+  pointer-events: none;
 }
 
 .portfolio-card:hover {
   transform: translateY(-8px);
   box-shadow: var(--shadow-lg);
+  border-color: #ffffff;
+}
+
+.portfolio-card:hover::before {
+  left: 100%;
 }
 
 .portfolio-link {

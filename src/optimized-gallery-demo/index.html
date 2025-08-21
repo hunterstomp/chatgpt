@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q10UX Optimized Gallery Demo - Performance & Intuition</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+    <link href="../styles/q10ux.css" rel="stylesheet">
+    <link href="../styles/optimized-gallery.css" rel="stylesheet">
+    <link href="../styles/interactive-tour.css" rel="stylesheet">
+    <link href="demo.css" rel="stylesheet">
+</head>
+<body>
+    <div class="demo-container">
+        <!-- Header -->
+        <header class="demo-header">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <h1><i class="fas fa-rocket"></i> Optimized Gallery Demo</h1>
+                        <p class="text-muted">Performance-optimized thumbnails with AI captions and intuitive navigation</p>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <div class="performance-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span>Lazy Loading</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-brain"></i>
+                                <span>AI Captions</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-mobile-alt"></i>
+                                <span>Touch Optimized</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Controls -->
+        <section class="demo-controls">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="control-group">
+                            <label class="form-label">Gallery Options</label>
+                            <div class="btn-group" role="group">
+                                <button class="btn btn-outline-primary active" data-option="performance">
+                                    <i class="fas fa-tachometer-alt"></i> Performance
+                                </button>
+                                <button class="btn btn-outline-primary" data-option="quality">
+                                    <i class="fas fa-star"></i> Quality
+                                </button>
+                                <button class="btn btn-outline-primary" data-option="balanced">
+                                    <i class="fas fa-balance-scale"></i> Balanced
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="control-group">
+                            <label class="form-label">Series Grouping</label>
+                            <select class="form-select" id="seriesGrouping">
+                                <option value="flow">UX Flow</option>
+                                <option value="project">Project</option>
+                                <option value="tags">Tags</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery -->
+        <section class="demo-gallery">
+            <div class="container">
+                <div class="optimized-gallery" id="optimizedGallery">
+                    <!-- Gallery will be rendered here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="demo-features">
+            <div class="container">
+                <h2 class="text-center mb-5">Performance Features</h2>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <h3>Lazy Loading</h3>
+                            <p>Images load only when they come into view, dramatically improving initial page load times.</p>
+                            <div class="feature-stats">
+                                <span class="stat">90% faster</span>
+                                <span class="stat">Reduced bandwidth</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h3>AI Captions</h3>
+                            <p>Automatic caption generation using AI vision analysis for contextual descriptions.</p>
+                            <div class="feature-stats">
+                                <span class="stat">Smart detection</span>
+                                <span class="stat">UX terminology</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <h3>Touch Optimized</h3>
+                            <p>Swipe navigation, touch-friendly controls, and responsive design for all devices.</p>
+                            <div class="feature-stats">
+                                <span class="stat">Swipe support</span>
+                                <span class="stat">Mobile first</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Performance Metrics -->
+        <section class="demo-metrics">
+            <div class="container">
+                <h2 class="text-center mb-5">Real-time Performance</h2>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="metric-card">
+                            <div class="metric-value" id="loadTime">0ms</div>
+                            <div class="metric-label">Load Time</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="metric-card">
+                            <div class="metric-value" id="imagesLoaded">0</div>
+                            <div class="metric-label">Images Loaded</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="metric-card">
+                            <div class="metric-value" id="bandwidthSaved">0KB</div>
+                            <div class="metric-label">Bandwidth Saved</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="metric-card">
+                            <div class="metric-value" id="fps">60</div>
+                            <div class="metric-label">FPS</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../components/optimized-gallery.js"></script>
+    <script src="../components/interactive-tour.js"></script>
+    <script src="demo.js"></script>
+</body>
+</html>

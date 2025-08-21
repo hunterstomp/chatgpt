@@ -49,7 +49,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2rem 0;
+    padding: 1rem 0;
+    min-height: 0;
 }
 
 /* Upload Zone */
@@ -57,7 +58,7 @@
     background: var(--instant-surface);
     border: 3px dashed var(--instant-border);
     border-radius: var(--instant-radius);
-    padding: 4rem 2rem;
+    padding: 3rem 2rem;
     text-align: center;
     transition: var(--instant-transition);
     max-width: 600px;
@@ -405,4 +406,494 @@
 
 .upload-zone.drag-over .upload-icon {
     animation: pulse 1s infinite;
+}
+
+/* Progress Bar */
+.upload-progress {
+    margin: 2rem 0;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: var(--instant-radius);
+    border: 1px solid var(--instant-border);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--instant-primary), var(--instant-success));
+    border-radius: 4px;
+    transition: width 0.3s ease;
+    width: 0%;
+}
+
+.progress-text {
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--instant-muted);
+    font-weight: 500;
+}
+
+/* File Status List */
+.file-status-list {
+    margin-top: 1rem;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid var(--instant-border);
+    border-radius: var(--instant-radius);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.file-status-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--instant-border);
+    transition: var(--instant-transition);
+}
+
+.file-status-item:last-child {
+    border-bottom: none;
+}
+
+.file-status-item.success {
+    background: rgba(0, 255, 136, 0.1);
+    border-left: 3px solid var(--instant-success);
+}
+
+.file-status-item.error {
+    background: rgba(255, 0, 0, 0.1);
+    border-left: 3px solid #ff4444;
+}
+
+.file-name {
+    font-size: 0.875rem;
+    color: var(--instant-text);
+    flex: 1;
+    margin-right: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.file-status {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: var(--instant-primary);
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Terminator HUD Styles */
+.terminator-hud {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--instant-primary);
+    border-radius: var(--instant-radius);
+    z-index: 10;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'Courier New', monospace;
+    color: var(--instant-primary);
+    overflow: hidden;
+}
+
+.terminator-hud.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* HUD Corner Elements */
+.hud-corner {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--instant-primary);
+}
+
+.hud-top-left {
+    top: 10px;
+    left: 10px;
+    border-right: none;
+    border-bottom: none;
+}
+
+.hud-top-right {
+    top: 10px;
+    right: 10px;
+    border-left: none;
+    border-bottom: none;
+}
+
+.hud-bottom-left {
+    bottom: 10px;
+    left: 10px;
+    border-right: none;
+    border-top: none;
+}
+
+.hud-bottom-right {
+    bottom: 10px;
+    right: 10px;
+    border-left: none;
+    border-top: none;
+}
+
+/* HUD Content */
+.hud-content {
+    padding: 2rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hud-main {
+    display: flex;
+    gap: 2rem;
+    height: 100%;
+}
+
+.hud-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.hud-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.hud-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--instant-primary);
+    padding-bottom: 1rem;
+}
+
+.hud-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px var(--instant-primary);
+}
+
+.hud-status {
+    font-size: 0.875rem;
+    color: var(--instant-success);
+    font-weight: bold;
+    padding: 0.25rem 0.75rem;
+    border: 1px solid var(--instant-success);
+    border-radius: 4px;
+    text-shadow: 0 0 5px var(--instant-success);
+}
+
+/* HUD Metrics Grid */
+.hud-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.hud-metric {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 8px;
+    background: rgba(0, 212, 255, 0.05);
+}
+
+.metric-label {
+    font-size: 0.75rem;
+    color: var(--instant-muted);
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.metric-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--instant-primary);
+    text-shadow: 0 0 10px var(--instant-primary);
+}
+
+/* HUD Progress */
+.hud-progress {
+    text-align: center;
+}
+
+.hud-progress .progress-bar {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 0.75rem;
+}
+
+.hud-progress .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--instant-primary), var(--instant-success));
+    border-radius: 3px;
+    transition: width 0.3s ease;
+    box-shadow: 0 0 10px var(--instant-primary);
+}
+
+.progress-text {
+    font-size: 0.875rem;
+    color: var(--instant-muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* HUD Animations */
+@keyframes hudScan {
+    0% {
+        background-position: -100% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.terminator-hud::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--instant-primary), transparent);
+    animation: hudScan 2s linear infinite;
+}
+
+/* Thumbnail Scanner */
+.thumbnail-scanner {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--instant-primary);
+    border-radius: 8px;
+    padding: 1rem;
+    height: 100%;
+}
+
+.scanner-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--instant-primary);
+    padding-bottom: 0.5rem;
+}
+
+.scanner-title {
+    font-family: 'Orbitron', 'Courier New', monospace;
+    font-size: 0.875rem;
+    font-weight: bold;
+    color: var(--instant-primary);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.scanline {
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--instant-primary), transparent);
+    animation: scanlineMove 2s linear infinite;
+}
+
+@keyframes scanlineMove {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.thumbnail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.thumbnail-item {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 6px;
+    padding: 0.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.thumbnail-preview {
+    position: relative;
+    width: 100%;
+    height: 80px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+}
+
+.thumbnail-preview img,
+.thumbnail-preview video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.thumbnail-preview .file-icon {
+    font-size: 2rem;
+    color: var(--instant-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.thumbnail-preview .file-icon i {
+    font-size: 2.5rem;
+    color: var(--instant-primary);
+    text-shadow: 0 0 10px var(--instant-primary);
+}
+
+.scanline-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--instant-success), transparent);
+    opacity: 0;
+    transform: translateY(-100%);
+}
+
+.scanline-overlay.scanning {
+    animation: scanlineScan 1.5s ease-in-out infinite;
+}
+
+@keyframes scanlineScan {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+}
+
+.thumbnail-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.thumbnail-info .file-name {
+    font-family: 'Orbitron', 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--instant-text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+    margin-right: 0.5rem;
+}
+
+.thumbnail-info .file-size {
+    font-family: 'Orbitron', 'Courier New', monospace;
+    font-size: 0.625rem;
+    color: var(--instant-muted);
+    font-weight: bold;
+}
+
+.file-insights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+}
+
+.insight {
+    font-family: 'Orbitron', 'Courier New', monospace;
+    font-size: 0.625rem;
+    color: var(--instant-success);
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid var(--instant-success);
+    border-radius: 3px;
+    padding: 0.125rem 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Responsive HUD */
+@media (max-width: 768px) {
+    .hud-main {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .hud-metrics {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .hud-content {
+        padding: 1rem;
+    }
+    
+    .hud-title {
+        font-size: 1rem;
+    }
+    
+    .metric-value {
+        font-size: 1.25rem;
+    }
+    
+    .thumbnail-grid {
+        grid-template-columns: 1fr;
+    }
 }
