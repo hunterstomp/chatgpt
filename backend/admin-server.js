@@ -7,14 +7,22 @@ const fs = require('fs').promises;
 const { v4: uuidv4 } = require('uuid');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const SanityIntegration = require('./sanity-integration');
+const { UXFlowManager } = require('./ux-flows');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 const JWT_SECRET = process.env.JWT_SECRET || 'q10ux-admin-secret-key';
 
-// Admin credentials (in production, use environment variables)
-const ADMIN_USERNAME = 'admin';
-const ADMIN_PASSWORD = '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'; // "password"
+// Initialize Sanity integration
+const sanity = new SanityIntegration();
+
+// Initialize UX Flow Manager
+const flowManager = new UXFlowManager();
+
+// Admin credentials (use environment variables in production)
+const ADMIN_USERNAME = process.env.ADMIN_USERNAME || 'admin';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'; // "password"
 
 // NDA Access Codes (in production, store in database)
 const NDA_CODES = {
@@ -750,70 +758,148 @@ app.post('/api/validate-nda', async (req, res) => {
   }
 });
 
-// Publish image series to case study
+// Publish image series to case study (with automatic Sanity sync)
 app.post('/api/admin/publish-series', authenticateToken, async (req, res) => {
   try {
-    const { projectId, seriesTitle, seriesDescription, images } = req.body;
+    const { projectId, seriesTitle, seriesDescription, images, flowType } = req.body;
     
     if (!projectId || !seriesTitle || !images || !Array.isArray(images)) {
       return res.status(400).json({ error: 'Missing required fields' });
+  }
+
+  const data = await loadData();
+  
+  // Check if project exists
+  if (!data.projects[projectId]) {
+    return res.status(404).json({ error: 'Project not found' });
+  }
+
+  const project = data.projects[projectId];
+  const seriesId = uuidv4();
+  const timestamp = new Date().toISOString();
+
+  // Create series object with flow type
+  const series = {
+    id: seriesId,
+    title: seriesTitle,
+    description: seriesDescription,
+    projectId: projectId,
+    flowType: flowType || 'general', // Research, Design, Testing, Results, etc.
+    createdAt: timestamp,
+    updatedAt: timestamp,
+    images: images.map((img, index) => ({
+      id: img.id || uuidv4(),
+      name: img.name,
+      description: img.description || '',
+      order: index + 1,
+      width: img.width,
+      height: img.height,
+      optimized: img.optimized || false,
+      aiGenerated: img.aiGenerated || false,
+      createdAt: timestamp
+    }))
+  };
+
+  // Add series to project
+  if (!project.series) {
+    project.series = {};
+  }
+  project.series[seriesId] = series;
+  project.updatedAt = timestamp;
+
+  // Save updated data locally
+  await fs.writeFile(PROJECTS_FILE, JSON.stringify(data.projects, null, 2));
+
+  // AUTOMATIC SANITY SYNC
+  let sanityResult = null;
+  if (sanity.isReady()) {
+    try {
+      console.log('🔄 Syncing to Sanity...');
+      
+      // Upload images to Sanity
+      const sanityImages = [];
+      for (const img of images) {
+        const imagePath = path.join(__dirname, '..', 'uploads', 'processed', img.name);
+        const sanityImage = await sanity.uploadImage(imagePath, {
+          title: img.name,
+          description: img.description || '',
+          alt: img.description || img.name
+        });
+        
+        if (sanityImage) {
+          sanityImages.push({
+            ...img,
+            sanityId: sanityImage.sanityId,
+            sanityUrl: sanityImage.url
+          });
+        }
+      }
+
+      // Create or update case study in Sanity
+      const caseStudyData = {
+        title: project.title,
+        slug: project.slug || project.id,
+        description: project.description || '',
+        status: 'published',
+        ndaRequired: project.ndaRequired || false,
+        ndaCode: project.ndaCode || null,
+        client: project.client || '',
+        projectType: 'ux-design',
+        technologies: project.tags || [],
+        duration: project.duration || '',
+        teamSize: project.teamSize || '',
+        role: project.role || '',
+        results: project.results || '',
+        challenges: project.challenges || '',
+        process: project.process || ''
+      };
+
+      let sanityCaseStudyId = await sanity.createCaseStudy(caseStudyData);
+      
+      // If case study exists, get its ID
+      if (!sanityCaseStudyId) {
+        const existingCaseStudies = await sanity.getCaseStudies();
+        const existing = existingCaseStudies.find(cs => cs.slug === caseStudyData.slug);
+        sanityCaseStudyId = existing?._id;
+      }
+
+      // Add image series to case study
+      if (sanityCaseStudyId && sanityImages.length > 0) {
+        const seriesData = {
+          title: seriesTitle,
+          description: seriesDescription,
+          flowType: flowType || 'general',
+          images: sanityImages,
+          order: Object.keys(project.series || {}).length + 1
+        };
+
+        await sanity.addImageSeries(sanityCaseStudyId, seriesData);
+        sanityResult = { success: true, caseStudyId: sanityCaseStudyId };
+        console.log('✅ Successfully synced to Sanity');
+      }
+
+    } catch (sanityError) {
+      console.error('⚠️  Sanity sync failed:', sanityError.message);
+      sanityResult = { success: false, error: sanityError.message };
     }
+  } else {
+    console.log('ℹ️  Sanity not configured, skipping sync');
+  }
 
-    const data = await loadData();
-    
-    // Check if project exists
-    if (!data.projects[projectId]) {
-      return res.status(404).json({ error: 'Project not found' });
-    }
+  console.log(`✅ Series "${seriesTitle}" published to project "${project.title}"`);
 
-    const project = data.projects[projectId];
-    const seriesId = uuidv4();
-    const timestamp = new Date().toISOString();
-
-    // Create series object
-    const series = {
+  res.json({
+    success: true,
+    series: {
       id: seriesId,
       title: seriesTitle,
-      description: seriesDescription,
       projectId: projectId,
-      createdAt: timestamp,
-      updatedAt: timestamp,
-      images: images.map((img, index) => ({
-        id: img.id || uuidv4(),
-        name: img.name,
-        description: img.description || '',
-        order: index + 1,
-        width: img.width,
-        height: img.height,
-        optimized: img.optimized || false,
-        aiGenerated: img.aiGenerated || false,
-        createdAt: timestamp
-      }))
-    };
-
-    // Add series to project
-    if (!project.series) {
-      project.series = {};
-    }
-    project.series[seriesId] = series;
-    project.updatedAt = timestamp;
-
-    // Save updated data
-    await fs.writeFile(PROJECTS_FILE, JSON.stringify(data.projects, null, 2));
-
-    console.log(`✅ Series "${seriesTitle}" published to project "${project.title}"`);
-
-    res.json({
-      success: true,
-      series: {
-        id: seriesId,
-        title: seriesTitle,
-        projectId: projectId,
-        projectTitle: project.title,
-        imageCount: images.length,
-        createdAt: timestamp
-      }
-    });
+      projectTitle: project.title,
+      imageCount: images.length,
+      createdAt: timestamp
+    },
+    sanity: sanityResult
+  });
 
   } catch (error) {
     console.error('Error publishing series:', error);
@@ -824,6 +910,102 @@ app.post('/api/admin/publish-series', authenticateToken, async (req, res) => {
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', timestamp: new Date().toISOString() });
+});
+
+// Sanity status check
+app.get('/api/sanity-status', (req, res) => {
+  res.json({
+    sanity: sanity.getConfigStatus(),
+    timestamp: new Date().toISOString()
+  });
+});
+
+// Get available UX flows
+app.get('/api/flows', (req, res) => {
+  res.json({
+    flows: flowManager.getAllFlows(),
+    mainFlows: flowManager.getMainFlows(),
+    timestamp: new Date().toISOString()
+  });
+});
+
+// Get flow suggestions for filename
+app.get('/api/flows/suggest/:filename', (req, res) => {
+  const { filename } = req.params;
+  const suggestedFlow = flowManager.suggestFlowFromFilename(filename);
+  const flowInfo = flowManager.getFlowById(suggestedFlow);
+  
+  res.json({
+    filename,
+    suggestedFlow,
+    flowInfo,
+    displayName: flowManager.getFlowDisplayName(suggestedFlow),
+    icon: flowManager.getFlowIcon(suggestedFlow),
+    color: flowManager.getFlowColor(suggestedFlow)
+  });
+});
+
+// Generate live preview of case study
+app.get('/api/preview/:projectId', async (req, res) => {
+  try {
+    const { projectId } = req.params;
+    const data = await loadData();
+    
+    if (!data.projects[projectId]) {
+      return res.status(404).json({ error: 'Project not found' });
+    }
+
+    const project = data.projects[projectId];
+    
+    // Organize series by flow type
+    const flowsData = {};
+    if (project.series) {
+      Object.values(project.series).forEach(series => {
+        const flowType = series.flowType || 'gallery';
+        if (!flowsData[flowType]) {
+          flowsData[flowType] = [];
+        }
+        flowsData[flowType].push(series);
+      });
+    }
+
+    // Sort series within each flow by order
+    Object.keys(flowsData).forEach(flowType => {
+      flowsData[flowType].sort((a, b) => {
+        const orderA = flowManager.getFlowOrder(flowType);
+        const orderB = flowManager.getFlowOrder(b.flowType || 'gallery');
+        return orderA - orderB;
+      });
+    });
+
+    const previewData = {
+      project: {
+        id: projectId,
+        title: project.title,
+        description: project.description,
+        client: project.client,
+        status: project.status,
+        ndaRequired: project.ndaRequired,
+        ndaCode: project.ndaCode,
+        tags: project.tags || [],
+        createdAt: project.createdAt,
+        updatedAt: project.updatedAt
+      },
+      flows: flowsData,
+      flowManager: {
+        availableFlows: flowManager.getAllFlows(),
+        mainFlows: flowManager.getMainFlows()
+      },
+      previewUrl: `/src/preview/${projectId}/`,
+      timestamp: new Date().toISOString()
+    };
+
+    res.json(previewData);
+
+  } catch (error) {
+    console.error('Error generating preview:', error);
+    res.status(500).json({ error: 'Failed to generate preview' });
+  }
 });
 
 // Initialize and start server

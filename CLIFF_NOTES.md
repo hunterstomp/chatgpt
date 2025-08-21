@@ -13,7 +13,7 @@ python3 -m http.server 8001    # Frontend (port 8001)
 
 ## 🔑 Admin Access
 - **URL**: http://localhost:8001/src/admin/
-- **Login**: `admin` / `password`
+- **Login**: Set in environment variables (see .env.example)
 - **Token**: Stored in localStorage as `adminToken`
 
 ## 📁 Main Interfaces
@@ -78,6 +78,12 @@ backend/
 - Use **Quick Upload** for bulk images
 - **NDA codes**: NDA2024, CONFIDENTIAL, INTERNAL
 - **Auto-save**: Series state saved to localStorage
+
+## 🔒 Security Notes
+- **Change default credentials** before production use
+- **Set environment variables** for admin access
+- **Never commit .env files** to Git
+- **Use strong passwords** and JWT secrets
 
 ---
 *Need more details? See README.md*

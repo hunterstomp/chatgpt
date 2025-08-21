@@ -72,8 +72,8 @@ backend/
 - **Flow Privacy**: Control access to specific process phases
 
 **Authentication**:
-- Username: `admin`
-- Password: `password`
+- Username: Set in environment variables
+- Password: Set in environment variables  
 - JWT-based session management
 
 ### 2. **Serial Upload System** (`/src/serial-upload/`)
@@ -314,8 +314,27 @@ git add . && git commit     # Save changes
 - **Serial Upload**: http://localhost:8001/src/serial-upload/
 
 ### Default Credentials
-- **Admin**: `admin` / `password`
+- **Admin**: Set in environment variables (see Security section below)
 - **NDA Codes**: `NDA2024`, `CONFIDENTIAL`, `INTERNAL`
+
+### ⚠️ Security Configuration
+**IMPORTANT**: Before deploying to production, you MUST:
+
+1. **Set environment variables** for admin credentials:
+   ```bash
+   export ADMIN_USERNAME=your_secure_username
+   export ADMIN_PASSWORD=your_secure_password
+   export JWT_SECRET=your_super_secure_jwt_secret
+   ```
+
+2. **Create a .env file** (not committed to Git):
+   ```bash
+   ADMIN_USERNAME=your_secure_username
+   ADMIN_PASSWORD=your_secure_password
+   JWT_SECRET=your_super_secure_jwt_secret
+   ```
+
+3. **Change default credentials** - the current defaults are for development only!
 
 ---
 

@@ -187,8 +187,12 @@ class SerialUpload {
                 
                 <div class="image-meta">
                     <h5>${image.name}</h5>
-                    <div class="image-description">
-                        ${image.description || 'No description added yet...'}
+                    <div class="image-description" onclick="serialUpload.editDescription(${index}, event)">
+                        ${image.description ? 
+                            `<span class="description-text">${image.description}</span>` : 
+                            '<span class="description-placeholder">Click to add description...</span>'
+                        }
+                        <i class="fas fa-edit edit-icon"></i>
                     </div>
                 </div>
                 
@@ -649,21 +653,50 @@ class SerialUpload {
     }
 
     toggleFullscreen() {
+        const lightbox = document.getElementById('lightboxOverlay');
+        
         if (!document.fullscreenElement) {
-            document.documentElement.requestFullscreen();
+            // Enter fullscreen
+            if (lightbox.requestFullscreen) {
+                lightbox.requestFullscreen();
+            } else if (lightbox.webkitRequestFullscreen) {
+                lightbox.webkitRequestFullscreen();
+            } else if (lightbox.msRequestFullscreen) {
+                lightbox.msRequestFullscreen();
+            }
+            
+            document.getElementById('fullscreenBtn').innerHTML = '<i class="fas fa-compress"></i>';
+            document.getElementById('fullscreenBtn').title = 'Exit Fullscreen';
         } else {
-            document.exitFullscreen();
+            // Exit fullscreen
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+            
+            document.getElementById('fullscreenBtn').innerHTML = '<i class="fas fa-expand"></i>';
+            document.getElementById('fullscreenBtn').title = 'Toggle Fullscreen';
         }
     }
 
     downloadCurrentImage() {
-        const image = this.images[this.currentIndex];
-        if (!image) return;
-        
-        const link = document.createElement('a');
-        link.href = image.url;
-        link.download = image.name;
-        link.click();
+        if (this.currentIndex >= 0 && this.currentIndex < this.images.length) {
+            const image = this.images[this.currentIndex];
+            const link = document.createElement('a');
+            link.href = `/uploads/processed/${image.name}`;
+            link.download = image.name;
+            link.target = '_blank';
+            
+            // Trigger download
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            this.showNotification(`Downloading ${image.name}`, 'info');
+        }
     }
 
     handleResize() {
@@ -677,9 +710,30 @@ class SerialUpload {
     }
 
     previewSeries() {
-        if (this.images.length > 0) {
-            this.openLightbox(0);
+        if (!this.isAuthenticated) {
+            this.showNotification('Please log in to preview case studies', 'warning');
+            return;
         }
+
+        if (this.images.length === 0) {
+            this.showNotification('No images to preview', 'warning');
+            return;
+        }
+
+        // Get current project ID from URL or create a temporary one
+        const urlParams = new URLSearchParams(window.location.search);
+        let projectId = urlParams.get('project');
+        
+        if (!projectId) {
+            // Create a temporary project for preview
+            projectId = 'preview-' + Date.now();
+        }
+
+        // Open preview in new window
+        const previewUrl = `/src/preview/?project=${projectId}`;
+        window.open(previewUrl, '_blank', 'width=1200,height=800');
+        
+        this.showNotification('Preview opened in new window', 'info');
     }
 
     async publishSeries() {
@@ -818,16 +872,27 @@ class SerialUpload {
         const token = this.getAuthToken();
         this.isAuthenticated = !!token;
         
-        // Update UI based on authentication status
-        const publishBtn = document.getElementById('publishBtn');
-        if (publishBtn) {
-            if (this.isAuthenticated) {
-                publishBtn.style.display = 'inline-block';
-                publishBtn.title = 'Publish series to case study';
-            } else {
-                publishBtn.style.display = 'none';
+                    // Update UI based on authentication status
+            const publishBtn = document.getElementById('publishBtn');
+            const previewBtn = document.getElementById('previewBtn');
+            
+            if (publishBtn) {
+                if (this.isAuthenticated) {
+                    publishBtn.style.display = 'inline-block';
+                    publishBtn.title = 'Publish series to case study';
+                } else {
+                    publishBtn.style.display = 'none';
+                }
             }
-        }
+            
+            if (previewBtn) {
+                if (this.isAuthenticated && this.images.length > 0) {
+                    previewBtn.style.display = 'inline-block';
+                    previewBtn.title = 'Preview case study';
+                } else {
+                    previewBtn.style.display = 'none';
+                }
+            }
         
         // Show authentication status
         if (!this.isAuthenticated) {
@@ -861,7 +926,7 @@ class SerialUpload {
     }
 
     showNotification(message, type = 'info') {
-        // Create notification element
+        // Create notification element with better accessibility
         const notification = document.createElement('div');
         notification.className = `alert alert-${type} alert-dismissible fade show position-fixed`;
         notification.style.cssText = `
@@ -869,12 +934,38 @@ class SerialUpload {
             right: 20px;
             z-index: 10000;
             min-width: 300px;
+            max-width: 400px;
             animation: slideIn 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border: none;
         `;
         
+        // Ensure proper contrast for accessibility
+        if (type === 'success') {
+            notification.style.backgroundColor = '#d4edda';
+            notification.style.color = '#155724';
+            notification.style.borderColor = '#c3e6cb';
+        } else if (type === 'error' || type === 'danger') {
+            notification.style.backgroundColor = '#f8d7da';
+            notification.style.color = '#721c24';
+            notification.style.borderColor = '#f5c6cb';
+        } else if (type === 'warning') {
+            notification.style.backgroundColor = '#fff3cd';
+            notification.style.color = '#856404';
+            notification.style.borderColor = '#ffeaa7';
+        } else {
+            notification.style.backgroundColor = '#d1ecf1';
+            notification.style.color = '#0c5460';
+            notification.style.borderColor = '#bee5eb';
+        }
+        
         notification.innerHTML = `
-            ${message}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <div class="d-flex align-items-start">
+                <div class="flex-grow-1">
+                    <strong>${this.getNotificationTitle(type)}:</strong> ${message}
+                </div>
+                <button type="button" class="btn-close ms-2" data-bs-dismiss="alert" aria-label="Close notification"></button>
+            </div>
         `;
         
         document.body.appendChild(notification);
@@ -885,6 +976,16 @@ class SerialUpload {
                 notification.remove();
             }
         }, 5000);
+    }
+
+    getNotificationTitle(type) {
+        switch (type) {
+            case 'success': return 'Success';
+            case 'error':
+            case 'danger': return 'Error';
+            case 'warning': return 'Warning';
+            default: return 'Info';
+        }
     }
 
     // Navigation Mode Management
