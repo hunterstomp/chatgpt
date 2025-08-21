@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q10UX Admin - Case Study Creator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Roboto+Condensed:wght@400;700&family=Barlow+Condensed:wght@400;600&display=swap" rel="stylesheet">
+    <link href="../styles/q10ux.css" rel="stylesheet">
+    <link href="admin.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-container">
+            <div class="login-card">
+                <div class="login-header">
+                    <img src="/public/mamp-images/q10ux-sitelogo-256x130.png" alt="Q10UX" height="60">
+                    <h2>Admin Login</h2>
+                    <p>Case Study Creator</p>
+                </div>
+                <form id="loginForm" class="login-form">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" value="admin" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" value="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="adminDashboard" class="admin-dashboard" style="display: none;">
+        <!-- Header -->
+        <header class="admin-header">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <h1><i class="fas fa-tools"></i> Q10UX Case Study Creator</h1>
+                        <small class="text-muted">
+                            <i class="fas fa-shield-alt"></i> NDA Firewall Enabled | 
+                            <i class="fas fa-tags"></i> Bulk Tagging | 
+                            <i class="fas fa-bolt"></i> Performance Optimized
+                        </small>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <span class="admin-info">
+                            <i class="fas fa-user"></i> Admin
+                        </span>
+                        <button class="btn btn-outline-light btn-sm ms-2" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <div class="container-fluid">
+                <!-- Quick Actions -->
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <div class="quick-actions">
+                            <button class="btn btn-primary btn-lg" onclick="showCreateProject()">
+                                <i class="fas fa-plus"></i> Create New Case Study
+                            </button>
+                            <button class="btn btn-secondary btn-lg" onclick="showProjects()">
+                                <i class="fas fa-list"></i> View All Projects
+                            </button>
+                            <button class="btn btn-success btn-lg" onclick="showUpload()">
+                                <i class="fas fa-upload"></i> Quick Upload
+                            </button>
+                            <button class="btn btn-warning btn-lg" onclick="showNDAManager()">
+                                <i class="fas fa-shield-alt"></i> NDA Manager
+                            </button>
+                            <button class="btn btn-info btn-lg" onclick="showBulkTagging()">
+                                <i class="fas fa-tags"></i> Bulk Tagging
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project List -->
+                <div id="projectList" class="project-list">
+                    <div class="row">
+                        <div class="col-12">
+                            <h3><i class="fas fa-folder"></i> Your Case Studies</h3>
+                            <div id="projectsContainer" class="projects-grid">
+                                <!-- Projects will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Create Project Form -->
+                <div id="createProjectForm" class="create-project-form" style="display: none;">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <div class="form-card">
+                                <h3><i class="fas fa-plus-circle"></i> Create New Case Study</h3>
+                                <form id="projectForm">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="projectTitle" class="form-label">Case Study Title</label>
+                                                <input type="text" class="form-control" id="projectTitle" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="projectSlug" class="form-label">URL Slug</label>
+                                                <input type="text" class="form-control" id="projectSlug" required>
+                                                <small class="form-text text-muted">e.g., "atmosfx-media-player"</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="projectDescription" class="form-label">Description</label>
+                                        <textarea class="form-control" id="projectDescription" rows="3" required></textarea>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="projectStatus" class="form-label">Status</label>
+                                                <select class="form-select" id="projectStatus">
+                                                    <option value="draft">Draft</option>
+                                                    <option value="published">Published</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="ndaRequired" class="form-label">NDA Protection</label>
+                                                <select class="form-select" id="ndaRequired">
+                                                    <option value="false">Public Access</option>
+                                                    <option value="true">NDA Required</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3" id="ndaCodeSection" style="display: none;">
+                                        <label for="ndaCode" class="form-label">NDA Access Code</label>
+                                        <select class="form-select" id="ndaCode">
+                                            <option value="NDA2024">NDA2024 - 2024 NDA Access</option>
+                                            <option value="CONFIDENTIAL">CONFIDENTIAL - Confidential Access</option>
+                                            <option value="INTERNAL">INTERNAL - Internal Use Only</option>
+                                        </select>
+                                        <small class="form-text text-muted">This code will be required to access the project</small>
+                                    </div>
+                                    <div class="form-actions">
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fas fa-save"></i> Create Project
+                                        </button>
+                                        <button type="button" class="btn btn-secondary" onclick="showProjects()">
+                                            Cancel
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upload Interface -->
+                <div id="uploadInterface" class="upload-interface" style="display: none;">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="upload-card">
+                                <h3><i class="fas fa-cloud-upload-alt"></i> Upload Images</h3>
+                                
+                                <!-- Project Selection -->
+                                <div class="mb-4">
+                                    <label for="uploadProject" class="form-label">Select Case Study</label>
+                                    <select class="form-select" id="uploadProject" required>
+                                        <option value="">Choose a case study...</option>
+                                    </select>
+                                </div>
+
+                                <!-- Bulk Tagging Selection -->
+                                <div class="mb-4">
+                                    <label for="bulkTag" class="form-label">Bulk Tagging (Optional)</label>
+                                    <select class="form-select" id="bulkTag">
+                                        <option value="">Auto-detect from filenames</option>
+                                        <optgroup label="Research Phase">
+                                            <option value="user-research">User Research</option>
+                                            <option value="competitive-analysis">Competitive Analysis</option>
+                                            <option value="user-personas">User Personas</option>
+                                        </optgroup>
+                                        <optgroup label="Ideation Phase">
+                                            <option value="information-architecture">Information Architecture</option>
+                                            <option value="user-flows">User Flows</option>
+                                            <option value="wireframes">Wireframes</option>
+                                        </optgroup>
+                                        <optgroup label="Design Phase">
+                                            <option value="visual-design">Visual Design</option>
+                                            <option value="prototypes">Prototypes</option>
+                                            <option value="design-systems">Design Systems</option>
+                                        </optgroup>
+                                        <optgroup label="Testing Phase">
+                                            <option value="usability-testing">Usability Testing</option>
+                                            <option value="accessibility-testing">Accessibility Testing</option>
+                                            <option value="performance-testing">Performance Testing</option>
+                                        </optgroup>
+                                        <optgroup label="Implementation Phase">
+                                            <option value="handoff">Design Handoff</option>
+                                            <option value="development-support">Development Support</option>
+                                        </optgroup>
+                                        <optgroup label="Results Phase">
+                                            <option value="analytics">Analytics & Metrics</option>
+                                            <option value="user-feedback">User Feedback</option>
+                                        </optgroup>
+                                        <optgroup label="Additional">
+                                            <option value="screenshots">Screenshots</option>
+                                            <option value="process-docs">Process Documentation</option>
+                                        </optgroup>
+                                    </select>
+                                    <small class="form-text text-muted">Select to apply the same tag to all uploaded images</small>
+                                </div>
+
+                                <!-- Flow Selection (fallback) -->
+                                <div class="mb-4">
+                                    <label for="uploadFlow" class="form-label">Process Phase (if not using bulk tagging)</label>
+                                    <select class="form-select" id="uploadFlow">
+                                        <option value="research">Research & Discovery</option>
+                                        <option value="ideation">Ideation & Concepts</option>
+                                        <option value="design">Design & Prototyping</option>
+                                        <option value="testing">Testing & Validation</option>
+                                        <option value="implementation">Implementation & Handoff</option>
+                                        <option value="results">Results & Impact</option>
+                                        <option value="screens">Additional Screenshots</option>
+                                        <option value="process">Process Documentation</option>
+                                    </select>
+                                </div>
+
+                                <!-- NDA Protection for Upload -->
+                                <div class="mb-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="uploadNdaRequired">
+                                        <label class="form-check-label" for="uploadNdaRequired">
+                                            <i class="fas fa-shield-alt"></i> Require NDA for this flow
+                                        </label>
+                                    </div>
+                                    <small class="form-text text-muted">Images in this flow will only be visible to users with valid NDA access</small>
+                                </div>
+
+                                <!-- Performance Info -->
+                                <div class="mb-4">
+                                    <div class="performance-info">
+                                        <h6><i class="fas fa-bolt"></i> Performance Optimizations</h6>
+                                        <ul class="performance-list">
+                                            <li>Multiple image sizes generated automatically (full, large, medium, thumbnail, preview)</li>
+                                            <li>WebP format for optimal compression</li>
+                                            <li>Responsive images for different screen sizes</li>
+                                            <li>Lazy loading support</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- Upload Zone -->
+                                <div class="upload-zone" id="uploadZone">
+                                    <div class="upload-content">
+                                        <i class="fas fa-cloud-upload-alt fa-3x"></i>
+                                        <h4>Drag & Drop Images Here</h4>
+                                        <p>or click to select files (up to 100 images, 50MB each)</p>
+                                        <input type="file" id="fileInput" multiple accept="image/*" style="display: none;">
+                                        <button type="button" class="btn btn-primary" onclick="selectFiles()">
+                                            <i class="fas fa-folder-open"></i> Select Files
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Progress -->
+                                <div id="uploadProgress" class="upload-progress" style="display: none;">
+                                    <div class="progress mb-3">
+                                        <div class="progress-bar" id="progressBar" role="progressbar"></div>
+                                    </div>
+                                    <p id="progressText">Uploading...</p>
+                                </div>
+
+                                <!-- Upload Actions -->
+                                <div class="upload-actions">
+                                    <button class="btn btn-success" onclick="uploadImages()" id="uploadBtn" disabled>
+                                        <i class="fas fa-upload"></i> Upload Images
+                                    </button>
+                                    <button class="btn btn-secondary" onclick="showProjects()">
+                                        Back to Projects
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Gallery -->
+                <div id="projectGallery" class="project-gallery" style="display: none;">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="gallery-header">
+                                <h3 id="galleryTitle"><i class="fas fa-images"></i> Project Gallery</h3>
+                                <div>
+                                    <button class="btn btn-warning me-2" onclick="showFlowPrivacy()">
+                                        <i class="fas fa-shield-alt"></i> Flow Privacy
+                                    </button>
+                                    <button class="btn btn-info me-2" onclick="showBulkTagging()">
+                                        <i class="fas fa-tags"></i> Bulk Tag
+                                    </button>
+                                    <button class="btn btn-primary" onclick="showUpload()">
+                                        <i class="fas fa-plus"></i> Add Images
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div id="galleryContainer" class="gallery-container">
+                                <!-- Gallery will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NDA Manager -->
+                <div id="ndaManager" class="nda-manager" style="display: none;">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <div class="form-card">
+                                <h3><i class="fas fa-shield-alt"></i> NDA Access Management</h3>
+                                
+                                <div class="nda-info mb-4">
+                                    <h5>Available NDA Codes</h5>
+                                    <div class="nda-codes">
+                                        <div class="nda-code-item">
+                                            <strong>NDA2024</strong> - 2024 NDA Access (Expires: Dec 31, 2025)
+                                        </div>
+                                        <div class="nda-code-item">
+                                            <strong>CONFIDENTIAL</strong> - Confidential Access (Expires: Jun 30, 2025)
+                                        </div>
+                                        <div class="nda-code-item">
+                                            <strong>INTERNAL</strong> - Internal Use Only (Expires: Dec 31, 2025)
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="nda-stats mb-4">
+                                    <h5>NDA Protection Statistics</h5>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="stat-card">
+                                                <div class="stat-number" id="ndaProjectsCount">0</div>
+                                                <div class="stat-label">NDA Protected Projects</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="stat-card">
+                                                <div class="stat-number" id="ndaFlowsCount">0</div>
+                                                <div class="stat-label">Protected Flows</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="stat-card">
+                                                <div class="stat-number" id="ndaImagesCount">0</div>
+                                                <div class="stat-label">Protected Images</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-actions">
+                                    <button class="btn btn-secondary" onclick="showProjects()">
+                                        Back to Projects
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bulk Tagging Interface -->
+                <div id="bulkTagging" class="bulk-tagging" style="display: none;">
+                    <div class="row">
+                        <div class="col-lg-10 mx-auto">
+                            <div class="form-card">
+                                <h3><i class="fas fa-tags"></i> Bulk Image Tagging</h3>
+                                <p class="text-muted">Select multiple images and apply consistent tagging across your UX deliverables.</p>
+                                
+                                <!-- Project Selection -->
+                                <div class="mb-4">
+                                    <label for="bulkTagProject" class="form-label">Select Case Study</label>
+                                    <select class="form-select" id="bulkTagProject" onchange="loadProjectImages()">
+                                        <option value="">Choose a case study...</option>
+                                    </select>
+                                </div>
+
+                                <!-- Image Selection -->
+                                <div class="mb-4" id="imageSelectionSection" style="display: none;">
+                                    <h5>Select Images to Tag</h5>
+                                    <div class="image-selection-controls mb-3">
+                                        <button class="btn btn-sm btn-outline-primary" onclick="selectAllImages()">
+                                            <i class="fas fa-check-square"></i> Select All
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-secondary" onclick="deselectAllImages()">
+                                            <i class="fas fa-square"></i> Deselect All
+                                        </button>
+                                        <span class="ms-3 text-muted" id="selectedCount">0 images selected</span>
+                                    </div>
+                                    <div id="imageSelectionGrid" class="image-selection-grid">
+                                        <!-- Images will be loaded here -->
+                                    </div>
+                                </div>
+
+                                <!-- Tagging Options -->
+                                <div class="mb-4" id="taggingOptions" style="display: none;">
+                                    <h5>Tagging Options</h5>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="bulkTagDeliverable" class="form-label">UX Deliverable</label>
+                                                <select class="form-select" id="bulkTagDeliverable">
+                                                    <option value="">Select deliverable...</option>
+                                                    <optgroup label="Research Phase">
+                                                        <option value="user-research">User Research</option>
+                                                        <option value="competitive-analysis">Competitive Analysis</option>
+                                                        <option value="user-personas">User Personas</option>
+                                                    </optgroup>
+                                                    <optgroup label="Ideation Phase">
+                                                        <option value="information-architecture">Information Architecture</option>
+                                                        <option value="user-flows">User Flows</option>
+                                                        <option value="wireframes">Wireframes</option>
+                                                    </optgroup>
+                                                    <optgroup label="Design Phase">
+                                                        <option value="visual-design">Visual Design</option>
+                                                        <option value="prototypes">Prototypes</option>
+                                                        <option value="design-systems">Design Systems</option>
+                                                    </optgroup>
+                                                    <optgroup label="Testing Phase">
+                                                        <option value="usability-testing">Usability Testing</option>
+                                                        <option value="accessibility-testing">Accessibility Testing</option>
+                                                        <option value="performance-testing">Performance Testing</option>
+                                                    </optgroup>
+                                                    <optgroup label="Implementation Phase">
+                                                        <option value="handoff">Design Handoff</option>
+                                                        <option value="development-support">Development Support</option>
+                                                    </optgroup>
+                                                    <optgroup label="Results Phase">
+                                                        <option value="analytics">Analytics & Metrics</option>
+                                                        <option value="user-feedback">User Feedback</option>
+                                                    </optgroup>
+                                                    <optgroup label="Additional">
+                                                        <option value="screenshots">Screenshots</option>
+                                                        <option value="process-docs">Process Documentation</option>
+                                                    </optgroup>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="bulkTagFlow" class="form-label">Process Phase</label>
+                                                <select class="form-select" id="bulkTagFlow">
+                                                    <option value="research">Research & Discovery</option>
+                                                    <option value="ideation">Ideation & Concepts</option>
+                                                    <option value="design">Design & Prototyping</option>
+                                                    <option value="testing">Testing & Validation</option>
+                                                    <option value="implementation">Implementation & Handoff</option>
+                                                    <option value="results">Results & Impact</option>
+                                                    <option value="screens">Additional Screenshots</option>
+                                                    <option value="process">Process Documentation</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="bulkTagCustom" class="form-label">Custom Tags (comma-separated)</label>
+                                        <input type="text" class="form-control" id="bulkTagCustom" placeholder="e.g., mobile, responsive, accessibility">
+                                        <small class="form-text text-muted">Additional tags to apply to selected images</small>
+                                    </div>
+                                </div>
+
+                                <!-- Bulk Tagging Actions -->
+                                <div class="form-actions" id="bulkTagActions" style="display: none;">
+                                    <button class="btn btn-primary" onclick="applyBulkTags()">
+                                        <i class="fas fa-tags"></i> Apply Tags
+                                    </button>
+                                    <button class="btn btn-secondary" onclick="showProjects()">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Flow Privacy Settings -->
+                <div id="flowPrivacy" class="flow-privacy" style="display: none;">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <div class="form-card">
+                                <h3><i class="fas fa-lock"></i> Flow Privacy Settings</h3>
+                                <p class="text-muted">Configure which flows require NDA access for the current project.</p>
+                                
+                                <div id="flowPrivacySettings">
+                                    <!-- Flow privacy settings will be loaded here -->
+                                </div>
+
+                                <div class="form-actions">
+                                    <button class="btn btn-primary" onclick="saveFlowPrivacy()">
+                                        <i class="fas fa-save"></i> Save Privacy Settings
+                                    </button>
+                                    <button class="btn btn-secondary" onclick="showProjectGallery()">
+                                        Back to Gallery
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
