@@ -46,10 +46,11 @@
                             </div>
                         </div>
                         
-                        <input type="file" id="fileInput" multiple accept="image/*,video/*,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/x-photoshop,application/x-illustrator,application/x-indesign,application/x-figma,application/x-sketch" style="position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; opacity: 0;">
-                        <button class="btn btn-primary btn-lg" id="browseButton" onclick="browseFiles()">
+                        <!-- Custom styled file input that looks like a button -->
+                        <label for="fileInput" class="btn btn-primary btn-lg file-input-label">
                             <i class="fas fa-folder-open"></i> Or Click to Browse
-                        </button>
+                        </label>
+                        <input type="file" id="fileInput" multiple accept="image/*,video/*,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/x-photoshop,application/x-illustrator,application/x-indesign,application/x-figma,application/x-sketch" style="display: none;">
                         <div id="fileStatus" style="margin-top: 1rem; display: none;">
                             <div class="alert alert-info">
                                 <i class="fas fa-info-circle"></i>
@@ -156,12 +157,16 @@
             console.log('File input found:', fileInput);
             console.log('Browse button found:', browseButton);
             
-            // Test file input change event directly
-            if (fileInput) {
+            // Connect file input to the main InstantUpload class
+            if (fileInput && window.instantUpload) {
                 fileInput.addEventListener('change', function(e) {
-                    console.log('🎯 DIRECT FILE INPUT CHANGE EVENT!');
+                    console.log('🎯 FILE INPUT CONNECTED TO INSTANTUPLOAD!');
                     console.log('Files:', e.target.files);
-                    console.log('File count:', e.target.files ? e.target.files.length : 0);
+                    
+                    if (e.target.files && e.target.files.length > 0) {
+                        // Process files through the main class
+                        window.instantUpload.handleFiles(e.target.files);
+                    }
                 });
             }
         });
