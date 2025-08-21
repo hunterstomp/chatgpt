@@ -1,7 +1,7 @@
 {
   "name": "q10ux-portfolio",
   "version": "1.0.0",
-  "description": "Q10UX Professional UX Portfolio with NDA Firewall and Smart Upload System",
+  "description": "Q10UX Professional UX Portfolio with NDA Firewall and Ultra-Streamlined Smart Upload System",
   "main": "backend/admin-server.js",
   "keywords": [
     "ux",
@@ -12,8 +12,10 @@
     "admin",
     "bulk-tagging",
     "smart-upload",
+    "instant-upload",
     "media-processing",
-    "cloud-integration"
+    "cloud-integration",
+    "zero-configuration"
   ],
   "author": "Quentin Little",
   "license": "MIT",
@@ -23,6 +25,8 @@
     "admin": "node backend/admin-server.js",
     "serve": "python3 -m http.server 8001",
     "smart-upload": "node scripts/smart-upload.js",
+    "instant-upload": "node scripts/one-click-upload.js",
+    "go": "./scripts/start.sh",
     "setup": "npm install && npm run setup-deps",
     "setup-deps": "echo 'Installing system dependencies...' && brew install ffmpeg imagemagick",
     "build": "echo 'Static site - no build required'",
@@ -56,7 +60,8 @@
     "url": "https://github.com/quentstyle/q10ux-portfolio.git"
   },
   "bin": {
-    "q10ux-smart-upload": "./scripts/smart-upload.js"
+    "q10ux-smart-upload": "./scripts/smart-upload.js",
+    "q10ux-instant-upload": "./scripts/one-click-upload.js"
   },
   "files": [
     "src/",
