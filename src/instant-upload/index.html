@@ -32,24 +32,67 @@
                         <p class="upload-subtitle">That's it. No settings, no configuration.</p>
                         
                         <div class="upload-info">
-                            <div class="info-item">
+                            <div class="info-item" id="detectionStatus">
                                 <i class="fas fa-magic"></i>
                                 <span>Auto-detect project & tags</span>
                             </div>
-                            <div class="info-item">
+                            <div class="info-item" id="processingStatus">
                                 <i class="fas fa-cogs"></i>
                                 <span>Auto-process & optimize</span>
                             </div>
-                            <div class="info-item">
+                            <div class="info-item" id="portfolioStatus">
                                 <i class="fas fa-check"></i>
                                 <span>Ready for portfolio</span>
                             </div>
                         </div>
                         
-                        <input type="file" id="fileInput" multiple accept="image/*,video/*" style="display: none;">
-                        <button class="btn btn-primary btn-lg" onclick="selectFiles()">
+                        <input type="file" id="fileInput" multiple accept="image/*,video/*,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/x-photoshop,application/x-illustrator,application/x-indesign,application/x-figma,application/x-sketch" style="position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; opacity: 0;">
+                        <button class="btn btn-primary btn-lg" id="browseButton" onclick="browseFiles()">
                             <i class="fas fa-folder-open"></i> Or Click to Browse
                         </button>
+                        <div id="fileStatus" style="margin-top: 1rem; display: none;">
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle"></i>
+                                <span id="fileStatusText">Files selected!</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Two-Panel Layout (Hidden initially) -->
+                <div class="two-panel-layout" id="twoPanelLayout" style="display: none;">
+                    <!-- Left Panel: File Details -->
+                    <div class="left-panel">
+                        <div class="panel-header">
+                            <h3><i class="fas fa-file-alt"></i> File Details</h3>
+                            <button class="btn-close" onclick="instantUpload.cancelUpload()" title="Cancel and return to upload">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="file-details" id="fileDetails">
+                            <!-- File details will be populated here -->
+                        </div>
+                        
+                        <div class="panel-actions">
+                            <button class="btn btn-primary" id="startUploadBtn">
+                                <i class="fas fa-upload"></i> Start Upload
+                            </button>
+                            <button class="btn btn-outline-primary" id="cancelUploadBtn">
+                                <i class="fas fa-times"></i> Cancel
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Panel: File Preview -->
+                    <div class="right-panel">
+                        <div class="panel-header">
+                            <h3><i class="fas fa-eye"></i> Preview</h3>
+                        </div>
+                        
+                        <div class="file-preview" id="filePreview">
+                            <!-- File preview will be populated here -->
+                        </div>
                     </div>
                 </div>
 
@@ -99,6 +142,29 @@
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="instant-upload.js"></script>
+    <script src="instant-upload-clean.js"></script>
+    <script>
+        // Debug script to check if everything is loading
+        console.log('HTML loaded');
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM Content Loaded');
+            
+            const fileInput = document.getElementById('fileInput');
+            const browseButton = document.getElementById('browseButton');
+            
+            console.log('File input found:', fileInput);
+            console.log('Browse button found:', browseButton);
+            
+            // Test file input change event directly
+            if (fileInput) {
+                fileInput.addEventListener('change', function(e) {
+                    console.log('🎯 DIRECT FILE INPUT CHANGE EVENT!');
+                    console.log('Files:', e.target.files);
+                    console.log('File count:', e.target.files ? e.target.files.length : 0);
+                });
+            }
+        });
+    </script>
 </body>
 </html>

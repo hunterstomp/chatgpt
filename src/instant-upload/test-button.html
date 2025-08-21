@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-button { padding: 10px 20px; background: #007bff; color: white; border: none; cursor: pointer; }
+        .test-button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>Browse Button Test</h1>
+    
+    <input type="file" id="fileInput" multiple style="display: none;">
+    <button class="test-button" id="browseButton" onclick="browseFiles()">
+        Test Browse Button
+    </button>
+    
+    <div id="status"></div>
+    
+    <script>
+        // Simple test function
+        function browseFiles() {
+            console.log('browseFiles() called');
+            const fileInput = document.getElementById('fileInput');
+            if (fileInput) {
+                console.log('File input found, clicking...');
+                fileInput.click();
+            } else {
+                console.error('File input not found!');
+            }
+        }
+        
+        // Event listener test
+        document.addEventListener('DOMContentLoaded', function() {
+            const browseButton = document.getElementById('browseButton');
+            const fileInput = document.getElementById('fileInput');
+            
+            if (browseButton) {
+                browseButton.addEventListener('click', function(e) {
+                    console.log('Event listener triggered');
+                    e.stopPropagation();
+                    fileInput.click();
+                });
+            }
+            
+            // File input change handler
+            fileInput.addEventListener('change', function(e) {
+                console.log('Files selected:', e.target.files.length);
+                document.getElementById('status').textContent = 
+                    `Selected ${e.target.files.length} file(s)`;
+            });
+        });
+    </script>
+</body>
+</html>

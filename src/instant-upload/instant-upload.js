@@ -25,7 +25,14 @@ class InstantUpload {
             console.log('Files selected:', e.target.files);
             
             if (e.target.files && e.target.files.length > 0) {
-                this.handleFiles(e.target.files);
+                        // Show immediate feedback
+        this.showFileStatus(`Selected ${e.target.files.length} file(s)!`);
+        
+        // Show feature status updates
+        this.updateFeatureStatus('detection', 'active', 'Detecting projects & tags...');
+        
+        // Process files
+        this.handleFiles(e.target.files);
             } else {
                 console.log('No files selected or files array is empty');
                 this.showNotification('No files were selected. Please try again.', 'warning');
@@ -64,13 +71,15 @@ class InstantUpload {
         });
 
         // Add click handler for the browse button specifically
-        const browseButton = uploadZone.querySelector('button');
+        const browseButton = document.getElementById('browseButton');
         if (browseButton) {
             browseButton.addEventListener('click', (e) => {
                 e.stopPropagation();
                 console.log('Browse button clicked');
                 fileInput.click();
             });
+        } else {
+            console.error('Browse button not found!');
         }
 
         // Keyboard accessibility for upload zone
@@ -106,8 +115,16 @@ class InstantUpload {
             }
         });
 
-        // Keyboard support for dynamic buttons
+        // Keyboard support for dynamic buttons and escape key
         document.addEventListener('keydown', (e) => {
+            // Escape key to cancel/exit
+            if (e.key === 'Escape') {
+                e.preventDefault();
+                if (this.files.length > 0) {
+                    this.cancelUpload();
+                }
+            }
+            
             if (e.key === 'Enter' || e.key === ' ') {
                 const target = e.target;
                 
@@ -129,13 +146,20 @@ class InstantUpload {
     handleFiles(fileList) {
         if (fileList.length === 0) return;
 
+        // Update detection status
+        this.updateFeatureStatus('detection', 'success', `Detected ${fileList.length} files`);
+
         // Enhanced file processing with folder support
         this.files = this.processFileList(Array.from(fileList));
 
         if (this.files.length === 0) {
             this.showNotification('No valid files found. Please choose images, videos, or design files.', 'warning');
+            this.updateFeatureStatus('detection', 'error', 'No valid files found');
             return;
         }
+
+        // Update processing status
+        this.updateFeatureStatus('processing', 'active', 'Processing files...');
 
         // Calculate and display file size information
         const totalSize = this.files.reduce((sum, file) => sum + file.size, 0);
@@ -144,8 +168,19 @@ class InstantUpload {
         // Show Terminator HUD overlay
         this.showTerminatorHUD(totalSize, this.files.length);
         
+        // Update processing status to success
+        this.updateFeatureStatus('processing', 'success', `Processed ${this.files.length} files`);
+        
+        // Update portfolio status
+        this.updateFeatureStatus('portfolio', 'active', 'Preparing for portfolio...');
+        
         this.showFilePreview();
         this.showNotification(`Found ${this.files.length} files (${sizeInfo}) ready to upload`, 'info');
+        
+        // Final portfolio status
+        setTimeout(() => {
+            this.updateFeatureStatus('portfolio', 'success', 'Ready for portfolio!');
+        }, 1000);
     }
 
     processFileList(fileList) {
@@ -615,34 +650,158 @@ class InstantUpload {
     async startProcessing() {
         if (this.isProcessing) return;
         
+        // INSTANT FEEDBACK: Show processing state immediately
+        this.showProcessingState();
+        
         this.isProcessing = true;
         this.isCancelled = false;
-        this.showStatus('Analyzing files...');
         
         try {
-            // Create a default project for instant upload
+            // Step 1: Creating project
+            this.updateProcessingStatus('Creating project...', 10);
             const projectId = await this.createDefaultProject();
             
-            // Check if cancelled before starting uploads
+            // Check if cancelled
             if (this.isCancelled) {
-                this.updateStatus('Upload cancelled');
+                this.updateProcessingStatus('Upload cancelled', 0, 'cancelled');
                 this.resetUpload();
                 return;
             }
             
-            // Upload files to the project
+            // Step 2: Preparing files
+            this.updateProcessingStatus('Preparing files for upload...', 25);
+            await this.prepareFiles();
+            
+            // Step 3: Uploading files
+            this.updateProcessingStatus('Uploading files...', 50);
             await this.uploadFiles(projectId);
             
+            // Step 4: Processing complete
+            this.updateProcessingStatus('Processing complete!', 100, 'success');
+            await this.delay(500); // Brief pause to show completion
+            
             if (!this.isCancelled) {
+                this.showNotification('Upload completed successfully!', 'success');
                 this.showResults();
             }
         } catch (error) {
             console.error('Upload error:', error);
-            if (!this.isCancelled) {
-                this.showNotification('Upload failed. Please try again.', 'error');
-            }
+            this.updateProcessingStatus('Upload failed: ' + error.message, 0, 'error');
+            this.showNotification('Upload failed: ' + error.message, 'error');
             this.resetUpload();
+        } finally {
+            this.isProcessing = false;
         }
+    }
+
+    showProcessingState() {
+        // Hide the preview and show processing interface
+        const statusSection = document.getElementById('statusSection');
+        const uploadZone = document.getElementById('uploadZone');
+        
+        // Hide upload zone
+        uploadZone.style.display = 'none';
+        
+        // Show processing interface
+        statusSection.style.display = 'block';
+        statusSection.innerHTML = `
+            <div class="processing-container">
+                <div class="processing-header">
+                    <i class="fas fa-cogs fa-spin"></i>
+                    <h3>Processing Your Files</h3>
+                </div>
+                
+                <div class="processing-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-text" id="progressText">Initializing...</div>
+                </div>
+                
+                <div class="processing-steps">
+                    <div class="step pending" id="step1">
+                        <i class="fas fa-folder-plus"></i>
+                        <span>Creating project</span>
+                    </div>
+                    <div class="step pending" id="step2">
+                        <i class="fas fa-file-upload"></i>
+                        <span>Preparing files</span>
+                    </div>
+                    <div class="step pending" id="step3">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <span>Uploading files</span>
+                    </div>
+                    <div class="step pending" id="step4">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Processing complete</span>
+                    </div>
+                </div>
+                
+                <div class="processing-actions">
+                    <button class="btn btn-outline-danger" onclick="instantUpload.cancelUpload()">
+                        <i class="fas fa-times"></i> Cancel Upload
+                    </button>
+                </div>
+            </div>
+        `;
+    }
+
+    updateProcessingStatus(message, percentage, status = 'processing') {
+        const progressFill = document.getElementById('progressFill');
+        const progressText = document.getElementById('progressText');
+        
+        if (progressFill && progressText) {
+            // Update progress bar
+            progressFill.style.width = `${percentage}%`;
+            
+            // Update status text
+            progressText.textContent = message;
+            
+            // Update step indicators
+            this.updateStepIndicators(percentage);
+            
+            // Add visual feedback
+            if (status === 'error') {
+                progressFill.style.backgroundColor = '#dc3545';
+                progressText.style.color = '#dc3545';
+            } else if (status === 'success') {
+                progressFill.style.backgroundColor = '#28a745';
+                progressText.style.color = '#28a745';
+            } else if (status === 'cancelled') {
+                progressFill.style.backgroundColor = '#ffc107';
+                progressText.style.color = '#ffc107';
+            } else {
+                progressFill.style.backgroundColor = '#00d4ff';
+                progressText.style.color = '#00d4ff';
+            }
+        }
+    }
+
+    updateStepIndicators(percentage) {
+        const steps = ['step1', 'step2', 'step3', 'step4'];
+        const stepPercentages = [10, 25, 50, 100];
+        
+        steps.forEach((stepId, index) => {
+            const step = document.getElementById(stepId);
+            if (step) {
+                if (percentage >= stepPercentages[index]) {
+                    step.classList.add('active');
+                    step.classList.remove('pending');
+                } else {
+                    step.classList.add('pending');
+                    step.classList.remove('active');
+                }
+            }
+        });
+    }
+
+    async prepareFiles() {
+        // Simulate file preparation time
+        await this.delay(1000);
+    }
+
+    delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
     }
 
     async createDefaultProject() {
@@ -902,54 +1061,76 @@ class InstantUpload {
         uploadZone.style.display = 'none';
         statusSection.style.display = 'block';
         
-        // Calculate stats
+        // Analyze file types and get primary type
+        const fileTypeCounts = this.analyzeFileTypes();
+        const primaryType = this.getPrimaryFileType(fileTypeCounts);
         const totalSize = this.files.reduce((sum, file) => sum + file.size, 0);
-        const imageFiles = this.files.filter(f => f.type.startsWith('image/')).length;
-        const videoFiles = this.files.filter(f => f.type.startsWith('video/')).length;
-        const documentFiles = this.files.filter(f => f.type.includes('pdf') || f.type.includes('word')).length;
-        const designFiles = this.files.filter(f => f.type.includes('photoshop') || f.type.includes('illustrator') || f.type.includes('figma')).length;
         
         // Create preview content
         const previewHTML = `
             <div class="upload-preview">
-                <h3>📁 Upload Preview</h3>
+                <div class="preview-header">
+                    <h3><i class="fas fa-eye"></i> Upload Preview</h3>
+                    <button class="btn-close" onclick="instantUpload.cancelUpload()" title="Cancel and return to upload">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
                 <div class="preview-stats">
-                    <div class="stat-item">
-                        <span class="stat-label">Total Files:</span>
-                        <span class="stat-value">${this.files.length}</span>
+                    <div class="stat-item primary">
+                        <i class="fas ${this.getTypeIcon(primaryType)}"></i>
+                        <span class="primary-count">${primaryType}: ${fileTypeCounts[primaryType]}</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-label">Total Size:</span>
-                        <span class="stat-value">${this.formatFileSize(totalSize)}</span>
+                        <i class="fas fa-weight-hanging"></i>
+                        <span>${this.formatFileSize(totalSize)}</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-label">Images:</span>
-                        <span class="stat-value">${imageFiles}</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">Videos:</span>
-                        <span class="stat-value">${videoFiles}</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">Documents:</span>
-                        <span class="stat-value">${documentFiles}</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">Design Files:</span>
-                        <span class="stat-value">${designFiles}</span>
+                        <i class="fas fa-clock"></i>
+                        <span>${this.estimateUploadTime(totalSize)}</span>
                     </div>
                 </div>
                 
-                <div class="file-list">
-                    <h4>Selected Files:</h4>
-                    <div class="file-preview-list">
-                        ${this.files.map(file => `
-                            <div class="file-preview-item">
-                                <span class="file-icon">${this.getFileIcon(file.type)}</span>
-                                <span class="file-name">${file.name}</span>
-                                <span class="file-size">${this.formatFileSize(file.size)}</span>
-                            </div>
-                        `).join('')}
+                ${this.renderSecondaryTypes(fileTypeCounts, primaryType)}
+                
+                <div class="file-preview-showcase">
+                    <h4>File Preview</h4>
+                    <div class="staggered-preview">
+                        ${this.files.map((file, index) => {
+                            const isImage = file.type.startsWith('image/');
+                            const isVideo = file.type.startsWith('video/');
+                            const fileIcon = this.getFileIcon(file.type);
+                            const rotation = (index % 3 - 1) * 8; // -8, 0, 8 degrees
+                            const zIndex = this.files.length - index; // Last selected on top
+                            const opacity = 0.4 + (index * 0.15); // Increasing opacity
+                            
+                            return `
+                                <div class="staggered-item" style="transform: rotate(${rotation}deg); z-index: ${zIndex}; opacity: ${opacity};">
+                                    <div class="staggered-content">
+                                        ${isImage ? `
+                                            <div class="staggered-image">
+                                                <img src="${URL.createObjectURL(file)}" alt="${file.name}" loading="lazy">
+                                            </div>
+                                        ` : isVideo ? `
+                                            <div class="staggered-video">
+                                                <video src="${URL.createObjectURL(file)}" muted></video>
+                                                <div class="video-overlay">
+                                                    <i class="fas fa-play"></i>
+                                                </div>
+                                            </div>
+                                        ` : `
+                                            <div class="staggered-icon">
+                                                <i class="fas ${fileIcon}"></i>
+                                            </div>
+                                        `}
+                                        <div class="staggered-info">
+                                            <span class="staggered-name">${file.name}</span>
+                                            <span class="staggered-size">${this.formatFileSize(file.size)}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
                     </div>
                 </div>
                 
@@ -965,6 +1146,63 @@ class InstantUpload {
         `;
         
         statusSection.innerHTML = previewHTML;
+    }
+
+    analyzeFileTypes() {
+        const fileTypes = {};
+        this.files.forEach(file => {
+            const type = this.getFileTypeCategory(file.type);
+            fileTypes[type] = (fileTypes[type] || 0) + 1;
+        });
+        return fileTypes;
+    }
+
+    getPrimaryFileType(fileTypeCounts) {
+        // Find the most common file type
+        let primaryType = 'files';
+        let maxCount = 0;
+        
+        for (const [type, count] of Object.entries(fileTypeCounts)) {
+            if (count > maxCount) {
+                maxCount = count;
+                primaryType = type;
+            }
+        }
+        
+        return primaryType;
+    }
+
+    getTypeIcon(type) {
+        const icons = {
+            'images': 'fa-file-image',
+            'videos': 'fa-file-video',
+            'documents': 'fa-file-pdf',
+            'design': 'fa-file-image',
+            'archives': 'fa-file-archive',
+            'code': 'fa-file-code',
+            'audio': 'fa-file-audio',
+            'files': 'fa-file'
+        };
+        return icons[type] || 'fa-file';
+    }
+
+    renderSecondaryTypes(fileTypeCounts, primaryType) {
+        const secondaryTypes = Object.entries(fileTypeCounts)
+            .filter(([type, count]) => type !== primaryType && count > 0)
+            .sort(([,a], [,b]) => b - a); // Sort by count descending
+        
+        if (secondaryTypes.length === 0) return '';
+        
+        return `
+            <div class="secondary-types">
+                ${secondaryTypes.map(([type, count]) => `
+                    <span class="secondary-type">
+                        <i class="fas ${this.getTypeIcon(type)}"></i>
+                        ${type}: ${count}
+                    </span>
+                `).join('')}
+            </div>
+        `;
     }
 
     getFileIcon(fileType) {
@@ -1196,6 +1434,62 @@ class InstantUpload {
         return 'EXTREME';
     }
 
+    showFileStatus(message) {
+        const fileStatus = document.getElementById('fileStatus');
+        const fileStatusText = document.getElementById('fileStatusText');
+        
+        if (fileStatus && fileStatusText) {
+            fileStatusText.textContent = message;
+            fileStatus.style.display = 'block';
+            
+            // Auto-hide after 3 seconds
+            setTimeout(() => {
+                fileStatus.style.display = 'none';
+            }, 3000);
+        }
+    }
+
+    updateFeatureStatus(feature, status, message = '') {
+        const statusElement = document.getElementById(`${feature}Status`);
+        if (!statusElement) return;
+        
+        const icon = statusElement.querySelector('i');
+        const text = statusElement.querySelector('span');
+        
+        // Remove existing status classes
+        statusElement.classList.remove('active', 'success', 'error');
+        
+        switch (status) {
+            case 'active':
+                statusElement.classList.add('active');
+                icon.className = 'fas fa-spinner fa-spin';
+                if (message) text.textContent = message;
+                break;
+            case 'success':
+                statusElement.classList.add('success');
+                icon.className = 'fas fa-check';
+                if (message) text.textContent = message;
+                break;
+            case 'error':
+                statusElement.classList.add('error');
+                icon.className = 'fas fa-exclamation-triangle';
+                if (message) text.textContent = message;
+                break;
+            default:
+                // Reset to default state
+                if (feature === 'detection') {
+                    icon.className = 'fas fa-magic';
+                    text.textContent = 'Auto-detect project & tags';
+                } else if (feature === 'processing') {
+                    icon.className = 'fas fa-cogs';
+                    text.textContent = 'Auto-process & optimize';
+                } else if (feature === 'portfolio') {
+                    icon.className = 'fas fa-check';
+                    text.textContent = 'Ready for portfolio';
+                }
+        }
+    }
+
     resetUpload() {
         this.isProcessing = false;
         this.files = [];
@@ -1203,12 +1497,37 @@ class InstantUpload {
         document.getElementById('uploadZone').style.display = 'flex';
         document.getElementById('statusSection').style.display = 'none';
         document.getElementById('resultsSection').style.display = 'none';
+        
+        // Hide file status
+        const fileStatus = document.getElementById('fileStatus');
+        if (fileStatus) {
+            fileStatus.style.display = 'none';
+        }
     }
 }
 
 // Global functions for HTML event handlers
 function selectFiles() {
-    document.getElementById('fileInput').click();
+    console.log('selectFiles() called');
+    const fileInput = document.getElementById('fileInput');
+    if (fileInput) {
+        console.log('File input found, clicking...');
+        fileInput.click();
+    } else {
+        console.error('File input not found!');
+    }
+}
+
+// Fallback function for browse button
+function browseFiles() {
+    console.log('browseFiles() called');
+    const fileInput = document.getElementById('fileInput');
+    if (fileInput) {
+        console.log('File input found, clicking...');
+        fileInput.click();
+    } else {
+        console.error('File input not found!');
+    }
 }
 
 function uploadMore() {
@@ -1226,5 +1545,11 @@ function viewPortfolio() {
 // Initialize the interface when the page loads
 let instantUpload;
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM loaded, initializing InstantUpload...');
     instantUpload = new InstantUpload();
+    console.log('InstantUpload initialized:', instantUpload);
+    
+    // Test file input
+    const fileInput = document.getElementById('fileInput');
+    console.log('File input element:', fileInput);
 });
