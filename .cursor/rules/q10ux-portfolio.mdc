@@ -1,0 +1,263 @@
+# Q10UX Portfolio Development Rules
+
+## Project Structure
+- **Source Directory**: `src/` contains all HTML, CSS, and JS files
+- **Public Assets**: `public/mamp-images/` contains all images (symlinked from MAMP)
+- **Partials**: `src/partials/` contains reusable header, footer, and social components
+- **Case Studies**: `src/case-studies/` contains individual case study pages
+- **Styles**: `src/styles/q10ux.css` contains all custom styling
+- **Scripts**: `src/scripts/app.js` contains all interactive functionality
+
+## Design System Standards
+
+### Typography
+- **Primary Fonts**: Inter (400, 600, 800), Manrope (600), Permanent Marker
+- **Button Fonts**: Roboto Condensed (400, 700), Barlow Condensed (400, 600)
+- **Font Hierarchy**: Use CSS variables for consistent sizing
+
+### Color Palette (High-Contrast Dark Theme)
+- **Background**: `#0a0a0a` (very dark)
+- **Text Primary**: `#ffffff` (white)
+- **Text Secondary**: `#cccccc` (light gray)
+- **Accent 1**: `#00e5ff` (cyan)
+- **Accent 2**: `#ff6b35` (orange)
+- **Muted**: `#333333` (dark gray)
+
+### Button Patterns
+- **Primary Buttons**: White outline, semi-opaque white fill, black text, Roboto Condensed
+- **Secondary Buttons**: White outline, semi-opaque black fill, white text, Roboto Condensed
+- **Hover Effects**: Full opacity white background, black text, subtle transform and shadow
+- **Border Radius**: 50px for capsule treatment
+
+### Tag Styling
+- **Case Study Tags**: No text-transform, normal font-weight, consistent with portfolio cards
+- **Badge Treatment**: Same as tags for hero sections
+
+## HTML Structure Standards
+
+### Semantic HTML5
+- Use semantic elements: `<header>`, `<nav>`, `<main>`, `<section>`, `<footer>`
+- Include `aria-label` attributes for accessibility
+- Use proper heading hierarchy (h1, h2, h3, etc.)
+
+### Navigation Structure
+- **Header**: Fixed-top navigation with Q10UX logo and dropdown menu
+- **Case Studies Dropdown**: All case studies accessible via dropdown
+- **Mobile**: Responsive hamburger menu
+- **Skip Links**: Include "skip to main content" for accessibility
+
+### Case Study Pages
+- **Hero Section**: Full-height background image with overlay
+- **Content Sections**: Problem, Solution, Process, Results, Gallery
+- **Download Links**: PDF case study and design assets
+- **Navigation**: Consistent header/footer with partials
+
+## CSS Standards
+
+### File Organization
+- **Main CSS**: `src/styles/q10ux.css` contains all styles
+- **CSS Variables**: Use custom properties for colors, spacing, typography
+- **Component Styles**: Group related styles together
+- **Responsive Design**: Use Bootstrap 5 grid system and custom media queries
+
+### Naming Conventions
+- **Classes**: Use kebab-case (e.g., `q10ux-hero`, `portfolio-card`)
+- **IDs**: Use kebab-case for main content areas
+- **BEM-like**: Use descriptive class names that indicate purpose
+
+### Responsive Design
+- **Mobile-First**: Start with mobile styles, then add desktop enhancements
+- **Breakpoints**: Use Bootstrap 5 breakpoints (sm, md, lg, xl)
+- **Flexible Images**: Use `max-width: 100%` and `height: auto`
+
+## JavaScript Standards
+
+### File Organization
+- **Main JS**: `src/scripts/app.js` contains all functionality
+- **Modular Functions**: Organize code into logical functions
+- **Event Listeners**: Use modern event handling
+
+### Functionality
+- **Partials Loading**: Dynamic loading of header/footer via fetch
+- **Carousel**: Hero image rotation with accessibility
+- **Lightbox**: Image gallery functionality
+- **Smooth Scrolling**: Anchor link navigation
+- **Form Validation**: Enhanced form handling
+
+## Image Standards
+
+### File Paths
+- **All Images**: Use `/public/mamp-images/` prefix
+- **Case Study Images**: Use available images from MAMP directory
+- **Logo Images**: Use circle logo versions when SVG not available
+- **Hero Images**: Use appropriate background images for each case study
+
+### Image Optimization
+- **Formats**: Use WebP for modern browsers, JPG/PNG fallbacks
+- **Sizes**: Optimize for different screen sizes
+- **Alt Text**: Always include descriptive alt text
+- **Lazy Loading**: Consider implementing for performance
+
+## Accessibility Standards (WCAG 2.1 AA)
+
+### Keyboard Navigation
+- **Focus Indicators**: Visible focus states for all interactive elements
+- **Skip Links**: Provide skip navigation for keyboard users
+- **Tab Order**: Logical tab order through page elements
+
+### Screen Reader Support
+- **ARIA Labels**: Use `aria-label` for non-text elements
+- **Semantic HTML**: Use proper semantic elements
+- **Alt Text**: Descriptive alt text for all images
+- **Landmarks**: Use proper landmark elements
+
+### Color and Contrast
+- **High Contrast**: Maintain 4.5:1 contrast ratio minimum
+- **Color Independence**: Don't rely solely on color to convey information
+- **Reduced Motion**: Support `prefers-reduced-motion`
+
+## SEO Standards
+
+### Meta Tags
+- **Title**: Descriptive, unique titles for each page
+- **Description**: Compelling meta descriptions (150-160 characters)
+- **Keywords**: Relevant keywords for UX portfolio
+- **Open Graph**: Social media sharing optimization
+- **Twitter Cards**: Twitter-specific meta tags
+
+### Structured Data
+- **JSON-LD**: Person and CreativeWork schemas
+- **Breadcrumbs**: Implement breadcrumb navigation
+- **Local Business**: If applicable for contact information
+
+### Performance
+- **Page Speed**: Optimize for Core Web Vitals
+- **Image Optimization**: Compress and optimize images
+- **Minification**: Minify CSS and JS for production
+- **Caching**: Implement appropriate caching headers
+
+## Development Workflow
+
+### File Naming
+- **HTML Files**: Use kebab-case (e.g., `index.html`, `case-study.html`)
+- **CSS Files**: Use kebab-case (e.g., `q10ux.css`, `components.css`)
+- **JS Files**: Use camelCase (e.g., `app.js`, `carousel.js`)
+
+### Code Organization
+- **Indentation**: Use 2 spaces for HTML, CSS, and JS
+- **Comments**: Include meaningful comments for complex sections
+- **Consistency**: Maintain consistent coding style throughout
+
+### Version Control
+- **Git**: Use descriptive commit messages
+- **Branches**: Use feature branches for new development
+- **Commits**: Commit frequently with clear messages
+
+## Testing Standards
+
+### Cross-Browser Testing
+- **Modern Browsers**: Chrome, Firefox, Safari, Edge
+- **Mobile Browsers**: iOS Safari, Chrome Mobile
+- **Accessibility**: Test with screen readers and keyboard navigation
+
+### Performance Testing
+- **Page Speed**: Test with Google PageSpeed Insights
+- **Lighthouse**: Run Lighthouse audits for performance, accessibility, SEO
+- **Real Devices**: Test on actual mobile devices
+
+### Content Validation
+- **HTML Validation**: Validate HTML with W3C validator
+- **CSS Validation**: Validate CSS with W3C validator
+- **Accessibility**: Test with axe-core or similar tools
+
+## Deployment Standards
+
+### Local Development
+- **Server**: Use Python HTTP server on port 8001
+- **Directory**: Serve from project root, access via `/src/`
+- **Hot Reload**: Consider implementing for development efficiency
+
+### Production Considerations
+- **HTTPS**: Use HTTPS for all production deployments
+- **CDN**: Consider CDN for static assets
+- **Compression**: Enable gzip compression
+- **Security Headers**: Implement security headers
+
+## Common Patterns
+
+### Case Study Page Structure
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags, fonts, CSS -->
+</head>
+<body>
+    <div id="header-container"></div>
+    <main id="main-content">
+        <section class="q10ux-hero">
+            <!-- Hero content -->
+        </section>
+        <section id="problem">
+            <!-- Problem section -->
+        </section>
+        <!-- Additional sections -->
+    </main>
+    <div id="footer-container"></div>
+    <!-- Scripts -->
+</body>
+</html>
+```
+
+### Button Patterns
+```css
+.btn-primary {
+    background: rgba(255, 255, 255, 0.7);
+    border-color: #ffffff;
+    color: #000000;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.btn-secondary {
+    background: rgba(0, 0, 0, 0.7);
+    border-color: #ffffff;
+    color: #ffffff;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+```
+
+### Navigation Structure
+```html
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" href="/src/">
+            <img src="/public/mamp-images/q10ux-sitelogo-256x130.png" alt="Q10UX">
+        </a>
+        <div class="navbar-nav ms-auto">
+            <!-- Navigation items -->
+        </div>
+    </div>
+</nav>
+```
+
+## Maintenance Guidelines
+
+### Regular Updates
+- **Dependencies**: Keep Bootstrap, Font Awesome, and other libraries updated
+- **Content**: Regularly update case studies and portfolio content
+- **Performance**: Monitor and optimize performance metrics
+
+### Backup and Recovery
+- **Version Control**: Maintain regular commits and backups
+- **Asset Management**: Keep organized asset structure
+- **Documentation**: Maintain up-to-date documentation
+
+### Quality Assurance
+- **Code Review**: Review all changes before deployment
+- **Testing**: Test all functionality after changes
+- **Validation**: Validate HTML and CSS regularly
+---
+description: Q10UX Portfolio Development Rules and Standards
+globs: src/**/*.{html,css,js}, public/**/*, *.{md,yaml,json}
+alwaysApply: true
+---
