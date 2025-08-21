@@ -1,435 +1,322 @@
-# Q10UX Professional Portfolio System
+# 🎨 Q10UX Portfolio - Professional UX Case Study Management System
 
-A comprehensive UX portfolio platform with NDA firewall protection, bulk tagging, and **intelligent Smart Upload System** for effortless media management.
+A comprehensive, branded portfolio system for managing and presenting UX case studies with advanced image processing, NDA protection, and automated workflows.
 
-## 🚀 Features
-
-### Core Portfolio
-- **High-contrast, accessible design** following WCAG 2.1 AA standards
-- **Responsive layout** optimized for all devices
-- **SEO optimized** with structured data and meta tags
-- **Professional case study showcase** with detailed UX process documentation
-
-### 🎯 Smart Upload System (NEW!)
-- **Toddler-friendly drag & drop** interface - so simple anyone can use it!
-- **Intelligent automation** - automatically detects projects and tags from filenames
-- **Real-time progress tracking** with beautiful animations
-- **Multiple processing modes**: Quick Upload, Watch Folder, Batch Processing
-- **Cloud integration** with AWS S3 and Sanity CMS
-- **Video processing** with automatic thumbnail generation
-- **Smart file organization** into 8 UX workflow phases
-
-### NDA Firewall System
-- **Project-level NDA protection** - entire case studies can be protected
-- **Flow-level privacy controls** - specific UX phases can be NDA-protected
-- **Multiple NDA codes** with expiration dates
-- **Public/private content filtering** based on access permissions
-
-### Admin System
-- **Secure admin interface** with JWT authentication
-- **Bulk image upload** with automatic processing
-- **UX deliverable tagging** - 17 professional categories
-- **Performance optimization** - multiple image sizes (full, large, medium, thumbnail, preview)
-- **WebP format** for optimal compression and loading
-
-### Bulk Tagging & Organization
-- **17 UX deliverable categories** including:
-  - Research: User Research, Competitive Analysis, User Personas
-  - Ideation: Information Architecture, User Flows, Wireframes
-  - Design: Visual Design, Prototypes, Design Systems
-  - Testing: Usability Testing, Accessibility Testing, Performance Testing
-  - Implementation: Design Handoff, Development Support
-  - Results: Analytics & Metrics, User Feedback
-- **Automatic flow detection** from filenames
-- **Bulk tagging interface** for efficient organization
-- **Custom tag support** for project-specific categorization
-
-## 📁 Project Structure
-
-```
-q10ux-portfolio/
-├── src/                          # Frontend portfolio files
-│   ├── index.html               # Main portfolio homepage
-│   ├── about/                   # About page
-│   ├── contact/                 # Contact page
-│   ├── case-studies/            # Individual case study pages
-│   ├── admin/                   # Admin interface
-│   ├── smart-upload/            # 🆕 Smart Upload Interface
-│   │   ├── index.html          # Drag & drop interface
-│   │   ├── smart-upload.css    # Beautiful UI styles
-│   │   └── smart-upload.js     # Intelligent automation
-│   ├── partials/               # Reusable components
-│   ├── styles/                 # CSS files
-│   └── scripts/                # JavaScript files
-├── backend/                     # Server-side code
-│   └── admin-server.js         # Main admin server
-├── scripts/                     # 🆕 Automation scripts
-│   ├── smart-upload.js         # CLI automation tool
-│   └── setup.sh                # One-click setup script
-├── uploads/                     # 🆕 Upload directory (auto-created)
-├── processed/                   # 🆕 Processed files (auto-created)
-├── archive/                     # Archived development files
-└── package.json               # Project configuration
-```
-
-## 🛠️ Installation & Setup
+## 🚀 Quick Start
 
 ### Prerequisites
 - Node.js 16+ 
-- Python 3+ (for local development server)
-- MAMP (for image assets)
+- Python 3.7+
+- Git
 
-### 🚀 One-Click Setup (Recommended)
-
+### Installation & Launch
 ```bash
-# Clone and setup everything automatically
-git clone https://github.com/quentstyle/q10ux-portfolio.git
-cd q10ux-portfolio
-./scripts/setup.sh
+# Clone and setup
+git clone <your-repo>
+cd chatgpt
+
+# One-command startup
+./scripts/start.sh
+
+# Or manual setup:
+npm install
+node backend/admin-server.js &  # Backend (port 3001)
+python3 -m http.server 8001    # Frontend (port 8001)
 ```
 
-This will:
-- ✅ Install all Node.js dependencies
-- ✅ Install system dependencies (ffmpeg, ImageMagick)
-- ✅ Create necessary directories
-- ✅ Set up environment variables
-- ✅ Make scripts executable
-- ✅ Create global symlinks
+### Access Points
+- **Portfolio**: http://localhost:8001/
+- **Admin Panel**: http://localhost:8001/src/admin/
+- **Serial Upload**: http://localhost:8001/src/serial-upload/
+- **Instant Upload**: http://localhost:8001/src/instant-upload/
 
-### Manual Setup
+## 🏗️ System Architecture
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/quentstyle/q10ux-portfolio.git
-   cd q10ux-portfolio
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Install system dependencies**
-   ```bash
-   # macOS
-   brew install ffmpeg imagemagick
-   
-   # Linux
-   sudo apt-get update && sudo apt-get install -y ffmpeg imagemagick
-   ```
-
-4. **Set up image assets**
-   ```bash
-   mkdir -p public
-   ln -s "/Applications/MAMP/htdocs/Q10UXPortfolio/assets/images" "public/mamp-images"
-   ```
-
-5. **Configure environment**
-   ```bash
-   cp .env.example .env
-   # Edit .env with your credentials
-   ```
-
-6. **Start the system**
-   ```bash
-   npm run admin    # Start admin server
-   npm run serve    # Start frontend server
-   ```
-
-### Access URLs
-- **Portfolio**: http://localhost:8001/src/
-- **Smart Upload**: http://localhost:8001/src/smart-upload/ 🆕
-- **Admin**: http://localhost:8001/src/admin/
-- **Admin API**: http://localhost:3001/
-
-## 🎯 Smart Upload System Guide
-
-### 🎨 Interface Overview
-
-The Smart Upload System is designed to be **incredibly intuitive** - like using a modern photo app!
-
-#### Main Features:
-- **Drag & Drop Zone**: Simply drag files or folders onto the upload area
-- **Smart Detection**: Automatically detects projects and tags from filenames
-- **Real-time Preview**: See your files before processing
-- **Progress Tracking**: Beautiful progress bars with live updates
-- **Cloud Integration**: Automatic upload to AWS S3 or Sanity
-
-### 📁 Upload Modes
-
-#### 1. Quick Upload (Drag & Drop)
-```bash
-# Just drag files onto the interface!
-# Or click "Choose Files" to browse
+### Frontend Components
+```
+src/
+├── admin/                 # Admin dashboard interface
+├── serial-upload/         # Professional series management
+├── instant-upload/        # Quick bulk upload system
+├── case-studies/          # Individual case study pages
+├── components/            # Reusable UI components
+├── styles/               # Global CSS and design system
+└── partials/             # Header/footer templates
 ```
 
-#### 2. Watch Folder (Auto-processing)
-```bash
-# Drop files in the uploads/ folder
-# They'll be processed automatically!
+### Backend Services
+```
+backend/
+├── admin-server.js       # Main API server (Express.js)
+├── data/                # JSON-based data storage
+│   ├── projects.json    # Case study metadata
+│   ├── images.json      # Image metadata
+│   └── nda-sessions.json # NDA access tracking
+└── uploads/             # Processed image storage
+    ├── thumbnails/      # Optimized thumbnails
+    ├── full/           # High-res versions
+    └── webp/           # WebP conversions
 ```
 
-#### 3. Batch Processing
-```bash
-# Process entire folders at once
-npm run smart-upload
-# Then select "Batch Process Existing Files"
-```
+## 🎯 Core Features
 
-#### 4. CLI Automation
-```bash
-# Run the CLI tool directly
-q10ux-smart-upload
-```
+### 1. **Admin Dashboard** (`/src/admin/`)
+**Purpose**: Central management hub for case studies and content
 
-### 🧠 Smart Features
+**Key Features**:
+- **Case Study Creation**: Create new projects with metadata
+- **Bulk Image Upload**: Drag & drop multiple images with auto-processing
+- **NDA Management**: Protect sensitive content with access codes
+- **Project Management**: View, edit, and organize case studies
+- **Bulk Tagging**: Apply UX phase tags to multiple images
+- **Flow Privacy**: Control access to specific process phases
 
-#### Automatic Project Detection
-The system automatically detects which project your files belong to:
+**Authentication**:
+- Username: `admin`
+- Password: `password`
+- JWT-based session management
 
-| Filename Contains | Detected Project |
-|------------------|------------------|
-| `atmosfx-` | AtmosFX Media Player |
-| `tmobile-` | T-Mobile How to Switch |
-| `office-` | Office Live Workspaces |
-| `microsoft-` | Microsoft Office 365 |
-| `bmgf-` | Bill & Melinda Gates Foundation |
-| `att-` | AT&T International Roaming |
+### 2. **Serial Upload System** (`/src/serial-upload/`)
+**Purpose**: Professional image series management with descriptions
 
-#### Automatic Tag Detection
-Files are automatically tagged based on their names:
+**Key Features**:
+- **Drag & Drop Interface**: Intuitive file selection
+- **Lightbox Carousel**: Full-screen image viewing with navigation
+- **Description Management**: Add/edit descriptions for each image
+- **AI Description Suggestions**: Automated caption generation
+- **Linear & Non-Linear Navigation**: Smart suggestions and project grouping
+- **Publishing Integration**: Direct publishing to case studies
+- **State Persistence**: Auto-save progress to localStorage
 
-| Filename Contains | Detected Tag |
-|------------------|--------------|
-| `user-research-` | User Research |
-| `wireframe-` | Wireframes |
-| `prototype-` | Prototypes |
-| `usability-` | Usability Testing |
-| `accessibility-` | Accessibility Testing |
-| `design-` | Visual Design |
+**Navigation Modes**:
+- **Linear**: Sequential navigation (first to last)
+- **Smart**: AI-powered suggestions based on image properties
+- **Project**: Grouped navigation by project criteria
 
-#### File Processing
-Each file is automatically processed into multiple sizes:
+### 3. **Instant Upload System** (`/src/instant-upload/`)
+**Purpose**: Quick bulk upload with automated processing
 
-- **Full**: 1920x1080 (for high-res display)
-- **Large**: 1200x800 (for desktop)
-- **Medium**: 800x600 (for tablet)
-- **Thumbnail**: 400x300 (for galleries)
-- **Preview**: 200x150 (for lists)
+**Key Features**:
+- **Terminator HUD**: Dynamic file analysis overlay
+- **Auto-Detection**: Project and tag detection from filenames
+- **Performance Optimization**: Multiple image sizes and formats
+- **Progress Tracking**: Real-time upload progress
+- **File Size Preview**: Pre-upload size estimation
+- **Cancellable Uploads**: Abort uploads mid-process
 
-All images are converted to WebP for optimal performance!
+### 4. **Portfolio Presentation**
+**Purpose**: Public-facing case study display
 
-### 🎬 Video Processing
+**Key Features**:
+- **Responsive Design**: Mobile-optimized layouts
+- **NDA Protection**: Access control for sensitive content
+- **Optimized Galleries**: Performance-optimized image loading
+- **Interactive Tours**: Guided feature walkthroughs
+- **Accessibility**: WCAG 2.1 AA compliant
 
-Videos are automatically processed with:
-- **Thumbnail generation** (first frame)
-- **Optimized compression** (H.264, AAC)
-- **Metadata extraction** (duration, resolution, etc.)
+## 🔧 Technical Implementation
 
-### ☁️ Cloud Integration
+### Backend API Endpoints
 
-#### AWS S3 Setup
-```bash
-# Add to .env
-AWS_ACCESS_KEY_ID=your-access-key
-AWS_SECRET_ACCESS_KEY=your-secret-key
-AWS_REGION=us-west-2
-AWS_S3_BUCKET=your-bucket-name
-```
+#### Authentication
+- `POST /api/admin/login` - Admin authentication
+- `POST /api/validate-nda` - NDA code validation
 
-#### Sanity CMS Setup
-```bash
-# Add to .env
-SANITY_PROJECT_ID=your-project-id
-SANITY_DATASET=production
-SANITY_TOKEN=your-token
-```
+#### Project Management
+- `GET /api/admin/projects` - List all projects
+- `POST /api/admin/projects` - Create new project
+- `GET /api/projects` - Public project list (NDA-filtered)
 
-### 🔧 Configuration
-
-#### Settings Panel
-Access settings via the gear icon:
-- **Default Project**: Set your most-used project
-- **Auto Cloud Upload**: Enable/disable automatic cloud sync
-- **Image Quality**: Choose between high/medium/low quality
-- **Processing Priority**: Speed vs. quality trade-offs
-
-#### Environment Variables
-```bash
-# Required
-JWT_SECRET=your-secret-key
-
-# Optional (for cloud features)
-AWS_ACCESS_KEY_ID=your-aws-key
-AWS_SECRET_ACCESS_KEY=your-aws-secret
-SANITY_PROJECT_ID=your-sanity-project
-SANITY_TOKEN=your-sanity-token
-```
-
-## 🔐 Admin System
-
-### Login Credentials
-- **Username**: `admin`
-- **Password**: `password`
-
-### Key Features
+#### Image Management
+- `POST /api/admin/projects/:id/images` - Upload images to project
+- `POST /api/admin/projects/:id/bulk-tag` - Apply bulk tags
+- `POST /api/admin/publish-series` - Publish image series
 
 #### NDA Management
-- **NDA Codes Available**:
-  - `NDA2024` - 2024 NDA Access (Expires: Dec 31, 2025)
-  - `CONFIDENTIAL` - Confidential Access (Expires: Jun 30, 2025)
-  - `INTERNAL` - Internal Use Only (Expires: Dec 31, 2025)
+- `GET /api/admin/nda-stats` - NDA usage statistics
+- `POST /api/admin/flow-privacy` - Update flow privacy settings
 
-#### Bulk Tagging Categories
-- **Research Phase**: User Research, Competitive Analysis, User Personas
-- **Ideation Phase**: Information Architecture, User Flows, Wireframes
-- **Design Phase**: Visual Design, Prototypes, Design Systems
-- **Testing Phase**: Usability Testing, Accessibility Testing, Performance Testing
-- **Implementation Phase**: Design Handoff, Development Support
-- **Results Phase**: Analytics & Metrics, User Feedback
-- **Additional**: Screenshots, Process Documentation
+### Data Storage
+**File-based JSON storage** (easily upgradable to database):
+- `projects.json`: Case study metadata and structure
+- `images.json`: Image metadata and processing info
+- `nda-sessions.json`: NDA access tracking
 
-#### Image Processing
-- **Automatic sizing**: Full (1920x1080), Large (1200x800), Medium (800x600), Thumbnail (400x300), Preview (200x150)
-- **WebP optimization**: Automatic conversion with quality settings
-- **Metadata preservation**: Original image information stored
-- **Responsive support**: Multiple sizes for different use cases
+### Image Processing Pipeline
+1. **Upload**: Multer handles file uploads
+2. **Validation**: File type and size checks
+3. **Processing**: Sharp generates multiple sizes
+4. **Optimization**: WebP conversion and compression
+5. **Metadata**: Extraction and storage
+6. **Thumbnails**: Auto-generated for galleries
 
 ## 🎨 Design System
 
 ### Typography
-- **Primary**: Inter (400, 600, 800)
-- **Secondary**: Roboto Condensed (400, 700)
-- **Accent**: Barlow Condensed (400, 600)
-- **Display**: Permanent Marker
+- **Primary**: Roboto Condensed (all caps, optical kerning)
+- **Secondary**: Barlow Condensed
+- **Display**: Orbitron (headers)
+- **Body**: Inter
 
 ### Color Palette
-- **Background**: #0a0a0a (Dark)
-- **Surface**: #1a1a1a (Medium Dark)
-- **Primary**: #00d4ff (Cyan)
-- **Success**: #00ff88 (Green)
-- **Warning**: #ffaa00 (Orange)
-- **Danger**: #ff4444 (Red)
-- **Text**: #ffffff (White)
-- **Muted**: #888888 (Gray)
-
-### Accessibility
-- **WCAG 2.1 AA compliance**
-- **High contrast design**
-- **Keyboard navigation support**
-- **Screen reader optimization**
-- **Reduced motion support**
-
-## 📱 Case Study Structure
-
-Each case study includes:
-- **Hero section** with project overview
-- **UX process phases** with tagged images
-- **Design gallery** with lightbox functionality
-- **Results and impact** documentation
-- **NDA protection** (if applicable)
-
-### Image Organization
-Images are automatically organized into 8 flow categories:
-1. **Research & Discovery**
-2. **Ideation & Concepts**
-3. **Design & Prototyping**
-4. **Testing & Validation**
-5. **Implementation & Handoff**
-6. **Results & Impact**
-7. **Additional Screenshots**
-8. **Process Documentation**
-
-## 🔧 Development
-
-### Adding New Case Studies
-1. Create a new folder in `src/case-studies/[project-name]/`
-2. Add `index.html` with case study content
-3. Use the Smart Upload system to upload and tag images
-4. Set NDA protection if needed
-
-### Customizing the Design
-- **Main styles**: Edit `src/styles/q10ux.css`
-- **Admin styles**: Edit `src/admin/admin.css`
-- **Smart Upload styles**: Edit `src/smart-upload/smart-upload.css`
-- **Components**: Modify `src/partials/` files
-
-### API Endpoints
-
-#### Admin Endpoints (Protected)
-- `POST /api/admin/login` - Admin authentication
-- `GET /api/admin/projects` - List all projects
-- `POST /api/admin/projects` - Create/update project
-- `POST /api/admin/projects/:id/images` - Upload images
-- `POST /api/admin/projects/:id/bulk-tag` - Bulk tag images
-- `DELETE /api/admin/images/:id` - Delete image
-
-#### Public Endpoints
-- `GET /api/gallery/:slug` - Get project gallery (NDA-protected)
-- `GET /api/projects` - List public projects
-- `POST /api/validate-nda` - Validate NDA code
-
-## 🚀 Deployment
-
-### SFTP Upload
-1. **Clean the project** (remove archive/, node_modules/, etc.)
-2. **Upload to web server** via SFTP
-3. **Set up environment variables** for production
-4. **Configure server** to run Node.js backend
-
-### Production Setup
-```bash
-# Install production dependencies
-npm install --production
-
-# Set environment variables
-export JWT_SECRET="your-secure-jwt-secret"
-export PORT=3001
-
-# Start the server
-npm start
+```css
+--serial-primary: #007bff;    /* Blue accent */
+--serial-surface: #1a1f2e;    /* Dark surface */
+--serial-bg: #0a0e1a;         /* Background */
+--serial-text: #ffffff;       /* Text */
+--serial-muted: #a0aec0;      /* Muted text */
 ```
 
-### Environment Variables
-- `JWT_SECRET` - Secret key for JWT tokens
-- `PORT` - Server port (default: 3001)
-- `NODE_ENV` - Environment (production/development)
+### Components
+- **Buttons**: Capsule-shaped with consistent padding
+- **Cards**: Subtle shadows with hover effects
+- **Modals**: Backdrop blur with smooth animations
+- **Forms**: Clean, accessible input styling
 
-## 📋 File Guidelines
+## 🔐 Security & Privacy
 
-### Image Naming Convention
-For automatic tagging, use descriptive filenames:
-- `user-research-interview-notes.jpg`
-- `wireframe-homepage-v2.png`
-- `prototype-user-flow-mobile.fig`
-- `usability-testing-feedback-summary.pdf`
+### NDA Protection System
+**Access Codes**:
+- `NDA2024`: 2024 NDA Access (expires 2025-12-31)
+- `CONFIDENTIAL`: Confidential Access (expires 2025-06-30)
+- `INTERNAL`: Internal Use Only (expires 2025-12-31)
 
-### Supported Formats
-- **Images**: JPG, PNG, GIF, WebP, SVG
-- **Videos**: MP4, MOV, AVI
-- **Documents**: PDF (for process documentation)
-- **Max file size**: 50MB per file
-- **Batch upload**: Up to 100 files at once
+**Implementation**:
+- Project-level NDA requirements
+- Flow-level privacy controls
+- Session-based access tracking
+- Automatic expiration handling
 
-## 🔒 Security Features
+### Authentication
+- JWT-based admin authentication
+- Secure token storage in localStorage
+- Automatic token validation
+- Session timeout handling
 
-- **JWT authentication** for admin access
-- **NDA code validation** with expiration dates
-- **File upload validation** and sanitization
-- **CORS protection** for API endpoints
-- **Rate limiting** on sensitive endpoints
+## 📊 Performance Optimization
 
-## 📞 Support
+### Image Processing
+- **Multiple Sizes**: Full, large, medium, thumbnail, preview
+- **Format Conversion**: WebP for modern browsers
+- **Lazy Loading**: Progressive image loading
+- **Compression**: Optimized file sizes
 
-For technical support or questions about the portfolio system:
-- **Email**: [Your email]
-- **Documentation**: See `Q10UX_Playbook.md` for design guidelines
-- **Image Guidelines**: See `IMAGE_GUIDELINES.md` for asset requirements
+### Frontend Optimization
+- **CSS Variables**: Consistent theming
+- **Minified Assets**: Production-ready builds
+- **Efficient DOM**: Minimal reflows and repaints
+- **Caching**: Browser and localStorage caching
+
+## 🚨 Troubleshooting
+
+### Common Issues
+
+#### Port Conflicts
+```bash
+# Kill existing processes
+killall -9 node python3
+
+# Restart servers
+./scripts/start.sh
+```
+
+#### Authentication Issues
+```javascript
+// Clear localStorage and re-login
+localStorage.clear();
+// Navigate to /src/admin/ and login again
+```
+
+#### Upload Failures
+- Check file permissions on `backend/uploads/`
+- Verify Node.js dependencies: `npm install`
+- Check console for specific error messages
+
+#### Image Processing Errors
+- Ensure Sharp is installed: `npm install sharp`
+- Check available disk space
+- Verify image file integrity
+
+### Debug Mode
+```bash
+# Enable debug logging
+export TASKMASTER_LOG_LEVEL=debug
+node backend/admin-server.js
+```
+
+## 🔄 Development Workflow
+
+### Adding New Features
+1. **Frontend**: Add UI components in `src/`
+2. **Backend**: Add API endpoints in `backend/admin-server.js`
+3. **Styling**: Update CSS in `src/styles/`
+4. **Testing**: Test in browser and verify functionality
+5. **Commit**: Use descriptive commit messages
+
+### File Organization
+- **Components**: Reusable UI elements in `src/components/`
+- **Styles**: Global styles in `src/styles/`
+- **Scripts**: Utility scripts in `scripts/`
+- **Data**: JSON storage in `backend/data/`
+
+## 📈 Future Enhancements
+
+### Planned Features
+- **Database Integration**: PostgreSQL/MongoDB migration
+- **Cloud Storage**: AWS S3/Cloudinary integration
+- **AI Enhancement**: Advanced caption generation
+- **Analytics**: Usage tracking and insights
+- **Export**: PDF/PPT case study generation
+
+### Scalability Considerations
+- **Microservices**: Separate image processing service
+- **CDN**: Global content delivery
+- **Caching**: Redis for session management
+- **Monitoring**: Application performance monitoring
+
+## 🤝 Contributing
+
+### Code Standards
+- **ES6+**: Modern JavaScript features
+- **Semantic HTML**: Accessible markup
+- **CSS Variables**: Consistent theming
+- **Error Handling**: Comprehensive error management
+- **Documentation**: Inline code comments
+
+### Git Workflow
+```bash
+# Feature development
+git checkout -b feature/new-feature
+# Make changes
+git add .
+git commit -m "feat: add new feature"
+git push origin feature/new-feature
+```
 
 ## 📄 License
 
-MIT License - see LICENSE file for details.
+This project is proprietary to Q10UX. All rights reserved.
 
 ---
 
-**Q10UX Portfolio System** - Professional UX showcase with enterprise-grade security, intelligent automation, and toddler-friendly interfaces! 🎨✨
+## 🎯 Quick Reference
+
+### Essential Commands
+```bash
+./scripts/start.sh          # Start everything
+npm install                 # Install dependencies
+git add . && git commit     # Save changes
+```
+
+### Key URLs
+- **Portfolio**: http://localhost:8001/
+- **Admin**: http://localhost:8001/src/admin/
+- **Serial Upload**: http://localhost:8001/src/serial-upload/
+
+### Default Credentials
+- **Admin**: `admin` / `password`
+- **NDA Codes**: `NDA2024`, `CONFIDENTIAL`, `INTERNAL`
+
+---
+
+*For quick reference, see [CLIFF_NOTES.md](CLIFF_NOTES.md)*
