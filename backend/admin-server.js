@@ -750,6 +750,77 @@ app.post('/api/validate-nda', async (req, res) => {
   }
 });
 
+// Publish image series to case study
+app.post('/api/admin/publish-series', authenticateToken, async (req, res) => {
+  try {
+    const { projectId, seriesTitle, seriesDescription, images } = req.body;
+    
+    if (!projectId || !seriesTitle || !images || !Array.isArray(images)) {
+      return res.status(400).json({ error: 'Missing required fields' });
+    }
+
+    const data = await loadData();
+    
+    // Check if project exists
+    if (!data.projects[projectId]) {
+      return res.status(404).json({ error: 'Project not found' });
+    }
+
+    const project = data.projects[projectId];
+    const seriesId = uuidv4();
+    const timestamp = new Date().toISOString();
+
+    // Create series object
+    const series = {
+      id: seriesId,
+      title: seriesTitle,
+      description: seriesDescription,
+      projectId: projectId,
+      createdAt: timestamp,
+      updatedAt: timestamp,
+      images: images.map((img, index) => ({
+        id: img.id || uuidv4(),
+        name: img.name,
+        description: img.description || '',
+        order: index + 1,
+        width: img.width,
+        height: img.height,
+        optimized: img.optimized || false,
+        aiGenerated: img.aiGenerated || false,
+        createdAt: timestamp
+      }))
+    };
+
+    // Add series to project
+    if (!project.series) {
+      project.series = {};
+    }
+    project.series[seriesId] = series;
+    project.updatedAt = timestamp;
+
+    // Save updated data
+    await fs.writeFile(PROJECTS_FILE, JSON.stringify(data.projects, null, 2));
+
+    console.log(`✅ Series "${seriesTitle}" published to project "${project.title}"`);
+
+    res.json({
+      success: true,
+      series: {
+        id: seriesId,
+        title: seriesTitle,
+        projectId: projectId,
+        projectTitle: project.title,
+        imageCount: images.length,
+        createdAt: timestamp
+      }
+    });
+
+  } catch (error) {
+    console.error('Error publishing series:', error);
+    res.status(500).json({ error: 'Failed to publish series' });
+  }
+});
+
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', timestamp: new Date().toISOString() });
