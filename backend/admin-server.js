@@ -1126,6 +1126,333 @@ app.get('/api/case-studies/:slug/analyze', async (req, res) => {
   }
 });
 
+// Get case study images by phase
+app.get('/api/case-studies/:slug/images/:phase', async (req, res) => {
+  try {
+    const { slug, phase } = req.params;
+    
+    // Load projects data to find the case study
+    const projectsData = await fs.readFile(PROJECTS_FILE, 'utf8');
+    const projects = JSON.parse(projectsData);
+    
+    // Find the project by slug
+    const project = projects.find(p => p.slug === slug);
+    if (!project) {
+      return res.status(404).json({ error: 'Case study not found' });
+    }
+    
+    // Load images data
+    const imagesData = await fs.readFile(IMAGES_FILE, 'utf8');
+    const images = JSON.parse(imagesData);
+    
+    // Filter images by project ID and phase
+    const projectImages = images.filter(img => {
+      const isProjectImage = img.projectId === project.id;
+      const isPhaseImage = img.flow === phase || img.tags?.some(tag => 
+        phase === 'research' && ['user-research', 'competitive-analysis', 'user-personas'].includes(tag) ||
+        phase === 'strategy' && ['information-architecture', 'user-flows'].includes(tag) ||
+        phase === 'ideation' && ['wireframes', 'sketches'].includes(tag) ||
+        phase === 'design' && ['visual-design', 'prototypes', 'design-systems'].includes(tag) ||
+        phase === 'prototyping' && ['prototypes', 'interactive'].includes(tag) ||
+        phase === 'testing' && ['usability-testing', 'accessibility-testing', 'performance-testing'].includes(tag) ||
+        phase === 'implementation' && ['handoff', 'development-support'].includes(tag) ||
+        phase === 'results' && ['analytics', 'user-feedback'].includes(tag)
+      );
+      return isProjectImage && isPhaseImage;
+    });
+    
+    // Group images by size for different use cases
+    const groupedImages = projectImages.map(img => ({
+      id: img.id,
+      filename: img.filename,
+      originalName: img.originalName,
+      caption: img.caption || img.originalName,
+      sizes: {
+        full: img.url,
+        large: img.url.replace('-full.webp', '-large.webp'),
+        medium: img.url.replace('-full.webp', '-medium.webp'),
+        thumbnail: img.url.replace('-full.webp', '-thumb.webp'),
+        preview: img.url.replace('-full.webp', '-preview.webp')
+      },
+      flow: img.flow,
+      tags: img.tags || [],
+      uploadedAt: img.uploadedAt
+    }));
+    
+    res.json({
+      success: true,
+      caseStudy: {
+        id: project.id,
+        title: project.title,
+        slug: project.slug
+      },
+      phase,
+      images: groupedImages,
+      count: groupedImages.length,
+      timestamp: new Date().toISOString()
+    });
+    
+  } catch (error) {
+    console.error('Error fetching case study images:', error);
+    res.status(500).json({ error: 'Failed to fetch case study images' });
+  }
+});
+
+// Get all images for a case study
+app.get('/api/case-studies/:slug/images', async (req, res) => {
+  try {
+    const { slug } = req.params;
+    
+    // Load projects data to find the case study
+    const projectsData = await fs.readFile(PROJECTS_FILE, 'utf8');
+    const imagesData = await fs.readFile(IMAGES_FILE, 'utf8');
+    
+    const projects = JSON.parse(projectsData);
+    const images = JSON.parse(imagesData);
+    
+    // Find the project by slug
+    const project = projects.find(p => p.slug === slug);
+    if (!project) {
+      return res.status(404).json({ error: 'Case study not found' });
+    }
+    
+    // Get all images for this project
+    const projectImages = images.filter(img => img.projectId === project.id);
+    
+    // Group by phase
+    const imagesByPhase = {
+      research: [],
+      strategy: [],
+      ideation: [],
+      design: [],
+      prototyping: [],
+      testing: [],
+      implementation: [],
+      results: []
+    };
+    
+    projectImages.forEach(img => {
+      const phase = img.flow || 'design'; // Default to design if no flow specified
+      if (imagesByPhase[phase]) {
+        imagesByPhase[phase].push({
+          id: img.id,
+          filename: img.filename,
+          originalName: img.originalName,
+          caption: img.caption || img.originalName,
+          sizes: {
+            full: img.url,
+            large: img.url.replace('-full.webp', '-large.webp'),
+            medium: img.url.replace('-full.webp', '-medium.webp'),
+            thumbnail: img.url.replace('-full.webp', '-thumb.webp'),
+            preview: img.url.replace('-full.webp', '-preview.webp')
+          },
+          flow: img.flow,
+          tags: img.tags || [],
+          uploadedAt: img.uploadedAt
+        });
+      }
+    });
+    
+    res.json({
+      success: true,
+      caseStudy: {
+        id: project.id,
+        title: project.title,
+        slug: project.slug
+      },
+      imagesByPhase,
+      totalImages: projectImages.length,
+      timestamp: new Date().toISOString()
+    });
+    
+  } catch (error) {
+    console.error('Error fetching case study images:', error);
+    res.status(500).json({ error: 'Failed to fetch case study images' });
+  }
+});
+
+// Contact form submission endpoint
+app.post('/api/contact', async (req, res) => {
+  try {
+    const {
+      firstName,
+      lastName,
+      email,
+      phone,
+      company,
+      projectType,
+      budget,
+      timeline,
+      message,
+      timestamp,
+      userAgent,
+      referrer
+    } = req.body;
+    
+    // Validate required fields
+    if (!firstName || !lastName || !email || !projectType || !message) {
+      return res.status(400).json({
+        success: false,
+        error: 'Missing required fields'
+      });
+    }
+    
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({
+        success: false,
+        error: 'Invalid email format'
+      });
+    }
+    
+    // Create contact message object
+    const contactMessage = {
+      id: Date.now().toString(),
+      firstName,
+      lastName,
+      email,
+      phone: phone || '',
+      company: company || '',
+      projectType,
+      budget: budget || '',
+      timeline: timeline || '',
+      message,
+      timestamp,
+      userAgent,
+      referrer,
+      status: 'new',
+      createdAt: new Date().toISOString()
+    };
+    
+    // Load existing contact messages
+    const contactsFile = path.join(DATA_DIR, 'contacts.json');
+    let contacts = [];
+    
+    try {
+      const contactsData = await fs.readFile(contactsFile, 'utf8');
+      contacts = JSON.parse(contactsData);
+    } catch (error) {
+      // File doesn't exist yet, start with empty array
+      contacts = [];
+    }
+    
+    // Add new contact message
+    contacts.push(contactMessage);
+    
+    // Save updated contacts
+    await fs.writeFile(contactsFile, JSON.stringify(contacts, null, 2));
+    
+    // Send email notification (you can implement this with nodemailer or similar)
+    console.log('📧 New contact form submission:');
+    console.log(`From: ${firstName} ${lastName} (${email})`);
+    console.log(`Company: ${company || 'Not specified'}`);
+    console.log(`Project Type: ${projectType}`);
+    console.log(`Budget: ${budget || 'Not specified'}`);
+    console.log(`Timeline: ${timeline || 'Not specified'}`);
+    console.log(`Message: ${message.substring(0, 100)}${message.length > 100 ? '...' : ''}`);
+    console.log(`Referrer: ${referrer || 'Direct'}`);
+    
+    // TODO: Implement actual email sending here
+    // For now, we'll just log the message
+    // You can add nodemailer or similar email service here
+    
+    res.json({
+      success: true,
+      message: 'Contact form submitted successfully',
+      contactId: contactMessage.id,
+      timestamp: new Date().toISOString()
+    });
+    
+  } catch (error) {
+    console.error('Error processing contact form:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Failed to process contact form'
+    });
+  }
+});
+
+// Get contact messages (admin only)
+app.get('/api/admin/contacts', authenticateToken, async (req, res) => {
+  try {
+    const contactsFile = path.join(DATA_DIR, 'contacts.json');
+    
+    try {
+      const contactsData = await fs.readFile(contactsFile, 'utf8');
+      const contacts = JSON.parse(contactsData);
+      
+      res.json({
+        success: true,
+        contacts: contacts.reverse(), // Most recent first
+        count: contacts.length,
+        timestamp: new Date().toISOString()
+      });
+    } catch (error) {
+      // No contacts file yet
+      res.json({
+        success: true,
+        contacts: [],
+        count: 0,
+        timestamp: new Date().toISOString()
+      });
+    }
+    
+  } catch (error) {
+    console.error('Error fetching contacts:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Failed to fetch contacts'
+    });
+  }
+});
+
+// Update contact status (admin only)
+app.put('/api/admin/contacts/:id/status', authenticateToken, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+    
+    if (!['new', 'read', 'replied', 'archived'].includes(status)) {
+      return res.status(400).json({
+        success: false,
+        error: 'Invalid status'
+      });
+    }
+    
+    const contactsFile = path.join(DATA_DIR, 'contacts.json');
+    const contactsData = await fs.readFile(contactsFile, 'utf8');
+    const contacts = JSON.parse(contactsData);
+    
+    const contactIndex = contacts.findIndex(c => c.id === id);
+    if (contactIndex === -1) {
+      return res.status(404).json({
+        success: false,
+        error: 'Contact not found'
+      });
+    }
+    
+    contacts[contactIndex].status = status;
+    contacts[contactIndex].updatedAt = new Date().toISOString();
+    
+    await fs.writeFile(contactsFile, JSON.stringify(contacts, null, 2));
+    
+    res.json({
+      success: true,
+      message: 'Contact status updated',
+      contact: contacts[contactIndex],
+      timestamp: new Date().toISOString()
+    });
+    
+  } catch (error) {
+    console.error('Error updating contact status:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Failed to update contact status'
+    });
+  }
+});
+
 // Initialize and start server
 async function startServer() {
   await ensureDataDir();

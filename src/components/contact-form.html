@@ -1,0 +1,244 @@
+<!-- Contact Form Component -->
+<section class="contact-section py-5 bg-light">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="text-center mb-5">
+          <h2 class="display-4 fw-bold">Get In Touch</h2>
+          <p class="lead text-muted">Ready to create amazing user experiences together? Let's talk about your project.</p>
+        </div>
+        
+        <div class="card shadow-lg border-0">
+          <div class="card-body p-5">
+            <form id="contactForm" class="needs-validation" novalidate>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="firstName" class="form-label fw-semibold">First Name *</label>
+                  <input type="text" class="form-control" id="firstName" name="firstName" required>
+                  <div class="invalid-feedback">
+                    Please provide your first name.
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="lastName" class="form-label fw-semibold">Last Name *</label>
+                  <input type="text" class="form-control" id="lastName" name="lastName" required>
+                  <div class="invalid-feedback">
+                    Please provide your last name.
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="email" class="form-label fw-semibold">Email Address *</label>
+                  <input type="email" class="form-control" id="email" name="email" required>
+                  <div class="invalid-feedback">
+                    Please provide a valid email address.
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="phone" class="form-label fw-semibold">Phone Number</label>
+                  <input type="tel" class="form-control" id="phone" name="phone">
+                </div>
+              </div>
+              
+              <div class="mb-3">
+                <label for="company" class="form-label fw-semibold">Company/Organization</label>
+                <input type="text" class="form-control" id="company" name="company">
+              </div>
+              
+              <div class="mb-3">
+                <label for="projectType" class="form-label fw-semibold">Project Type *</label>
+                <select class="form-select" id="projectType" name="projectType" required>
+                  <option value="">Select a project type...</option>
+                  <option value="ux-design">UX Design</option>
+                  <option value="ui-design">UI Design</option>
+                  <option value="user-research">User Research</option>
+                  <option value="usability-testing">Usability Testing</option>
+                  <option value="design-system">Design System</option>
+                  <option value="prototyping">Prototyping</option>
+                  <option value="consultation">Consultation</option>
+                  <option value="other">Other</option>
+                </select>
+                <div class="invalid-feedback">
+                  Please select a project type.
+                </div>
+              </div>
+              
+              <div class="mb-3">
+                <label for="budget" class="form-label fw-semibold">Budget Range</label>
+                <select class="form-select" id="budget" name="budget">
+                  <option value="">Select budget range...</option>
+                  <option value="under-5k">Under $5,000</option>
+                  <option value="5k-15k">$5,000 - $15,000</option>
+                  <option value="15k-50k">$15,000 - $50,000</option>
+                  <option value="50k-100k">$50,000 - $100,000</option>
+                  <option value="over-100k">Over $100,000</option>
+                  <option value="to-be-discussed">To be discussed</option>
+                </select>
+              </div>
+              
+              <div class="mb-3">
+                <label for="timeline" class="form-label fw-semibold">Timeline</label>
+                <select class="form-select" id="timeline" name="timeline">
+                  <option value="">Select timeline...</option>
+                  <option value="asap">ASAP</option>
+                  <option value="1-2-weeks">1-2 weeks</option>
+                  <option value="1-month">1 month</option>
+                  <option value="2-3-months">2-3 months</option>
+                  <option value="3-6-months">3-6 months</option>
+                  <option value="6-months-plus">6+ months</option>
+                  <option value="flexible">Flexible</option>
+                </select>
+              </div>
+              
+              <div class="mb-4">
+                <label for="message" class="form-label fw-semibold">Project Details *</label>
+                <textarea class="form-control" id="message" name="message" rows="5" placeholder="Tell me about your project, goals, and any specific requirements..." required></textarea>
+                <div class="invalid-feedback">
+                  Please provide project details.
+                </div>
+              </div>
+              
+              <div class="d-grid">
+                <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">
+                  <span class="btn-text">Send Message</span>
+                  <span class="btn-loading d-none">
+                    <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                    Sending...
+                  </span>
+                </button>
+              </div>
+            </form>
+            
+            <!-- Success Message -->
+            <div id="successMessage" class="alert alert-success mt-3 d-none" role="alert">
+              <i class="fas fa-check-circle me-2"></i>
+              <strong>Thank you!</strong> Your message has been sent successfully. I'll get back to you within 24 hours.
+            </div>
+            
+            <!-- Error Message -->
+            <div id="errorMessage" class="alert alert-danger mt-3 d-none" role="alert">
+              <i class="fas fa-exclamation-circle me-2"></i>
+              <strong>Oops!</strong> There was an error sending your message. Please try again or contact me directly at <a href="mailto:design@q10ux.com">design@q10ux.com</a>.
+            </div>
+          </div>
+        </div>
+        
+        <!-- Contact Info -->
+        <div class="text-center mt-4">
+          <p class="text-muted mb-2">Prefer to reach out directly?</p>
+          <div class="d-flex justify-content-center gap-3 flex-wrap">
+            <a href="mailto:design@q10ux.com" class="btn btn-outline-primary">
+              <i class="fas fa-envelope me-2"></i>design@q10ux.com
+            </a>
+            <a href="tel:+12064279129" class="btn btn-outline-primary">
+              <i class="fas fa-phone me-2"></i>(206) 427-9129
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Form JavaScript -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('contactForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const btnText = submitBtn.querySelector('.btn-text');
+  const btnLoading = submitBtn.querySelector('.btn-loading');
+  const successMessage = document.getElementById('successMessage');
+  const errorMessage = document.getElementById('errorMessage');
+  
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    // Validate form
+    if (!form.checkValidity()) {
+      e.stopPropagation();
+      form.classList.add('was-validated');
+      return;
+    }
+    
+    // Show loading state
+    submitBtn.disabled = true;
+    btnText.classList.add('d-none');
+    btnLoading.classList.remove('d-none');
+    
+    // Hide previous messages
+    successMessage.classList.add('d-none');
+    errorMessage.classList.add('d-none');
+    
+    try {
+      // Collect form data
+      const formData = new FormData(form);
+      const data = {
+        firstName: formData.get('firstName'),
+        lastName: formData.get('lastName'),
+        email: formData.get('email'),
+        phone: formData.get('phone'),
+        company: formData.get('company'),
+        projectType: formData.get('projectType'),
+        budget: formData.get('budget'),
+        timeline: formData.get('timeline'),
+        message: formData.get('message'),
+        timestamp: new Date().toISOString(),
+        userAgent: navigator.userAgent,
+        referrer: document.referrer
+      };
+      
+      // Send to backend API
+      const response = await fetch('http://localhost:3001/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      });
+      
+      if (response.ok) {
+        // Show success message
+        successMessage.classList.remove('d-none');
+        form.reset();
+        form.classList.remove('was-validated');
+        
+        // Scroll to success message
+        successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        throw new Error('Failed to send message');
+      }
+      
+    } catch (error) {
+      console.error('Error sending contact form:', error);
+      
+      // Show error message
+      errorMessage.classList.remove('d-none');
+      
+      // Scroll to error message
+      errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } finally {
+      // Reset button state
+      submitBtn.disabled = false;
+      btnText.classList.remove('d-none');
+      btnLoading.classList.add('d-none');
+    }
+  });
+  
+  // Real-time validation
+  form.querySelectorAll('input, select, textarea').forEach(input => {
+    input.addEventListener('blur', function() {
+      if (this.hasAttribute('required')) {
+        if (this.checkValidity()) {
+          this.classList.remove('is-invalid');
+          this.classList.add('is-valid');
+        } else {
+          this.classList.remove('is-valid');
+          this.classList.add('is-invalid');
+        }
+      }
+    });
+  });
+});
+</script>

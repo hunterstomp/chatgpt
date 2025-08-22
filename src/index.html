@@ -474,6 +474,9 @@
             </div>
                 </section>
         
+        <!-- Contact Form Section -->
+        <div id="contact-form-container"></div>
+        
         <!-- Lightbox -->
         <div class="lightbox-overlay" id="lightbox">
             <div class="lightbox-content">
@@ -516,6 +519,13 @@
             .then(response => response.text())
             .then(data => {
                 document.getElementById('footer-container').innerHTML = data;
+            });
+        
+        // Load contact form
+        fetch('components/contact-form.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('contact-form-container').innerHTML = data;
             });
         
         // Initialize Bootstrap dropdowns
