@@ -827,18 +827,18 @@
   .section.bg-light h3,
   .section.bg-light p,
   .section.bg-light ul li {
-    color: #333 !important;
+    color: #1a1a1a !important;
   }
 
   .section.bg-light .phase-title {
-    background: linear-gradient(135deg, #333 0%, #666 100%);
+    background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .section.bg-light .phase-subtitle {
-    color: #666 !important;
+    color: #333 !important;
   }
 
   .section.bg-light .phase-number {
@@ -848,7 +848,38 @@
 
   .section.bg-light .gallery-caption {
     background: rgba(255, 255, 255, 0.95);
-    color: #333;
+    color: #1a1a1a;
+  }
+
+  /* Additional accessibility improvements for light backgrounds */
+  .section.bg-light .text-muted {
+    color: #333 !important;
+  }
+
+  .section.bg-light .loading-placeholder p {
+    color: #333 !important;
+  }
+
+  .section.bg-light .no-images-message p {
+    color: #333 !important;
+  }
+
+  .section.bg-light .card-body small {
+    color: #333 !important;
+  }
+
+  /* Ensure all text in light sections has proper contrast */
+  .section.bg-light * {
+    color: #1a1a1a !important;
+  }
+
+  .section.bg-light .text-white,
+  .section.bg-light .text-white-50 {
+    color: #1a1a1a !important;
+  }
+
+  .section.bg-light .text-muted {
+    color: #333 !important;
   }
   </style>
 
