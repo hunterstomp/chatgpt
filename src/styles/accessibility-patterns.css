@@ -1,0 +1,414 @@
+/* ========================================
+   ACCESSIBILITY PATTERN LIBRARY
+   WCAG 2.1 AA Compliance Patterns
+   ======================================== */
+
+/* ========================================
+   SKIP LINKS
+   ======================================== */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #000;
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 10000;
+  font-weight: 600;
+  transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+  top: 6px;
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* ========================================
+   FOCUS INDICATORS
+   ======================================== */
+.focus-visible {
+  outline: 2px solid var(--primary-color, #007bff);
+  outline-offset: 2px;
+}
+
+.focus-visible:focus {
+  outline: 2px solid var(--primary-color, #007bff);
+  outline-offset: 2px;
+}
+
+/* Enhanced focus for interactive elements */
+.btn:focus,
+.nav-link:focus,
+.form-control:focus,
+.form-select:focus,
+.skill-item:focus,
+.highlight-card:focus,
+.testimonial-card:focus,
+.gallery-item:focus {
+  outline: 2px solid var(--primary-color, #007bff);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.25);
+}
+
+/* ========================================
+   HIGH CONTRAST TEXT
+   ======================================== */
+.text-high-contrast {
+  color: #1a1a1a !important;
+}
+
+.text-high-contrast-light {
+  color: #333 !important;
+}
+
+.text-high-contrast-dark {
+  color: #ffffff !important;
+}
+
+/* ========================================
+   SEMANTIC ELEMENTS
+   ======================================== */
+.clickable-div {
+  cursor: pointer;
+  tabindex: 0;
+}
+
+.clickable-div:focus {
+  outline: 2px solid var(--primary-color, #007bff);
+  outline-offset: 2px;
+}
+
+/* ========================================
+   IMAGE ACCESSIBILITY
+   ======================================== */
+.decorative-image {
+  role: presentation;
+}
+
+.decorative-image[alt=""] {
+  role: presentation;
+}
+
+/* ========================================
+   FORM ACCESSIBILITY
+   ======================================== */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-label-required::after {
+  content: " *";
+  color: #dc3545;
+  font-weight: bold;
+}
+
+.form-error {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.form-success {
+  color: #198754;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* ========================================
+   ARIA IMPROVEMENTS
+   ======================================== */
+[role="status"] {
+  position: relative;
+}
+
+[role="status"]::before {
+  content: "Status: ";
+  font-weight: bold;
+}
+
+[aria-live="polite"] {
+  position: relative;
+}
+
+[aria-live="assertive"] {
+  position: relative;
+}
+
+/* ========================================
+   KEYBOARD NAVIGATION
+   ======================================== */
+.keyboard-focusable {
+  tabindex: 0;
+}
+
+.keyboard-focusable:focus {
+  outline: 2px solid var(--primary-color, #007bff);
+  outline-offset: 2px;
+}
+
+/* ========================================
+   SCREEN READER UTILITIES
+   ======================================== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sr-only-focusable:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* ========================================
+   COLOR CONTRAST UTILITIES
+   ======================================== */
+.bg-light-text-dark {
+  background-color: #f8f9fa;
+  color: #1a1a1a;
+}
+
+.bg-dark-text-light {
+  background-color: #212529;
+  color: #ffffff;
+}
+
+/* ========================================
+   LIGHTBOX ACCESSIBILITY
+   ======================================== */
+.lightbox-overlay {
+  role: dialog;
+  aria-modal: true;
+  aria-label: "Image gallery";
+}
+
+.lightbox-image {
+  role: img;
+  aria-label: "Gallery image";
+}
+
+.lightbox-controls {
+  role: toolbar;
+  aria-label: "Image navigation controls";
+}
+
+/* ========================================
+   GALLERY ACCESSIBILITY
+   ======================================== */
+.gallery-item {
+  role: button;
+  tabindex: 0;
+  aria-label: "View image in gallery";
+}
+
+.gallery-item:focus {
+  outline: 2px solid var(--primary-color, #007bff);
+  outline-offset: 2px;
+}
+
+/* ========================================
+   NAVIGATION ACCESSIBILITY
+   ======================================== */
+.nav-current {
+  aria-current: page;
+}
+
+.nav-current::after {
+  content: " (current page)";
+  font-weight: bold;
+}
+
+/* ========================================
+   CONTENT ACCESSIBILITY
+   ======================================== */
+.content-landmark {
+  role: main;
+}
+
+.content-landmark[role="main"] {
+  tabindex: -1;
+}
+
+/* ========================================
+   RESPONSIVE ACCESSIBILITY
+   ======================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .btn {
+    border-width: 2px;
+  }
+  
+  .form-control {
+    border-width: 2px;
+  }
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+/* Skip to content */
+.skip-to-content {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #000;
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 10000;
+  font-weight: 600;
+}
+
+.skip-to-content:focus {
+  top: 6px;
+}
+
+/* Focus management */
+.focus-trap {
+  outline: none;
+}
+
+.focus-trap:focus {
+  outline: 2px solid var(--primary-color, #007bff);
+  outline-offset: 2px;
+}
+
+/* ARIA live regions */
+.aria-live-region {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Error states */
+.has-error {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+.has-success {
+  border-color: #198754;
+  box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.25);
+}
+
+/* Loading states */
+.loading {
+  aria-busy: true;
+}
+
+.loading::after {
+  content: "Loading...";
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* ========================================
+   COMPONENT-SPECIFIC ACCESSIBILITY
+   ======================================== */
+
+/* Skills Grid Accessibility */
+.skills-grid .skill-item {
+  role: button;
+  tabindex: 0;
+  aria-label: "View details about ";
+}
+
+.skills-grid .skill-item:focus {
+  outline: 2px solid var(--primary-color, #007bff);
+  outline-offset: 2px;
+  transform: translateY(-2px);
+}
+
+/* Testimonial Cards */
+.testimonial-card {
+  role: article;
+  aria-label: "Testimonial from ";
+}
+
+.testimonial-stars {
+  aria-label: "5 out of 5 stars";
+  role: img;
+}
+
+/* Highlight Cards */
+.highlight-card {
+  role: article;
+  aria-label: "Career highlight: ";
+}
+
+/* Case Study Phases */
+.phase-section {
+  role: region;
+  aria-label: "UX Design Phase: ";
+}
+
+.phase-number {
+  aria-label: "Phase ";
+  role: text;
+}
+
+/* ========================================
+   PRINT ACCESSIBILITY
+   ======================================== */
+@media print {
+  .skip-link,
+  .focus-visible,
+  .keyboard-focusable {
+    display: none !important;
+  }
+  
+  .sr-only {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    clip: auto !important;
+    white-space: normal !important;
+  }
+}
+
+/* ========================================
+   DARK MODE ACCESSIBILITY
+   ======================================== */
+@media (prefers-color-scheme: dark) {
+  .text-high-contrast {
+    color: #ffffff !important;
+  }
+  
+  .text-high-contrast-light {
+    color: #e9ecef !important;
+  }
+  
+  .bg-light-text-dark {
+    background-color: #212529;
+    color: #ffffff;
+  }
+}

@@ -747,6 +747,48 @@
         grid-template-columns: repeat(2, 1fr) !important;
       }
     }
+
+    /* Accessibility Improvements */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 6px;
+      background: #000;
+      color: white;
+      padding: 8px;
+      text-decoration: none;
+      z-index: 10000;
+      border-radius: 4px;
+    }
+    
+    .skip-link:focus {
+      top: 6px;
+    }
+
+    /* Focus indicators */
+    .btn:focus,
+    .skill-item:focus,
+    .highlight-card:focus,
+    .testimonial-card:focus {
+      outline: 2px solid var(--primary-color);
+      outline-offset: 2px;
+    }
+
+    /* Make skill items focusable */
+    .skill-item {
+      cursor: pointer;
+      tabindex: 0;
+    }
+
+    /* ARIA improvements for badges */
+    .badge {
+      role: status;
+    }
+
+    /* Screen reader support for star ratings */
+    .testimonial-stars {
+      aria-label: "5 out of 5 stars";
+    }
   </style>
 </body>
 </html>
