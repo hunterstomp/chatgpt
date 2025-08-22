@@ -507,6 +507,8 @@
             .then(response => response.text())
             .then(data => {
                 document.getElementById('header-container').innerHTML = data;
+                // Initialize Bootstrap dropdowns after header is loaded
+                initBootstrapDropdowns();
             });
         
         // Load footer
@@ -515,7 +517,30 @@
             .then(data => {
                 document.getElementById('footer-container').innerHTML = data;
             });
-    </script>
+        
+        // Initialize Bootstrap dropdowns
+        function initBootstrapDropdowns() {
+            // Initialize all dropdowns
+            const dropdownElementList = document.querySelectorAll('.dropdown-toggle');
+            const dropdownList = [...dropdownElementList].map(dropdownToggleEl => new bootstrap.Dropdown(dropdownToggleEl));
+            
+            // Add click handlers for dropdown items
+            document.querySelectorAll('.dropdown-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    // Close dropdown when item is clicked
+                    const dropdown = this.closest('.dropdown');
+                    if (dropdown) {
+                        const dropdownToggle = dropdown.querySelector('.dropdown-toggle');
+                        if (dropdownToggle) {
+                            const bsDropdown = bootstrap.Dropdown.getInstance(dropdownToggle);
+                            if (bsDropdown) {
+                                bsDropdown.hide();
+                            }
+                        }
+                    }
+                });
+            });
+        }
     </script>
 </body>
 </html>

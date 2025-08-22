@@ -41,7 +41,7 @@
     <div id="adminDashboard" class="admin-dashboard" style="display: none;">
         <!-- Header -->
         <header class="admin-header">
-            <div class="container-fluid">
+            <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-6">
                         <h1><i class="fas fa-tools"></i> Q10UX Case Study Creator</h1>
@@ -65,37 +65,185 @@
 
         <!-- Main Content -->
         <main class="admin-main">
-            <div class="container-fluid">
-                <!-- Quick Actions -->
+            <div class="container">
+                <!-- Primary Actions -->
                 <div class="row mb-4">
                     <div class="col-12">
-                        <div class="quick-actions">
-                            <button class="btn btn-primary btn-lg" onclick="showCreateProject()">
-                                <i class="fas fa-plus"></i> Create New Case Study
-                            </button>
-                            <button class="btn btn-secondary btn-lg" onclick="showProjects()">
-                                <i class="fas fa-list"></i> View All Projects
-                            </button>
-                            <button class="btn btn-success btn-lg" onclick="showUpload()">
-                                <i class="fas fa-upload"></i> Quick Upload
-                            </button>
-                            <button class="btn btn-warning btn-lg" onclick="showNDAManager()">
-                                <i class="fas fa-shield-alt"></i> NDA Manager
-                            </button>
-                            <button class="btn btn-info btn-lg" onclick="showBulkTagging()">
-                                <i class="fas fa-tags"></i> Bulk Tagging
-                            </button>
+                        <div class="primary-actions">
+                            <div class="action-group">
+                                <button class="btn btn-primary btn-lg" onclick="showCreateProject()">
+                                    <i class="fas fa-plus"></i> New Case Study
+                                </button>
+                                <button class="btn btn-outline-primary btn-lg" onclick="showUpload()">
+                                    <i class="fas fa-upload"></i> Add Content
+                                </button>
+                            </div>
+                            <div class="action-group">
+                                <button class="btn btn-outline-secondary btn-sm dropdown-toggle" data-bs-toggle="dropdown">
+                                    <i class="fas fa-cog"></i> Tools
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#" onclick="showNDAManager()">
+                                        <i class="fas fa-shield-alt"></i> NDA Manager
+                                    </a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="showBulkTagging()">
+                                        <i class="fas fa-tags"></i> Bulk Tagging
+                                    </a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="showFlowPrivacy()">
+                                        <i class="fas fa-lock"></i> Flow Privacy
+                                    </a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#" onclick="showFileUpload()">
+                                        <i class="fas fa-file-upload"></i> Upload Files
+                                    </a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Project List -->
+                <!-- Project List with View Controls -->
                 <div id="projectList" class="project-list">
                     <div class="row">
                         <div class="col-12">
-                            <h3><i class="fas fa-folder"></i> Your Case Studies</h3>
-                            <div id="projectsContainer" class="projects-grid">
-                                <!-- Projects will be loaded here -->
+                            <div class="list-header">
+                                <div class="list-title-section">
+                                    <div class="list-title">
+                                        <h3><i class="fas fa-folder"></i> Your Case Studies</h3>
+                                        <span class="item-count" id="projectCount">0 items</span>
+                                    </div>
+                                    <div class="bulk-actions" id="bulkActions">
+                                        <span class="bulk-info me-2" id="bulkInfo">0 selected</span>
+                                        <button class="btn btn-sm btn-outline-primary" id="bulkEditBtn" onclick="admin.bulkEdit()" disabled>
+                                            <i class="fas fa-edit"></i> Edit
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-success" id="bulkDuplicateBtn" onclick="admin.bulkDuplicate()" disabled>
+                                            <i class="fas fa-copy"></i> Duplicate
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-warning" id="bulkArchiveBtn" onclick="admin.bulkArchive()" disabled>
+                                            <i class="fas fa-archive"></i> Archive
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-info" id="bulkTagBtn" onclick="admin.bulkTag()" disabled>
+                                            <i class="fas fa-tags"></i> Tag
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-danger" id="bulkDeleteBtn" onclick="admin.bulkDelete()" disabled>
+                                            <i class="fas fa-trash"></i> Delete
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="list-controls">
+                                    <!-- Primary Action -->
+                                    <button class="btn btn-primary btn-sm me-3" onclick="adminPanel.viewAllProjects()">
+                                        <i class="fas fa-th-large"></i> VIEW ALL PROJECTS
+                                    </button>
+                                    
+                                    <!-- Ordering Controls -->
+                                    <div class="ordering-controls me-3">
+                                        <div class="dropdown">
+                                            <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                                <i class="fas fa-sort"></i> Sort By
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="#" onclick="admin.sortProjects('manual')">
+                                                    <i class="fas fa-grip-vertical"></i> Manual Order
+                                                </a></li>
+                                                <li><a class="dropdown-item" href="#" onclick="admin.sortProjects('title')">
+                                                    <i class="fas fa-font"></i> Title A-Z
+                                                </a></li>
+                                                <li><a class="dropdown-item" href="#" onclick="admin.sortProjects('date')">
+                                                    <i class="fas fa-calendar"></i> Date Created
+                                                </a></li>
+                                                <li><a class="dropdown-item" href="#" onclick="admin.sortProjects('updated')">
+                                                    <i class="fas fa-clock"></i> Last Updated
+                                                </a></li>
+                                                <li><a class="dropdown-item" href="#" onclick="admin.sortProjects('priority')">
+                                                    <i class="fas fa-star"></i> Priority
+                                                </a></li>
+                                            </ul>
+                                        </div>
+                                        <button class="btn btn-outline-primary btn-sm" onclick="admin.toggleReorderMode()" id="reorderBtn">
+                                            <i class="fas fa-arrows-alt"></i> Reorder
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- View Mode Selector - Top Right -->
+                            <div class="view-mode-selector-top">
+                                <div class="view-mode-selector">
+                                    <button class="view-mode-btn active" data-view="list" title="List View">
+                                        <i class="fas fa-list"></i>
+                                    </button>
+                                    <button class="view-mode-btn" data-view="grid" title="Grid View">
+                                        <i class="fas fa-th"></i>
+                                    </button>
+                                    <button class="view-mode-btn" data-view="gallery" title="Gallery View">
+                                        <i class="fas fa-images"></i>
+                                    </button>
+                                    <button class="view-mode-btn" data-view="covers" title="Cover View">
+                                        <i class="fas fa-compact-disc"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- List View (Gmail-style) -->
+                            <div id="listView" class="view-container active">
+                                <div class="list-table">
+                                    <div class="list-header-row">
+                                        <div class="list-column list-column-checkbox">
+                                            <input type="checkbox" id="selectAll" onchange="admin.toggleSelectAll()">
+                                            <div class="resize-handle" data-column="checkbox"></div>
+                                        </div>
+                                        <div class="list-column list-column-priority">
+                                            Priority
+                                            <div class="resize-handle" data-column="priority"></div>
+                                        </div>
+                                        <div class="list-column list-column-title">
+                                            Title
+                                            <div class="resize-handle" data-column="title"></div>
+                                        </div>
+                                        <div class="list-column list-column-status">
+                                            Status
+                                            <div class="resize-handle" data-column="status"></div>
+                                        </div>
+                                        <div class="list-column list-column-date">
+                                            Created
+                                            <div class="resize-handle" data-column="date"></div>
+                                        </div>
+                                        <div class="list-column list-column-size">
+                                            Size
+                                            <div class="resize-handle" data-column="size"></div>
+                                        </div>
+                                        <div class="list-column list-column-actions">
+                                            Actions
+                                            <div class="resize-handle" data-column="actions"></div>
+                                        </div>
+                                    </div>
+                                    <div id="projectsListContainer" class="list-body">
+                                        <!-- Projects will be loaded here -->
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Grid View -->
+                            <div id="gridView" class="view-container">
+                                <div id="projectsGridContainer" class="projects-grid">
+                                    <!-- Projects will be loaded here -->
+                                </div>
+                            </div>
+                            
+                            <!-- Gallery View -->
+                            <div id="galleryView" class="view-container">
+                                <div id="projectsGalleryContainer" class="projects-gallery">
+                                    <!-- Projects will be loaded here -->
+                                </div>
+                            </div>
+                            
+                            <!-- Cover View (iTunes-style) -->
+                            <div id="coversView" class="view-container">
+                                <div id="projectsCoversContainer" class="projects-covers">
+                                    <!-- Projects will be loaded here -->
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -185,60 +333,160 @@
                                     </select>
                                 </div>
 
-                                <!-- Bulk Tagging Selection -->
-                                <div class="mb-4">
-                                    <label for="bulkTag" class="form-label">Bulk Tagging (Optional)</label>
-                                    <select class="form-select" id="bulkTag">
-                                        <option value="">Auto-detect from filenames</option>
-                                        <optgroup label="Research Phase">
-                                            <option value="user-research">User Research</option>
-                                            <option value="competitive-analysis">Competitive Analysis</option>
-                                            <option value="user-personas">User Personas</option>
-                                        </optgroup>
-                                        <optgroup label="Ideation Phase">
-                                            <option value="information-architecture">Information Architecture</option>
-                                            <option value="user-flows">User Flows</option>
-                                            <option value="wireframes">Wireframes</option>
-                                        </optgroup>
-                                        <optgroup label="Design Phase">
-                                            <option value="visual-design">Visual Design</option>
-                                            <option value="prototypes">Prototypes</option>
-                                            <option value="design-systems">Design Systems</option>
-                                        </optgroup>
-                                        <optgroup label="Testing Phase">
-                                            <option value="usability-testing">Usability Testing</option>
-                                            <option value="accessibility-testing">Accessibility Testing</option>
-                                            <option value="performance-testing">Performance Testing</option>
-                                        </optgroup>
-                                        <optgroup label="Implementation Phase">
-                                            <option value="handoff">Design Handoff</option>
-                                            <option value="development-support">Development Support</option>
-                                        </optgroup>
-                                        <optgroup label="Results Phase">
-                                            <option value="analytics">Analytics & Metrics</option>
-                                            <option value="user-feedback">User Feedback</option>
-                                        </optgroup>
-                                        <optgroup label="Additional">
-                                            <option value="screenshots">Screenshots</option>
-                                            <option value="process-docs">Process Documentation</option>
-                                        </optgroup>
-                                    </select>
-                                    <small class="form-text text-muted">Select to apply the same tag to all uploaded images</small>
+                                <!-- Upload Zone -->
+                                <div class="upload-zone" id="uploadZone">
+                                    <div class="upload-content">
+                                        <i class="fas fa-cloud-upload-alt fa-3x mb-3"></i>
+                                        <h4>Drag & Drop Images Here</h4>
+                                        <p class="text-muted">or click to browse files</p>
+                                        <input type="file" id="fileInput" multiple accept="image/*,video/*" style="display: none;">
+                                        <label for="fileInput" class="btn btn-primary btn-lg file-input-label">
+                                            <i class="fas fa-folder-open"></i> Click to Browse
+                                        </label>
+                                    </div>
                                 </div>
 
-                                <!-- Flow Selection (fallback) -->
+                                <!-- Upload Progress -->
+                                <div id="uploadProgress" class="upload-progress" style="display: none;">
+                                    <div class="progress mb-3">
+                                        <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+                                    </div>
+                                    <p class="text-muted">Uploading files...</p>
+                                </div>
+
+                                <!-- Uploaded Files -->
+                                <div id="uploadedFiles" class="uploaded-files" style="display: none;">
+                                    <h5>Uploaded Files</h5>
+                                    <div id="uploadedFilesList"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- File Upload Interface -->
+                <div id="fileUploadInterface" class="file-upload-interface" style="display: none;">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="upload-card">
+                                <h3><i class="fas fa-file-upload"></i> Upload Downloadable Files</h3>
+                                
+                                <!-- Project Selection -->
                                 <div class="mb-4">
-                                    <label for="uploadFlow" class="form-label">Process Phase (if not using bulk tagging)</label>
-                                    <select class="form-select" id="uploadFlow">
-                                        <option value="research">Research & Discovery</option>
-                                        <option value="ideation">Ideation & Concepts</option>
-                                        <option value="design">Design & Prototyping</option>
-                                        <option value="testing">Testing & Validation</option>
-                                        <option value="implementation">Implementation & Handoff</option>
-                                        <option value="results">Results & Impact</option>
-                                        <option value="screens">Additional Screenshots</option>
-                                        <option value="process">Process Documentation</option>
+                                    <label for="fileUploadProject" class="form-label">Select Case Study</label>
+                                    <select class="form-select" id="fileUploadProject" required>
+                                        <option value="">Choose a case study...</option>
                                     </select>
+                                </div>
+
+                                <!-- File Upload Zone -->
+                                <div class="file-upload-zone" id="fileUploadZone">
+                                    <div class="upload-content">
+                                        <i class="fas fa-file-upload fa-3x mb-3"></i>
+                                        <h4>Drag & Drop Files Here</h4>
+                                        <p class="text-muted">Upload PowerPoint, Keynote, Visio, PDF, and other files</p>
+                                        <input type="file" id="fileUploadInput" multiple accept=".ppt,.pptx,.key,.pdf,.vsd,.vsdx,.doc,.docx,.xls,.xlsx,.zip,.rar,.ai,.psd,.sketch,.fig" style="display: none;">
+                                        <label for="fileUploadInput" class="btn btn-primary btn-lg file-input-label">
+                                            <i class="fas fa-folder-open"></i> Click to Browse
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- File Upload Progress -->
+                                <div id="fileUploadProgress" class="upload-progress" style="display: none;">
+                                    <div class="progress mb-3">
+                                        <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+                                    </div>
+                                    <p class="text-muted">Uploading files...</p>
+                                </div>
+
+                                <!-- Uploaded Files List -->
+                                <div id="uploadedFilesList" class="uploaded-files" style="display: none;">
+                                    <h5>Uploaded Files</h5>
+                                    <div class="file-list" id="fileList">
+                                        <!-- Files will be listed here -->
+                                    </div>
+                                </div>
+
+                                <!-- File Management -->
+                                <div id="fileManagement" class="file-management" style="display: none;">
+                                    <h5>Manage Downloadable Files</h5>
+                                    <div class="file-grid" id="fileGrid">
+                                        <!-- Existing files will be displayed here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                                
+                                <!-- Project Selection -->
+                                <div class="mb-4">
+                                    <label for="uploadProject" class="form-label">Select Case Study</label>
+                                    <select class="form-select" id="uploadProject" required>
+                                        <option value="">Choose a case study...</option>
+                                    </select>
+                                </div>
+
+                                <!-- Smart Flow Assignment -->
+                                <div class="mb-4">
+                                    <h5><i class="fas fa-brain"></i> Smart Flow Assignment</h5>
+                                    <p class="text-muted">The system will automatically analyze your files and assign them to the appropriate UX process phases.</p>
+                                    
+                                    <!-- Auto-Analysis Mode -->
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="checkbox" id="enableAutoAnalysis" checked>
+                                        <label class="form-check-label" for="enableAutoAnalysis">
+                                            <i class="fas fa-magic"></i> Enable Smart Auto-Analysis
+                                        </label>
+                                        <small class="form-text text-muted d-block">Automatically detect and assign files to UX process phases based on filename patterns</small>
+                                    </div>
+
+                                    <!-- Manual Override -->
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="checkbox" id="enableManualOverride">
+                                        <label class="form-check-label" for="enableManualOverride">
+                                            <i class="fas fa-edit"></i> Allow Manual Override
+                                        </label>
+                                        <small class="form-text text-muted d-block">Review and modify automatic assignments before processing</small>
+                                    </div>
+                                </div>
+
+                                <!-- Flow Assignment Preview -->
+                                <div class="mb-4" id="flowAssignmentPreview" style="display: none;">
+                                    <h6><i class="fas fa-eye"></i> Flow Assignment Preview</h6>
+                                    <div class="flow-preview-container" id="flowPreviewContainer">
+                                        <!-- Preview will be populated here -->
+                                    </div>
+                                </div>
+
+                                <!-- Manual Flow Selection (hidden by default) -->
+                                <div class="mb-4" id="manualFlowSection" style="display: none;">
+                                    <label for="uploadFlow" class="form-label">Manual Process Phase Assignment</label>
+                                    <select class="form-select" id="uploadFlow">
+                                        <option value="">Select UX process phase...</option>
+                                        <optgroup label="Problem Definition">
+                                            <option value="research">Research & Discovery</option>
+                                            <option value="user-research">User Research</option>
+                                            <option value="competitive-analysis">Competitive Analysis</option>
+                                        </optgroup>
+                                        <optgroup label="Design Process">
+                                            <option value="ideation">Ideation & Brainstorming</option>
+                                            <option value="wireframing">Wireframing</option>
+                                            <option value="prototyping">Prototyping</option>
+                                            <option value="visual-design">Visual Design</option>
+                                        </optgroup>
+                                        <optgroup label="Implementation">
+                                            <option value="testing">Testing & Validation</option>
+                                            <option value="implementation">Implementation & Handoff</option>
+                                        </optgroup>
+                                        <optgroup label="Results">
+                                            <option value="results">Results & Impact</option>
+                                            <option value="screens">Final Screenshots</option>
+                                            <option value="process">Process Documentation</option>
+                                        </optgroup>
+                                    </select>
+                                    <small class="form-text text-muted">Manually assign all uploaded files to this UX process phase</small>
                                 </div>
 
                                 <!-- NDA Protection for Upload -->
@@ -256,12 +504,24 @@
                                 <div class="mb-4">
                                     <div class="performance-info">
                                         <h6><i class="fas fa-bolt"></i> Performance Optimizations</h6>
-                                        <ul class="performance-list">
-                                            <li>Multiple image sizes generated automatically (full, large, medium, thumbnail, preview)</li>
-                                            <li>WebP format for optimal compression</li>
-                                            <li>Responsive images for different screen sizes</li>
-                                            <li>Lazy loading support</li>
-                                        </ul>
+                                        <div class="performance-features">
+                                            <div class="performance-feature">
+                                                <i class="fas fa-check-circle"></i>
+                                                <span>Multiple image sizes generated automatically (full, large, medium, thumbnail, preview)</span>
+                                            </div>
+                                            <div class="performance-feature">
+                                                <i class="fas fa-check-circle"></i>
+                                                <span>WebP format for optimal compression</span>
+                                            </div>
+                                            <div class="performance-feature">
+                                                <i class="fas fa-check-circle"></i>
+                                                <span>Responsive images for different screen sizes</span>
+                                            </div>
+                                            <div class="performance-feature">
+                                                <i class="fas fa-check-circle"></i>
+                                                <span>Lazy loading support</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -306,16 +566,29 @@
                         <div class="col-12">
                             <div class="gallery-header">
                                 <h3 id="galleryTitle"><i class="fas fa-images"></i> Project Gallery</h3>
-                                <div>
-                                    <button class="btn btn-warning me-2" onclick="showFlowPrivacy()">
-                                        <i class="fas fa-shield-alt"></i> Flow Privacy
-                                    </button>
-                                    <button class="btn btn-info me-2" onclick="showBulkTagging()">
-                                        <i class="fas fa-tags"></i> Bulk Tag
-                                    </button>
-                                    <button class="btn btn-primary" onclick="showUpload()">
-                                        <i class="fas fa-plus"></i> Add Images
-                                    </button>
+                                <div class="gallery-controls">
+                                    <!-- Primary Actions -->
+                                    <div class="primary-actions me-3">
+                                        <button class="btn btn-success me-2" id="saveChangesBtn" onclick="admin.saveProjectChanges()" style="display: none;">
+                                            <i class="fas fa-save"></i> Save Changes
+                                        </button>
+                                        <button class="btn btn-danger me-2" id="cancelChangesBtn" onclick="admin.cancelProjectChanges()" style="display: none;">
+                                            <i class="fas fa-times"></i> Cancel
+                                        </button>
+                                    </div>
+                                    
+                                    <!-- Secondary Actions -->
+                                    <div class="secondary-actions">
+                                        <button class="btn btn-warning me-2" onclick="showFlowPrivacy()">
+                                            <i class="fas fa-shield-alt"></i> Flow Privacy
+                                        </button>
+                                        <button class="btn btn-info me-2" onclick="showBulkTagging()">
+                                            <i class="fas fa-tags"></i> Bulk Tag
+                                        </button>
+                                        <button class="btn btn-primary" onclick="showUpload()">
+                                            <i class="fas fa-plus"></i> Add Images
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                             
@@ -499,20 +772,138 @@
                 <!-- Flow Privacy Settings -->
                 <div id="flowPrivacy" class="flow-privacy" style="display: none;">
                     <div class="row">
-                        <div class="col-lg-8 mx-auto">
+                        <div class="col-lg-10 mx-auto">
                             <div class="form-card">
-                                <h3><i class="fas fa-lock"></i> Flow Privacy Settings</h3>
-                                <p class="text-muted">Configure which flows require NDA access for the current project.</p>
+                                <h3><i class="fas fa-lock"></i> NDA Privacy Management</h3>
+                                <p class="text-muted">Configure granular NDA access controls at case study, flow, and image levels.</p>
                                 
-                                <div id="flowPrivacySettings">
-                                    <!-- Flow privacy settings will be loaded here -->
+                                <!-- Project Selection -->
+                                <div class="mb-4">
+                                    <label for="privacyProject" class="form-label">Select Case Study</label>
+                                    <select class="form-select" id="privacyProject" onchange="admin.loadPrivacySettings()">
+                                        <option value="">Choose a case study...</option>
+                                    </select>
+                                </div>
+
+                                <!-- Privacy Level Tabs -->
+                                <div class="privacy-tabs mb-4">
+                                    <ul class="nav nav-tabs" id="privacyTabs" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link active" id="case-study-tab" data-bs-toggle="tab" data-bs-target="#case-study-privacy" type="button" role="tab">
+                                                <i class="fas fa-folder"></i> Case Study Level
+                                            </button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="flow-tab" data-bs-toggle="tab" data-bs-target="#flow-privacy" type="button" role="tab">
+                                                <i class="fas fa-sitemap"></i> Flow Level
+                                            </button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="image-tab" data-bs-toggle="tab" data-bs-target="#image-privacy" type="button" role="tab">
+                                                <i class="fas fa-image"></i> Image Level
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <!-- Tab Content -->
+                                <div class="tab-content" id="privacyTabContent">
+                                    <!-- Case Study Level Privacy -->
+                                    <div class="tab-pane fade show active" id="case-study-privacy" role="tabpanel">
+                                        <div class="privacy-section">
+                                            <h5><i class="fas fa-folder-open"></i> Case Study Privacy</h5>
+                                            <p class="text-muted">Set overall NDA requirements for the entire case study.</p>
+                                            
+                                            <div class="privacy-control">
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" id="caseStudyNDA" onchange="admin.toggleCaseStudyNDA()">
+                                                    <label class="form-check-label" for="caseStudyNDA">
+                                                        <strong>Require NDA for entire case study</strong>
+                                                    </label>
+                                                </div>
+                                                <small class="text-muted">When enabled, all content in this case study will be blurred until NDA access is granted.</small>
+                                            </div>
+
+                                            <div id="caseStudyNDAOptions" class="mt-3" style="display: none;">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label for="caseStudyNDACode" class="form-label">NDA Access Code</label>
+                                                        <select class="form-select" id="caseStudyNDACode">
+                                                            <option value="NDA2024">NDA2024 - 2024 NDA Access</option>
+                                                            <option value="CONFIDENTIAL">CONFIDENTIAL - Confidential Access</option>
+                                                            <option value="INTERNAL">INTERNAL - Internal Use Only</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="caseStudyNDAMessage" class="form-label">Custom Message</label>
+                                                        <input type="text" class="form-control" id="caseStudyNDAMessage" placeholder="Enter custom NDA message...">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Flow Level Privacy -->
+                                    <div class="tab-pane fade" id="flow-privacy" role="tabpanel">
+                                        <div class="privacy-section">
+                                            <h5><i class="fas fa-sitemap"></i> Flow-Level Privacy</h5>
+                                            <p class="text-muted">Configure NDA requirements for individual UX process flows.</p>
+                                            
+                                            <div id="flowPrivacySettings">
+                                                <!-- Flow privacy settings will be loaded here -->
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Image Level Privacy -->
+                                    <div class="tab-pane fade" id="image-privacy" role="tabpanel">
+                                        <div class="privacy-section">
+                                            <h5><i class="fas fa-image"></i> Image-Level Privacy</h5>
+                                            <p class="text-muted">Set NDA requirements for individual images or image groups.</p>
+                                            
+                                            <div class="mb-3">
+                                                <button class="btn btn-outline-primary btn-sm" onclick="admin.bulkSetImagePrivacy()">
+                                                    <i class="fas fa-edit"></i> Bulk Image Privacy
+                                                </button>
+                                                <button class="btn btn-outline-secondary btn-sm" onclick="admin.importImagePrivacy()">
+                                                    <i class="fas fa-upload"></i> Import Privacy Settings
+                                                </button>
+                                            </div>
+                                            
+                                            <div id="imagePrivacyGrid">
+                                                <!-- Image privacy grid will be loaded here -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Privacy Preview -->
+                                <div class="privacy-preview mt-4">
+                                    <h6><i class="fas fa-eye"></i> Privacy Preview</h6>
+                                    <div class="preview-container">
+                                        <div class="preview-item" id="previewCaseStudy">
+                                            <span class="preview-label">Case Study:</span>
+                                            <span class="preview-status" id="caseStudyPreviewStatus">Public</span>
+                                        </div>
+                                        <div class="preview-item" id="previewFlows">
+                                            <span class="preview-label">Protected Flows:</span>
+                                            <span class="preview-status" id="flowsPreviewStatus">0 flows</span>
+                                        </div>
+                                        <div class="preview-item" id="previewImages">
+                                            <span class="preview-label">Protected Images:</span>
+                                            <span class="preview-status" id="imagesPreviewStatus">0 images</span>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="form-actions">
-                                    <button class="btn btn-primary" onclick="saveFlowPrivacy()">
+                                    <button class="btn btn-primary" onclick="admin.savePrivacySettings()">
                                         <i class="fas fa-save"></i> Save Privacy Settings
                                     </button>
-                                    <button class="btn btn-secondary" onclick="showProjectGallery()">
+                                    <button class="btn btn-success" onclick="admin.testPrivacySettings()">
+                                        <i class="fas fa-eye"></i> Test Privacy View
+                                    </button>
+                                    <button class="btn btn-secondary" onclick="admin.showProjectGallery()">
                                         Back to Gallery
                                     </button>
                                 </div>

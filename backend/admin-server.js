@@ -9,6 +9,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const SanityIntegration = require('./sanity-integration');
 const { UXFlowManager } = require('./ux-flows');
+const CaseStudyInjector = require('./case-study-injector');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -19,6 +20,9 @@ const sanity = new SanityIntegration();
 
 // Initialize UX Flow Manager
 const flowManager = new UXFlowManager();
+
+// Initialize Case Study Injector
+const caseStudyInjector = new CaseStudyInjector();
 
 // Admin credentials (use environment variables in production)
 const ADMIN_USERNAME = process.env.ADMIN_USERNAME || 'admin';
@@ -78,6 +82,7 @@ app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 // Static files
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/public', express.static(path.join(__dirname, '../public')));
+app.use('/', express.static(path.join(__dirname, '../src')));
 
 // Data storage (simple JSON files for now - can be upgraded to database later)
 const DATA_DIR = path.join(__dirname, 'data');
@@ -907,6 +912,11 @@ app.post('/api/admin/publish-series', authenticateToken, async (req, res) => {
   }
 });
 
+// Root route - serve main index page
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../src/index.html'));
+});
+
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', timestamp: new Date().toISOString() });
@@ -1005,6 +1015,114 @@ app.get('/api/preview/:projectId', async (req, res) => {
   } catch (error) {
     console.error('Error generating preview:', error);
     res.status(500).json({ error: 'Failed to generate preview' });
+  }
+});
+
+// ===== CASE STUDY GALLERY INJECTION ENDPOINTS =====
+
+// Get injection status for all case studies
+app.get('/api/case-studies/injection-status', async (req, res) => {
+  try {
+    const status = await caseStudyInjector.getInjectionStatus();
+    res.json({
+      success: true,
+      caseStudies: status,
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error('Error getting injection status:', error);
+    res.status(500).json({ error: 'Failed to get injection status' });
+  }
+});
+
+// Inject galleries into a specific case study
+app.post('/api/case-studies/:slug/inject-galleries', async (req, res) => {
+  try {
+    const { slug } = req.params;
+    const result = await caseStudyInjector.injectGalleries(slug);
+    
+    if (result.success) {
+      res.json({
+        success: true,
+        message: `Successfully injected ${result.injectedCount} galleries into ${slug}`,
+        injectedCount: result.injectedCount,
+        phases: result.phases,
+        timestamp: new Date().toISOString()
+      });
+    } else {
+      res.status(400).json({
+        success: false,
+        error: result.error,
+        timestamp: new Date().toISOString()
+      });
+    }
+  } catch (error) {
+    console.error('Error injecting galleries:', error);
+    res.status(500).json({ error: 'Failed to inject galleries' });
+  }
+});
+
+// Inject galleries into all case studies
+app.post('/api/case-studies/inject-all-galleries', async (req, res) => {
+  try {
+    const caseStudies = await caseStudyInjector.getCaseStudies();
+    const results = [];
+    
+    for (const slug of caseStudies) {
+      const result = await caseStudyInjector.injectGalleries(slug);
+      results.push({
+        slug,
+        success: result.success,
+        injectedCount: result.injectedCount || 0,
+        phases: result.phases || [],
+        error: result.error
+      });
+    }
+    
+    const totalInjected = results.reduce((sum, r) => sum + (r.injectedCount || 0), 0);
+    const successful = results.filter(r => r.success).length;
+    
+    res.json({
+      success: true,
+      message: `Injected galleries into ${successful}/${caseStudies.length} case studies (${totalInjected} total galleries)`,
+      results,
+      summary: {
+        totalCaseStudies: caseStudies.length,
+        successful,
+        totalInjected,
+        timestamp: new Date().toISOString()
+      }
+    });
+  } catch (error) {
+    console.error('Error injecting all galleries:', error);
+    res.status(500).json({ error: 'Failed to inject all galleries' });
+  }
+});
+
+// Analyze a specific case study structure
+app.get('/api/case-studies/:slug/analyze', async (req, res) => {
+  try {
+    const { slug } = req.params;
+    const analysis = await caseStudyInjector.analyzeCaseStudy(slug);
+    const availableGalleries = await caseStudyInjector.getAvailableGalleries(slug);
+    
+    if (analysis) {
+      res.json({
+        success: true,
+        analysis,
+        availableGalleries,
+        timestamp: new Date().toISOString()
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        error: 'Case study not found or could not be analyzed',
+        timestamp: new Date().toISOString()
+      });
+    }
+  } catch (error) {
+    console.error('Error analyzing case study:', error);
+    res.status(500).json({ error: 'Failed to analyze case study' });
   }
 });
 

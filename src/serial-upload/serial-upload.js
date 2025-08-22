@@ -22,6 +22,7 @@ class SerialUpload {
     init() {
         this.setupEventListeners();
         this.loadSavedSeries();
+        this.loadCaseStudies();
         this.updateAnalytics();
         this.checkAuthentication();
     }
@@ -312,11 +313,15 @@ class SerialUpload {
         this.renderLightboxContent();
         this.renderThumbnailStrip();
         
+        // Store bound event handlers so we can remove them later
+        this.boundOverlayClick = this.handleOverlayClick.bind(this);
+        this.boundEscapeKey = this.handleEscapeKey.bind(this);
+        
         // Add click-to-close on overlay background
-        overlay.addEventListener('click', this.handleOverlayClick.bind(this));
+        overlay.addEventListener('click', this.boundOverlayClick);
         
         // Add escape key listener
-        document.addEventListener('keydown', this.handleEscapeKey.bind(this));
+        document.addEventListener('keydown', this.boundEscapeKey);
         
         // Don't prevent body scroll - let browser back button work
         // document.body.style.overflow = 'hidden';
@@ -327,9 +332,15 @@ class SerialUpload {
         const overlay = document.getElementById('lightboxOverlay');
         overlay.style.display = 'none';
         
-        // Remove event listeners
-        overlay.removeEventListener('click', this.handleOverlayClick.bind(this));
-        document.removeEventListener('keydown', this.handleEscapeKey.bind(this));
+        // Remove event listeners using stored bound handlers
+        if (this.boundOverlayClick) {
+            overlay.removeEventListener('click', this.boundOverlayClick);
+            this.boundOverlayClick = null;
+        }
+        if (this.boundEscapeKey) {
+            document.removeEventListener('keydown', this.boundEscapeKey);
+            this.boundEscapeKey = null;
+        }
         
         // Restore body scroll
         document.body.style.overflow = 'auto';
@@ -341,6 +352,7 @@ class SerialUpload {
     handleOverlayClick(e) {
         // Only close if clicking the overlay background, not the content
         if (e.target.id === 'lightboxOverlay') {
+            console.log('Overlay clicked - closing lightbox');
             this.closeLightbox();
         }
     }
@@ -1028,18 +1040,53 @@ class SerialUpload {
         // Generate smart suggestions
         this.generateSmartSuggestions();
         
-        // Render suggestions
-        suggestions.innerHTML = this.smartSuggestions.map(suggestion => `
-            <div class="suggestion-item" onclick="serialUpload.goToImage(${suggestion.index})">
-                <div class="suggestion-icon">
-                    <img src="${suggestion.image.url}" alt="${suggestion.image.name}">
+        // Check if we have suggestions
+        if (this.smartSuggestions.length === 0) {
+            // No suggestions available - show empty state
+            suggestions.innerHTML = `
+                <div class="empty-state">
+                    <div class="empty-state-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="empty-state-title">No Smart Suggestions Available</div>
+                    <div class="empty-state-message">
+                        ${this.images.length === 1 ? 
+                            'Add more images to get smart suggestions based on your current image.' :
+                            'All images are similar or there are no clear relationships to suggest.'
+                        }
+                    </div>
+                    <div class="empty-state-actions">
+                        <button class="btn btn-outline-primary btn-sm" onclick="serialUpload.closeSmartNav()">
+                            <i class="fas fa-arrow-left"></i> Back to Linear Navigation
+                        </button>
+                    </div>
                 </div>
-                <div class="suggestion-content">
-                    <div class="suggestion-title">${suggestion.title}</div>
-                    <div class="suggestion-reason">${suggestion.reason}</div>
+            `;
+        } else {
+            // Render suggestions with count
+            suggestions.innerHTML = `
+                <div class="suggestions-header">
+                    <div class="suggestions-count">
+                        <i class="fas fa-lightbulb"></i> 
+                        ${this.smartSuggestions.length} Smart Suggestion${this.smartSuggestions.length !== 1 ? 's' : ''}
+                    </div>
+                    <div class="suggestions-subtitle">Based on your current image analysis</div>
                 </div>
-            </div>
-        `).join('');
+                <div class="suggestions-list">
+                    ${this.smartSuggestions.map(suggestion => `
+                        <div class="suggestion-item" onclick="serialUpload.goToImage(${suggestion.index})">
+                            <div class="suggestion-icon">
+                                <img src="${suggestion.image.url}" alt="${suggestion.image.name}">
+                            </div>
+                            <div class="suggestion-content">
+                                <div class="suggestion-title">${suggestion.title}</div>
+                                <div class="suggestion-reason">${suggestion.reason}</div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
         
         panel.style.display = 'block';
     }
@@ -1108,23 +1155,58 @@ class SerialUpload {
         // Generate project groups
         this.generateProjectGroups();
         
-        // Render project groups
-        groups.innerHTML = Object.entries(this.projectGroups).map(([groupName, groupData]) => `
-            <div class="project-group">
-                <div class="project-group-header">
-                    <div class="project-group-title">${groupName}</div>
-                    <div class="project-group-count">${groupData.images.length}</div>
+        // Check if we have groups
+        if (Object.keys(this.projectGroups).length === 0) {
+            // No groups available - show empty state
+            groups.innerHTML = `
+                <div class="empty-state">
+                    <div class="empty-state-icon">
+                        <i class="fas fa-folder-open"></i>
+                    </div>
+                    <div class="empty-state-title">No Project Groups Available</div>
+                    <div class="empty-state-message">
+                        ${this.images.length === 0 ? 
+                            'No images uploaded yet. Add some images to see project groupings.' :
+                            'All images have similar characteristics. Add more diverse images to see groupings.'
+                        }
+                    </div>
+                    <div class="empty-state-actions">
+                        <button class="btn btn-outline-primary btn-sm" onclick="serialUpload.closeProjectNav()">
+                            <i class="fas fa-arrow-left"></i> Back to Linear Navigation
+                        </button>
+                    </div>
                 </div>
-                <div class="project-group-items">
-                    ${groupData.images.map(img => `
-                        <div class="project-group-item ${img.index === this.currentIndex ? 'active' : ''}" 
-                             onclick="serialUpload.goToImage(${img.index})">
-                            <img src="${img.image.url}" alt="${img.image.name}">
+            `;
+        } else {
+            // Render groups with header
+            groups.innerHTML = `
+                <div class="groups-header">
+                    <div class="groups-count">
+                        <i class="fas fa-folder-open"></i> 
+                        ${Object.keys(this.projectGroups).length} Project Group${Object.keys(this.projectGroups).length !== 1 ? 's' : ''}
+                    </div>
+                    <div class="groups-subtitle">Organized by image characteristics</div>
+                </div>
+                <div class="groups-list">
+                    ${Object.entries(this.projectGroups).map(([groupName, groupData]) => `
+                        <div class="project-group">
+                            <div class="project-group-header">
+                                <div class="project-group-title">${groupName}</div>
+                                <div class="project-group-count">${groupData.images.length}</div>
+                            </div>
+                            <div class="project-group-items">
+                                ${groupData.images.map(img => `
+                                    <div class="project-group-item ${img.index === this.currentIndex ? 'active' : ''}" 
+                                         onclick="serialUpload.goToImage(${img.index})">
+                                        <img src="${img.image.url}" alt="${img.image.name}">
+                                    </div>
+                                `).join('')}
+                            </div>
                         </div>
                     `).join('')}
                 </div>
-            </div>
-        `).join('');
+            `;
+        }
         
         panel.style.display = 'block';
     }
@@ -1208,6 +1290,465 @@ class SerialUpload {
             this.showSmartNavigation();
         } else if (this.navigationMode === 'project') {
             this.showProjectNavigation();
+        }
+    }
+}
+
+// Enhanced UX Flow Management
+class UXFlowManager {
+    constructor() {
+        this.flows = {
+            problem: { id: 'problem', title: 'Problem & Research', icon: 'fas fa-search', color: 'primary' },
+            approach: { id: 'approach', title: 'Approach & Process', icon: 'fas fa-pencil-ruler', color: 'secondary' },
+            research: { id: 'research', title: 'Research Phase', icon: 'fas fa-microscope', color: 'info' },
+            design: { id: 'design', title: 'Design Phase', icon: 'fas fa-palette', color: 'warning' },
+            implementation: { id: 'implementation', title: 'Implementation', icon: 'fas fa-cogs', color: 'success' },
+            outcomes: { id: 'outcomes', title: 'Outcomes & Impact', icon: 'fas fa-chart-line', color: 'success' },
+            gallery: { id: 'gallery', title: 'Design Gallery', icon: 'fas fa-images', color: 'info' },
+            process: { id: 'process', title: 'Process Documentation', icon: 'fas fa-clipboard-list', color: 'dark' }
+        };
+        
+        this.flowKeywords = {
+            problem: ['problem', 'pain', 'issue', 'challenge', 'research', 'survey', 'interview'],
+            research: ['research', 'user', 'persona', 'journey', 'map', 'analysis', 'competitive', 'benchmark'],
+            design: ['design', 'wireframe', 'prototype', 'mockup', 'sketch', 'visual', 'ui', 'ux'],
+            implementation: ['implementation', 'development', 'code', 'build', 'deploy', 'test', 'qa'],
+            outcomes: ['outcome', 'result', 'impact', 'metric', 'kpi', 'conversion', 'success'],
+            gallery: ['gallery', 'final', 'deliverable', 'screenshot', 'mockup', 'design'],
+            process: ['process', 'methodology', 'timeline', 'workflow', 'documentation']
+        };
+    }
+
+    // Smart flow detection based on filename
+    detectFlowFromFilename(filename) {
+        const lowerFilename = filename.toLowerCase();
+        
+        for (const [flowId, keywords] of Object.entries(this.flowKeywords)) {
+            if (keywords.some(keyword => lowerFilename.includes(keyword))) {
+                return flowId;
+            }
+        }
+        
+        // Default detection based on common patterns
+        if (lowerFilename.includes('research') || lowerFilename.includes('user')) return 'research';
+        if (lowerFilename.includes('design') || lowerFilename.includes('wireframe')) return 'design';
+        if (lowerFilename.includes('final') || lowerFilename.includes('mockup')) return 'gallery';
+        if (lowerFilename.includes('process') || lowerFilename.includes('method')) return 'process';
+        
+        return 'gallery'; // Default fallback
+    }
+
+    // Get flow suggestions for a set of images
+    getFlowSuggestions(images) {
+        const flowCounts = {};
+        
+        images.forEach(image => {
+            const flow = this.detectFlowFromFilename(image.name);
+            flowCounts[flow] = (flowCounts[flow] || 0) + 1;
+        });
+        
+        return Object.entries(flowCounts)
+            .sort(([,a], [,b]) => b - a)
+            .map(([flowId, count]) => ({
+                flowId,
+                flow: this.flows[flowId],
+                count,
+                percentage: Math.round((count / images.length) * 100)
+            }));
+    }
+
+    // Bulk assign flow to multiple images
+    bulkAssignFlow(images, flowId) {
+        return images.map(image => ({
+            ...image,
+            flowType: flowId,
+            flowTitle: this.flows[flowId]?.title || 'Unknown Flow'
+        }));
+    }
+}
+
+// Initialize flow manager
+const flowManager = new UXFlowManager();
+
+// Enhanced flow selection interface
+function createFlowSelectionInterface() {
+    const flowSelectionHtml = `
+        <div class="flow-selection-panel" id="flowSelectionPanel">
+            <div class="panel-header">
+                <h4><i class="fas fa-layer-group"></i> UX Process Flow Assignment</h4>
+                <p class="text-muted">Organize your images by UX process stages</p>
+            </div>
+            
+            <div class="flow-suggestions" id="flowSuggestions">
+                <!-- Auto-generated suggestions will appear here -->
+            </div>
+            
+            <div class="flow-options">
+                <h5>Manual Flow Assignment</h5>
+                <div class="flow-grid">
+                    ${Object.values(flowManager.flows).map(flow => `
+                        <button class="flow-option" data-flow="${flow.id}" onclick="assignFlowToSelected('${flow.id}')">
+                            <i class="${flow.icon}"></i>
+                            <span>${flow.title}</span>
+                        </button>
+                    `).join('')}
+                </div>
+            </div>
+            
+            <div class="bulk-actions">
+                <h5>Bulk Actions</h5>
+                <div class="bulk-buttons">
+                    <button class="btn btn-outline-primary btn-sm" onclick="autoAssignFlows()">
+                        <i class="fas fa-magic"></i> Auto-Assign All
+                    </button>
+                    <button class="btn btn-outline-secondary btn-sm" onclick="resetFlowAssignments()">
+                        <i class="fas fa-undo"></i> Reset All
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    return flowSelectionHtml;
+}
+
+// Auto-assign flows to all images
+function autoAssignFlows() {
+    const images = getSelectedImages();
+    if (images.length === 0) {
+        showNotification('Please select images first', 'warning');
+        return;
+    }
+    
+    images.forEach(image => {
+        const detectedFlow = flowManager.detectFlowFromFilename(image.name);
+        image.flowType = detectedFlow;
+        image.flowTitle = flowManager.flows[detectedFlow]?.title || 'Unknown Flow';
+    });
+    
+    updateImageGrid();
+    showNotification(`Auto-assigned flows to ${images.length} images`, 'success');
+}
+
+// Assign specific flow to selected images
+function assignFlowToSelected(flowId) {
+    const selectedImages = getSelectedImages();
+    if (selectedImages.length === 0) {
+        showNotification('Please select images first', 'warning');
+        return;
+    }
+    
+    selectedImages.forEach(image => {
+        image.flowType = flowId;
+        image.flowTitle = flowManager.flows[flowId]?.title || 'Unknown Flow';
+    });
+    
+    updateImageGrid();
+    showNotification(`Assigned ${flowManager.flows[flowId]?.title} to ${selectedImages.length} images`, 'success');
+}
+
+// Reset all flow assignments
+function resetFlowAssignments() {
+    const images = getAllImages();
+    images.forEach(image => {
+        image.flowType = 'gallery';
+        image.flowTitle = 'Design Gallery';
+    });
+    
+    updateImageGrid();
+    showNotification('Reset all flow assignments', 'info');
+}
+
+// Update flow suggestions based on selected images
+function updateFlowSuggestions() {
+    const selectedImages = getSelectedImages();
+    const suggestions = flowManager.getFlowSuggestions(selectedImages);
+    
+    const suggestionsHtml = suggestions.map(suggestion => `
+        <div class="flow-suggestion" onclick="assignFlowToSelected('${suggestion.flowId}')">
+            <div class="suggestion-icon">
+                <i class="${suggestion.flow.icon}"></i>
+            </div>
+            <div class="suggestion-content">
+                <div class="suggestion-title">${suggestion.flow.title}</div>
+                <div class="suggestion-stats">
+                    ${suggestion.count} images (${suggestion.percentage}%)
+                </div>
+            </div>
+            <div class="suggestion-action">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+        </div>
+    `).join('');
+    
+    document.getElementById('flowSuggestions').innerHTML = suggestionsHtml;
+}
+
+// Enhanced image grid with flow indicators
+function updateImageGrid() {
+    const gridContainer = document.getElementById('imageGrid');
+    if (!gridContainer) return;
+    
+    const images = getAllImages();
+    
+    gridContainer.innerHTML = images.map((image, index) => `
+        <div class="image-item ${image.selected ? 'selected' : ''}" data-index="${index}">
+            <div class="image-preview">
+                <img src="${image.preview}" alt="${image.name}">
+                <div class="image-overlay">
+                    <div class="flow-badge ${image.flowType || 'gallery'}">
+                        <i class="${flowManager.flows[image.flowType || 'gallery']?.icon || 'fas fa-images'}"></i>
+                        ${image.flowTitle || 'Design Gallery'}
+                    </div>
+                    <div class="image-actions">
+                        <button class="btn btn-sm btn-outline-light" onclick="editImage(${index})">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-light" onclick="removeImage(${index})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="image-checkbox">
+                    <input type="checkbox" ${image.selected ? 'checked' : ''} onchange="toggleImageSelection(${index})">
+                </div>
+            </div>
+            <div class="image-info">
+                <div class="image-name">${image.name}</div>
+                <div class="image-description">${image.description || 'No description'}</div>
+            </div>
+        </div>
+    `).join('');
+}
+
+    // ===== CASE STUDIES MANAGEMENT =====
+    
+    async loadCaseStudies() {
+        try {
+            const response = await fetch('/api/case-studies/injection-status');
+            const data = await response.json();
+            
+            if (data.success) {
+                this.renderCaseStudies(data.caseStudies);
+            } else {
+                this.showCaseStudiesError('Failed to load case studies');
+            }
+        } catch (error) {
+            console.error('Error loading case studies:', error);
+            this.showCaseStudiesError('Network error loading case studies');
+        }
+    }
+
+    renderCaseStudies(caseStudies) {
+        const grid = document.getElementById('caseStudiesGrid');
+        if (!grid) return;
+
+        if (caseStudies.length === 0) {
+            grid.innerHTML = `
+                <div class="case-studies-empty">
+                    <i class="fas fa-folder-open"></i>
+                    <h4>No Case Studies Found</h4>
+                    <p>Create your first case study in the admin panel to get started.</p>
+                    <a href="/src/admin/" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Create Case Study
+                    </a>
+                </div>
+            `;
+            return;
+        }
+
+        grid.innerHTML = caseStudies.map(study => this.createCaseStudyCard(study)).join('');
+    }
+
+    createCaseStudyCard(study) {
+        const phases = ['problem', 'approach', 'outcomes', 'gallery'];
+        const phaseIcons = {
+            problem: 'fas fa-search',
+            approach: 'fas fa-pencil-ruler', 
+            outcomes: 'fas fa-chart-line',
+            gallery: 'fas fa-images'
+        };
+
+        const phaseIndicators = phases.map(phase => {
+            const hasContent = study.phases[phase];
+            const hasGalleries = study.availableGalleries.includes(phase);
+            const className = hasContent ? 'has-content' : '';
+            const icon = hasGalleries ? 'fas fa-check' : 'fas fa-circle';
+            
+            return `
+                <span class="phase-indicator ${className}">
+                    <i class="${icon}"></i> ${phase.charAt(0).toUpperCase() + phase.slice(1)}
+                </span>
+            `;
+        }).join('');
+
+        const galleryCount = study.availableGalleries.length;
+        const statusClass = study.hasExistingGallery ? 'active' : 'draft';
+
+        return `
+            <div class="case-study-card" onclick="serialUpload.openCaseStudy('${study.slug}')">
+                <div class="case-study-header">
+                    <div class="case-study-icon">
+                        <i class="fas fa-folder"></i>
+                    </div>
+                    <h4 class="case-study-title">${study.title}</h4>
+                </div>
+                
+                <div class="case-study-status">
+                    <span class="status-badge ${statusClass}">
+                        ${study.hasExistingGallery ? 'Active' : 'Draft'}
+                    </span>
+                </div>
+                
+                <div class="case-study-phases">
+                    ${phaseIndicators}
+                </div>
+                
+                <div class="case-study-galleries">
+                    <div class="gallery-count">
+                        <i class="fas fa-images"></i>
+                        <span>${galleryCount} galleries available</span>
+                    </div>
+                </div>
+                
+                <div class="case-study-actions">
+                    <!-- Primary Action -->
+                    <button class="btn btn-primary btn-sm" onclick="event.stopPropagation(); serialUpload.manageCaseStudy('${study.slug}')">
+                        <i class="fas fa-cog"></i> Manage
+                    </button>
+                    
+                    <!-- Secondary Action -->
+                    <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation(); serialUpload.previewCaseStudy('${study.slug}')">
+                        <i class="fas fa-eye"></i> Preview
+                    </button>
+                </div>
+            </div>
+        `;
+    }
+
+    openCaseStudy(slug) {
+        // Open the case study in a new tab
+        window.open(`/src/case-studies/${slug}/`, '_blank');
+    }
+
+    manageCaseStudy(slug) {
+        // Open admin panel for this case study
+        window.open(`/src/admin/?project=${slug}`, '_blank');
+    }
+
+    previewCaseStudy(slug) {
+        // Open preview for this case study
+        window.open(`/src/preview/${slug}/`, '_blank');
+    }
+
+    refreshCaseStudies() {
+        this.loadCaseStudies();
+    }
+
+    async showInjectionStatus() {
+        try {
+            const response = await fetch('/api/case-studies/injection-status');
+            const data = await response.json();
+            
+            if (data.success) {
+                this.showInjectionStatusModal(data.caseStudies);
+            }
+        } catch (error) {
+            console.error('Error loading injection status:', error);
+        }
+    }
+
+    showInjectionStatusModal(caseStudies) {
+        const modal = document.createElement('div');
+        modal.className = 'modal fade';
+        modal.innerHTML = `
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            <i class="fas fa-chart-bar"></i> Gallery Injection Status
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Case Study</th>
+                                        <th>Phases</th>
+                                        <th>Galleries</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${caseStudies.map(study => `
+                                        <tr>
+                                            <td>${study.title}</td>
+                                            <td>${Object.keys(study.phases).filter(p => study.phases[p]).length}/4</td>
+                                            <td>${study.availableGalleries.length}</td>
+                                            <td>
+                                                <span class="badge ${study.hasExistingGallery ? 'bg-success' : 'bg-warning'}">
+                                                    ${study.hasExistingGallery ? 'Active' : 'Draft'}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-sm btn-primary" onclick="serialUpload.injectGalleries('${study.slug}')">
+                                                    Inject Galleries
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        const bootstrapModal = new bootstrap.Modal(modal);
+        bootstrapModal.show();
+        
+        modal.addEventListener('hidden.bs.modal', () => {
+            document.body.removeChild(modal);
+        });
+    }
+
+    async injectGalleries(slug) {
+        try {
+            const response = await fetch(`/api/case-studies/${slug}/inject-galleries`, {
+                method: 'POST'
+            });
+            const data = await response.json();
+            
+            if (data.success) {
+                this.showNotification(`Successfully injected ${data.injectedCount} galleries into ${slug}`, 'success');
+                this.loadCaseStudies(); // Refresh the list
+            } else {
+                this.showNotification(`Failed to inject galleries: ${data.error}`, 'error');
+            }
+        } catch (error) {
+            console.error('Error injecting galleries:', error);
+            this.showNotification('Network error injecting galleries', 'error');
+        }
+    }
+
+    showCaseStudiesError(message) {
+        const grid = document.getElementById('caseStudiesGrid');
+        if (grid) {
+            grid.innerHTML = `
+                <div class="case-studies-empty">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h4>Error Loading Case Studies</h4>
+                    <p>${message}</p>
+                    <button class="btn btn-primary" onclick="serialUpload.loadCaseStudies()">
+                        <i class="fas fa-sync-alt"></i> Try Again
+                    </button>
+                </div>
+            `;
         }
     }
 }
