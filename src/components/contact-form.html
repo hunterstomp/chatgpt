@@ -30,23 +30,12 @@
                 </div>
               </div>
               
-              <div class="row">
-                <div class="col-md-6 mb-3">
-                  <label for="email" class="form-label fw-bold text-dark" style="font-size: 1.1rem; margin-bottom: 0.5rem;">Email Address *</label>
-                  <input type="email" class="form-control form-control-lg" id="email" name="email" required style="border: 2px solid #e9ecef; border-radius: 8px;">
-                  <div class="invalid-feedback fw-semibold">
-                    Please provide a valid email address.
-                  </div>
-                </div>
-                <div class="col-md-6 mb-3">
-                  <label for="phone" class="form-label fw-bold text-dark" style="font-size: 1.1rem; margin-bottom: 0.5rem;">Phone Number</label>
-                  <input type="tel" class="form-control form-control-lg" id="phone" name="phone" style="border: 2px solid #e9ecef; border-radius: 8px;">
-                </div>
-              </div>
-              
               <div class="mb-3">
-                <label for="company" class="form-label fw-bold text-dark" style="font-size: 1.1rem; margin-bottom: 0.5rem;">Company/Organization</label>
-                <input type="text" class="form-control form-control-lg" id="company" name="company" style="border: 2px solid #e9ecef; border-radius: 8px;">
+                <label for="email" class="form-label fw-bold text-dark" style="font-size: 1.1rem; margin-bottom: 0.5rem;">Email Address *</label>
+                <input type="email" class="form-control form-control-lg" id="email" name="email" required style="border: 2px solid #e9ecef; border-radius: 8px;">
+                <div class="invalid-feedback fw-semibold">
+                  Please provide a valid email address.
+                </div>
               </div>
               
               <div class="mb-3">
@@ -67,38 +56,65 @@
                 </div>
               </div>
               
-              <div class="mb-3">
-                <label for="budget" class="form-label fw-bold text-dark" style="font-size: 1.1rem; margin-bottom: 0.5rem;">Budget Range</label>
-                <select class="form-select form-select-lg" id="budget" name="budget" style="border: 2px solid #e9ecef; border-radius: 8px;">
-                  <option value="">Select budget range...</option>
-                  <option value="under-5k">Under $5,000</option>
-                  <option value="5k-15k">$5,000 - $15,000</option>
-                  <option value="15k-50k">$15,000 - $50,000</option>
-                  <option value="50k-100k">$50,000 - $100,000</option>
-                  <option value="over-100k">Over $100,000</option>
-                  <option value="to-be-discussed">To be discussed</option>
-                </select>
-              </div>
-              
-              <div class="mb-3">
-                <label for="timeline" class="form-label fw-bold text-dark" style="font-size: 1.1rem; margin-bottom: 0.5rem;">Timeline</label>
-                <select class="form-select form-select-lg" id="timeline" name="timeline" style="border: 2px solid #e9ecef; border-radius: 8px;">
-                  <option value="">Select timeline...</option>
-                  <option value="asap">ASAP</option>
-                  <option value="1-2-weeks">1-2 weeks</option>
-                  <option value="1-month">1 month</option>
-                  <option value="2-3-months">2-3 months</option>
-                  <option value="3-6-months">3-6 months</option>
-                  <option value="6-months-plus">6+ months</option>
-                  <option value="flexible">Flexible</option>
-                </select>
-              </div>
-              
               <div class="mb-4">
                 <label for="message" class="form-label fw-bold text-dark" style="font-size: 1.1rem; margin-bottom: 0.5rem;">Project Details *</label>
                 <textarea class="form-control" id="message" name="message" rows="5" placeholder="Tell me about your project, goals, and any specific requirements..." required style="border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem;"></textarea>
                 <div class="invalid-feedback fw-semibold">
                   Please provide project details.
+                </div>
+              </div>
+              
+              <!-- Additional Information Accordion -->
+              <div class="accordion mb-4" id="additionalInfoAccordion">
+                <div class="accordion-item" style="border: 2px solid #e9ecef; border-radius: 8px;">
+                  <h2 class="accordion-header" id="additionalInfoHeader">
+                    <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#additionalInfoCollapse" aria-expanded="false" aria-controls="additionalInfoCollapse" style="background: #f8f9fa; border: none; border-radius: 6px;">
+                      <i class="fas fa-plus-circle me-2"></i>
+                      Additional Information (Optional)
+                    </button>
+                  </h2>
+                  <div id="additionalInfoCollapse" class="accordion-collapse collapse" aria-labelledby="additionalInfoHeader" data-bs-parent="#additionalInfoAccordion">
+                    <div class="accordion-body">
+                      <div class="row">
+                        <div class="col-md-6 mb-3">
+                          <label for="phone" class="form-label fw-bold text-dark" style="font-size: 1rem; margin-bottom: 0.5rem;">Phone Number</label>
+                          <input type="tel" class="form-control form-control-lg" id="phone" name="phone" style="border: 2px solid #e9ecef; border-radius: 8px;">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <label for="company" class="form-label fw-bold text-dark" style="font-size: 1rem; margin-bottom: 0.5rem;">Company/Organization</label>
+                          <input type="text" class="form-control form-control-lg" id="company" name="company" style="border: 2px solid #e9ecef; border-radius: 8px;">
+                        </div>
+                      </div>
+                      
+                      <div class="row">
+                        <div class="col-md-6 mb-3">
+                          <label for="budget" class="form-label fw-bold text-dark" style="font-size: 1rem; margin-bottom: 0.5rem;">Budget Range</label>
+                          <select class="form-select form-select-lg" id="budget" name="budget" style="border: 2px solid #e9ecef; border-radius: 8px;">
+                            <option value="">Select budget range...</option>
+                            <option value="under-5k">Under $5,000</option>
+                            <option value="5k-15k">$5,000 - $15,000</option>
+                            <option value="15k-50k">$15,000 - $50,000</option>
+                            <option value="50k-100k">$50,000 - $100,000</option>
+                            <option value="over-100k">Over $100,000</option>
+                            <option value="to-be-discussed">To be discussed</option>
+                          </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <label for="timeline" class="form-label fw-bold text-dark" style="font-size: 1rem; margin-bottom: 0.5rem;">Timeline</label>
+                          <select class="form-select form-select-lg" id="timeline" name="timeline" style="border: 2px solid #e9ecef; border-radius: 8px;">
+                            <option value="">Select timeline...</option>
+                            <option value="asap">ASAP</option>
+                            <option value="1-2-weeks">1-2 weeks</option>
+                            <option value="1-month">1 month</option>
+                            <option value="2-3-months">2-3 months</option>
+                            <option value="3-6-months">3-6 months</option>
+                            <option value="6-months-plus">6+ months</option>
+                            <option value="flexible">Flexible</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               
