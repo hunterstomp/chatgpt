@@ -71,8 +71,8 @@
       <div class="hero-overlay"></div>
       <div class="hero-content">
         <div class="container">
-          <div class="row align-items-center min-vh-100">
-            <div class="col-lg-8">
+          <div class="row justify-content-center text-center min-vh-100">
+            <div class="col-lg-10">
               <h1 class="hero-title">
                 <span class="highlight-bg">About Me,</span><br>
                 Quentin Little
@@ -80,13 +80,13 @@
               <p class="hero-subtitle mb-4">
                 Pioneering User Experiences for 20 years for startups to enterprise businesses in the Age of AI
               </p>
-              <div class="d-flex gap-3 flex-wrap mb-4">
+              <div class="d-flex gap-3 flex-wrap justify-content-center mb-4">
                 <span class="badge-custom">UX Design</span>
                 <span class="badge-custom">User Research</span>
                 <span class="badge-custom">Prototyping</span>
                 <span class="badge-custom">Accessibility</span>
               </div>
-              <div class="d-flex gap-3 flex-wrap">
+              <div class="d-flex gap-3 flex-wrap justify-content-center">
                 <a href="#profile" class="btn btn-primary-custom">View Profile</a>
                 <a href="#skills" class="btn btn-secondary-custom">View Skills</a>
               </div>
@@ -99,9 +99,11 @@
     <!-- Profile Section -->
     <section class="section bg-dark" id="profile">
       <div class="container">
-        <h2 class="section-title">My Story</h2>
-        <p class="section-subtitle">A brief overview of my journey and experience.</p>
-        <div class="row align-items-center">
+        <h2 class="section-title text-center">My Story</h2>
+        <p class="section-subtitle text-center">A brief overview of my journey and experience.</p>
+        
+        <!-- Profile Image and Intro -->
+        <div class="row align-items-center mb-5">
           <div class="col-lg-6">
             <img src="/public/mamp-images/q10ux/photo-1644088379091-d574269d422f.webp" alt="Quentin Little" class="profile-image">
           </div>
@@ -110,29 +112,45 @@
             <p class="bio-text text-high-contrast">
               I am Quentin Little, a Senior User Experience Designer with over two decades of professional experience in crafting intuitive, impactful digital products. My journey through the entire digital revolution, from tinkering with 386 processors to navigating today's AI landscape, has given me a unique, hands-on perspective on the intricate dance between humans and machines. This extensive background, coupled with a natural inclination for systematic analysis and meticulous attention to detail, fuels my passion for designing future-forward experiences.
             </p>
-            
-            <h4 class="mt-4 mb-3 text-high-contrast">About my career</h4>
-            <p class="bio-text text-high-contrast">
-              My career has seen me lead UX initiatives across enterprise, mid-to-small businesses, and innovative startups, with transformative stints at Microsoft (including a company-wide Gold Star Award for executive vision work) and T-Mobile. I thrive in dynamic environments, adeptly bridging technical capabilities with human-centered design principles across diverse platforms including web, mobile, and television. I am particularly passionate about securing a lucrative UX design job in progressing tech, especially where UX can directly help with AI and UX integration, or in future-forward areas like AR/VR/MR/XR.
-            </p>
-            
-            <h4 class="mt-4 mb-3 text-high-contrast">What sets me apart</h4>
-            <p class="bio-text text-high-contrast">
-              What sets me apart is my unwavering dedication to creating authentic, data-driven experiences. I believe in building fully interactive prototypes fed by real data streams, moving beyond static mockups to uncover genuine user insights and edge cases. This methodical approach ensures that designs are not only user-centered but also robust and reflective of real-world usage. For instance, at Disney, I prototyped a dashboard that ingested complex datasets, and at T-Mobile and AtmosFX, I developed internal content management systems that incorporated actual libraries and catalogs of data, allowing stakeholders to visualize and test the final product in real-world contexts. My work has consistently delivered measurable impact, such as achieving a 30% increase in e-commerce conversion rates for AtmosFX and improving task completion rates by 35% on Microsoft's Unified Action Tracker platform.
-            </p>
-            
-            <h4 class="mt-4 mb-3 text-high-contrast">Sabbatical</h4>
-            <p class="bio-text text-high-contrast">
-              During a recent sabbatical, I immersed myself in AI to wrangle solutions built for UX and Machine Learning technologies, building prototypes and developing scripts to automate foundational tasks. This hands-on experience, combined with my proven ability to pioneer integrations with emerging technologies like AR, VR, ML, chatbots, and digital voice assistants at T-Mobile, positions me at the forefront of the evolving UX landscape. I am eager to apply this expertise to new opportunities in Bellevue, Seattle, WA, and surrounding areas, where I can contribute to the next wave of digital transformation.
-            </p>
-            <p class="bio-text text-high-contrast">
-              With all the tools I've learned I can bring a UX powerhouse of swift user-validated design and A.I automation to the challenges your company is facing.
-            </p>
-            
-            <h4 class="mt-4 mb-3 text-high-contrast">Other Hobbies</h4>
-            <p class="bio-text text-high-contrast">
-              Beyond the pixels and code, I bring a unique creative perspective shaped by my hobbies as a circuit bender (building theremins and modifying MIDI synthesizers), and my appreciation for visual storytelling (influenced by directors like Michel Gondry and Spike Jonze) and data visualization (drawing inspiration from Edward Tufte, Iove all of his books and insights). I am a firm believer in continuous learning and knowledge sharing, striving to be an effective mentor and collaborator through a practical, measured approach to problem-solving. And yes, when I'm not pushing pixels or coding, you might find me paragliding over Seattle or performing Britney Spears' "Toxic" at karaoke or Life on Mars by David Bowie (with surprising accuracy, I might add!).
-            </p>
+          </div>
+        </div>
+        
+        <!-- Four Column Layout -->
+        <div class="row">
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div class="profile-card h-100">
+              <h4 class="text-high-contrast mb-3">About My Career</h4>
+              <p class="bio-text text-high-contrast">
+                My career has seen me lead UX initiatives across enterprise, mid-to-small businesses, and innovative startups, with transformative stints at Microsoft (including a company-wide Gold Star Award for executive vision work) and T-Mobile. I thrive in dynamic environments, adeptly bridging technical capabilities with human-centered design principles across diverse platforms including web, mobile, and television.
+              </p>
+            </div>
+          </div>
+          
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div class="profile-card h-100">
+              <h4 class="text-high-contrast mb-3">What Sets Me Apart</h4>
+              <p class="bio-text text-high-contrast">
+                What sets me apart is my unwavering dedication to creating authentic, data-driven experiences. I believe in building fully interactive prototypes fed by real data streams, moving beyond static mockups to uncover genuine user insights and edge cases. This methodical approach ensures that designs are not only user-centered but also robust and reflective of real-world usage.
+              </p>
+            </div>
+          </div>
+          
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div class="profile-card h-100">
+              <h4 class="text-high-contrast mb-3">Sabbatical</h4>
+              <p class="bio-text text-high-contrast">
+                During a recent sabbatical, I immersed myself in AI to wrangle solutions built for UX and Machine Learning technologies, building prototypes and developing scripts to automate foundational tasks. This hands-on experience, combined with my proven ability to pioneer integrations with emerging technologies like AR, VR, ML, chatbots, and digital voice assistants at T-Mobile, positions me at the forefront of the evolving UX landscape.
+              </p>
+            </div>
+          </div>
+          
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div class="profile-card h-100">
+              <h4 class="text-high-contrast mb-3">Other Hobbies</h4>
+              <p class="bio-text text-high-contrast">
+                Beyond the pixels and code, I bring a unique creative perspective shaped by my hobbies as a circuit bender (building theremins and modifying MIDI synthesizers), and my appreciation for visual storytelling (influenced by directors like Michel Gondry and Spike Jonze) and data visualization (drawing inspiration from Edward Tufte). I am a firm believer in continuous learning and knowledge sharing.
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -535,5 +553,55 @@
 
   <!-- Q10UX Custom CSS -->
   <link rel="stylesheet" href="/src/styles/accessibility-patterns.css">
+  
+  <!-- Custom CSS for About page -->
+  <style>
+    .profile-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius);
+      padding: 2rem;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+    
+    .profile-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--accent-1);
+    }
+    
+    .profile-image {
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      max-width: 100%;
+      height: auto;
+    }
+    
+    /* Mobile responsive adjustments */
+    @media (max-width: 768px) {
+      .profile-card {
+        padding: 1.5rem;
+      }
+      
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.1rem;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .profile-card {
+        padding: 1rem;
+      }
+      
+      .hero-title {
+        font-size: 2rem;
+      }
+    }
+  </style>
 </body>
 </html>
