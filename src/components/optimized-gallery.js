@@ -125,72 +125,43 @@ class OptimizedGallery {
         
         this.container.innerHTML = '';
         
-        this.series.forEach(series => {
-            const seriesContainer = this.createSeriesContainer(series);
-            this.container.appendChild(seriesContainer);
-        });
-    }
-
-    createSeriesContainer(series) {
-        const container = document.createElement('div');
-        container.className = 'gallery-series';
+        if (this.images.length === 0) {
+            this.container.innerHTML = `
+                <div class="optimized-gallery-empty">
+                    <i class="fas fa-image"></i>
+                    <p>No images available</p>
+                </div>
+            `;
+            return;
+        }
         
-        // Series header
-        const header = document.createElement('div');
-        header.className = 'series-header';
-        header.innerHTML = `
-            <h3 class="series-title">${this.formatSeriesTitle(series.name)}</h3>
-            <span class="series-count">${series.count} images</span>
-        `;
-        container.appendChild(header);
-        
-        // Thumbnails grid
+        // Create gallery grid
         const grid = document.createElement('div');
-        grid.className = 'thumbnails-grid';
+        grid.className = 'optimized-gallery';
         
-        series.images.forEach((image, index) => {
-            const thumbnail = this.createThumbnail(image, series, index);
-            grid.appendChild(thumbnail);
+        this.images.forEach((image, index) => {
+            const item = this.createGalleryItem(image, index);
+            grid.appendChild(item);
         });
         
-        container.appendChild(grid);
-        return container;
+        this.container.appendChild(grid);
     }
 
-    formatSeriesTitle(seriesName) {
-        const titles = {
-            'research': 'User Research',
-            'design': 'Design Process',
-            'testing': 'Usability Testing',
-            'implementation': 'Final Implementation',
-            'general': 'General Screenshots'
-        };
+    createGalleryItem(image, index) {
+        const item = document.createElement('div');
+        item.className = 'optimized-gallery-item';
+        item.dataset.imageIndex = index;
         
-        return titles[seriesName] || seriesName.charAt(0).toUpperCase() + seriesName.slice(1);
-    }
-
-    createThumbnail(image, series, seriesIndex) {
-        const thumbnail = document.createElement('div');
-        thumbnail.className = 'thumbnail-item';
-        thumbnail.dataset.imageIndex = image.originalIndex;
-        thumbnail.dataset.seriesName = series.name;
-        thumbnail.dataset.seriesIndex = seriesIndex;
-        
-        // Lazy loading wrapper
-        const lazyWrapper = document.createElement('div');
-        lazyWrapper.className = 'lazy-wrapper';
-        
-        // Thumbnail image
+        // Create image element
         const img = document.createElement('img');
-        img.className = 'thumbnail-image';
         img.loading = 'lazy';
-        img.alt = image.teaserCaption || 'UX Design Image';
+        img.alt = image.teaserCaption || image.caption || 'UX Design Image';
         
         // Use Intersection Observer for lazy loading
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    img.src = image.thumbnail;
+                    img.src = image.thumbnail || image.url;
                     img.classList.add('loaded');
                     observer.unobserve(img);
                 }
@@ -199,86 +170,55 @@ class OptimizedGallery {
         
         observer.observe(img);
         
-        // Teaser caption
+        // Create caption
         const caption = document.createElement('div');
-        caption.className = 'teaser-caption';
-        caption.textContent = image.teaserCaption;
+        caption.className = 'optimized-gallery-caption';
+        caption.textContent = image.teaserCaption || image.caption || '';
         
-        // Loading placeholder
-        const placeholder = document.createElement('div');
-        placeholder.className = 'thumbnail-placeholder';
-        placeholder.innerHTML = '<div class="loading-spinner"></div>';
-        
-        lazyWrapper.appendChild(placeholder);
-        lazyWrapper.appendChild(img);
-        lazyWrapper.appendChild(caption);
-        
-        thumbnail.appendChild(lazyWrapper);
-        
-        // Click handler
-        thumbnail.addEventListener('click', () => {
-            this.openModal(image.originalIndex, series.name);
+        // Add click handler
+        item.addEventListener('click', () => {
+            this.openModal(index);
         });
         
-        return thumbnail;
+        // Add keyboard support
+        item.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.openModal(index);
+            }
+        });
+        
+        item.setAttribute('tabindex', '0');
+        item.setAttribute('role', 'button');
+        item.setAttribute('aria-label', `View ${image.caption || 'image'} ${index + 1} of ${this.images.length}`);
+        
+        item.appendChild(img);
+        item.appendChild(caption);
+        
+        return item;
     }
 
     createModal() {
         const modal = document.createElement('div');
-        modal.className = 'gallery-modal';
+        modal.className = 'optimized-gallery-modal';
         modal.innerHTML = `
-            <div class="modal-overlay"></div>
-            <div class="modal-container">
-                <div class="modal-header">
-                    <div class="modal-info">
-                        <h3 class="modal-title"></h3>
-                        <span class="modal-counter"></span>
-                    </div>
-                    <button class="modal-close" aria-label="Close">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="18" y1="6" x2="6" y2="18"></line>
-                            <line x1="6" y1="6" x2="18" y2="18"></line>
-                        </svg>
-                    </button>
-                </div>
+            <div class="optimized-gallery-modal-content">
+                <button class="optimized-gallery-modal-close" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
                 
-                <div class="modal-content">
-                    <button class="modal-nav modal-prev" aria-label="Previous image">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="15,18 9,12 15,6"></polyline>
-                        </svg>
-                    </button>
-                    
-                    <div class="modal-image-container">
-                        <img class="modal-image" alt="">
-                        <div class="modal-caption"></div>
-                    </div>
-                    
-                    <button class="modal-nav modal-next" aria-label="Next image">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="9,18 15,12 9,6"></polyline>
-                        </svg>
-                    </button>
-                </div>
+                <button class="optimized-gallery-modal-btn modal-prev" aria-label="Previous image">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
                 
-                <div class="modal-footer">
-                    <div class="modal-series-info"></div>
-                    <div class="modal-actions">
-                        <button class="modal-action modal-zoom" aria-label="Zoom">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="11" cy="11" r="8"></circle>
-                                <path d="m21 21-4.35-4.35"></path>
-                            </svg>
-                        </button>
-                        <button class="modal-action modal-download" aria-label="Download">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                                <polyline points="7,10 12,15 17,10"></polyline>
-                                <line x1="12" y1="15" x2="12" y2="3"></line>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
+                <img class="optimized-gallery-modal-image" alt="">
+                
+                <button class="optimized-gallery-modal-btn modal-next" aria-label="Next image">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                
+                <div class="optimized-gallery-modal-caption"></div>
+                <div class="optimized-gallery-modal-meta"></div>
             </div>
         `;
         
@@ -286,12 +226,15 @@ class OptimizedGallery {
         this.modal = modal;
         
         // Modal event listeners
-        this.modal.querySelector('.modal-overlay').addEventListener('click', () => this.closeModal());
-        this.modal.querySelector('.modal-close').addEventListener('click', () => this.closeModal());
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) this.closeModal();
+        });
+        this.modal.querySelector('.optimized-gallery-modal-close').addEventListener('click', () => this.closeModal());
         this.modal.querySelector('.modal-prev').addEventListener('click', () => this.previousImage());
         this.modal.querySelector('.modal-next').addEventListener('click', () => this.nextImage());
-        this.modal.querySelector('.modal-zoom').addEventListener('click', () => this.toggleZoom());
-        this.modal.querySelector('.modal-download').addEventListener('click', () => this.downloadImage());
+        
+        // Double click to zoom
+        this.modal.querySelector('.optimized-gallery-modal-image').addEventListener('dblclick', () => this.toggleZoom());
     }
 
     setupEventListeners() {
@@ -348,19 +291,13 @@ class OptimizedGallery {
         }
     }
 
-    openModal(imageIndex, seriesName) {
+    openModal(imageIndex) {
         this.currentIndex = imageIndex;
-        this.currentSeries = seriesName;
         this.isModalOpen = true;
         
         this.updateModal();
         this.modal.classList.add('active');
         document.body.style.overflow = 'hidden';
-        
-        // Preload adjacent images
-        if (this.options.preloadAdjacent) {
-            this.preloadAdjacentImages();
-        }
     }
 
     closeModal() {
@@ -374,69 +311,54 @@ class OptimizedGallery {
         if (!image) return;
         
         // Update image
-        const modalImage = this.modal.querySelector('.modal-image');
+        const modalImage = this.modal.querySelector('.optimized-gallery-modal-image');
         modalImage.src = image.url;
         modalImage.alt = image.caption || image.title || '';
         
         // Update caption
-        const modalCaption = this.modal.querySelector('.modal-caption');
+        const modalCaption = this.modal.querySelector('.optimized-gallery-modal-caption');
         modalCaption.textContent = image.caption || image.title || '';
         
-        // Update title and counter
-        const modalTitle = this.modal.querySelector('.modal-title');
-        const modalCounter = this.modal.querySelector('.modal-counter');
-        const currentSeries = this.series.find(s => s.name === this.currentSeries);
-        const seriesIndex = currentSeries?.images.findIndex(img => img.originalIndex === this.currentIndex) || 0;
-        
-        modalTitle.textContent = image.title || this.formatSeriesTitle(this.currentSeries);
-        modalCounter.textContent = `${seriesIndex + 1} of ${currentSeries?.count || 1}`;
-        
-        // Update series info
-        const modalSeriesInfo = this.modal.querySelector('.modal-series-info');
-        modalSeriesInfo.textContent = `${this.formatSeriesTitle(this.currentSeries)} • ${image.tags?.join(', ') || ''}`;
+        // Update meta info
+        const modalMeta = this.modal.querySelector('.optimized-gallery-modal-meta');
+        modalMeta.textContent = `${this.currentIndex + 1} of ${this.images.length}`;
         
         // Update navigation buttons
         this.updateNavigationButtons();
+        
+        // Preload adjacent images
+        if (this.options.preloadAdjacent) {
+            this.preloadAdjacentImages();
+        }
     }
 
     updateNavigationButtons() {
-        const currentSeries = this.series.find(s => s.name === this.currentSeries);
-        const seriesIndex = currentSeries?.images.findIndex(img => img.originalIndex === this.currentIndex) || 0;
-        
         const prevButton = this.modal.querySelector('.modal-prev');
         const nextButton = this.modal.querySelector('.modal-next');
         
-        prevButton.disabled = seriesIndex === 0;
-        nextButton.disabled = seriesIndex === (currentSeries?.count - 1);
+        prevButton.disabled = this.currentIndex === 0;
+        nextButton.disabled = this.currentIndex === this.images.length - 1;
         
         prevButton.style.opacity = prevButton.disabled ? '0.3' : '1';
         nextButton.style.opacity = nextButton.disabled ? '0.3' : '1';
     }
 
     previousImage() {
-        const currentSeries = this.series.find(s => s.name === this.currentSeries);
-        const seriesIndex = currentSeries?.images.findIndex(img => img.originalIndex === this.currentIndex) || 0;
-        
-        if (seriesIndex > 0) {
-            const prevImage = currentSeries.images[seriesIndex - 1];
-            this.currentIndex = prevImage.originalIndex;
+        if (this.currentIndex > 0) {
+            this.currentIndex--;
             this.updateModal();
         }
     }
 
     nextImage() {
-        const currentSeries = this.series.find(s => s.name === this.currentSeries);
-        const seriesIndex = currentSeries?.images.findIndex(img => img.originalIndex === this.currentIndex) || 0;
-        
-        if (seriesIndex < currentSeries.count - 1) {
-            const nextImage = currentSeries.images[seriesIndex + 1];
-            this.currentIndex = nextImage.originalIndex;
+        if (this.currentIndex < this.images.length - 1) {
+            this.currentIndex++;
             this.updateModal();
         }
     }
 
     toggleZoom() {
-        const modalImage = this.modal.querySelector('.modal-image');
+        const modalImage = this.modal.querySelector('.optimized-gallery-modal-image');
         modalImage.classList.toggle('zoomed');
     }
 
@@ -453,19 +375,16 @@ class OptimizedGallery {
     }
 
     preloadAdjacentImages() {
-        const currentSeries = this.series.find(s => s.name === this.currentSeries);
-        const seriesIndex = currentSeries?.images.findIndex(img => img.originalIndex === this.currentIndex) || 0;
-        
         // Preload next image
-        if (seriesIndex < currentSeries.count - 1) {
-            const nextImage = currentSeries.images[seriesIndex + 1];
+        if (this.currentIndex < this.images.length - 1) {
+            const nextImage = this.images[this.currentIndex + 1];
             const img = new Image();
             img.src = nextImage.url;
         }
         
         // Preload previous image
-        if (seriesIndex > 0) {
-            const prevImage = currentSeries.images[seriesIndex - 1];
+        if (this.currentIndex > 0) {
+            const prevImage = this.images[this.currentIndex - 1];
             const img = new Image();
             img.src = prevImage.url;
         }
