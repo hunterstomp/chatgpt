@@ -63,6 +63,29 @@ class SimpleGalleryGenerator {
     return projects;
   }
 
+  getProjectBackground(projectName) {
+    const backgrounds = {
+      'atmosfx': 'assets/images/backgrounds/atmosfx.webp',
+      'tmobile': 'assets/images/backgrounds/tmobile-purchase.webp',
+      'disney': 'assets/images/backgrounds/gates.webp', // Using gates as Disney background
+      'bmgf': 'assets/images/backgrounds/gates.webp',
+      'microsoft': 'assets/images/backgrounds/O365.webp',
+      'att': 'assets/images/backgrounds/att.webp',
+      'officelive': 'assets/images/backgrounds/officelive.webp',
+      'tmobile-labs': 'assets/images/backgrounds/tmobile-labs.webp'
+    };
+    
+    // Find matching background based on project name
+    for (const [key, background] of Object.entries(backgrounds)) {
+      if (projectName.toLowerCase().includes(key.toLowerCase())) {
+        return background;
+      }
+    }
+    
+    // Default background for other projects
+    return 'assets/images/backgrounds/atmosfx.webp';
+  }
+
   generateCaseStudy(projectKey, project) {
     if (project.images.length === 0) return;
 
@@ -83,9 +106,15 @@ class SimpleGalleryGenerator {
     }
 
     .hero-section {
-      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+      background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(45, 45, 45, 0.8) 100%), url('../${this.getProjectBackground(project.name)}');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
       padding: 4rem 0;
       margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+      min-height: 100vh;
     }
 
     .section-title {
