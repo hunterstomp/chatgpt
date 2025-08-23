@@ -141,8 +141,12 @@
     </section>
 
     <!-- Strategy Phase -->
-    <section class="section phase-section strategy-phase bg-light" id="strategy">
+    <section class="section phase-section strategy-phase bg-white content-section" id="strategy">
       <div class="container">
+        <div class="section-status">
+          <span class="content-indicator available"></span>
+          <span class="status-text">Strategy Phase - Content Available</span>
+        </div>
         <div class="phase-header text-center mb-5">
           <div class="phase-number bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px; font-size: 2rem; font-weight: bold;">2</div>
           <h2 class="phase-title text-dark display-4 fw-bold mb-2">Strategy</h2>
@@ -165,11 +169,8 @@
               </div>
               <div class="col-lg-4">
                 <div class="image-gallery" id="strategy-gallery">
-                  <div class="loading-placeholder text-center py-4">
-                    <div class="spinner-border text-success" role="status">
-                      <span class="visually-hidden">Loading strategy images...</span>
-                    </div>
-                    <p class="mt-2 text-muted">Loading strategy deliverables...</p>
+                  <div class="dummy-image" id="strategy-dummy">
+                    <!-- Dummy image placeholder - remove in admin panel -->
                   </div>
                 </div>
               </div>
@@ -180,17 +181,19 @@
     </section>
 
     <!-- Ideation Phase -->
-    <section class="section phase-section ideation-phase" id="ideation" style="background: url('/public/mamp-images/backgrounds/Dark Gradient 02.png') center center/cover no-repeat; position: relative;">
-      <!-- Dark overlay for better text contrast -->
-      <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.3); z-index: 1;"></div>
-      <div class="container" style="position: relative; z-index: 2;">
+    <section class="section phase-section ideation-phase bg-white content-section" id="ideation">
+      <div class="container">
+        <div class="section-status">
+          <span class="content-indicator available"></span>
+          <span class="status-text">Ideation Phase - Content Available</span>
+        </div>
         <div class="phase-header text-center mb-5">
           <div class="phase-number bg-info text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px; font-size: 2rem; font-weight: bold;">3</div>
-          <h2 class="phase-title text-white display-4 fw-bold mb-2">Ideation</h2>
-          <p class="phase-subtitle text-white-50 lead">Exploring concepts and solutions</p>
+          <h2 class="phase-title text-dark display-4 fw-bold mb-2">Ideation</h2>
+          <p class="phase-subtitle text-muted lead">Exploring concepts and solutions</p>
         </div>
         
-        <div class="content-card card border-0 shadow-lg" style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);">
+        <div class="content-card card border-0 shadow-lg">
           <div class="card-body p-5">
             <div class="row g-4">
               <div class="col-lg-8">
@@ -206,11 +209,8 @@
               </div>
               <div class="col-lg-4">
                 <div class="image-gallery" id="ideation-gallery">
-                  <div class="loading-placeholder text-center py-4">
-                    <div class="spinner-border text-info" role="status">
-                      <span class="visually-hidden">Loading ideation images...</span>
-                    </div>
-                    <p class="mt-2 text-muted">Loading ideation deliverables...</p>
+                  <div class="dummy-image" id="ideation-dummy">
+                    <!-- Dummy image placeholder - remove in admin panel -->
                   </div>
                 </div>
               </div>
@@ -221,8 +221,12 @@
     </section>
 
     <!-- Design Phase -->
-    <section class="section phase-section design-phase bg-light" id="design">
+    <section class="section phase-section design-phase bg-white content-section" id="design">
       <div class="container">
+        <div class="section-status">
+          <span class="content-indicator available"></span>
+          <span class="status-text">Design Phase - Content Available</span>
+        </div>
         <div class="phase-header text-center mb-5">
           <div class="phase-number bg-warning text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px; font-size: 2rem; font-weight: bold;">4</div>
           <h2 class="phase-title text-dark display-4 fw-bold mb-2">Design</h2>
@@ -300,9 +304,76 @@
       </div>
     </section>
 
-    <!-- Testing Phase -->
-    <section class="section phase-section testing-phase bg-light" id="testing">
+    <!-- Process Flow Example -->
+    <section class="section bg-white" id="process-flow">
       <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="text-dark text-center mb-5">Design Process Flow</h2>
+            <div class="process-flow">
+              <div class="row g-4">
+                <div class="col-md-4">
+                  <div class="process-step card h-100">
+                    <div class="card-body text-center">
+                      <h5 class="text-dark">Research</h5>
+                      <p class="text-muted">User interviews, surveys, and market analysis</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="process-step card h-100">
+                    <div class="card-body text-center">
+                      <h5 class="text-dark">Strategy</h5>
+                      <p class="text-muted">Define goals, personas, and user journeys</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="process-step card h-100">
+                    <div class="card-body text-center">
+                      <h5 class="text-dark">Design</h5>
+                      <p class="text-muted">Wireframes, mockups, and prototypes</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="process-step card h-100 hidden">
+                    <div class="card-body text-center">
+                      <h5 class="text-dark">Testing</h5>
+                      <p class="text-muted">Usability testing and feedback collection</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="process-step card h-100">
+                    <div class="card-body text-center">
+                      <h5 class="text-dark">Implementation</h5>
+                      <p class="text-muted">Development and launch</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="process-step card h-100">
+                    <div class="card-body text-center">
+                      <h5 class="text-dark">Results</h5>
+                      <p class="text-muted">Measure impact and iterate</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testing Phase -->
+    <section class="section phase-section testing-phase bg-white content-section hidden" id="testing">
+      <div class="container">
+        <div class="section-status">
+          <span class="content-indicator unavailable"></span>
+          <span class="status-text">Testing Phase - No Content Available</span>
+        </div>
         <div class="phase-header text-center mb-5">
           <div class="phase-number bg-secondary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px; font-size: 2rem; font-weight: bold;">6</div>
           <h2 class="phase-title text-dark display-4 fw-bold mb-2">Testing</h2>
@@ -893,6 +964,9 @@
     color: #333 !important;
   }
   </style>
+
+  <!-- Dynamic Content Management -->
+  <script src="../../scripts/dynamic-content.js"></script>
 
   <!-- Load Header and Footer -->
   <script>

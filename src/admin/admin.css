@@ -2365,3 +2365,93 @@ body {
     margin-top: 0.5rem;
     font-size: 0.85rem;
 }
+
+/* Dynamic Content Management Styles */
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.content-item {
+    background: var(--admin-surface);
+    border: 1px solid var(--admin-border);
+    border-radius: 12px;
+    padding: 1rem;
+    transition: all 0.3s ease;
+}
+
+.content-item:hover {
+    border-color: var(--admin-primary);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.content-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.content-header strong {
+    margin-left: 0.5rem;
+    color: var(--admin-text);
+}
+
+.content-controls {
+    margin-bottom: 0.5rem;
+}
+
+.content-status {
+    margin-top: 0.5rem;
+}
+
+.content-info {
+    margin-bottom: 0.75rem;
+}
+
+.quick-actions .btn {
+    margin-bottom: 0.5rem;
+}
+
+/* Content Indicators */
+.content-indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.content-indicator.available {
+    background: #28a745;
+}
+
+.content-indicator.unavailable {
+    background: #dc3545;
+}
+
+.content-indicator.partial {
+    background: #ffc107;
+}
+
+/* Dynamic Content Modal */
+#dynamicContentModal .modal-dialog {
+    max-width: 1200px;
+}
+
+#dynamicContentModal .modal-body {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .quick-actions .row > div {
+        margin-bottom: 0.5rem;
+    }
+}

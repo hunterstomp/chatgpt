@@ -9,6 +9,13 @@
   --accent-3: #FFD166;
   --muted: #2A2A2A;
   
+  /* White Background Colors for Case Studies */
+  --bg-white: #FFFFFF;
+  --surface-white: #F8F9FA;
+  --text-dark: #212529;
+  --muted-white: #6C757D;
+  --border-white: #DEE2E6;
+  
   /* Spacing & Layout */
   --radius: 16px;
   --shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
@@ -659,6 +666,135 @@ img {
   padding: clamp(32px, 6vw, 96px) 0;
 }
 
+/* Background Classes for Case Studies */
+.section.bg-white {
+  background: var(--bg-white);
+  color: var(--text-dark);
+}
+
+.section.bg-light {
+  background: var(--surface-white);
+  color: var(--text-dark);
+}
+
+.section.bg-dark {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Dynamic Content Classes */
+.content-section {
+  transition: opacity var(--transition), max-height var(--transition);
+  overflow: hidden;
+}
+
+.content-section.hidden {
+  opacity: 0;
+  max-height: 0;
+  padding: 0;
+  margin: 0;
+  pointer-events: none;
+}
+
+.content-section.visible {
+  opacity: 1;
+  max-height: none;
+}
+
+/* Dynamic Process Flow Counter */
+.process-flow {
+  counter-reset: process-step;
+}
+
+.process-step {
+  counter-increment: process-step;
+  position: relative;
+}
+
+.process-step::before {
+  content: counter(process-step);
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  background: var(--accent-1);
+  color: var(--text-dark);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+  z-index: 10;
+}
+
+.process-step.hidden {
+  display: none;
+}
+
+.process-step.hidden + .process-step::before {
+  counter-increment: process-step -1;
+}
+
+/* Dummy Image Placeholder */
+.dummy-image {
+  background: linear-gradient(45deg, var(--muted-white) 25%, transparent 25%), 
+              linear-gradient(-45deg, var(--muted-white) 25%, transparent 25%), 
+              linear-gradient(45deg, transparent 75%, var(--muted-white) 75%), 
+              linear-gradient(-45deg, transparent 75%, var(--muted-white) 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  border: 2px dashed var(--border-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted-white);
+  font-style: italic;
+  min-height: 200px;
+}
+
+.dummy-image::before {
+  content: "Dummy Image - Remove in Admin Panel";
+  text-align: center;
+  padding: 20px;
+}
+
+/* Content Availability Indicators */
+.content-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.content-indicator.available {
+  background: #28a745;
+}
+
+.content-indicator.unavailable {
+  background: #dc3545;
+}
+
+.content-indicator.partial {
+  background: #ffc107;
+}
+
+/* Section Status Display */
+.section-status {
+  font-size: 0.875rem;
+  color: var(--muted-white);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.section-status .status-text {
+  font-weight: 500;
+}
+
 /* Cards & Surfaces */
 .card {
   background: var(--surface);
@@ -1136,5 +1272,13 @@ footer .logo-image {
   
   .btn {
     border: 2px solid var(--text);
+  }
+}
+
+/* Responsive adjustments for white backgrounds */
+@media (max-width: 768px) {
+  .section.bg-white,
+  .section.bg-light {
+    padding: clamp(24px, 4vw, 48px) 0;
   }
 }
