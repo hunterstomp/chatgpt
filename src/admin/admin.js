@@ -2250,6 +2250,212 @@ class Q10UXAdmin {
             }
         });
     }
+
+    // Dynamic Content Management Methods
+    showDynamicContentManager() {
+        const modal = new bootstrap.Modal(document.getElementById('dynamicContentModal'));
+        modal.show();
+        this.loadDynamicContentStatus();
+    }
+
+    loadDynamicContentStatus() {
+        // This would typically communicate with the case study page
+        // For now, we'll simulate the data
+        this.renderContentSections();
+        this.renderProcessFlows();
+        this.renderDummyImages();
+    }
+
+    renderContentSections() {
+        const grid = document.getElementById('contentSectionsGrid');
+        const sections = [
+            { id: 'research', name: 'Research Phase', hasContent: true, isVisible: true },
+            { id: 'strategy', name: 'Strategy Phase', hasContent: true, isVisible: true },
+            { id: 'design', name: 'Design Phase', hasContent: true, isVisible: true },
+            { id: 'testing', name: 'Testing Phase', hasContent: false, isVisible: false },
+            { id: 'results', name: 'Results Phase', hasContent: true, isVisible: true }
+        ];
+
+        grid.innerHTML = sections.map(section => `
+            <div class="content-item">
+                <div class="content-header">
+                    <span class="content-indicator ${section.hasContent ? 'available' : 'unavailable'}"></span>
+                    <strong>${section.name}</strong>
+                </div>
+                <div class="content-controls">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" 
+                               id="section-${section.id}" 
+                               ${section.isVisible ? 'checked' : ''}
+                               onchange="admin.toggleSection('${section.id}', this.checked)">
+                        <label class="form-check-label" for="section-${section.id}">
+                            ${section.isVisible ? 'Visible' : 'Hidden'}
+                        </label>
+                    </div>
+                </div>
+                <div class="content-status">
+                    <small class="text-muted">
+                        ${section.hasContent ? 'Has content' : 'No content'}
+                    </small>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    renderProcessFlows() {
+        const grid = document.getElementById('processFlowsGrid');
+        const flows = [
+            { id: 'user-journey', name: 'User Journey', totalSteps: 5, visibleSteps: 4 },
+            { id: 'wireframes', name: 'Wireframes', totalSteps: 3, visibleSteps: 3 },
+            { id: 'prototypes', name: 'Prototypes', totalSteps: 4, visibleSteps: 2 }
+        ];
+
+        grid.innerHTML = flows.map(flow => `
+            <div class="content-item">
+                <div class="content-header">
+                    <span class="content-indicator ${flow.visibleSteps > 0 ? 'available' : 'unavailable'}"></span>
+                    <strong>${flow.name}</strong>
+                </div>
+                <div class="content-info">
+                    <small class="text-muted">
+                        ${flow.visibleSteps} of ${flow.totalSteps} steps visible
+                    </small>
+                </div>
+                <div class="content-controls">
+                    <button class="btn btn-sm btn-outline-primary" onclick="admin.editProcessFlow('${flow.id}')">
+                        <i class="fas fa-edit"></i> Edit Steps
+                    </button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    renderDummyImages() {
+        const grid = document.getElementById('dummyImagesGrid');
+        const images = [
+            { id: 'hero-dummy', name: 'Hero Image', isVisible: true },
+            { id: 'research-dummy', name: 'Research Image', isVisible: true },
+            { id: 'design-dummy', name: 'Design Image', isVisible: false },
+            { id: 'results-dummy', name: 'Results Image', isVisible: true }
+        ];
+
+        grid.innerHTML = images.map(image => `
+            <div class="content-item">
+                <div class="content-header">
+                    <span class="content-indicator ${image.isVisible ? 'available' : 'unavailable'}"></span>
+                    <strong>${image.name}</strong>
+                </div>
+                <div class="content-controls">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" 
+                               id="image-${image.id}" 
+                               ${image.isVisible ? 'checked' : ''}
+                               onchange="admin.toggleDummyImage('${image.id}', this.checked)">
+                        <label class="form-check-label" for="image-${image.id}">
+                            ${image.isVisible ? 'Visible' : 'Hidden'}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    toggleSection(sectionId, isVisible) {
+        // Send command to case study page
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'dynamicContent',
+                action: 'toggleSection',
+                sectionId: sectionId,
+                state: isVisible
+            }, '*');
+        }
+        
+        // Update local state
+        this.updateSectionStatus(sectionId, isVisible);
+    }
+
+    toggleDummyImage(imageId, isVisible) {
+        // Send command to case study page
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'dynamicContent',
+                action: 'toggleDummyImage',
+                imageId: imageId,
+                state: isVisible
+            }, '*');
+        }
+        
+        // Update local state
+        this.updateDummyImageStatus(imageId, isVisible);
+    }
+
+    autoHideEmptySections() {
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'dynamicContent',
+                action: 'autoHideEmpty'
+            }, '*');
+        }
+        this.showNotification('Auto-hiding empty sections...', 'info');
+    }
+
+    showAllSections() {
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'dynamicContent',
+                action: 'showAll'
+            }, '*');
+        }
+        this.showNotification('Showing all sections...', 'info');
+    }
+
+    hideAllDummyImages() {
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'dynamicContent',
+                action: 'hideAllDummy'
+            }, '*');
+        }
+        this.showNotification('Hiding all dummy images...', 'info');
+    }
+
+    refreshContentStatus() {
+        this.loadDynamicContentStatus();
+        this.showNotification('Content status refreshed', 'success');
+    }
+
+    saveDynamicContentSettings() {
+        // Save settings to localStorage or send to server
+        this.showNotification('Dynamic content settings saved', 'success');
+        const modal = bootstrap.Modal.getInstance(document.getElementById('dynamicContentModal'));
+        modal.hide();
+    }
+
+    updateSectionStatus(sectionId, isVisible) {
+        const checkbox = document.getElementById(`section-${sectionId}`);
+        const label = checkbox.nextElementSibling;
+        
+        if (checkbox) {
+            checkbox.checked = isVisible;
+            label.textContent = isVisible ? 'Visible' : 'Hidden';
+        }
+    }
+
+    updateDummyImageStatus(imageId, isVisible) {
+        const checkbox = document.getElementById(`image-${imageId}`);
+        const label = checkbox.nextElementSibling;
+        
+        if (checkbox) {
+            checkbox.checked = isVisible;
+            label.textContent = isVisible ? 'Visible' : 'Hidden';
+        }
+    }
+
+    editProcessFlow(flowId) {
+        // Open process flow editor
+        this.showNotification(`Editing process flow: ${flowId}`, 'info');
+    }
 }
 
 // Global functions for onclick handlers
@@ -2279,6 +2485,10 @@ function showBulkTagging() {
 
 function showFlowPrivacy() {
     admin.showFlowPrivacy();
+}
+
+function showDynamicContentManager() {
+    admin.showDynamicContentManager();
 }
 
 function showFileUpload() {
