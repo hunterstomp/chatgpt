@@ -1,0 +1,663 @@
+/* Q10UX Interactive Tour Styles */
+:root {
+    --tour-bg: rgba(0, 0, 0, 0.95);
+    --tour-surface: #1a1a1a;
+    --tour-primary: #00d4ff;
+    --tour-success: #00ff88;
+    --tour-warning: #ffaa00;
+    --tour-text: #ffffff;
+    --tour-muted: #888888;
+    --tour-border: #333333;
+    --tour-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    --tour-radius: 12px;
+    --tour-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --tour-highlight: rgba(0, 212, 255, 0.3);
+    --tour-pulse: rgba(0, 212, 255, 0.6);
+    --tour-glow: rgba(0, 212, 255, 0.4);
+}
+
+/* Tour Overlay */
+.tour-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--tour-transition);
+}
+
+.tour-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.tour-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--tour-bg);
+    backdrop-filter: blur(5px);
+    cursor: pointer;
+    transition: var(--tour-transition);
+}
+
+.tour-backdrop:hover {
+    background: rgba(0, 0, 0, 0.85);
+}
+
+.tour-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--tour-muted);
+    font-size: 0.875rem;
+    opacity: 0.7;
+    pointer-events: none;
+    transition: var(--tour-transition);
+}
+
+.tour-backdrop:hover .tour-hint {
+    opacity: 1;
+    color: var(--tour-text);
+}
+
+.tour-highlight {
+    position: absolute;
+    border-radius: var(--tour-radius);
+    box-shadow: 0 0 0 9999px var(--tour-bg);
+    transition: var(--tour-transition);
+    pointer-events: none;
+    z-index: 1;
+    /* No hover effects - this is just a visual highlight */
+}
+
+/* Tour Tooltip */
+.tour-tooltip {
+    position: fixed;
+    background: var(--tour-surface);
+    border: 1px solid var(--tour-border);
+    border-radius: var(--tour-radius);
+    box-shadow: var(--tour-shadow);
+    color: var(--tour-text);
+    font-family: 'Inter', sans-serif;
+    max-width: 400px;
+    min-width: 300px;
+    width: 350px;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: var(--tour-transition);
+    z-index: 9999;
+    display: none;
+}
+
+.tour-tooltip.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.tooltip-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem 0.5rem;
+    border-bottom: 1px solid var(--tour-border);
+}
+
+.tooltip-title {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: var(--tour-primary);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    font-feature-settings: "kern" 1, "liga" 1;
+}
+
+.tooltip-close {
+    background: none;
+    border: none;
+    color: var(--tour-muted);
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: var(--tour-transition);
+}
+
+.tooltip-close:hover {
+    color: var(--tour-text);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.tooltip-content {
+    padding: 1rem 1.5rem;
+}
+
+.tooltip-description {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--tour-text);
+    margin: 0;
+}
+
+.tooltip-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1.5rem 1rem;
+    border-top: 1px solid var(--tour-border);
+}
+
+.tooltip-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.tooltip-action {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--tour-border);
+    color: var(--tour-text);
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--tour-transition);
+}
+
+.tooltip-action:hover:not(:disabled) {
+    background: var(--tour-primary);
+    color: var(--tour-surface);
+    border-color: var(--tour-primary);
+}
+
+.tooltip-action:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.tooltip-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.tooltip-skip {
+    background: none;
+    border: none;
+    color: var(--tour-muted);
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: var(--tour-transition);
+}
+
+.tooltip-skip:hover {
+    color: var(--tour-text);
+}
+
+.tooltip-autoplay {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--tour-border);
+    color: var(--tour-text);
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--tour-transition);
+}
+
+.tooltip-autoplay:hover {
+    background: var(--tour-primary);
+    color: var(--tour-surface);
+    border-color: var(--tour-primary);
+}
+
+/* Tour Progress */
+.tour-progress {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--tour-surface);
+    border: 1px solid var(--tour-border);
+    border-radius: var(--tour-radius);
+    padding: 0.75rem 1rem;
+    color: var(--tour-text);
+    font-size: 0.875rem;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: var(--tour-transition);
+    z-index: 9999;
+}
+
+.tour-progress.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.progress-bar {
+    width: 100px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--tour-primary), var(--tour-success));
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    text-align: center;
+    font-weight: 500;
+}
+
+.progress-current {
+    color: var(--tour-primary);
+}
+
+.progress-separator {
+    color: var(--tour-muted);
+    margin: 0 0.25rem;
+}
+
+.progress-total {
+    color: var(--tour-muted);
+}
+
+/* Tour Animations */
+.tour-animation-fadeIn {
+    animation: tourFadeIn 0.5s ease-out;
+}
+
+.tour-animation-slideIn {
+    animation: tourSlideIn 0.5s ease-out;
+}
+
+.tour-animation-bounce {
+    animation: tourBounce 0.6s ease-out;
+}
+
+.tour-animation-scaleIn {
+    animation: tourScaleIn 0.5s ease-out;
+}
+
+.tour-animation-confetti {
+    animation: tourConfetti 0.8s ease-out;
+}
+
+@keyframes tourFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes tourSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes tourBounce {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes tourScaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes tourConfetti {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) rotate(0deg);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1) rotate(180deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(360deg);
+    }
+}
+
+/* Tour Action Effects */
+.tour-pulse {
+    animation: tourPulse 2s infinite;
+}
+
+.tour-glow {
+    animation: tourGlow 2s infinite;
+    box-shadow: 0 0 20px var(--tour-glow);
+}
+
+.tour-highlight {
+    background: var(--tour-highlight) !important;
+    border: 2px solid var(--tour-primary) !important;
+    box-shadow: 0 0 20px var(--tour-highlight) !important;
+}
+
+.tour-typewriter {
+    border-left: 3px solid var(--tour-primary);
+    padding-left: 0.5rem;
+}
+
+@keyframes tourPulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 var(--tour-pulse);
+    }
+    50% {
+        box-shadow: 0 0 0 10px rgba(0, 212, 255, 0);
+    }
+}
+
+@keyframes tourGlow {
+    0%, 100% {
+        box-shadow: 0 0 20px var(--tour-glow);
+    }
+    50% {
+        box-shadow: 0 0 30px var(--tour-glow), 0 0 40px var(--tour-glow);
+    }
+}
+
+/* Demo Elements */
+.demo-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    animation: demoFadeIn 0.3s ease-out;
+}
+
+.demo-modal-content {
+    background: var(--tour-surface);
+    border: 1px solid var(--tour-border);
+    border-radius: var(--tour-radius);
+    padding: 2rem;
+    text-align: center;
+    color: var(--tour-text);
+    max-width: 400px;
+    animation: demoSlideIn 0.3s ease-out;
+}
+
+.demo-modal-content h3 {
+    color: var(--tour-primary);
+    margin-bottom: 1rem;
+}
+
+.demo-controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+.demo-btn {
+    background: var(--tour-primary);
+    border: none;
+    color: var(--tour-surface);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--tour-transition);
+}
+
+.demo-btn:hover {
+    background: var(--tour-success);
+}
+
+.demo-responsive {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+    animation: demoFadeIn 0.3s ease-out;
+}
+
+.responsive-demo {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.screen {
+    background: var(--tour-surface);
+    border: 2px solid var(--tour-primary);
+    border-radius: 8px;
+    padding: 1rem;
+    color: var(--tour-text);
+    font-weight: 600;
+    animation: demoBounce 0.5s ease-out;
+}
+
+.screen.desktop {
+    animation-delay: 0s;
+}
+
+.screen.tablet {
+    animation-delay: 0.1s;
+}
+
+.screen.mobile {
+    animation-delay: 0.2s;
+}
+
+@keyframes demoFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes demoSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes demoBounce {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .tour-tooltip {
+        max-width: 90vw;
+        min-width: 280px;
+        margin: 0 1rem;
+    }
+    
+    .tooltip-header {
+        padding: 0.75rem 1rem 0.25rem;
+    }
+    
+    .tooltip-content {
+        padding: 0.75rem 1rem;
+    }
+    
+    .tooltip-footer {
+        padding: 0.25rem 1rem 0.75rem;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .tooltip-controls {
+        align-self: flex-end;
+    }
+    
+    .tour-progress {
+        top: 10px;
+        right: 10px;
+        padding: 0.5rem 0.75rem;
+    }
+    
+    .progress-bar {
+        width: 80px;
+    }
+    
+    .responsive-demo {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .tour-tooltip {
+        max-width: calc(100vw - 2rem);
+        min-width: 260px;
+    }
+    
+    .tooltip-title {
+        font-size: 1rem;
+    }
+    
+    .tooltip-description {
+        font-size: 0.8rem;
+    }
+    
+    .tour-progress {
+        position: fixed;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        right: auto;
+    }
+    
+    .tour-progress.active {
+        transform: translateX(-50%);
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .tooltip-action {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .tooltip-autoplay {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .tooltip-skip {
+        font-size: 0.875rem;
+        padding: 0.5rem;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .tour-tooltip {
+        border-width: 2px;
+    }
+    
+    .tooltip-action {
+        border-width: 2px;
+    }
+    
+    .tour-highlight {
+        border-width: 3px !important;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .tour-tooltip,
+    .tour-progress,
+    .tour-highlight {
+        transition: none;
+    }
+    
+    .tour-pulse,
+    .tour-glow {
+        animation: none;
+    }
+    
+    .tour-animation-fadeIn,
+    .tour-animation-slideIn,
+    .tour-animation-bounce,
+    .tour-animation-scaleIn,
+    .tour-animation-confetti {
+        animation: none;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .tour-overlay,
+    .tour-tooltip,
+    .tour-progress {
+        display: none !important;
+    }
+}

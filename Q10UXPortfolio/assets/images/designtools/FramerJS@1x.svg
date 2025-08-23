@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="240px" height="240px" viewBox="0 0 240 240" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>FramerJS@1x</title>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" offset="48.9733865%"></stop>
+            <stop stop-color="#D9F3FF" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="100%" y1="50%" x2="12.2277098%" y2="48.4012643%" id="linearGradient-2">
+            <stop stop-color="#8DE4FF" offset="0%"></stop>
+            <stop stop-color="#30CEFF" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="100%" y1="50%" x2="11.3531298%" y2="50%" id="linearGradient-3">
+            <stop stop-color="#00C5FF" offset="0%"></stop>
+            <stop stop-color="#009AFF" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-4">
+            <stop stop-color="#005AFF" offset="0%"></stop>
+            <stop stop-color="#008DFF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="FramerJS" stroke="none" fill="none" fill-rule="evenodd" stroke-width="1">
+        <g transform="translate(40, 40)">
+            <rect id="Form" fill="url(#linearGradient-1)" x="0" y="0" width="160" height="160" rx="20"></rect>
+            <g id="icon" transform="translate(46, 33)">
+                <polygon id="Combined-Shape-Copy" fill="url(#linearGradient-2)" points="33.8335275 33.1399565 67.6726992 33.1399565 67.6726992 1.44272637e-14 0.615206356 1.44272637e-14 0.615206356 0.30406189"></polygon>
+                <polygon id="Combined-Shape-Copy-2" fill="url(#linearGradient-3)" points="33.8391716 33.1399565 1.00990846e-13 33.1399565 1.00990846e-13 66.279913 67.0574928 66.279913 67.0574928 65.9758511"></polygon>
+                <polygon id="Rectangle-32-Copy-2" fill="url(#linearGradient-4)" points="-2.88545273e-14 66.279913 33.5287464 66.279913 33.5287464 99.7267209"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,429 @@
+# Q10UX Portfolio Development Rules
+
+## Project Structure
+- **Source Directory**: `src/` contains all HTML, CSS, and JS files
+- **Public Assets**: `public/mamp-images/` contains all images (symlinked from MAMP)
+- **Partials**: `src/partials/` contains reusable header, footer, and social components
+- **Case Studies**: `src/case-studies/` contains individual case study pages
+- **Admin System**: `src/admin/` contains admin dashboard and management interfaces
+- **Upload Interfaces**: `src/instant-upload/` and `src/serial-upload/` for different upload workflows
+- **Preview System**: `src/preview/` contains live preview interface
+- **Styles**: `src/styles/q10ux.css` contains all custom styling
+- **Components**: `src/components/` contains reusable components like interactive tour and optimized gallery
+- **Backend**: `backend/` contains Node.js server, CRUD manager, Sanity integration, and UX flow management
+
+## Design System Standards
+
+### Typography
+- **Primary Fonts**: Inter (400, 600, 800), Manrope (600), Permanent Marker
+- **Button Fonts**: Roboto Condensed (400, 700), Barlow Condensed (400, 600)
+- **All Caps Rule**: All Roboto Condensed text should be transformed to uppercase by default
+- **Optical Kerning**: Use `letter-spacing: -0.02em; font-feature-settings: "kern" 1, "liga" 1;` for better typography
+- **Font Hierarchy**: Use CSS variables for consistent sizing
+
+### Color Palette (High-Contrast Dark Theme)
+- **Background**: `#0a0a0a` (very dark)
+- **Text Primary**: `#ffffff` (white)
+- **Text Secondary**: `#cccccc` (light gray)
+- **Accent 1**: `#00e5ff` (cyan)
+- **Accent 2**: `#ff6b35` (orange)
+- **Muted**: `#333333` (dark gray)
+- **Success**: `#d4edda` with `#155724` text for accessibility
+- **Error**: `#f8d7da` with `#721c24` text for accessibility
+- **Warning**: `#fff3cd` with `#856404` text for accessibility
+- **Info**: `#d1ecf1` with `#0c5460` text for accessibility
+
+### Button Patterns
+- **Primary Buttons**: White outline, semi-opaque white fill, black text, Roboto Condensed, all caps
+- **Secondary Buttons**: White outline, semi-opaque black fill, white text, Roboto Condensed, all caps
+- **Hover Effects**: Full opacity white background, black text, subtle transform and shadow
+- **Border Radius**: 50px for capsule treatment
+- **Consistent Sizing**: 1.125rem font size, consistent padding/margins across all buttons
+
+### Tag Styling
+- **Case Study Tags**: No text-transform, normal font-weight, consistent with portfolio cards
+- **Badge Treatment**: Same as tags for hero sections
+- **AI Tags**: Standardized styling for "AI Powered" and "Chatbot AI" tags
+
+## HTML Structure Standards
+
+### Semantic HTML5
+- Use semantic elements: `<header>`, `<nav>`, `<main>`, `<section>`, `<footer>`
+- Include `aria-label` attributes for accessibility
+- Use proper heading hierarchy (h1, h2, h3, etc.)
+
+### Navigation Structure
+- **Header**: Fixed-top navigation with Q10UX logo and dropdown menu
+- **Case Studies Dropdown**: All case studies accessible via dropdown
+- **Mobile**: Responsive hamburger menu with increased padding and larger font
+- **Skip Links**: Include "skip to main content" for accessibility
+- **Admin Navigation**: Links between admin panel, serial upload, and instant upload
+
+### Case Study Pages
+- **Hero Section**: Full-height background image with overlay
+- **Content Sections**: Problem, Solution, Process, Results, Gallery
+- **Download Links**: PDF case study and design assets
+- **Navigation**: Consistent header/footer with partials
+- **UX Flows**: Organized by standard UX process stages (Problem, Approach, Outcomes, Gallery)
+
+### Admin Interfaces
+- **Admin Dashboard**: Project management, NDA firewall, bulk tagging
+- **Serial Upload**: Professional image management with lightbox carousel
+- **Instant Upload**: Quick drag-and-drop interface with Terminator HUD
+- **Live Preview**: Real-time preview of case studies with auto-refresh
+
+## CSS Standards
+
+### File Organization
+- **Main CSS**: `src/styles/q10ux.css` contains all styles
+- **Admin CSS**: `src/admin/admin.css` for admin interface styles
+- **Upload CSS**: `src/instant-upload/instant-upload.css` and `src/serial-upload/serial-upload.css`
+- **Preview CSS**: `src/preview/preview.css` for live preview interface
+- **Tour CSS**: `src/styles/interactive-tour.css` for interactive tour system
+- **CSS Variables**: Use custom properties for colors, spacing, typography
+
+### Naming Conventions
+- **Classes**: Use kebab-case (e.g., `q10ux-hero`, `portfolio-card`)
+- **IDs**: Use kebab-case for main content areas
+- **BEM-like**: Use descriptive class names that indicate purpose
+- **Admin Classes**: Prefix with admin- for admin-specific styles
+
+### Responsive Design
+- **Mobile-First**: Start with mobile styles, then add desktop enhancements
+- **Breakpoints**: Use Bootstrap 5 breakpoints (sm, md, lg, xl)
+- **Flexible Images**: Use `max-width: 100%` and `height: auto`
+- **Touch Targets**: Minimum 44px for mobile interaction
+
+### Interactive Elements
+- **Hover States**: Only apply to clickable elements
+- **Sheen Animation**: Use on drop zones and case study cards with strong white outline
+- **Focus Indicators**: High contrast focus states for accessibility
+- **Loading States**: Clear visual feedback for async operations
+
+## JavaScript Standards
+
+### File Organization
+- **Main JS**: `src/scripts/app.js` contains all functionality
+- **Admin JS**: `src/admin/admin.js` for admin dashboard functionality
+- **Upload JS**: `src/instant-upload/instant-upload-clean.js` and `src/serial-upload/serial-upload.js`
+- **Preview JS**: `src/preview/preview.js` for live preview functionality
+- **Components**: `src/components/` contains reusable components
+- **Backend**: `backend/` contains server-side logic
+
+### Functionality
+- **Partials Loading**: Dynamic loading of header/footer via fetch
+- **Carousel**: Hero image rotation with accessibility
+- **Lightbox**: Image gallery functionality with click-off and ESC dismissal
+- **Smooth Scrolling**: Anchor link navigation
+- **Form Validation**: Enhanced form handling
+- **File Upload**: Drag-and-drop with progress tracking and cancellation
+- **Authentication**: JWT-based authentication for admin features
+- **Real-time Updates**: Auto-refresh for live preview
+
+### Upload System Features
+- **Terminator HUD**: Dynamic file analysis with animated previews
+- **Progress Tracking**: Real-time upload progress with cancellation
+- **File Recognition**: Automatic detection of project names and UX phases
+- **Recursive Processing**: Support for complex folder structures
+- **Multiple View Modes**: Thumbnail, tile, column, and list views
+- **Bulk Operations**: Select all, deselect all, bulk tagging
+
+### Interactive Tour System
+- **Step-by-Step Guidance**: Visual highlights and tooltips
+- **Progress Tracking**: Clear indication of tour progress
+- **Keyboard Navigation**: Arrow keys and ESC for dismissal
+- **Touch Support**: Swipe gestures for mobile
+- **Auto-Play**: Optional automatic progression
+- **Dismissible**: Click anywhere to close tour
+
+## Backend Architecture
+
+### Server Structure
+- **Main Server**: `backend/admin-server.js` handles all API endpoints
+- **CRUD Manager**: `backend/crud-manager.js` for data operations
+- **Sanity Integration**: `backend/sanity-integration.js` for CMS sync
+- **UX Flows**: `backend/ux-flows.js` for process stage management
+- **Data Storage**: JSON files for local data persistence
+
+### API Endpoints
+- **Authentication**: `/api/admin/login` for JWT authentication
+- **Projects**: `/api/admin/projects` for project CRUD operations
+- **Upload**: `/api/admin/upload` for file upload and processing
+- **Publishing**: `/api/admin/publish-series` for publishing to case studies
+- **Preview**: `/api/preview/:projectId` for live preview data
+- **Flows**: `/api/flows` for UX flow management
+- **Sanity Status**: `/api/sanity-status` for CMS connection status
+
+### Data Models
+- **Projects**: Case studies with metadata and series
+- **Series**: Image collections with descriptions and flow types
+- **Images**: Individual images with metadata and processing info
+- **Flows**: UX process stages (Problem, Approach, Outcomes, Gallery)
+- **Tags**: Categorization and metadata
+- **Users**: Authentication and permissions
+- **Settings**: System configuration
+- **Analytics**: Usage tracking and metrics
+
+## Image Standards
+
+### File Paths
+- **All Images**: Use `/public/mamp-images/` prefix
+- **Case Study Images**: Use available images from MAMP directory
+- **Logo Images**: Use circle logo versions when SVG not available
+- **Hero Images**: Use appropriate background images for each case study
+- **Uploaded Images**: Stored in `/uploads/processed/` with multiple sizes
+
+### Image Processing
+- **Multiple Sizes**: Full (1920x1080), large (1200x800), medium (800x600), thumbnail (400x300), preview (200x150)
+- **WebP Conversion**: Automatic conversion for performance
+- **Thumbnail Generation**: Sharp-based processing with quality optimization
+- **Metadata Preservation**: Maintain EXIF data and add custom metadata
+- **Lazy Loading**: Implement for performance optimization
+
+### Upload Workflows
+- **Instant Upload**: Quick drag-and-drop for immediate processing
+- **Serial Upload**: Professional workflow with descriptions and lightbox
+- **Bulk Processing**: Support for multiple files and folders
+- **Auto-Detection**: Project names and UX phases from filenames
+- **NDA Protection**: Project-level and flow-level privacy controls
+
+## Accessibility Standards (WCAG 2.1 AA)
+
+### Keyboard Navigation
+- **Focus Indicators**: Visible focus states for all interactive elements
+- **Skip Links**: Provide skip navigation for keyboard users
+- **Tab Order**: Logical tab order through page elements
+- **Escape Key**: Dismiss modals, lightboxes, and tours
+- **Arrow Keys**: Navigate carousels and image galleries
+
+### Screen Reader Support
+- **ARIA Labels**: Use `aria-label` for non-text elements
+- **Semantic HTML**: Use proper semantic elements
+- **Alt Text**: Descriptive alt text for all images
+- **Landmarks**: Use proper landmark elements
+- **Live Regions**: Announce dynamic content changes
+
+### Color and Contrast
+- **High Contrast**: Maintain 4.5:1 contrast ratio minimum
+- **Color Independence**: Don't rely solely on color to convey information
+- **Reduced Motion**: Support `prefers-reduced-motion`
+- **Notification Colors**: Use specific high-contrast colors for different message types
+
+### Touch and Mobile
+- **Touch Targets**: Minimum 44px for mobile interaction
+- **Gesture Support**: Swipe for carousels and galleries
+- **Viewport**: Proper viewport meta tags
+- **Responsive**: All interfaces work on mobile devices
+
+## SEO Standards
+
+### Meta Tags
+- **Title**: Descriptive, unique titles for each page
+- **Description**: Compelling meta descriptions (150-160 characters)
+- **Keywords**: Relevant keywords for UX portfolio
+- **Open Graph**: Social media sharing optimization
+- **Twitter Cards**: Twitter-specific meta tags
+
+### Structured Data
+- **JSON-LD**: Person and CreativeWork schemas
+- **Breadcrumbs**: Implement breadcrumb navigation
+- **Local Business**: If applicable for contact information
+
+### Performance
+- **Page Speed**: Optimize for Core Web Vitals
+- **Image Optimization**: Compress and optimize images
+- **Minification**: Minify CSS and JS for production
+- **Caching**: Implement appropriate caching headers
+
+## Development Workflow
+
+### File Naming
+- **HTML Files**: Use kebab-case (e.g., `index.html`, `case-study.html`)
+- **CSS Files**: Use kebab-case (e.g., `q10ux.css`, `components.css`)
+- **JS Files**: Use camelCase (e.g., `app.js`, `carousel.js`)
+- **Clean Files**: Use `-clean` suffix for corrected versions (e.g., `instant-upload-clean.js`)
+
+### Code Organization
+- **Indentation**: Use 2 spaces for HTML, CSS, and JS
+- **Comments**: Include meaningful comments for complex sections
+- **Consistency**: Maintain consistent coding style throughout
+- **Error Handling**: Use try-catch blocks for async operations
+- **Console Logging**: Include debug logs for troubleshooting
+
+### Version Control
+- **Git**: Use descriptive commit messages
+- **Branches**: Use feature branches for new development
+- **Commits**: Commit frequently with clear messages
+- **Security**: Never commit sensitive data (passwords, API keys)
+
+## Testing Standards
+
+### Cross-Browser Testing
+- **Modern Browsers**: Chrome, Firefox, Safari, Edge
+- **Mobile Browsers**: iOS Safari, Chrome Mobile
+- **Accessibility**: Test with screen readers and keyboard navigation
+- **Safari Compatibility**: Special attention to file input handling
+
+### Performance Testing
+- **Page Speed**: Test with Google PageSpeed Insights
+- **Lighthouse**: Run Lighthouse audits for performance, accessibility, SEO
+- **Real Devices**: Test on actual mobile devices
+- **Upload Performance**: Test with large files and folders
+
+### Content Validation
+- **HTML Validation**: Validate HTML with W3C validator
+- **CSS Validation**: Validate CSS with W3C validator
+- **Accessibility**: Test with axe-core or similar tools
+- **API Testing**: Test all backend endpoints
+
+## Deployment Standards
+
+### Local Development
+- **Server**: Use Python HTTP server on port 8001 for frontend
+- **Backend**: Node.js server on port 3001 for API
+- **Directory**: Serve from project root, access via `/src/`
+- **Hot Reload**: Consider implementing for development efficiency
+
+### Production Considerations
+- **HTTPS**: Use HTTPS for all production deployments
+- **CDN**: Consider CDN for static assets
+- **Compression**: Enable gzip compression
+- **Security Headers**: Implement security headers
+- **Environment Variables**: Use `.env` for all sensitive data
+
+### Sanity Integration
+- **Hybrid Approach**: Local storage with Sanity sync
+- **Automatic Publishing**: Series automatically sync to Sanity
+- **Image Optimization**: Sanity handles image delivery and optimization
+- **Content Management**: Sanity provides CMS interface
+
+## Common Patterns
+
+### Case Study Page Structure
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags, fonts, CSS -->
+</head>
+<body>
+    <div id="header-container"></div>
+    <main id="main-content">
+        <section class="q10ux-hero">
+            <!-- Hero content -->
+        </section>
+        <section id="problem">
+            <!-- Problem section -->
+        </section>
+        <!-- Additional sections -->
+    </main>
+    <div id="footer-container"></div>
+    <!-- Scripts -->
+</body>
+</html>
+```
+
+### Button Patterns
+```css
+.btn-primary {
+    background: rgba(255, 255, 255, 0.7);
+    border-color: #ffffff;
+    color: #000000;
+    font-family: 'Roboto Condensed', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    font-feature-settings: "kern" 1, "liga" 1;
+}
+
+.btn-secondary {
+    background: rgba(0, 0, 0, 0.7);
+    border-color: #ffffff;
+    color: #ffffff;
+    font-family: 'Roboto Condensed', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    font-feature-settings: "kern" 1, "liga" 1;
+}
+```
+
+### Upload Interface Structure
+```html
+<div class="upload-zone" id="uploadZone">
+    <div class="upload-content">
+        <i class="fas fa-cloud-upload-alt"></i>
+        <h3>Drop files here or click to browse</h3>
+        <p>Supports images, videos, and design files</p>
+        <input type="file" id="fileInput" multiple accept="image/*,video/*,.psd,.ai,.sketch" style="display: none;">
+        <label for="fileInput" class="btn btn-primary btn-lg file-input-label">
+            Or Click to Browse
+        </label>
+    </div>
+</div>
+```
+
+### Lightbox Dismissal
+```javascript
+// Always provide multiple ways to dismiss
+showLightbox() {
+    // Add click listener to overlay
+    this.overlay.addEventListener('click', (e) => {
+        if (e.target === this.overlay) {
+            this.closeLightbox();
+        }
+    });
+    
+    // Add ESC key listener
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            this.closeLightbox();
+        }
+    });
+}
+```
+
+### Notification System
+```javascript
+showNotification(message, type = 'info') {
+    // Use high-contrast colors for accessibility
+    const colors = {
+        success: { bg: '#d4edda', text: '#155724', border: '#c3e6cb' },
+        error: { bg: '#f8d7da', text: '#721c24', border: '#f5c6cb' },
+        warning: { bg: '#fff3cd', text: '#856404', border: '#ffeaa7' },
+        info: { bg: '#d1ecf1', text: '#0c5460', border: '#bee5eb' }
+    };
+    // Apply colors and show notification
+}
+```
+
+## Maintenance Guidelines
+
+### Regular Updates
+- **Dependencies**: Keep Bootstrap, Font Awesome, and other libraries updated
+- **Content**: Regularly update case studies and portfolio content
+- **Performance**: Monitor and optimize performance metrics
+- **Security**: Keep API keys and credentials secure
+
+### Backup and Recovery
+- **Version Control**: Maintain regular commits and backups
+- **Asset Management**: Keep organized asset structure
+- **Documentation**: Maintain up-to-date documentation
+- **Data Backup**: Regular backups of JSON data files
+
+### Quality Assurance
+- **Code Review**: Review all changes before deployment
+- **Testing**: Test all functionality after changes
+- **Validation**: Validate HTML and CSS regularly
+- **Accessibility**: Regular accessibility audits
+
+### Security Considerations
+- **Environment Variables**: Use `.env` for all sensitive data
+- **JWT Tokens**: Secure token storage and validation
+- **File Upload**: Validate file types and sizes
+- **NDA Protection**: Implement proper access controls
+- **API Security**: Rate limiting and input validation
+
+---
+description: Q10UX Portfolio Development Rules and Standards - Updated with Admin System, Upload Interfaces, Sanity Integration, and Advanced Features
+globs: src/**/*.{html,css,js}, backend/**/*.js, public/**/*, *.{md,yaml,json}
+alwaysApply: true
+---

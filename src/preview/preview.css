@@ -1,0 +1,351 @@
+/* Preview Styles */
+:root {
+  --preview-bg: #f8f9fa;
+  --preview-border: #dee2e6;
+  --preview-text: #212529;
+  --preview-muted: #6c757d;
+  --preview-primary: #0d6efd;
+  --preview-success: #198754;
+  --preview-warning: #ffc107;
+  --preview-danger: #dc3545;
+}
+
+body {
+  background-color: var(--preview-bg);
+  font-family: 'Inter', sans-serif;
+}
+
+/* Preview Header */
+.preview-header {
+  background: white;
+  border-bottom: 1px solid var(--preview-border);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.preview-brand {
+  display: flex;
+  align-items: center;
+}
+
+.preview-title h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--preview-text);
+  margin: 0;
+}
+
+.preview-title p {
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+/* Preview Main */
+.preview-main {
+  min-height: calc(100vh - 140px);
+  padding: 2rem 0;
+}
+
+/* Project Info */
+.preview-project-info {
+  background: white;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.preview-meta {
+  background: var(--preview-bg);
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+.meta-item {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.meta-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Flow Sections */
+.flow-section {
+  background: white;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.flow-header {
+  background: linear-gradient(135deg, var(--preview-primary), #0056b3);
+  color: white;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flow-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.flow-header .flow-icon {
+  font-size: 1.5rem;
+  margin-right: 0.75rem;
+}
+
+.flow-content {
+  padding: 1.5rem;
+}
+
+.flow-description {
+  color: var(--preview-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+/* Series Grid */
+.series-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.series-card {
+  background: var(--preview-bg);
+  border-radius: 6px;
+  padding: 1rem;
+  border: 1px solid var(--preview-border);
+  transition: all 0.2s ease;
+}
+
+.series-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transform: translateY(-2px);
+}
+
+.series-title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--preview-text);
+}
+
+.series-description {
+  font-size: 0.875rem;
+  color: var(--preview-muted);
+  margin-bottom: 1rem;
+}
+
+.series-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--preview-muted);
+}
+
+.series-image-count {
+  background: var(--preview-primary);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Image Preview */
+.image-preview {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.image-thumb {
+  aspect-ratio: 4/3;
+  background: #e9ecef;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.image-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-thumb .image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.image-thumb:hover .image-overlay {
+  opacity: 1;
+}
+
+/* Flow Type Badges */
+.flow-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.flow-badge.primary {
+  background: var(--preview-primary);
+  color: white;
+}
+
+.flow-badge.secondary {
+  background: var(--preview-muted);
+  color: white;
+}
+
+.flow-badge.success {
+  background: var(--preview-success);
+  color: white;
+}
+
+.flow-badge.warning {
+  background: var(--preview-warning);
+  color: var(--preview-text);
+}
+
+.flow-badge.info {
+  background: #17a2b8;
+  color: white;
+}
+
+/* Preview Footer */
+.preview-footer {
+  background: white;
+  border-top: 1px solid var(--preview-border);
+  padding: 1rem 0;
+  position: sticky;
+  bottom: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .preview-header {
+    padding: 0.75rem 0;
+  }
+  
+  .preview-title h1 {
+    font-size: 1.25rem;
+  }
+  
+  .preview-project-info {
+    padding: 1.5rem;
+  }
+  
+  .flow-header {
+    padding: 1rem;
+  }
+  
+  .flow-content {
+    padding: 1rem;
+  }
+  
+  .series-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .image-preview {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  }
+}
+
+/* Loading Animation */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.loading-pulse {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Status Badges */
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.status-badge.draft {
+  background: var(--preview-muted);
+  color: white;
+}
+
+.status-badge.published {
+  background: var(--preview-success);
+  color: white;
+}
+
+.status-badge.review {
+  background: var(--preview-warning);
+  color: var(--preview-text);
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--preview-muted);
+}
+
+.empty-state i {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+/* Auto-refresh indicator */
+.auto-refresh {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: var(--preview-success);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  z-index: 1001;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+}
+
+.auto-refresh.show {
+  opacity: 1;
+  transform: translateY(0);
+}

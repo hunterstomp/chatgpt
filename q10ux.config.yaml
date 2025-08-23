@@ -1,0 +1,74 @@
+# q10ux.config.yaml — Cursor automation config
+project_rules:
+  typography:
+    h1: "Inter Bold 72px / 1.05; letter-spacing: -0.015em"
+    hero_subtitle: "SF Pro Semibold 20px / 1.4"
+    h2: "Manrope Semibold 40–48px / 1.2"
+    h3: "Permanent Marker 28–32px / 1.2 (sparingly)"
+    body: "Inter Regular 16–18px / 1.55"
+    code: "JetBrains Mono 14–16px / 1.5"
+  colors:
+    bg: "#0B0B0B"
+    surface: "#141414"
+    text: "#FFFFFF"
+    accent_1: "#00E5FF"
+    accent_2: "#FF3366"
+    accent_3: "#FFD166"
+    muted: "#2A2A2A"
+    muted_text: "#C9C9C9"
+  accessibility:
+    - "WCAG 2.1 AA minimum"
+    - "Icon-only links require aria-label"
+    - "Visible keyboard focus for all interactive elements"
+    - "One H1 per page; semantic heading order"
+    - "Meaningful alt text on images"
+  performance:
+    - "Use AVIF/WEBP when possible"
+    - "Lazy load non-critical images"
+    - "Preload critical fonts; font-display: swap"
+    - "Minify CSS/JS and purge unused CSS"
+  seo:
+    - "Unique <title> and meta description per page"
+    - "Include canonical, OpenGraph, and Twitter meta tags"
+    - "Add JSON-LD for Person/CreativeWork on case studies"
+  coding:
+    - "No Mobirise classes or branding"
+    - "Use semantic HTML5 sections"
+    - "Use ES modules and data-attributes for hooks"
+
+cursor_tasks:
+  - "Create src/styles/q10ux.css from the Playbook primitives"
+  - "Create partials for header, footer, nav, social; wire include pipeline or duplicate per page if static"
+  - "Migrate existing pages to dark, high-contrast tokens"
+  - "Add aria-labels to icon-only links across site"
+  - "Add JSON-LD schema to case studies"
+  - "Optimize and relink images to AVIF/WEBP with fallbacks"
+  - "Purge any Mobirise residue (classes, comments, external links)"
+  - "Add skip-link, focus styles, and prefers-reduced-motion handling"
+  - "Add build scripts (vite) and local dev instructions"
+  - "Audit titles/metadata and add OG/Twitter tags"
+
+workflows:
+  dev:
+    steps:
+      - "Run `npm create vite@latest` (vanilla) or ensure dev server exists"
+      - "Serve with `npm run dev` and verify hot reload"
+      - "Add pages and partials per structure in Playbook"
+  case_study:
+    steps:
+      - "Start from Case Study Skeleton"
+      - "Write problem/approach/outcomes with real content from portfolio"
+      - "Add gallery with lightbox and captions"
+      - "Attach downloads if applicable; add credits/NDA note"
+  review:
+    checklists:
+      - "A11y Quick Pass"
+      - "SEO Quick Pass"
+      - "Perf Quick Pass"
+
+# Cursor instruction
+cursor_instruction: |
+  When editing or generating files, enforce Q10UX Playbook rules.
+  Use high-contrast dark theme tokens from the config.
+  Never insert lorem ipsum; if content is missing, synthesize professional copy related to Quent’s work.
+  Ensure aria-labels for icon-only links, semantic structure, and performance best practices.

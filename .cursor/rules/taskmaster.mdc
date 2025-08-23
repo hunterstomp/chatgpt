@@ -1,0 +1,50 @@
+# Taskmaster Configuration for Q10UX Portfolio
+
+## Project Context
+- **Project Name**: Q10UX Portfolio Website
+- **Purpose**: UX Design Portfolio for Quentin Little
+- **Technology Stack**: HTML5, CSS3, JavaScript, Bootstrap 5
+- **Design System**: High-contrast dark theme with Q10UX branding
+
+## Current State
+- **Homepage**: Complete with hero section, case studies, and navigation
+- **Case Studies**: 8 case studies with consistent styling and navigation
+- **Navigation**: Fixed header with dropdown menu for all case studies
+- **Styling**: Custom Q10UX design system with button patterns and typography
+- **Images**: Symlinked from MAMP directory via `/public/mamp-images/`
+
+## Key Features Implemented
+- **Responsive Design**: Mobile-first approach with Bootstrap 5
+- **Accessibility**: WCAG 2.1 AA compliance with ARIA labels and semantic HTML
+- **SEO Optimization**: Meta tags, Open Graph, Twitter Cards, JSON-LD
+- **Performance**: Optimized images and efficient CSS/JS loading
+- **Navigation**: Consistent header/footer across all pages
+
+## Development Workflow
+- **Local Server**: Python HTTP server on port 8001
+- **File Structure**: Organized with partials for header/footer
+- **Version Control**: Git with descriptive commit messages
+- **Testing**: Cross-browser and accessibility testing
+
+## Maintenance Tasks
+- **Regular Updates**: Keep dependencies and content current
+- **Performance Monitoring**: Track Core Web Vitals and Lighthouse scores
+- **Content Updates**: Add new case studies and portfolio content
+- **Bug Fixes**: Address any navigation or styling issues
+
+## Future Enhancements
+- **Additional Case Studies**: Expand portfolio with new projects
+- **Performance Optimization**: Implement lazy loading and image optimization
+- **Advanced Features**: Add contact forms, blog, or interactive elements
+- **Analytics**: Implement tracking for portfolio performance
+
+## Quality Standards
+- **Code Quality**: Clean, semantic HTML and well-organized CSS/JS
+- **Accessibility**: Maintain WCAG 2.1 AA compliance
+- **Performance**: Fast loading times and smooth interactions
+- **Cross-Browser**: Consistent experience across modern browsers
+---
+description: Taskmaster configuration and workflow rules for Q10UX Portfolio
+globs: .taskmaster/**/*, tasks/**/*, *.json
+alwaysApply: true
+---

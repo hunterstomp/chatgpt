@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q10UX Portfolio Upload System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Roboto+Condensed:wght@400;700&family=Barlow+Condensed:wght@400;600&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="upload-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h1><i class="fas fa-cloud-upload-alt"></i> Q10UX Portfolio Upload</h1>
+                    <p class="lead">Bulk upload and organize case study images</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <div class="project-selector">
+                        <label for="projectSelect">Select Project:</label>
+                        <select id="projectSelect" class="form-select">
+                            <option value="atmosfx">AtmosFX Media Player</option>
+                            <option value="tmobile">T-Mobile How to Switch</option>
+                            <option value="bmgf">Bill & Melinda Gates Foundation</option>
+                            <option value="microsoft">Microsoft Office 365</option>
+                            <option value="att">AT&T International Roaming</option>
+                            <option value="office">Office Live Workspaces</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="upload-main">
+        <div class="container">
+            <!-- Upload Zone -->
+            <section class="upload-section">
+                <div class="upload-zone" id="uploadZone">
+                    <div class="upload-content">
+                        <i class="fas fa-cloud-upload-alt fa-3x"></i>
+                        <h3>Drag & Drop Case Study Images</h3>
+                        <p>Upload multiple images to automatically organize into flows</p>
+                        <p class="text-muted">Supports: JPG, PNG, WebP, SVG (Max 10MB per file)</p>
+                        <button class="btn btn-primary btn-lg" onclick="selectFiles()">
+                            <i class="fas fa-folder-open"></i> Select Files
+                        </button>
+                        <input type="file" id="fileInput" multiple accept="image/*" style="display: none;">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Progress Section -->
+            <section class="progress-section" id="progressSection" style="display: none;">
+                <div class="progress-container">
+                    <h4>Processing Images...</h4>
+                    <div class="progress">
+                        <div class="progress-bar" id="progressBar" role="progressbar" style="width: 0%"></div>
+                    </div>
+                    <p id="progressText">Preparing upload...</p>
+                </div>
+            </section>
+
+            <!-- Flow Grid -->
+            <section class="flow-section">
+                <div class="flow-grid" id="flowGrid">
+                    <!-- Row 1: Research & Discovery -->
+                    <div class="flow-category" data-flow="research">
+                        <div class="flow-header">
+                            <h4><i class="fas fa-search"></i> Research & Discovery</h4>
+                            <span class="image-count" id="researchCount">0</span>
+                        </div>
+                        <div class="image-grid" id="researchGrid" data-max="6"></div>
+                    </div>
+
+                    <div class="flow-category" data-flow="ideation">
+                        <div class="flow-header">
+                            <h4><i class="fas fa-lightbulb"></i> Ideation & Concepts</h4>
+                            <span class="image-count" id="ideationCount">0</span>
+                        </div>
+                        <div class="image-grid" id="ideationGrid" data-max="6"></div>
+                    </div>
+
+                    <div class="flow-category" data-flow="design">
+                        <div class="flow-header">
+                            <h4><i class="fas fa-palette"></i> Design & Prototyping</h4>
+                            <span class="image-count" id="designCount">0</span>
+                        </div>
+                        <div class="image-grid" id="designGrid" data-max="6"></div>
+                    </div>
+
+                    <div class="flow-category" data-flow="testing">
+                        <div class="flow-header">
+                            <h4><i class="fas fa-vial"></i> Testing & Validation</h4>
+                            <span class="image-count" id="testingCount">0</span>
+                        </div>
+                        <div class="image-grid" id="testingGrid" data-max="6"></div>
+                    </div>
+
+                    <!-- Row 2: Implementation & Results -->
+                    <div class="flow-category" data-flow="implementation">
+                        <div class="flow-header">
+                            <h4><i class="fas fa-cogs"></i> Implementation & Handoff</h4>
+                            <span class="image-count" id="implementationCount">0</span>
+                        </div>
+                        <div class="image-grid" id="implementationGrid" data-max="6"></div>
+                    </div>
+
+                    <div class="flow-category" data-flow="results">
+                        <div class="flow-header">
+                            <h4><i class="fas fa-chart-line"></i> Results & Impact</h4>
+                            <span class="image-count" id="resultsCount">0</span>
+                        </div>
+                        <div class="image-grid" id="resultsGrid" data-max="6"></div>
+                    </div>
+
+                    <div class="flow-category" data-flow="screens">
+                        <div class="flow-header">
+                            <h4><i class="fas fa-desktop"></i> Additional Screenshots</h4>
+                            <span class="image-count" id="screensCount">0</span>
+                        </div>
+                        <div class="image-grid" id="screensGrid" data-max="6"></div>
+                    </div>
+
+                    <div class="flow-category" data-flow="process">
+                        <div class="flow-header">
+                            <h4><i class="fas fa-tasks"></i> Process Documentation</h4>
+                            <span class="image-count" id="processCount">0</span>
+                        </div>
+                        <div class="image-grid" id="processGrid" data-max="6"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Action Buttons -->
+            <section class="action-section">
+                <div class="action-buttons">
+                    <button class="btn btn-secondary" onclick="clearAll()">
+                        <i class="fas fa-trash"></i> Clear All
+                    </button>
+                    <button class="btn btn-success" onclick="processImages()" id="processBtn" disabled>
+                        <i class="fas fa-magic"></i> Process & Host Images
+                    </button>
+                    <button class="btn btn-primary" onclick="updateGallery()" id="updateBtn" disabled>
+                        <i class="fas fa-sync"></i> Update Case Study Gallery
+                    </button>
+                </div>
+            </section>
+
+            <!-- Hosting Options Modal -->
+            <div class="modal fade" id="hostingModal" tabindex="-1">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Choose Hosting Platform</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="hosting-options">
+                                <div class="hosting-option" data-platform="sanity">
+                                    <div class="option-header">
+                                        <i class="fas fa-database"></i>
+                                        <h6>Sanity CMS</h6>
+                                    </div>
+                                    <p>Professional headless CMS with image optimization</p>
+                                    <ul>
+                                        <li>Automatic image optimization</li>
+                                        <li>CDN delivery</li>
+                                        <li>Version control</li>
+                                        <li>API access</li>
+                                    </ul>
+                                </div>
+
+                                <div class="hosting-option" data-platform="cloudinary">
+                                    <div class="option-header">
+                                        <i class="fas fa-cloud"></i>
+                                        <h6>Cloudinary</h6>
+                                    </div>
+                                    <p>Cloud-based image and video management</p>
+                                    <ul>
+                                        <li>Real-time transformations</li>
+                                        <li>AI-powered optimization</li>
+                                        <li>Global CDN</li>
+                                        <li>Analytics dashboard</li>
+                                    </ul>
+                                </div>
+
+                                <div class="hosting-option" data-platform="aws">
+                                    <div class="option-header">
+                                        <i class="fab fa-aws"></i>
+                                        <h6>AWS S3 + CloudFront</h6>
+                                    </div>
+                                    <p>Enterprise-grade cloud storage and delivery</p>
+                                    <ul>
+                                        <li>High availability</li>
+                                        <li>Global edge locations</li>
+                                        <li>Advanced security</li>
+                                        <li>Cost optimization</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary" onclick="confirmHosting()">Continue</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="upload-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; 2025 Q10UX Portfolio. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <p>Powered by Q10UX Upload System</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="upload.js"></script>
+</body>
+</html>

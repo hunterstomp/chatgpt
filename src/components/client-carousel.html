@@ -1,0 +1,145 @@
+<!-- Client Logo Carousel -->
+<section class="client-carousel-section">
+  <div class="carousel-container">
+    <div class="carousel-track">
+      <div class="carousel-item">
+        <img src="assets/images/logos/DISNEYLOGO.svg" alt="Disney Logo" class="client-logo">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/images/logos/ATTLOGO.svg" alt="AT&T Logo" class="client-logo">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/images/logos/MSFTLOGO.svg" alt="Microsoft Logo" class="client-logo">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/images/logos/MSFTOFFICE.svg" alt="Microsoft Office Logo" class="client-logo">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/images/logos/OFFICE365LOGO.svg" alt="Office 365 Logo" class="client-logo">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/images/logos/POPLOGO.svg" alt="POP Logo" class="client-logo">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/images/logos/TMOBILELOGO.svg" alt="T-Mobile Logo" class="client-logo">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/images/logos/TRAVELPORTLOGO.svg" alt="Travelport Logo" class="client-logo">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/images/logos/VOLTLOGO.svg" alt="Volt Logo" class="client-logo">
+      </div>
+      <!-- Duplicate for seamless loop -->
+      <div class="carousel-item">
+        <img src="assets/images/logos/DISNEYLOGO.svg" alt="Disney Logo" class="client-logo">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/images/logos/ATTLOGO.svg" alt="AT&T Logo" class="client-logo">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/images/logos/MSFTLOGO.svg" alt="Microsoft Logo" class="client-logo">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/images/logos/MSFTOFFICE.svg" alt="Microsoft Office Logo" class="client-logo">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/images/logos/OFFICE365LOGO.svg" alt="Office 365 Logo" class="client-logo">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/images/logos/POPLOGO.svg" alt="POP Logo" class="client-logo">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/images/logos/TMOBILELOGO.svg" alt="T-Mobile Logo" class="client-logo">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/images/logos/TRAVELPORTLOGO.svg" alt="Travelport Logo" class="client-logo">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/images/logos/VOLTLOGO.svg" alt="Volt Logo" class="client-logo">
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.client-carousel-section {
+  background: #ffffff;
+  padding: 3rem 0;
+  overflow: hidden;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+}
+
+.carousel-container {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  animation: scroll 30s linear infinite;
+  width: calc(200px * 18);
+}
+
+.carousel-item {
+  flex: 0 0 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2rem;
+}
+
+.client-logo {
+  max-width: 120px;
+  max-height: 60px;
+  width: auto;
+  height: auto;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+.client-logo:hover {
+  filter: grayscale(0%);
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-200px * 9));
+  }
+}
+
+/* Pause animation on hover */
+.carousel-container:hover .carousel-track {
+  animation-play-state: paused;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .carousel-item {
+    flex: 0 0 150px;
+    padding: 0 1rem;
+  }
+  
+  .client-logo {
+    max-width: 80px;
+    max-height: 40px;
+  }
+  
+  .carousel-track {
+    width: calc(150px * 18);
+  }
+  
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-150px * 9));
+    }
+  }
+}
+</style>

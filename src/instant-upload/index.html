@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q10UX Instant Upload - Just Drop & Go!</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Roboto+Condensed:wght@400;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="../styles/q10ux.css" rel="stylesheet">
+    <link href="instant-upload.css" rel="stylesheet">
+</head>
+<body>
+    <div class="instant-upload-container">
+        <!-- Super Simple Header -->
+        <header class="instant-header">
+            <div class="container text-center">
+                <h1><i class="fas fa-bolt"></i> Instant Upload</h1>
+                <p class="text-muted">Just drop files here - everything else is automatic!</p>
+            </div>
+        </header>
+
+        <!-- Ultra-Simple Upload Zone -->
+        <main class="instant-main">
+            <div class="container">
+                <div class="upload-zone" id="uploadZone">
+                    <div class="upload-content">
+                        <div class="upload-icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                        <h2>Drop Files Here!</h2>
+                        <p class="upload-subtitle">That's it. No settings, no configuration.</p>
+                        
+                        <div class="upload-info">
+                            <div class="info-item" id="detectionStatus">
+                                <i class="fas fa-magic"></i>
+                                <span>Auto-detect project & tags</span>
+                            </div>
+                            <div class="info-item" id="processingStatus">
+                                <i class="fas fa-cogs"></i>
+                                <span>Auto-process & optimize</span>
+                            </div>
+                            <div class="info-item" id="portfolioStatus">
+                                <i class="fas fa-check"></i>
+                                <span>Ready for portfolio</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Custom styled file input that looks like a button -->
+                        <label for="fileInput" class="btn btn-primary btn-lg file-input-label">
+                            <i class="fas fa-folder-open"></i> Or Click to Browse
+                        </label>
+                        <input type="file" id="fileInput" multiple accept="image/*,video/*,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/x-photoshop,application/x-illustrator,application/x-indesign,application/x-figma,application/x-sketch" style="display: none;">
+                        <div id="fileStatus" style="margin-top: 1rem; display: none;">
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle"></i>
+                                <span id="fileStatusText">Files selected!</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Two-Panel Layout (Hidden initially) -->
+                <div class="two-panel-layout" id="twoPanelLayout" style="display: none;">
+                    <!-- Left Panel: File Details -->
+                    <div class="left-panel">
+                        <div class="panel-header">
+                            <h3><i class="fas fa-file-alt"></i> File Details</h3>
+                            <button class="btn-close" onclick="instantUpload.cancelUpload()" title="Cancel and return to upload">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="file-details" id="fileDetails">
+                            <!-- File details will be populated here -->
+                        </div>
+                        
+                        <div class="panel-actions">
+                            <button class="btn btn-primary" id="startUploadBtn">
+                                <i class="fas fa-upload"></i> Start Upload
+                            </button>
+                            <button class="btn btn-outline-primary" id="cancelUploadBtn">
+                                <i class="fas fa-times"></i> Cancel
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Panel: File Preview -->
+                    <div class="right-panel">
+                        <div class="panel-header">
+                            <h3><i class="fas fa-eye"></i> Preview</h3>
+                        </div>
+                        
+                        <div class="file-preview" id="filePreview">
+                            <!-- File preview will be populated here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Instant Results -->
+                <div class="results-section" id="resultsSection" style="display: none;">
+                    <h3><i class="fas fa-check-circle"></i> Done!</h3>
+                    
+                    <div class="results-grid" id="resultsGrid">
+                        <!-- Results will appear here -->
+                    </div>
+                    
+                    <div class="results-actions">
+                        <button class="btn btn-primary" onclick="uploadMore()">
+                            <i class="fas fa-plus"></i> Upload More
+                        </button>
+                        <button class="btn btn-outline-primary" onclick="viewPortfolio()">
+                            <i class="fas fa-eye"></i> View Portfolio
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quick Status -->
+                <div class="status-section" id="statusSection" style="display: none;">
+                    <div class="status-item">
+                        <div class="status-icon">
+                            <i class="fas fa-spinner fa-spin"></i>
+                        </div>
+                        <div class="status-text">
+                            <div class="status-title">Processing...</div>
+                            <div class="status-detail" id="statusDetail">Analyzing files</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Super Simple Footer -->
+        <footer class="instant-footer">
+            <div class="container text-center">
+                <p class="text-muted">
+                    <i class="fas fa-info-circle"></i>
+                    Files are automatically organized by project and optimized for your portfolio
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="instant-upload-clean.js"></script>
+    <script>
+        // Debug script to check if everything is loading
+        console.log('HTML loaded');
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM Content Loaded');
+            
+            const fileInput = document.getElementById('fileInput');
+            const browseButton = document.getElementById('browseButton');
+            
+            console.log('File input found:', fileInput);
+            console.log('Browse button found:', browseButton);
+            
+            // Connect file input to the main InstantUpload class
+            if (fileInput && window.instantUpload) {
+                fileInput.addEventListener('change', function(e) {
+                    console.log('🎯 FILE INPUT CONNECTED TO INSTANTUPLOAD!');
+                    console.log('Files:', e.target.files);
+                    
+                    if (e.target.files && e.target.files.length > 0) {
+                        // Process files through the main class
+                        window.instantUpload.handleFiles(e.target.files);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
