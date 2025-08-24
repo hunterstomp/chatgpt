@@ -510,7 +510,7 @@ html body .bg-light small {
   font-size: clamp(3rem, 8vw, 6rem);
   font-weight: 800;
   line-height: 1.1;
-  margin-top: 2rem;
+  margin-top: 4rem;
   margin-bottom: 1.5rem;
   text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
@@ -1697,7 +1697,7 @@ footer .logo-image {
   
   .hero-title {
     font-size: clamp(2rem, 6vw, 3.5rem) !important;
-    margin-top: 1.5rem;
+    margin-top: 3rem;
     margin-bottom: 1rem;
   }
   
@@ -1728,7 +1728,7 @@ footer .logo-image {
   
   .hero-title {
     font-size: clamp(2.5rem, 7vw, 4rem) !important;
-    margin-top: 1.5rem;
+    margin-top: 3rem;
   }
   
   .hero-subtitle {
@@ -1745,7 +1745,7 @@ footer .logo-image {
   
   .hero-title {
     font-size: clamp(1.5rem, 5vw, 2.5rem) !important;
-    margin-top: 1rem;
+    margin-top: 2rem;
   }
   
   .hero-subtitle {
@@ -1790,7 +1790,7 @@ footer .logo-image {
   
   .hero-title {
     font-size: clamp(1.75rem, 5vw, 2.5rem) !important;
-    margin-top: 1rem;
+    margin-top: 2rem;
   }
   
   .hero-subtitle {
@@ -1814,6 +1814,11 @@ footer .logo-image {
   text-align: center;
   color: var(--text);
   padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 /* Fix for any remaining overlap issues */
