@@ -1224,6 +1224,9 @@ footer .logo-image {
   padding: 0.75rem 1.5rem;
   transition: var(--transition);
   position: relative;
+  display: flex;
+  align-items: center;
+  line-height: 1;
 }
 
 .q10ux-nav .navbar-nav .nav-link:hover,
@@ -1258,14 +1261,18 @@ footer .logo-image {
   border: 1px solid var(--muted);
   border-radius: var(--radius);
   box-shadow: var(--shadow-lg);
-  margin-top: 0.5rem;
+  margin-top: 1.5rem;
 }
 
 .q10ux-nav .dropdown-item {
   color: #ffffff !important;
   padding: 0.75rem 1rem;
   transition: var(--transition);
-  font-weight: 500;
+  font-weight: 700;
+  font-family: 'Roboto Condensed', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 1rem;
 }
 
 .q10ux-nav .dropdown-item:hover,
@@ -1309,11 +1316,14 @@ footer .logo-image {
   background: transparent;
   color: var(--accent-1);
   font-family: 'Roboto Condensed', sans-serif;
-  font-weight: 400;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   border-radius: 50px;
   transition: all var(--transition);
+  display: flex;
+  align-items: center;
+  line-height: 1;
 }
 
 .q10ux-nav .nav-link.btn:hover {
