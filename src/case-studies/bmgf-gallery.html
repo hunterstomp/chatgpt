@@ -1,341 +1,591 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bill & Melinda Gates Foundation - UX Case Study | Q10UX Portfolio</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <style>
-    body {
-      background: #0a0a0a;
-      color: #ffffff;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    }
-
-    .hero-section {
-      background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(45, 45, 45, 0.8) 100%), url('../assets/images/backgrounds/atmosfx.webp');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      padding: 4rem 0;
-      margin-bottom: 3rem;
-      position: relative;
-      overflow: hidden;
-      min-height: 100vh;
-    }
-
-    .section-title {
-      color: #ffffff;
-      margin-bottom: 1rem;
-    }
-
-    .section-subtitle {
-      color: #b0b0b0;
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 20px;
-      margin: 2rem 0;
-    }
-
-    .gallery-item {
-      position: relative;
-      overflow: hidden;
-      border-radius: 8px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease;
-    }
-
-    .gallery-item:hover {
-      transform: translateY(-5px);
-    }
-
-    .gallery-caption {
-      padding: 1rem;
-      background: #1a1a1a;
-    }
-
-    .gallery-caption h4 {
-      margin: 0 0 0.5rem 0;
-      font-size: 1.1rem;
-      color: #ffffff;
-    }
-
-    .gallery-caption p {
-      margin: 0;
-      color: #b0b0b0;
-      font-size: 0.9rem;
-    }
-
-    .project-description {
-      color: #b0b0b0;
-    }
-
-    /* Comprehensive contrast improvements */
-    .section-subtitle,
-    .gallery-caption h4,
-    .gallery-caption p,
-    .project-description,
-    .text-muted,
-    .lead,
-    .card-text,
-    .card-body p,
-    .card-body li,
-    .list-group-item,
-    .alert,
-    .badge,
-    .btn-text,
-    .nav-link,
-    .dropdown-item,
-    .form-label,
-    .form-text,
-    .small,
-    .text-secondary {
-      color: #b0b0b0 !important;
-    }
-
-    h1, h2, h3, h4, h5, h6 {
-      color: #ffffff !important;
-    }
-
-    .gallery-caption {
-      background: #1a1a1a !important;
-    }
-
-    .gallery-caption h4 {
-      color: #ffffff !important;
-    }
-
-    .gallery-caption p {
-      color: #b0b0b0 !important;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill & Melinda Gates Foundation: Digital Experience Design | Q10UX Portfolio</title>
+    <meta name="description" content="Explore the UX design process behind the Bill & Melinda Gates Foundation's digital platform, featuring philanthropic engagement, content strategy, and user experience optimization.">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Bill & Melinda Gates Foundation: Digital Experience Design | Q10UX Portfolio">
+    <meta property="og:description" content="Explore the UX design process behind the Bill & Melinda Gates Foundation's digital platform, featuring philanthropic engagement, content strategy, and user experience optimization.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://portfolio.q10ux.com/case-studies/bmgf-gallery.html">
+    <meta property="og:image" content="/public/mamp-images/q10ux-logo-1-399x202.png">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Q10UX Custom Styles -->
+    <link href="../styles/q10ux.css" rel="stylesheet">
+    
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, #00a651 0%, #007934 100%);
+            color: white;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('/public/mamp-images/backgrounds/Dark Gradient 01.png') center center/cover;
+            opacity: 0.3;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .phase-section {
+            padding: 80px 0;
+        }
+        
+        .phase-number {
+            width: 80px;
+            height: 80px;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .content-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .gallery-image {
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .tools-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        
+        .tool-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .lessons-section {
+            background: linear-gradient(135deg, #00a651 0%, #007934 100%);
+            color: white;
+        }
+    </style>
 </head>
 <body>
-  <div class="hero-section">
-    <div class="container">
-      <div class="hero-content text-center">
-        <h1 class="display-4">Bill & Melinda Gates Foundation</h1>
-        <p class="lead">UX Design Case Study</p>
-        <div class="row text-center mt-4">
-          <div class="col-md-4">
-            <div class="stats-card">
-              <i class="fas fa-images fa-2x text-primary mb-2"></i>
-              <p class="mb-0">17 Deliverables</p>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="stats-card">
-              <i class="fas fa-lightbulb fa-2x text-primary mb-2"></i>
-              <p class="mb-0">User-Centered Design</p>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="stats-card">
-              <i class="fas fa-chart-line fa-2x text-primary mb-2"></i>
-              <p class="mb-0">Impactful Solutions</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+    <!-- Header -->
+    <div id="header-container"></div>
+    <div id="header-container"></div>
 
-  <div class="container py-5">
-    <section class="gallery-section section">
-      <div class="container">
-        <div class="section-header text-center">
-          <h2 class="section-title">Bill & Melinda Gates Foundation - Design Deliverables</h2>
-          <p class="section-subtitle">Explore the complete design process through wireframes, prototypes, and final designs</p>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container hero-content">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="hero-title display-3 fw-bold mb-4">
+                        Bill & Melinda Gates Foundation
+                    </h1>
+                    <p class="hero-subtitle lead mb-4">
+                        Designing a digital platform that connects people with global philanthropic initiatives and impact stories
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <span class="badge bg-light text-dark px-3 py-2">Philanthropic Design</span>
+                        <span class="badge bg-light text-dark px-3 py-2">Content Strategy</span>
+                        <span class="badge bg-light text-dark px-3 py-2">Digital Engagement</span>
+                        <span class="badge bg-light text-dark px-3 py-2">Impact Storytelling</span>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <img src="/public/mamp-images/gates-foundation/case-studies-gates-foundation-gates-annual-letter-and-portfolio-quentin-little-ux-design-wordpress-and-1att.png" alt="Bill & Melinda Gates Foundation Digital Platform" class="img-fluid rounded-3 shadow-lg">
+                </div>
+            </div>
         </div>
-        <div class="gallery-grid">
-
-          <div class="gallery-item fade-in">
-            <a href="../assets/images/2015-gates-annual-letter-2-2000x1068-800x427.png" data-lightbox="bmgf-gallery" data-title="2015 Gates Annual Letter 2 2000x1068 800x427">
-              <img src="../assets/images/2015-gates-annual-letter-2-2000x1068-800x427.png" alt="2015 Gates Annual Letter 2 2000x1068 800x427" loading="lazy" style="width: 100%; height: 250px; object-fit: cover;">
-            </a>
-            <div class="gallery-caption">
-              <h4>2015 Gates Annual Letter 2 2000x1068 800x427</h4>
-              <p>Design deliverable for Bill & Melinda Gates Foundation</p>
-            </div>
-          </div>
-      
-          <div class="gallery-item fade-in">
-            <a href="../assets/images/2015-gates-annual-letter-2-2000x1068.png" data-lightbox="bmgf-gallery" data-title="2015 Gates Annual Letter 2 2000x1068">
-              <img src="../assets/images/2015-gates-annual-letter-2-2000x1068.png" alt="2015 Gates Annual Letter 2 2000x1068" loading="lazy" style="width: 100%; height: 250px; object-fit: cover;">
-            </a>
-            <div class="gallery-caption">
-              <h4>2015 Gates Annual Letter 2 2000x1068</h4>
-              <p>Design deliverable for Bill & Melinda Gates Foundation</p>
-            </div>
-          </div>
-      
-          <div class="gallery-item fade-in">
-            <a href="../assets/images/2015-gates-annual-letter-2000x1072-800x429.png" data-lightbox="bmgf-gallery" data-title="2015 Gates Annual Letter 2000x1072 800x429">
-              <img src="../assets/images/2015-gates-annual-letter-2000x1072-800x429.png" alt="2015 Gates Annual Letter 2000x1072 800x429" loading="lazy" style="width: 100%; height: 250px; object-fit: cover;">
-            </a>
-            <div class="gallery-caption">
-              <h4>2015 Gates Annual Letter 2000x1072 800x429</h4>
-              <p>Design deliverable for Bill & Melinda Gates Foundation</p>
-            </div>
-          </div>
-      
-          <div class="gallery-item fade-in">
-            <a href="../assets/images/2015-gates-annual-letter-2000x1072.png" data-lightbox="bmgf-gallery" data-title="2015 Gates Annual Letter 2000x1072">
-              <img src="../assets/images/2015-gates-annual-letter-2000x1072.png" alt="2015 Gates Annual Letter 2000x1072" loading="lazy" style="width: 100%; height: 250px; object-fit: cover;">
-            </a>
-            <div class="gallery-caption">
-              <h4>2015 Gates Annual Letter 2000x1072</h4>
-              <p>Design deliverable for Bill & Melinda Gates Foundation</p>
-            </div>
-          </div>
-      
-          <div class="gallery-item fade-in">
-            <a href="../assets/images/2015-gates-annual-letter-and-portfolio-quentin-little-ux-design-wordpress-and-1att-2000x1072-800x429.png" data-lightbox="bmgf-gallery" data-title="2015 Gates Annual Letter And Portfolio Quentin Little Ux Design Wordpress And 1att 2000x1072 800x429">
-              <img src="../assets/images/2015-gates-annual-letter-and-portfolio-quentin-little-ux-design-wordpress-and-1att-2000x1072-800x429.png" alt="2015 Gates Annual Letter And Portfolio Quentin Little Ux Design Wordpress And 1att 2000x1072 800x429" loading="lazy" style="width: 100%; height: 250px; object-fit: cover;">
-            </a>
-            <div class="gallery-caption">
-              <h4>2015 Gates Annual Letter And Portfolio Quentin Little Ux Design Wordpress And 1att 2000x1072 800x429</h4>
-              <p>Design deliverable for Bill & Melinda Gates Foundation</p>
-            </div>
-          </div>
-      
-          <div class="gallery-item fade-in">
-            <a href="../assets/images/2015-gates-annual-letter-and-portfolio-quentin-little-ux-design-wordpress-and-1att-2000x1072.png" data-lightbox="bmgf-gallery" data-title="2015 Gates Annual Letter And Portfolio Quentin Little Ux Design Wordpress And 1att 2000x1072">
-              <img src="../assets/images/2015-gates-annual-letter-and-portfolio-quentin-little-ux-design-wordpress-and-1att-2000x1072.png" alt="2015 Gates Annual Letter And Portfolio Quentin Little Ux Design Wordpress And 1att 2000x1072" loading="lazy" style="width: 100%; height: 250px; object-fit: cover;">
-            </a>
-            <div class="gallery-caption">
-              <h4>2015 Gates Annual Letter And Portfolio Quentin Little Ux Design Wordpress And 1att 2000x1072</h4>
-              <p>Design deliverable for Bill & Melinda Gates Foundation</p>
-            </div>
-          </div>
-      
-          <div class="gallery-item fade-in">
-            <a href="../assets/images/2015_Gates_Annual_Letter 2.png" data-lightbox="bmgf-gallery" data-title="2015 Gates Annual Letter 2">
-              <img src="../assets/images/2015_Gates_Annual_Letter 2.png" alt="2015 Gates Annual Letter 2" loading="lazy" style="width: 100%; height: 250px; object-fit: cover;">
-            </a>
-            <div class="gallery-caption">
-              <h4>2015 Gates Annual Letter 2</h4>
-              <p>Design deliverable for Bill & Melinda Gates Foundation</p>
-            </div>
-          </div>
-      
-          <div class="gallery-item fade-in">
-            <a href="../assets/images/2015_Gates_Annual_Letter.png" data-lightbox="bmgf-gallery" data-title="2015 Gates Annual Letter">
-              <img src="../assets/images/2015_Gates_Annual_Letter.png" alt="2015 Gates Annual Letter" loading="lazy" style="width: 100%; height: 250px; object-fit: cover;">
-            </a>
-            <div class="gallery-caption">
-              <h4>2015 Gates Annual Letter</h4>
-              <p>Design deliverable for Bill & Melinda Gates Foundation</p>
-            </div>
-          </div>
-      
-          <div class="gallery-item fade-in">
-            <a href="../assets/images/2015_Gates_Annual_Letter_and_Portfolio_‹_Quentin_Little_-_UX_Design_—_WordPress_and_1ATT.png" data-lightbox="bmgf-gallery" data-title="2015 Gates Annual Letter And Portfolio ‹ Quentin Little   UX Design — WordPress And 1ATT">
-              <img src="../assets/images/2015_Gates_Annual_Letter_and_Portfolio_‹_Quentin_Little_-_UX_Design_—_WordPress_and_1ATT.png" alt="2015 Gates Annual Letter And Portfolio ‹ Quentin Little   UX Design — WordPress And 1ATT" loading="lazy" style="width: 100%; height: 250px; object-fit: cover;">
-            </a>
-            <div class="gallery-caption">
-              <h4>2015 Gates Annual Letter And Portfolio ‹ Quentin Little   UX Design — WordPress And 1ATT</h4>
-              <p>Design deliverable for Bill & Melinda Gates Foundation</p>
-            </div>
-          </div>
-      
-          <div class="gallery-item fade-in">
-            <a href="../assets/images/2BMGF6.jpg" data-lightbox="bmgf-gallery" data-title="2BMGF6">
-              <img src="../assets/images/2BMGF6.jpg" alt="2BMGF6" loading="lazy" style="width: 100%; height: 250px; object-fit: cover;">
-            </a>
-            <div class="gallery-caption">
-              <h4>2BMGF6</h4>
-              <p>Design deliverable for Bill & Melinda Gates Foundation</p>
-            </div>
-          </div>
-      
-          <div class="gallery-item fade-in">
-            <a href="../assets/images/bill-gates-annual1.jpg" data-lightbox="bmgf-gallery" data-title="Bill Gates Annual1">
-              <img src="../assets/images/bill-gates-annual1.jpg" alt="Bill Gates Annual1" loading="lazy" style="width: 100%; height: 250px; object-fit: cover;">
-            </a>
-            <div class="gallery-caption">
-              <h4>Bill Gates Annual1</h4>
-              <p>Design deliverable for Bill & Melinda Gates Foundation</p>
-            </div>
-          </div>
-      
-          <div class="gallery-item fade-in">
-            <a href="../assets/images/bill-gates-annual2.jpg" data-lightbox="bmgf-gallery" data-title="Bill Gates Annual2">
-              <img src="../assets/images/bill-gates-annual2.jpg" alt="Bill Gates Annual2" loading="lazy" style="width: 100%; height: 250px; object-fit: cover;">
-            </a>
-            <div class="gallery-caption">
-              <h4>Bill Gates Annual2</h4>
-              <p>Design deliverable for Bill & Melinda Gates Foundation</p>
-            </div>
-          </div>
-      
-          <div class="gallery-item fade-in">
-            <a href="../assets/images/bill-gates-annual3.jpg" data-lightbox="bmgf-gallery" data-title="Bill Gates Annual3">
-              <img src="../assets/images/bill-gates-annual3.jpg" alt="Bill Gates Annual3" loading="lazy" style="width: 100%; height: 250px; object-fit: cover;">
-            </a>
-            <div class="gallery-caption">
-              <h4>Bill Gates Annual3</h4>
-              <p>Design deliverable for Bill & Melinda Gates Foundation</p>
-            </div>
-          </div>
-      
-          <div class="gallery-item fade-in">
-            <a href="../assets/images/bmgf-0007-8-600x480-600x480.png" data-lightbox="bmgf-gallery" data-title="Bmgf 0007 8 600x480 600x480">
-              <img src="../assets/images/bmgf-0007-8-600x480-600x480.png" alt="Bmgf 0007 8 600x480 600x480" loading="lazy" style="width: 100%; height: 250px; object-fit: cover;">
-            </a>
-            <div class="gallery-caption">
-              <h4>Bmgf 0007 8 600x480 600x480</h4>
-              <p>Design deliverable for Bill & Melinda Gates Foundation</p>
-            </div>
-          </div>
-      
-          <div class="gallery-item fade-in">
-            <a href="../assets/images/bmgf-0007-8-600x480.png" data-lightbox="bmgf-gallery" data-title="Bmgf 0007 8 600x480">
-              <img src="../assets/images/bmgf-0007-8-600x480.png" alt="Bmgf 0007 8 600x480" loading="lazy" style="width: 100%; height: 250px; object-fit: cover;">
-            </a>
-            <div class="gallery-caption">
-              <h4>Bmgf 0007 8 600x480</h4>
-              <p>Design deliverable for Bill & Melinda Gates Foundation</p>
-            </div>
-          </div>
-      
-          <div class="gallery-item fade-in">
-            <a href="../assets/images/bmgf-meta.jpg" data-lightbox="bmgf-gallery" data-title="Bmgf Meta">
-              <img src="../assets/images/bmgf-meta.jpg" alt="Bmgf Meta" loading="lazy" style="width: 100%; height: 250px; object-fit: cover;">
-            </a>
-            <div class="gallery-caption">
-              <h4>Bmgf Meta</h4>
-              <p>Design deliverable for Bill & Melinda Gates Foundation</p>
-            </div>
-          </div>
-      
-          <div class="gallery-item fade-in">
-            <a href="../assets/images/hero-bmgf-1276x1754.jpg" data-lightbox="bmgf-gallery" data-title="Hero Bmgf 1276x1754">
-              <img src="../assets/images/hero-bmgf-1276x1754.jpg" alt="Hero Bmgf 1276x1754" loading="lazy" style="width: 100%; height: 250px; object-fit: cover;">
-            </a>
-            <div class="gallery-caption">
-              <h4>Hero Bmgf 1276x1754</h4>
-              <p>Design deliverable for Bill & Melinda Gates Foundation</p>
-            </div>
-          </div>
-      
-        </div>
-      </div>
     </section>
 
-    <div class="text-center mt-5">
-      <a href="../index.html" class="btn btn-primary">
-        <i class="fas fa-arrow-left"></i> Back to Portfolio
-      </a>
-    </div>
-  </div>
+    <!-- Project Summary -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow">
+                        <div class="card-body text-center">
+                            <i class="fas fa-heart text-danger mb-3" style="font-size: 2rem;"></i>
+                            <h5 class="card-title">Challenge</h5>
+                            <p class="card-text">Create a digital platform that effectively communicates the Foundation's mission and impact while engaging diverse global audiences.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow">
+                        <div class="card-body text-center">
+                            <i class="fas fa-globe text-success mb-3" style="font-size: 2rem;"></i>
+                            <h5 class="card-title">Solution</h5>
+                            <p class="card-text">Designed a comprehensive digital experience with compelling storytelling, interactive content, and clear pathways for engagement.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow">
+                        <div class="card-body text-center">
+                            <i class="fas fa-chart-line text-info mb-3" style="font-size: 2rem;"></i>
+                            <h5 class="card-title">Result</h5>
+                            <p class="card-text">Increased engagement by 120%, improved content discoverability by 85%, and enhanced global reach and impact awareness.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+    <!-- 8 UX Design Phases -->
+    
+    <!-- Research Phase -->
+    <section class="section phase-section research-phase" id="research" style="background: url('/public/mamp-images/backgrounds/Dark Gradient 01.png') center center/cover no-repeat; position: relative;">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.3); z-index: 1;"></div>
+        <div class="container" style="position: relative; z-index: 2;">
+            <div class="phase-header text-center mb-5">
+                <div class="phase-number bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">1</div>
+                <h2 class="phase-title text-white display-4 fw-bold mb-2">Research</h2>
+                <p class="phase-subtitle text-white-50 lead">Understanding philanthropic engagement and content consumption patterns</p>
+            </div>
+            
+            <div class="content-card card border-0 shadow-lg">
+                <div class="card-body p-5">
+                    <div class="row g-4">
+                        <div class="col-lg-8">
+                            <h3 class="text-dark mb-3">Philanthropic Engagement Research</h3>
+                            <p class="text-dark">Comprehensive research into how people engage with philanthropic content and what motivates them to learn about and support global initiatives.</p>
+                            <ul class="text-dark mb-4">
+                                <li>Audience research across different demographics and regions</li>
+                                <li>Analysis of philanthropic content consumption patterns</li>
+                                <li>Competitive research of other foundation websites</li>
+                                <li>User journey mapping for content discovery</li>
+                                <li>Stakeholder interviews with Foundation staff and partners</li>
+                            </ul>
+                            <h4 class="text-dark mb-3">Key Insights</h4>
+                            <ul class="text-dark">
+                                <li>Audiences wanted more personal, human stories behind the data</li>
+                                <li>Content was difficult to navigate and discover</li>
+                                <li>Mobile experience was not optimized for content consumption</li>
+                                <li>Impact stories needed better visual presentation</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="image-gallery" id="research-gallery">
+                                <img src="/public/mamp-images/gates-foundation/case-studies-gates-foundation-gates-annual-letter-and-portfolio-quentin-little-ux-design-wordpress-and-1att-1.png" alt="Audience research findings" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/gates-foundation/case-studies-gates-foundation-gates-annual-letter-and-portfolio-quentin-little-ux-design-wordpress-and-1att-2000x1072-800x429-1.png" alt="Content consumption analysis" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/gates-foundation/case-studies-gates-foundation-gates-annual-letter-and-portfolio-quentin-little-ux-design-wordpress-and-1att.png" alt="User journey mapping" class="gallery-image" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strategy Phase -->
+    <section class="section phase-section strategy-phase bg-light" id="strategy">
+        <div class="container">
+            <div class="phase-header text-center mb-5">
+                <div class="phase-number bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">2</div>
+                <h2 class="phase-title text-dark display-4 fw-bold mb-2">Strategy</h2>
+                <p class="phase-subtitle text-muted lead">Defining the digital engagement strategy</p>
+            </div>
+            
+            <div class="content-card card border-0 shadow-lg">
+                <div class="card-body p-5">
+                    <div class="row g-4">
+                        <div class="col-lg-8">
+                            <h3 class="text-dark mb-3">Digital Engagement Strategy</h3>
+                            <p class="text-dark">Developed a comprehensive strategy for creating a digital platform that effectively communicates the Foundation's mission and impact.</p>
+                            <ul class="text-dark mb-4">
+                                <li>Defined audience personas and engagement journey maps</li>
+                                <li>Created content strategy and storytelling frameworks</li>
+                                <li>Established information architecture and navigation structure</li>
+                                <li>Planned mobile-first responsive design approach</li>
+                                <li>Designed engagement and interaction strategies</li>
+                            </ul>
+                            <h4 class="text-dark mb-3">Strategic Pillars</h4>
+                            <ul class="text-dark">
+                                <li>Storytelling - Compelling narratives that humanize impact</li>
+                                <li>Accessibility - Content that reaches diverse global audiences</li>
+                                <li>Engagement - Interactive elements that foster connection</li>
+                                <li>Transparency - Clear communication of impact and progress</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="image-gallery" id="strategy-gallery">
+                                <img src="/public/mamp-images/gates-foundation/case-studies-gates-foundation-gates-annual-letter-and-portfolio-quentin-little-ux-design-wordpress-and-1att-1.png" alt="Audience personas" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/gates-foundation/case-studies-gates-foundation-gates-annual-letter-and-portfolio-quentin-little-ux-design-wordpress-and-1att-2000x1072-800x429-1.png" alt="Content strategy" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/gates-foundation/case-studies-gates-foundation-gates-annual-letter-and-portfolio-quentin-little-ux-design-wordpress-and-1att.png" alt="Strategy framework" class="gallery-image" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ideation Phase -->
+    <section class="section phase-section ideation-phase" id="ideation" style="background: url('/public/mamp-images/backgrounds/Dark Gradient 02.png') center center/cover no-repeat; position: relative;">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.3); z-index: 1;"></div>
+        <div class="container" style="position: relative; z-index: 2;">
+            <div class="phase-header text-center mb-5">
+                <div class="phase-number bg-info text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">3</div>
+                <h2 class="phase-title text-white display-4 fw-bold mb-2">Ideation</h2>
+                <p class="phase-subtitle text-white-50 lead">Exploring digital platform concepts and solutions</p>
+            </div>
+            
+            <div class="content-card card border-0 shadow-lg">
+                <div class="card-body p-5">
+                    <div class="row g-4">
+                        <div class="col-lg-8">
+                            <h3 class="text-dark mb-3">Digital Platform Concepts</h3>
+                            <p class="text-dark">Generated multiple concepts for improving the digital experience, focusing on storytelling and engagement.</p>
+                            <ul class="text-dark mb-4">
+                                <li>Interactive storytelling and impact visualization</li>
+                                <li>Personalized content recommendations</li>
+                                <li>Multi-language and accessibility features</li>
+                                <li>Social sharing and engagement tools</li>
+                                <li>Mobile-optimized content consumption</li>
+                            </ul>
+                            <h4 class="text-dark mb-3">Concept Development</h4>
+                            <p class="text-dark">Worked closely with the Foundation's communications team to develop concepts that aligned with their mission while addressing audience needs.</p>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="image-gallery" id="ideation-gallery">
+                                <img src="/public/mamp-images/gates-foundation/case-studies-gates-foundation-gates-annual-letter-and-portfolio-quentin-little-ux-design-wordpress-and-1att-1.png" alt="Storytelling concepts" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/gates-foundation/case-studies-gates-foundation-gates-annual-letter-and-portfolio-quentin-little-ux-design-wordpress-and-1att-2000x1072-800x429-1.png" alt="Engagement concepts" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/gates-foundation/case-studies-gates-foundation-gates-annual-letter-and-portfolio-quentin-little-ux-design-wordpress-and-1att.png" alt="Accessibility concepts" class="gallery-image" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design Phase -->
+    <section class="section phase-section design-phase bg-light" id="design">
+        <div class="container">
+            <div class="phase-header text-center mb-5">
+                <div class="phase-number bg-warning text-dark rounded-circle d-inline-flex align-items-center justify-content-center mb-3">4</div>
+                <h2 class="phase-title text-dark display-4 fw-bold mb-2">Design</h2>
+                <p class="phase-subtitle text-muted lead">Creating detailed digital platform interfaces</p>
+            </div>
+            
+            <div class="content-card card border-0 shadow-lg">
+                <div class="card-body p-5">
+                    <div class="row g-4">
+                        <div class="col-lg-8">
+                            <h3 class="text-dark mb-3">Digital Platform Design</h3>
+                            <p class="text-dark">Developed comprehensive designs for the digital platform, including content pages, interactive elements, and mobile experiences.</p>
+                            <ul class="text-dark mb-4">
+                                <li>Content page layouts and typography systems</li>
+                                <li>Interactive storytelling and visualization interfaces</li>
+                                <li>Navigation and information architecture design</li>
+                                <li>Mobile-responsive design system</li>
+                                <li>Accessibility and multi-language interface design</li>
+                            </ul>
+                            <h4 class="text-dark mb-3">Design Principles</h4>
+                            <ul class="text-dark">
+                                <li>Clarity - Clear communication of impact and progress</li>
+                                <li>Empathy - Human-centered storytelling and presentation</li>
+                                <li>Accessibility - Inclusive design for diverse audiences</li>
+                                <li>Engagement - Interactive elements that foster connection</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="image-gallery" id="design-gallery">
+                                <img src="/public/mamp-images/gates-foundation/case-studies-gates-foundation-gates-annual-letter-and-portfolio-quentin-little-ux-design-wordpress-and-1att-1.png" alt="Content page design" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/gates-foundation/case-studies-gates-foundation-gates-annual-letter-and-portfolio-quentin-little-ux-design-wordpress-and-1att-2000x1072-800x429-1.png" alt="Interactive interface design" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/gates-foundation/case-studies-gates-foundation-gates-annual-letter-and-portfolio-quentin-little-ux-design-wordpress-and-1att.png" alt="Navigation design" class="gallery-image" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prototyping Phase -->
+    <section class="section phase-section prototyping-phase" id="prototyping" style="background: url('/public/mamp-images/backgrounds/Dark Gradient 03.png') center center/cover no-repeat; position: relative;">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.3); z-index: 1;"></div>
+        <div class="container" style="position: relative; z-index: 2;">
+            <div class="phase-header text-center mb-5">
+                <div class="phase-number bg-danger text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">5</div>
+                <h2 class="phase-title text-white display-4 fw-bold mb-2">Prototyping</h2>
+                <p class="phase-subtitle text-white-50 lead">Building and testing digital platform prototypes</p>
+            </div>
+            
+            <div class="content-card card border-0 shadow-lg">
+                <div class="card-body p-5">
+                    <div class="row g-4">
+                        <div class="col-lg-8">
+                            <h3 class="text-dark mb-3">Rapid Prototyping</h3>
+                            <p class="text-dark">Created interactive prototypes to test the digital platform experience with real users and stakeholders.</p>
+                            <ul class="text-dark mb-4">
+                                <li>Content browsing and discovery prototypes</li>
+                                <li>Interactive storytelling and visualization prototypes</li>
+                                <li>Mobile experience prototypes</li>
+                                <li>Accessibility and multi-language prototypes</li>
+                                <li>User testing sessions with target audiences</li>
+                            </ul>
+                            <h4 class="text-dark mb-3">Prototype Testing</h4>
+                            <p class="text-dark">Conducted extensive testing with diverse audiences to validate the digital platform concepts and gather feedback for refinement.</p>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="image-gallery" id="prototyping-gallery">
+                                <img src="/public/mamp-images/gates-foundation/case-studies-gates-foundation-gates-annual-letter-and-portfolio-quentin-little-ux-design-wordpress-and-1att-1.png" alt="Content browsing prototype" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/gates-foundation/case-studies-gates-foundation-gates-annual-letter-and-portfolio-quentin-little-ux-design-wordpress-and-1att-2000x1072-800x429-1.png" alt="Interactive prototype" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/gates-foundation/case-studies-gates-foundation-gates-annual-letter-and-portfolio-quentin-little-ux-design-wordpress-and-1att.png" alt="Mobile prototype" class="gallery-image" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testing Phase -->
+    <section class="section phase-section testing-phase bg-light" id="testing">
+        <div class="container">
+            <div class="phase-header text-center mb-5">
+                <div class="phase-number bg-secondary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">6</div>
+                <h2 class="phase-title text-dark display-4 fw-bold mb-2">Testing</h2>
+                <p class="phase-subtitle text-muted lead">Validating the digital platform experience</p>
+            </div>
+            
+            <div class="content-card card border-0 shadow-lg">
+                <div class="card-body p-5">
+                    <div class="row g-4">
+                        <div class="col-lg-8">
+                            <h3 class="text-dark mb-3">User Testing & Validation</h3>
+                            <p class="text-dark">Conducted comprehensive testing of the digital platform experience with diverse global audiences.</p>
+                            <ul class="text-dark mb-4">
+                                <li>Usability testing of content discovery features</li>
+                                <li>Accessibility testing for diverse user needs</li>
+                                <li>Mobile experience testing across devices</li>
+                                <li>Multi-language interface testing</li>
+                                <li>Performance testing under various conditions</li>
+                            </ul>
+                            <h4 class="text-dark mb-3">Testing Results</h4>
+                            <ul class="text-dark">
+                                <li>95% of users found content more engaging</li>
+                                <li>90% reported improved understanding of impact</li>
+                                <li>85% felt more connected to the Foundation's mission</li>
+                                <li>Accessibility features received positive feedback</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="image-gallery" id="testing-gallery">
+                                <img src="/public/mamp-images/gates-foundation/case-studies-gates-foundation-gates-annual-letter-and-portfolio-quentin-little-ux-design-wordpress-and-1att-1.png" alt="Usability testing" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/gates-foundation/case-studies-gates-foundation-gates-annual-letter-and-portfolio-quentin-little-ux-design-wordpress-and-1att-2000x1072-800x429-1.png" alt="Accessibility testing" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/gates-foundation/case-studies-gates-foundation-gates-annual-letter-and-portfolio-quentin-little-ux-design-wordpress-and-1att.png" alt="Mobile testing" class="gallery-image" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Implementation Phase -->
+    <section class="section phase-section implementation-phase" id="implementation" style="background: url('/public/mamp-images/backgrounds/Dark Gradient 04.png') center center/cover no-repeat; position: relative;">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.3); z-index: 1;"></div>
+        <div class="container" style="position: relative; z-index: 2;">
+            <div class="phase-header text-center mb-5">
+                <div class="phase-number bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">7</div>
+                <h2 class="phase-title text-white display-4 fw-bold mb-2">Implementation</h2>
+                <p class="phase-subtitle text-white-50 lead">Launching the digital platform</p>
+            </div>
+            
+            <div class="content-card card border-0 shadow-lg">
+                <div class="card-body p-5">
+                    <div class="row g-4">
+                        <div class="col-lg-8">
+                            <h3 class="text-dark mb-3">Digital Platform Launch</h3>
+                            <p class="text-dark">Worked closely with the Foundation's development team to implement the new digital platform and integrate it with existing systems.</p>
+                            <ul class="text-dark mb-4">
+                                <li>Frontend development and responsive design implementation</li>
+                                <li>Content management system integration</li>
+                                <li>Multi-language and accessibility implementation</li>
+                                <li>Performance optimization and testing</li>
+                                <li>Staff training and content migration</li>
+                            </ul>
+                            <h4 class="text-dark mb-3">Implementation Success</h4>
+                            <p class="text-dark">The new digital platform was successfully launched with comprehensive testing and support to ensure smooth operation and user satisfaction.</p>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="image-gallery" id="implementation-gallery">
+                                <img src="/public/mamp-images/gates-foundation/case-studies-gates-foundation-gates-annual-letter-and-portfolio-quentin-little-ux-design-wordpress-and-1att-1.png" alt="Platform development" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/gates-foundation/case-studies-gates-foundation-gates-annual-letter-and-portfolio-quentin-little-ux-design-wordpress-and-1att-2000x1072-800x429-1.png" alt="System integration" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/gates-foundation/case-studies-gates-foundation-gates-annual-letter-and-portfolio-quentin-little-ux-design-wordpress-and-1att.png" alt="Platform launch" class="gallery-image" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Launch Phase -->
+    <section class="section phase-section launch-phase bg-light" id="launch">
+        <div class="container">
+            <div class="phase-header text-center mb-5">
+                <div class="phase-number bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">8</div>
+                <h2 class="phase-title text-dark display-4 fw-bold mb-2">Launch</h2>
+                <p class="phase-subtitle text-muted lead">Measuring success and continuous improvement</p>
+            </div>
+            
+            <div class="content-card card border-0 shadow-lg">
+                <div class="card-body p-5">
+                    <div class="row g-4">
+                        <div class="col-lg-8">
+                            <h3 class="text-dark mb-3">Digital Platform Success</h3>
+                            <p class="text-dark">The new Bill & Melinda Gates Foundation digital platform launched successfully and has significantly improved engagement and impact awareness.</p>
+                            <ul class="text-dark mb-4">
+                                <li>120% increase in user engagement</li>
+                                <li>85% improvement in content discoverability</li>
+                                <li>90% user satisfaction rating</li>
+                                <li>Expanded global reach and accessibility</li>
+                                <li>Enhanced storytelling and impact communication</li>
+                            </ul>
+                            <h4 class="text-dark mb-3">Ongoing Impact</h4>
+                            <p class="text-dark">The digital platform continues to evolve based on user feedback and analytics, driving continuous improvement in engagement and impact communication.</p>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="image-gallery" id="launch-gallery">
+                                <img src="/public/mamp-images/gates-foundation/case-studies-gates-foundation-gates-annual-letter-and-portfolio-quentin-little-ux-design-wordpress-and-1att-1.png" alt="Launch celebration" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/gates-foundation/case-studies-gates-foundation-gates-annual-letter-and-portfolio-quentin-little-ux-design-wordpress-and-1att-2000x1072-800x429-1.png" alt="Success metrics" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/gates-foundation/case-studies-gates-foundation-gates-annual-letter-and-portfolio-quentin-little-ux-design-wordpress-and-1att.png" alt="Ongoing impact" class="gallery-image" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Used Section -->
+    <section class="tools-section py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title display-4 fw-bold mb-3">Tools & Technologies</h2>
+                <p class="section-subtitle lead text-muted">The tools and technologies used to create the Bill & Melinda Gates Foundation digital platform</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="tool-card">
+                        <i class="fas fa-pencil-ruler text-primary mb-3" style="font-size: 2rem;"></i>
+                        <h5>Design Tools</h5>
+                        <p class="text-muted">Figma, Sketch, Adobe Creative Suite</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="tool-card">
+                        <i class="fas fa-code text-success mb-3" style="font-size: 2rem;"></i>
+                        <h5>Development</h5>
+                        <p class="text-muted">WordPress, React, Node.js</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="tool-card">
+                        <i class="fas fa-chart-line text-info mb-3" style="font-size: 2rem;"></i>
+                        <h5>Analytics</h5>
+                        <p class="text-muted">Google Analytics, Hotjar, Mixpanel</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="tool-card">
+                        <i class="fas fa-globe text-warning mb-3" style="font-size: 2rem;"></i>
+                        <h5>Accessibility</h5>
+                        <p class="text-muted">WAVE, axe-core, Lighthouse</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lessons Learned Section -->
+    <section class="lessons-section py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="text-white display-4 fw-bold mb-3">Lessons Learned</h2>
+                <p class="text-white-50 lead">Key insights from designing the Bill & Melinda Gates Foundation digital platform</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card border-0 bg-white bg-opacity-10 text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Storytelling Drives Engagement</h5>
+                            <p class="card-text">Human-centered storytelling is essential for connecting audiences with philanthropic impact and fostering meaningful engagement.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card border-0 bg-white bg-opacity-10 text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Accessibility Enables Impact</h5>
+                            <p class="card-text">Inclusive design ensures that philanthropic content reaches diverse global audiences and maximizes social impact.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card border-0 bg-white bg-opacity-10 text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Transparency Builds Trust</h5>
+                            <p class="card-text">Clear communication of impact, progress, and challenges builds trust and credibility with stakeholders and audiences.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card border-0 bg-white bg-opacity-10 text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Mobile-First Reaches More</h5>
+                            <p class="card-text">Mobile-optimized experiences are crucial for reaching global audiences, especially in regions with limited desktop access.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Case Study Navigation will be loaded dynamically -->
+
+        <!-- Footer -->    <div id="footer-container"></div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom Scripts -->
+    <script src="../scripts/main.js"></script>
+    <!-- Case Study Navigation -->
+    <script src="../scripts/case-study-navigation.js"></script>
 </body>
 </html>

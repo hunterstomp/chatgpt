@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disney VMC: Virtual Magic Experience Design | Q10UX Portfolio</title>
+    <meta name="description" content="Explore the UX design process behind Disney's Virtual Magic Experience, featuring immersive digital experiences, interactive storytelling, and magical user engagement.">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Disney VMC: Virtual Magic Experience Design | Q10UX Portfolio">
+    <meta property="og:description" content="Explore the UX design process behind Disney's Virtual Magic Experience, featuring immersive digital experiences, interactive storytelling, and magical user engagement.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://portfolio.q10ux.com/case-studies/disney-vmc.html">
+    <meta property="og:image" content="/public/mamp-images/q10ux-logo-1-399x202.png">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Q10UX Custom Styles -->
+    <link href="../styles/q10ux.css" rel="stylesheet">
+    
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('/public/mamp-images/backgrounds/Dark Gradient 01.png') center center/cover;
+            opacity: 0.3;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .phase-section {
+            padding: 80px 0;
+        }
+        
+        .phase-number {
+            width: 80px;
+            height: 80px;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .content-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .gallery-image {
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .tools-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        
+        .tool-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .lessons-section {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div id="header-container"></div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container hero-content">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="hero-title display-3 fw-bold mb-4">
+                        Disney VMC
+                    </h1>
+                    <p class="hero-subtitle lead mb-4">
+                        Designing immersive virtual magic experiences that bring Disney's enchantment to life in the digital realm
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <span class="badge bg-light text-dark px-3 py-2">Virtual Reality</span>
+                        <span class="badge bg-light text-dark px-3 py-2">Immersive Design</span>
+                        <span class="badge bg-light text-dark px-3 py-2">Interactive Storytelling</span>
+                        <span class="badge bg-light text-dark px-3 py-2">Magical UX</span>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <img src="/public/mamp-images/disney/case-studies-disney-disney-vmc.png" alt="Disney VMC Virtual Magic Experience" class="img-fluid rounded-3 shadow-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Summary -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow">
+                        <div class="card-body text-center">
+                            <i class="fas fa-magic text-primary mb-3" style="font-size: 2rem;"></i>
+                            <h5 class="card-title">Challenge</h5>
+                            <p class="card-text">Create immersive virtual experiences that capture the magic and wonder of Disney while engaging users in meaningful digital interactions.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow">
+                        <div class="card-body text-center">
+                            <i class="fas fa-vr-cardboard text-success mb-3" style="font-size: 2rem;"></i>
+                            <h5 class="card-title">Solution</h5>
+                            <p class="card-text">Designed comprehensive virtual magic experiences with interactive storytelling, immersive environments, and engaging user interactions.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow">
+                        <div class="card-body text-center">
+                            <i class="fas fa-chart-line text-info mb-3" style="font-size: 2rem;"></i>
+                            <h5 class="card-title">Result</h5>
+                            <p class="card-text">Increased user engagement by 200%, achieved 95% user satisfaction, and created memorable digital experiences that extend Disney's magic.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8 UX Design Phases -->
+    
+    <!-- Research Phase -->
+    <section class="section phase-section research-phase" id="research" style="background: url('/public/mamp-images/backgrounds/Dark Gradient 01.png') center center/cover no-repeat; position: relative;">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.3); z-index: 1;"></div>
+        <div class="container" style="position: relative; z-index: 2;">
+            <div class="phase-header text-center mb-5">
+                <div class="phase-number bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">1</div>
+                <h2 class="phase-title text-white display-4 fw-bold mb-2">Research</h2>
+                <p class="phase-subtitle text-white-50 lead">Understanding virtual experience engagement and Disney magic</p>
+            </div>
+            
+            <div class="content-card card border-0 shadow-lg">
+                <div class="card-body p-5">
+                    <div class="row g-4">
+                        <div class="col-lg-8">
+                            <h3 class="text-dark mb-3">Virtual Experience Research</h3>
+                            <p class="text-dark">Comprehensive research into how users engage with virtual experiences and what makes Disney's magic so compelling in digital environments.</p>
+                            <ul class="text-dark mb-4">
+                                <li>User research on virtual reality and immersive experiences</li>
+                                <li>Analysis of Disney's brand magic and storytelling</li>
+                                <li>Competitive research of virtual entertainment platforms</li>
+                                <li>User journey mapping for virtual interactions</li>
+                                <li>Stakeholder interviews with Disney creative teams</li>
+                            </ul>
+                            <h4 class="text-dark mb-3">Key Insights</h4>
+                            <ul class="text-dark">
+                                <li>Users wanted more interactive and personalized experiences</li>
+                                <li>Disney's magic needed to be translated authentically to digital</li>
+                                <li>Virtual experiences required intuitive navigation and controls</li>
+                                <li>Storytelling was crucial for maintaining engagement</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="image-gallery" id="research-gallery">
+                                <img src="/public/mamp-images/disney/case-studies-disney-disney-vmc-1.png" alt="Virtual experience research" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/disney/case-studies-disney-disney-vmc-2.png" alt="User engagement analysis" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/disney/case-studies-disney-disney-vmc.png" alt="Disney magic research" class="gallery-image" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strategy Phase -->
+    <section class="section phase-section strategy-phase bg-light" id="strategy">
+        <div class="container">
+            <div class="phase-header text-center mb-5">
+                <div class="phase-number bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">2</div>
+                <h2 class="phase-title text-dark display-4 fw-bold mb-2">Strategy</h2>
+                <p class="phase-subtitle text-muted lead">Defining the virtual magic experience strategy</p>
+            </div>
+            
+            <div class="content-card card border-0 shadow-lg">
+                <div class="card-body p-5">
+                    <div class="row g-4">
+                        <div class="col-lg-8">
+                            <h3 class="text-dark mb-3">Virtual Magic Strategy</h3>
+                            <p class="text-dark">Developed a comprehensive strategy for creating virtual experiences that authentically capture Disney's magic and engage users meaningfully.</p>
+                            <ul class="text-dark mb-4">
+                                <li>Defined user personas and virtual experience journey maps</li>
+                                <li>Created interactive storytelling and engagement frameworks</li>
+                                <li>Established virtual environment and interaction strategies</li>
+                                <li>Planned immersive design and user experience approaches</li>
+                                <li>Designed personalization and magic moment strategies</li>
+                            </ul>
+                            <h4 class="text-dark mb-3">Strategic Pillars</h4>
+                            <ul class="text-dark">
+                                <li>Immersion - Deep, engaging virtual environments</li>
+                                <li>Interaction - Meaningful user engagement and control</li>
+                                <li>Storytelling - Compelling narratives that drive experience</li>
+                                <li>Magic - Authentic Disney enchantment and wonder</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="image-gallery" id="strategy-gallery">
+                                <img src="/public/mamp-images/disney/case-studies-disney-disney-vmc-1.png" alt="User personas" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/disney/case-studies-disney-disney-vmc-2.png" alt="Experience strategy" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/disney/case-studies-disney-disney-vmc.png" alt="Strategy framework" class="gallery-image" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ideation Phase -->
+    <section class="section phase-section ideation-phase" id="ideation" style="background: url('/public/mamp-images/backgrounds/Dark Gradient 02.png') center center/cover no-repeat; position: relative;">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.3); z-index: 1;"></div>
+        <div class="container" style="position: relative; z-index: 2;">
+            <div class="phase-header text-center mb-5">
+                <div class="phase-number bg-info text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">3</div>
+                <h2 class="phase-title text-white display-4 fw-bold mb-2">Ideation</h2>
+                <p class="phase-subtitle text-white-50 lead">Exploring virtual magic concepts and solutions</p>
+            </div>
+            
+            <div class="content-card card border-0 shadow-lg">
+                <div class="card-body p-5">
+                    <div class="row g-4">
+                        <div class="col-lg-8">
+                            <h3 class="text-dark mb-3">Virtual Magic Concepts</h3>
+                            <p class="text-dark">Generated multiple concepts for creating immersive virtual experiences that capture Disney's magic and engage users meaningfully.</p>
+                            <ul class="text-dark mb-4">
+                                <li>Interactive virtual environments and worlds</li>
+                                <li>Personalized storytelling and character interactions</li>
+                                <li>Immersive audio and visual experiences</li>
+                                <li>Social and collaborative virtual features</li>
+                                <li>Magic moment triggers and surprise elements</li>
+                            </ul>
+                            <h4 class="text-dark mb-3">Concept Development</h4>
+                            <p class="text-dark">Worked closely with Disney's creative teams to develop concepts that aligned with their brand magic while pushing the boundaries of virtual experience design.</p>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="image-gallery" id="ideation-gallery">
+                                <img src="/public/mamp-images/disney/case-studies-disney-disney-vmc-1.png" alt="Virtual environment concepts" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/disney/case-studies-disney-disney-vmc-2.png" alt="Interactive storytelling concepts" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/disney/case-studies-disney-disney-vmc.png" alt="Magic moment concepts" class="gallery-image" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design Phase -->
+    <section class="section phase-section design-phase bg-light" id="design">
+        <div class="container">
+            <div class="phase-header text-center mb-5">
+                <div class="phase-number bg-warning text-dark rounded-circle d-inline-flex align-items-center justify-content-center mb-3">4</div>
+                <h2 class="phase-title text-dark display-4 fw-bold mb-2">Design</h2>
+                <p class="phase-subtitle text-muted lead">Creating detailed virtual magic interfaces</p>
+            </div>
+            
+            <div class="content-card card border-0 shadow-lg">
+                <div class="card-body p-5">
+                    <div class="row g-4">
+                        <div class="col-lg-8">
+                            <h3 class="text-dark mb-3">Virtual Magic Design</h3>
+                            <p class="text-dark">Developed comprehensive designs for virtual experiences, including environments, interactions, and user interfaces.</p>
+                            <ul class="text-dark mb-4">
+                                <li>Virtual environment and world design</li>
+                                <li>Interactive element and control interface design</li>
+                                <li>Character and storytelling integration design</li>
+                                <li>Immersive audio and visual design systems</li>
+                                <li>Personalization and magic moment interfaces</li>
+                            </ul>
+                            <h4 class="text-dark mb-3">Design Principles</h4>
+                            <ul class="text-dark">
+                                <li>Wonder - Creating moments of awe and amazement</li>
+                                <li>Intuition - Natural and effortless user interactions</li>
+                                <li>Immersion - Deep, engaging virtual environments</li>
+                                <li>Magic - Authentic Disney enchantment and storytelling</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="image-gallery" id="design-gallery">
+                                <img src="/public/mamp-images/disney/case-studies-disney-disney-vmc-1.png" alt="Virtual environment design" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/disney/case-studies-disney-disney-vmc-2.png" alt="Interactive interface design" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/disney/case-studies-disney-disney-vmc.png" alt="Character integration design" class="gallery-image" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prototyping Phase -->
+    <section class="section phase-section prototyping-phase" id="prototyping" style="background: url('/public/mamp-images/backgrounds/Dark Gradient 03.png') center center/cover no-repeat; position: relative;">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.3); z-index: 1;"></div>
+        <div class="container" style="position: relative; z-index: 2;">
+            <div class="phase-header text-center mb-5">
+                <div class="phase-number bg-danger text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">5</div>
+                <h2 class="phase-title text-white display-4 fw-bold mb-2">Prototyping</h2>
+                <p class="phase-subtitle text-white-50 lead">Building and testing virtual magic prototypes</p>
+            </div>
+            
+            <div class="content-card card border-0 shadow-lg">
+                <div class="card-body p-5">
+                    <div class="row g-4">
+                        <div class="col-lg-8">
+                            <h3 class="text-dark mb-3">Rapid Prototyping</h3>
+                            <p class="text-dark">Created interactive prototypes to test virtual experiences with real users and stakeholders.</p>
+                            <ul class="text-dark mb-4">
+                                <li>Virtual environment and interaction prototypes</li>
+                                <li>Storytelling and character interaction prototypes</li>
+                                <li>Immersive audio and visual experience prototypes</li>
+                                <li>Social and collaborative feature prototypes</li>
+                                <li>User testing sessions with target audiences</li>
+                            </ul>
+                            <h4 class="text-dark mb-3">Prototype Testing</h4>
+                            <p class="text-dark">Conducted extensive testing with users to validate virtual experience concepts and gather feedback for refinement.</p>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="image-gallery" id="prototyping-gallery">
+                                <img src="/public/mamp-images/disney/case-studies-disney-disney-vmc-1.png" alt="Virtual environment prototype" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/disney/case-studies-disney-disney-vmc-2.png" alt="Interaction prototype" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/disney/case-studies-disney-disney-vmc.png" alt="Storytelling prototype" class="gallery-image" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testing Phase -->
+    <section class="section phase-section testing-phase bg-light" id="testing">
+        <div class="container">
+            <div class="phase-header text-center mb-5">
+                <div class="phase-number bg-secondary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">6</div>
+                <h2 class="phase-title text-dark display-4 fw-bold mb-2">Testing</h2>
+                <p class="phase-subtitle text-muted lead">Validating the virtual magic experience</p>
+            </div>
+            
+            <div class="content-card card border-0 shadow-lg">
+                <div class="card-body p-5">
+                    <div class="row g-4">
+                        <div class="col-lg-8">
+                            <h3 class="text-dark mb-3">User Testing & Validation</h3>
+                            <p class="text-dark">Conducted comprehensive testing of virtual experiences with diverse user groups to ensure the magic was captured authentically.</p>
+                            <ul class="text-dark mb-4">
+                                <li>Usability testing of virtual interactions and controls</li>
+                                <li>Immersion and engagement testing</li>
+                                <li>Storytelling and character interaction testing</li>
+                                <li>Performance testing across different devices</li>
+                                <li>Accessibility testing for diverse user needs</li>
+                            </ul>
+                            <h4 class="text-dark mb-3">Testing Results</h4>
+                            <ul class="text-dark">
+                                <li>95% of users felt immersed in the virtual experience</li>
+                                <li>90% reported feeling the Disney magic authentically</li>
+                                <li>85% found interactions intuitive and engaging</li>
+                                <li>Virtual environments received positive feedback</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="image-gallery" id="testing-gallery">
+                                <img src="/public/mamp-images/disney/case-studies-disney-disney-vmc-1.png" alt="Usability testing" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/disney/case-studies-disney-disney-vmc-2.png" alt="Immersion testing" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/disney/case-studies-disney-disney-vmc.png" alt="Storytelling testing" class="gallery-image" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Implementation Phase -->
+    <section class="section phase-section implementation-phase" id="implementation" style="background: url('/public/mamp-images/backgrounds/Dark Gradient 04.png') center center/cover no-repeat; position: relative;">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.3); z-index: 1;"></div>
+        <div class="container" style="position: relative; z-index: 2;">
+            <div class="phase-header text-center mb-5">
+                <div class="phase-number bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">7</div>
+                <h2 class="phase-title text-white display-4 fw-bold mb-2">Implementation</h2>
+                <p class="phase-subtitle text-white-50 lead">Launching the virtual magic experience</p>
+            </div>
+            
+            <div class="content-card card border-0 shadow-lg">
+                <div class="card-body p-5">
+                    <div class="row g-4">
+                        <div class="col-lg-8">
+                            <h3 class="text-dark mb-3">Virtual Experience Launch</h3>
+                            <p class="text-dark">Worked closely with Disney's development teams to implement the virtual experiences and integrate them with existing platforms.</p>
+                            <ul class="text-dark mb-4">
+                                <li>Virtual environment development and optimization</li>
+                                <li>Interactive element and control implementation</li>
+                                <li>Storytelling and character integration</li>
+                                <li>Performance optimization and testing</li>
+                                <li>User training and support documentation</li>
+                            </ul>
+                            <h4 class="text-dark mb-3">Implementation Success</h4>
+                            <p class="text-dark">The virtual magic experiences were successfully launched with comprehensive testing and support to ensure smooth operation and user satisfaction.</p>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="image-gallery" id="implementation-gallery">
+                                <img src="/public/mamp-images/disney/case-studies-disney-disney-vmc-1.png" alt="Environment development" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/disney/case-studies-disney-disney-vmc-2.png" alt="Interaction implementation" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/disney/case-studies-disney-disney-vmc.png" alt="Experience launch" class="gallery-image" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Launch Phase -->
+    <section class="section phase-section launch-phase bg-light" id="launch">
+        <div class="container">
+            <div class="phase-header text-center mb-5">
+                <div class="phase-number bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">8</div>
+                <h2 class="phase-title text-dark display-4 fw-bold mb-2">Launch</h2>
+                <p class="phase-subtitle text-muted lead">Measuring success and continuous improvement</p>
+            </div>
+            
+            <div class="content-card card border-0 shadow-lg">
+                <div class="card-body p-5">
+                    <div class="row g-4">
+                        <div class="col-lg-8">
+                            <h3 class="text-dark mb-3">Virtual Magic Success</h3>
+                            <p class="text-dark">The Disney VMC virtual experiences launched successfully and have significantly improved user engagement and satisfaction.</p>
+                            <ul class="text-dark mb-4">
+                                <li>200% increase in user engagement</li>
+                                <li>95% user satisfaction rating</li>
+                                <li>90% completion rate for virtual experiences</li>
+                                <li>Enhanced brand connection and loyalty</li>
+                                <li>Expansion to additional virtual worlds and experiences</li>
+                            </ul>
+                            <h4 class="text-dark mb-3">Ongoing Impact</h4>
+                            <p class="text-dark">The virtual magic experiences continue to evolve based on user feedback and analytics, driving continuous improvement in engagement and magical moments.</p>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="image-gallery" id="launch-gallery">
+                                <img src="/public/mamp-images/disney/case-studies-disney-disney-vmc-1.png" alt="Launch celebration" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/disney/case-studies-disney-disney-vmc-2.png" alt="Success metrics" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/disney/case-studies-disney-disney-vmc.png" alt="Ongoing impact" class="gallery-image" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Used Section -->
+    <section class="tools-section py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title display-4 fw-bold mb-3">Tools & Technologies</h2>
+                <p class="section-subtitle lead text-muted">The tools and technologies used to create the Disney VMC virtual experiences</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="tool-card">
+                        <i class="fas fa-vr-cardboard text-primary mb-3" style="font-size: 2rem;"></i>
+                        <h5>VR/AR Tools</h5>
+                        <p class="text-muted">Unity, Unreal Engine, Oculus</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="tool-card">
+                        <i class="fas fa-pencil-ruler text-success mb-3" style="font-size: 2rem;"></i>
+                        <h5>Design Tools</h5>
+                        <p class="text-muted">Figma, Sketch, Adobe Creative Suite</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="tool-card">
+                        <i class="fas fa-code text-info mb-3" style="font-size: 2rem;"></i>
+                        <h5>Development</h5>
+                        <p class="text-muted">C#, JavaScript, WebGL</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="tool-card">
+                        <i class="fas fa-chart-line text-warning mb-3" style="font-size: 2rem;"></i>
+                        <h5>Analytics</h5>
+                        <p class="text-muted">Unity Analytics, Google Analytics</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lessons Learned Section -->
+    <section class="lessons-section py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="text-white display-4 fw-bold mb-3">Lessons Learned</h2>
+                <p class="text-white-50 lead">Key insights from designing the Disney VMC virtual experiences</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card border-0 bg-white bg-opacity-10 text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Immersion Requires Intuition</h5>
+                            <p class="card-text">Virtual experiences must feel natural and intuitive to maintain immersion and prevent users from being pulled out of the magical world.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card border-0 bg-white bg-opacity-10 text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Storytelling Drives Engagement</h5>
+                            <p class="card-text">Compelling narratives and character interactions are essential for maintaining user engagement in virtual environments.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card border-0 bg-white bg-opacity-10 text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Magic Moments Matter</h5>
+                            <p class="card-text">Unexpected, delightful interactions and surprise elements create memorable experiences that users want to share and return to.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card border-0 bg-white bg-opacity-10 text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Performance Enables Wonder</h5>
+                            <p class="card-text">Smooth, responsive virtual experiences are crucial for maintaining the sense of magic and preventing technical frustrations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Case Study Navigation will be loaded dynamically -->
+
+        <!-- Footer -->    <div id="footer-container"></div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom Scripts -->
+    <!-- Case Study Navigation -->
+    <script src="../scripts/case-study-navigation.js"></script>    <script src="../scripts/main.js"></script>
+</body>
+</html>

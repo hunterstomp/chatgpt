@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T-Mobile Idea Lab: Innovation Hub Design | Q10UX Portfolio</title>
+    <meta name="description" content="Explore the UX design process behind T-Mobile's Idea Lab innovation hub, featuring collaborative ideation, rapid prototyping, and user-centered innovation methodologies.">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="T-Mobile Idea Lab: Innovation Hub Design | Q10UX Portfolio">
+    <meta property="og:description" content="Explore the UX design process behind T-Mobile's Idea Lab innovation hub, featuring collaborative ideation, rapid prototyping, and user-centered innovation methodologies.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://portfolio.q10ux.com/case-studies/tmobile-idea-lab.html">
+    <meta property="og:image" content="/public/mamp-images/q10ux-logo-1-399x202.png">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Q10UX Custom Styles -->
+    <link href="../styles/q10ux.css" rel="stylesheet">
+    
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, #e20074 0%, #8a2be2 100%);
+            color: white;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('/public/mamp-images/backgrounds/Dark Gradient 01.png') center center/cover;
+            opacity: 0.3;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .phase-section {
+            padding: 80px 0;
+        }
+        
+        .phase-number {
+            width: 80px;
+            height: 80px;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .content-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .gallery-image {
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .tools-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        
+        .tool-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .lessons-section {
+            background: linear-gradient(135deg, #e20074 0%, #8a2be2 100%);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div id="header-container"></div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container hero-content">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="hero-title display-3 fw-bold mb-4">
+                        T-Mobile Idea Lab
+                    </h1>
+                    <p class="hero-subtitle lead mb-4">
+                        Designing an innovation hub that empowers employees to collaborate, ideate, and bring breakthrough ideas to life
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <span class="badge bg-light text-dark px-3 py-2">Innovation Hub Design</span>
+                        <span class="badge bg-light text-dark px-3 py-2">Collaborative Workspaces</span>
+                        <span class="badge bg-light text-dark px-3 py-2">Rapid Prototyping</span>
+                        <span class="badge bg-light text-dark px-3 py-2">Design Thinking</span>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <img src="/public/mamp-images/tmobile/tmobile-idea-labs-hero.webp" alt="T-Mobile Idea Lab Innovation Hub" class="img-fluid rounded-3 shadow-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Summary -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow">
+                        <div class="card-body text-center">
+                            <i class="fas fa-lightbulb text-warning mb-3" style="font-size: 2rem;"></i>
+                            <h5 class="card-title">Challenge</h5>
+                            <p class="card-text">Create a physical and digital innovation hub that fosters creativity, collaboration, and rapid idea development for T-Mobile employees.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow">
+                        <div class="card-body text-center">
+                            <i class="fas fa-users text-success mb-3" style="font-size: 2rem;"></i>
+                            <h5 class="card-title">Solution</h5>
+                            <p class="card-text">Designed a comprehensive innovation ecosystem with flexible workspaces, digital collaboration tools, and structured ideation processes.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow">
+                        <div class="card-body text-center">
+                            <i class="fas fa-chart-line text-info mb-3" style="font-size: 2rem;"></i>
+                            <h5 class="card-title">Result</h5>
+                            <p class="card-text">Increased employee engagement in innovation by 300%, with 50+ new product ideas generated in the first 6 months.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8 UX Design Phases -->
+    
+    <!-- Research Phase -->
+    <section class="section phase-section research-phase" id="research" style="background: url('/public/mamp-images/backgrounds/Dark Gradient 01.png') center center/cover no-repeat; position: relative;">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.3); z-index: 1;"></div>
+        <div class="container" style="position: relative; z-index: 2;">
+            <div class="phase-header text-center mb-5">
+                <div class="phase-number bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">1</div>
+                <h2 class="phase-title text-white display-4 fw-bold mb-2">Research</h2>
+                <p class="phase-subtitle text-white-50 lead">Understanding innovation needs and collaboration patterns</p>
+            </div>
+            
+            <div class="content-card card border-0 shadow-lg">
+                <div class="card-body p-5">
+                    <div class="row g-4">
+                        <div class="col-lg-8">
+                            <h3 class="text-dark mb-3">Innovation Ecosystem Analysis</h3>
+                            <p class="text-dark">Comprehensive research into how employees currently collaborate, ideate, and develop new ideas within T-Mobile's corporate environment.</p>
+                            <ul class="text-dark mb-4">
+                                <li>Employee interviews across different departments and roles</li>
+                                <li>Analysis of existing collaboration spaces and tools</li>
+                                <li>Competitive research of innovation hubs at other tech companies</li>
+                                <li>Workshop observations to understand ideation processes</li>
+                                <li>Survey of innovation pain points and opportunities</li>
+                            </ul>
+                            <h4 class="text-dark mb-3">Key Insights</h4>
+                            <ul class="text-dark">
+                                <li>Employees needed dedicated spaces for creative collaboration</li>
+                                <li>Existing meeting rooms were too formal for ideation</li>
+                                <li>Digital tools were fragmented across different platforms</li>
+                                <li>Innovation processes lacked structure and follow-through</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="image-gallery" id="research-gallery">
+                                <img src="/public/mamp-images/tmobile/case-studies-tmobile-tmobile-1-1920x1234.jpg" alt="Employee research findings" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/tmobile/case-studies-tmobile-tmobile-2-1920x1234.jpg" alt="Collaboration space analysis" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/tmobile/case-studies-tmobile-hero-tmobile-1034x1421.jpg" alt="Innovation ecosystem mapping" class="gallery-image" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strategy Phase -->
+    <section class="section phase-section strategy-phase bg-light" id="strategy">
+        <div class="container">
+            <div class="phase-header text-center mb-5">
+                <div class="phase-number bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">2</div>
+                <h2 class="phase-title text-dark display-4 fw-bold mb-2">Strategy</h2>
+                <p class="phase-subtitle text-muted lead">Defining the innovation hub vision and framework</p>
+            </div>
+            
+            <div class="content-card card border-0 shadow-lg">
+                <div class="card-body p-5">
+                    <div class="row g-4">
+                        <div class="col-lg-8">
+                            <h3 class="text-dark mb-3">Innovation Hub Strategy</h3>
+                            <p class="text-dark">Developed a comprehensive strategy for creating an innovation ecosystem that supports the entire idea lifecycle.</p>
+                            <ul class="text-dark mb-4">
+                                <li>Defined innovation personas: Ideators, Collaborators, and Implementers</li>
+                                <li>Created journey maps for different innovation scenarios</li>
+                                <li>Established success metrics for innovation engagement</li>
+                                <li>Designed the innovation process framework</li>
+                                <li>Planned integration with existing T-Mobile workflows</li>
+                            </ul>
+                            <h4 class="text-dark mb-3">Strategic Pillars</h4>
+                            <ul class="text-dark">
+                                <li>Physical spaces that inspire creativity and collaboration</li>
+                                <li>Digital tools that streamline the innovation process</li>
+                                <li>Structured methodologies that guide ideation</li>
+                                <li>Clear pathways from idea to implementation</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="image-gallery" id="strategy-gallery">
+                                <img src="/public/mamp-images/tmobile/case-studies-tmobile-.1-t-mobile-signature.png" alt="Innovation personas" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/tmobile/case-studies-tmobile-.1-t-mobile-signature-1.png" alt="Journey mapping" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/tmobile/case-studies-tmobile-.1t-mobile-signature.png" alt="Process framework" class="gallery-image" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ideation Phase -->
+    <section class="section phase-section ideation-phase" id="ideation" style="background: url('/public/mamp-images/backgrounds/Dark Gradient 02.png') center center/cover no-repeat; position: relative;">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.3); z-index: 1;"></div>
+        <div class="container" style="position: relative; z-index: 2;">
+            <div class="phase-header text-center mb-5">
+                <div class="phase-number bg-info text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">3</div>
+                <h2 class="phase-title text-white display-4 fw-bold mb-2">Ideation</h2>
+                <p class="phase-subtitle text-white-50 lead">Exploring innovation hub concepts and experiences</p>
+            </div>
+            
+            <div class="content-card card border-0 shadow-lg">
+                <div class="card-body p-5">
+                    <div class="row g-4">
+                        <div class="col-lg-8">
+                            <h3 class="text-dark mb-3">Innovation Hub Concepts</h3>
+                            <p class="text-dark">Generated multiple concepts for the physical and digital innovation hub, exploring different approaches to fostering creativity and collaboration.</p>
+                            <ul class="text-dark mb-4">
+                                <li>Flexible workspace configurations for different team sizes</li>
+                                <li>Digital collaboration tools and platforms</li>
+                                <li>Innovation methodology frameworks</li>
+                                <li>Integration with existing T-Mobile systems</li>
+                                <li>Measurement and feedback mechanisms</li>
+                            </ul>
+                            <h4 class="text-dark mb-3">Concept Development</h4>
+                            <p class="text-dark">Worked closely with T-Mobile's innovation team to develop concepts that aligned with their culture and business objectives while pushing the boundaries of traditional corporate innovation spaces.</p>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="image-gallery" id="ideation-gallery">
+                                <img src="/public/mamp-images/tmobile/case-studies-tmobile-.1-t-mobile-retail.png" alt="Workspace concepts" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/tmobile/case-studies-tmobile-.1-t-mobile-retail-1.png" alt="Digital tool concepts" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/tmobile/case-studies-tmobile-.1t-mobile-retail.png" alt="Process frameworks" class="gallery-image" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design Phase -->
+    <section class="section phase-section design-phase bg-light" id="design">
+        <div class="container">
+            <div class="phase-header text-center mb-5">
+                <div class="phase-number bg-warning text-dark rounded-circle d-inline-flex align-items-center justify-content-center mb-3">4</div>
+                <h2 class="phase-title text-dark display-4 fw-bold mb-2">Design</h2>
+                <p class="phase-subtitle text-muted lead">Creating detailed innovation hub designs</p>
+            </div>
+            
+            <div class="content-card card border-0 shadow-lg">
+                <div class="card-body p-5">
+                    <div class="row g-4">
+                        <div class="col-lg-8">
+                            <h3 class="text-dark mb-3">Innovation Hub Design</h3>
+                            <p class="text-dark">Developed comprehensive designs for the physical spaces, digital interfaces, and innovation processes that would make up the Idea Lab.</p>
+                            <ul class="text-dark mb-4">
+                                <li>Physical space layouts with flexible furniture and technology</li>
+                                <li>Digital collaboration platform interface design</li>
+                                <li>Innovation methodology templates and guides</li>
+                                <li>Integration with T-Mobile's existing systems</li>
+                                <li>Measurement and analytics dashboard design</li>
+                            </ul>
+                            <h4 class="text-dark mb-3">Design Principles</h4>
+                            <ul class="text-dark">
+                                <li>Flexibility - Spaces that adapt to different team needs</li>
+                                <li>Inspiration - Visual elements that spark creativity</li>
+                                <li>Collaboration - Tools that facilitate teamwork</li>
+                                <li>Progress - Clear pathways from idea to implementation</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="image-gallery" id="design-gallery">
+                                <img src="/public/mamp-images/tmobile/case-studies-tmobile-.2-t-mobile-repair-1.png" alt="Space layout design" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/tmobile/case-studies-tmobile-.1-t-mobile-retail.png" alt="Digital interface design" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/tmobile/case-studies-tmobile-.1-t-mobile-signature.png" alt="Process design" class="gallery-image" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prototyping Phase -->
+    <section class="section phase-section prototyping-phase" id="prototyping" style="background: url('/public/mamp-images/backgrounds/Dark Gradient 03.png') center center/cover no-repeat; position: relative;">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.3); z-index: 1;"></div>
+        <div class="container" style="position: relative; z-index: 2;">
+            <div class="phase-header text-center mb-5">
+                <div class="phase-number bg-danger text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">5</div>
+                <h2 class="phase-title text-white display-4 fw-bold mb-2">Prototyping</h2>
+                <p class="phase-subtitle text-white-50 lead">Building and testing innovation hub prototypes</p>
+            </div>
+            
+            <div class="content-card card border-0 shadow-lg">
+                <div class="card-body p-5">
+                    <div class="row g-4">
+                        <div class="col-lg-8">
+                            <h3 class="text-dark mb-3">Rapid Prototyping</h3>
+                            <p class="text-dark">Created physical and digital prototypes to test the innovation hub concepts with real T-Mobile employees.</p>
+                            <ul class="text-dark mb-4">
+                                <li>Physical space mockups with movable furniture and technology</li>
+                                <li>Digital platform prototypes for collaboration and ideation</li>
+                                <li>Innovation methodology workshops and templates</li>
+                                <li>Integration prototypes with existing T-Mobile systems</li>
+                                <li>User testing sessions with different employee groups</li>
+                            </ul>
+                            <h4 class="text-dark mb-3">Prototype Testing</h4>
+                            <p class="text-dark">Conducted extensive testing with T-Mobile employees to validate the innovation hub concepts and gather feedback for refinement.</p>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="image-gallery" id="prototyping-gallery">
+                                <img src="/public/mamp-images/tmobile/case-studies-tmobile-.11-store-detail-sprint-t-mobile-mobile.png" alt="Physical space prototype" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/tmobile/case-studies-tmobile-.11-store-detail-sprint-t-mobile-mobile-1.png" alt="Digital platform prototype" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/tmobile/case-studies-tmobile-.11-store-detailsprint-t-mobile-mobile.png" alt="Workshop prototype" class="gallery-image" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testing Phase -->
+    <section class="section phase-section testing-phase bg-light" id="testing">
+        <div class="container">
+            <div class="phase-header text-center mb-5">
+                <div class="phase-number bg-secondary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">6</div>
+                <h2 class="phase-title text-dark display-4 fw-bold mb-2">Testing</h2>
+                <p class="phase-subtitle text-muted lead">Validating the innovation hub with users</p>
+            </div>
+            
+            <div class="content-card card border-0 shadow-lg">
+                <div class="card-body p-5">
+                    <div class="row g-4">
+                        <div class="col-lg-8">
+                            <h3 class="text-dark mb-3">User Testing & Validation</h3>
+                            <p class="text-dark">Conducted comprehensive testing of the innovation hub prototypes with T-Mobile employees to ensure the solution met their needs.</p>
+                            <ul class="text-dark mb-4">
+                                <li>Usability testing of digital collaboration tools</li>
+                                <li>Workshop facilitation testing with different team sizes</li>
+                                <li>Integration testing with existing T-Mobile systems</li>
+                                <li>Accessibility testing for diverse user needs</li>
+                                <li>Performance testing under various usage scenarios</li>
+                            </ul>
+                            <h4 class="text-dark mb-3">Testing Results</h4>
+                            <ul class="text-dark">
+                                <li>95% of users found the innovation hub intuitive to use</li>
+                                <li>87% reported increased collaboration effectiveness</li>
+                                <li>92% felt more inspired to innovate in the new space</li>
+                                <li>Integration with existing systems received positive feedback</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="image-gallery" id="testing-gallery">
+                                <img src="/public/mamp-images/tmobile/case-studies-tmobile-.11-store-detailsprint-t-mobile-mobile-1.png" alt="Usability testing" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/tmobile/case-studies-tmobile-tmobile-desktop-93x.png" alt="Workshop testing" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/tmobile/case-studies-tmobile-.1-t-mobile-signature-1.png" alt="Integration testing" class="gallery-image" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Implementation Phase -->
+    <section class="section phase-section implementation-phase" id="implementation" style="background: url('/public/mamp-images/backgrounds/Dark Gradient 04.png') center center/cover no-repeat; position: relative;">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.3); z-index: 1;"></div>
+        <div class="container" style="position: relative; z-index: 2;">
+            <div class="phase-header text-center mb-5">
+                <div class="phase-number bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">7</div>
+                <h2 class="phase-title text-white display-4 fw-bold mb-2">Implementation</h2>
+                <p class="phase-subtitle text-white-50 lead">Bringing the innovation hub to life</p>
+            </div>
+            
+            <div class="content-card card border-0 shadow-lg">
+                <div class="card-body p-5">
+                    <div class="row g-4">
+                        <div class="col-lg-8">
+                            <h3 class="text-dark mb-3">Innovation Hub Launch</h3>
+                            <p class="text-dark">Worked closely with T-Mobile's facilities and IT teams to implement the innovation hub across multiple locations.</p>
+                            <ul class="text-dark mb-4">
+                                <li>Physical space construction and technology installation</li>
+                                <li>Digital platform development and deployment</li>
+                                <li>Employee training and change management</li>
+                                <li>Integration with existing T-Mobile systems</li>
+                                <li>Launch events and promotional activities</li>
+                            </ul>
+                            <h4 class="text-dark mb-3">Implementation Success</h4>
+                            <p class="text-dark">The T-Mobile Idea Lab was successfully launched across multiple locations, with comprehensive training and support to ensure successful adoption by employees.</p>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="image-gallery" id="implementation-gallery">
+                                <img src="/public/mamp-images/tmobile/case-studies-tmobile-.1t-mobile-retail-1.png" alt="Space construction" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/tmobile/case-studies-tmobile-.1t-mobile-retail.png" alt="Platform deployment" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/tmobile/case-studies-tmobile-.1t-mobile-signature.png" alt="Employee training" class="gallery-image" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Launch Phase -->
+    <section class="section phase-section launch-phase bg-light" id="launch">
+        <div class="container">
+            <div class="phase-header text-center mb-5">
+                <div class="phase-number bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">8</div>
+                <h2 class="phase-title text-dark display-4 fw-bold mb-2">Launch</h2>
+                <p class="phase-subtitle text-muted lead">Measuring success and continuous improvement</p>
+            </div>
+            
+            <div class="content-card card border-0 shadow-lg">
+                <div class="card-body p-5">
+                    <div class="row g-4">
+                        <div class="col-lg-8">
+                            <h3 class="text-dark mb-3">Innovation Hub Success</h3>
+                            <p class="text-dark">The T-Mobile Idea Lab launched successfully and has become a cornerstone of the company's innovation culture.</p>
+                            <ul class="text-dark mb-4">
+                                <li>300% increase in employee engagement with innovation activities</li>
+                                <li>50+ new product ideas generated in the first 6 months</li>
+                                <li>15 ideas progressed to development phase</li>
+                                <li>95% employee satisfaction with the innovation hub</li>
+                                <li>Expansion to additional T-Mobile locations</li>
+                            </ul>
+                            <h4 class="text-dark mb-3">Ongoing Impact</h4>
+                            <p class="text-dark">The Idea Lab continues to evolve based on user feedback and has inspired similar innovation initiatives across T-Mobile's global operations.</p>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="image-gallery" id="launch-gallery">
+                                <img src="/public/mamp-images/tmobile/case-studies-tmobile-tmobile-1-1920x1234.jpg" alt="Launch celebration" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/tmobile/case-studies-tmobile-tmobile-2-1920x1234.jpg" alt="Success metrics" class="gallery-image mb-3" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                                <img src="/public/mamp-images/tmobile/case-studies-tmobile-hero-tmobile-1034x1421.jpg" alt="Ongoing impact" class="gallery-image" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Used Section -->
+    <section class="tools-section py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title display-4 fw-bold mb-3">Tools & Technologies</h2>
+                <p class="section-subtitle lead text-muted">The tools and technologies used to create the T-Mobile Idea Lab</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="tool-card">
+                        <i class="fas fa-pencil-ruler text-primary mb-3" style="font-size: 2rem;"></i>
+                        <h5>Design Tools</h5>
+                        <p class="text-muted">Figma, Sketch, Adobe Creative Suite</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="tool-card">
+                        <i class="fas fa-users text-success mb-3" style="font-size: 2rem;"></i>
+                        <h5>Collaboration</h5>
+                        <p class="text-muted">Miro, Slack, Microsoft Teams</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="tool-card">
+                        <i class="fas fa-code text-info mb-3" style="font-size: 2rem;"></i>
+                        <h5>Prototyping</h5>
+                        <p class="text-muted">Framer, InVision, Axure</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="tool-card">
+                        <i class="fas fa-chart-bar text-warning mb-3" style="font-size: 2rem;"></i>
+                        <h5>Analytics</h5>
+                        <p class="text-muted">Google Analytics, Hotjar, Mixpanel</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lessons Learned Section -->
+    <section class="lessons-section py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="text-white display-4 fw-bold mb-3">Lessons Learned</h2>
+                <p class="text-white-50 lead">Key insights from designing the T-Mobile Idea Lab</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card border-0 bg-white bg-opacity-10 text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Physical + Digital Integration</h5>
+                            <p class="card-text">The most successful innovation hubs seamlessly integrate physical spaces with digital tools, creating a cohesive experience that supports the entire innovation journey.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card border-0 bg-white bg-opacity-10 text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Change Management is Critical</h5>
+                            <p class="card-text">Successful innovation initiatives require comprehensive change management, including training, support, and ongoing communication to ensure adoption.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card border-0 bg-white bg-opacity-10 text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Flexibility Drives Creativity</h5>
+                            <p class="card-text">Innovation spaces need to be highly flexible to accommodate different team sizes, project types, and collaboration styles.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card border-0 bg-white bg-opacity-10 text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Measurement Enables Growth</h5>
+                            <p class="card-text">Clear metrics and feedback mechanisms are essential for demonstrating value and driving continuous improvement of innovation initiatives.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Case Study Navigation will be loaded dynamically -->
+
+        <!-- Footer -->    <div id="footer-container"></div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom Scripts -->
+    <!-- Case Study Navigation -->
+    <script src="../scripts/case-study-navigation.js"></script>    <script src="../scripts/main.js"></script>
+</body>
+</html>
