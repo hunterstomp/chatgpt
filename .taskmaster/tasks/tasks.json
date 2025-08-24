@@ -316,8 +316,41 @@
           2,
           3
         ],
-        "status": "pending",
-        "subtasks": []
+        "status": "in-progress",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Define TypeScript Interfaces for Case Study Metadata",
+            "description": "Design and implement TypeScript interfaces to represent all required project metadata fields, including title, client, date, skills, deliverables, images, and description. Ensure the structure is extensible for future needs.",
+            "dependencies": [],
+            "details": "Include optional and required fields, document each property, and validate the schema with sample data. Consider privacy and ethical standards for sensitive data.",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Develop Reusable Case Study Component Template",
+            "description": "Build a modular CaseStudy component with clearly defined sections for overview, process, outcomes, and gallery. Ensure the template supports flexible layouts and can be easily adapted for different case study types.",
+            "dependencies": [
+              "5.1"
+            ],
+            "details": "Use best practices for clarity and structure, such as headings, subheadings, and bullet points. Incorporate feedback mechanisms for continuous improvement.\n<info added on 2025-08-24T11:15:47.393Z>\nDeveloped comprehensive case study component architecture following atomic design principles:\n\n- Created modular CaseStudy component with consistent styling and layout\n- Built CaseStudyHero component featuring professional hero section with project title, client, date, and key metadata\n- Implemented CaseStudyOverview with detailed project information and contextual sidebar\n- Developed CaseStudyProcess component with interactive step-by-step methodology visualization\n- Created CaseStudyOutcomes component to showcase results, challenges faced, and solutions implemented\n- Built CaseStudyGallery with lightbox functionality, image optimization, and keyboard navigation\n- Implemented CaseStudyDeliverables component for downloadable assets and resources\n\nAll components feature:\n- Full TypeScript interface implementation with strict prop validation\n- Responsive design across all device sizes with professional animations\n- WCAG 2.1 AA accessibility compliance including keyboard navigation and screen reader support\n- Optimized performance with lazy loading for media assets\n- Consistent styling using the design system\n</info added on 2025-08-24T11:15:47.393Z>",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Implement Data Storage and Loading Mechanism",
+            "description": "Set up a system to store case study data as JSON or MDX files and load them dynamically into the CaseStudy component. Ensure the approach allows for easy updates and validation of required fields.",
+            "dependencies": [
+              "5.1",
+              "5.2"
+            ],
+            "details": "Document the data format, provide sample files, and test rendering multiple case studies with varying data completeness.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
       },
       {
         "id": 6,
@@ -461,7 +494,7 @@
     ],
     "metadata": {
       "created": "2025-08-24T10:56:59.816Z",
-      "updated": "2025-08-24T11:13:11.472Z",
+      "updated": "2025-08-24T11:15:51.113Z",
       "description": "Tasks for master context"
     }
   }
