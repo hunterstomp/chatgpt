@@ -13,220 +13,220 @@
  */
 
 class OptimizedGallery {
-    constructor(container, options = {}) {
-        this.container = typeof container === 'string' ? document.querySelector(container) : container;
-        this.options = {
-            thumbnailSize: options.thumbnailSize || 200,
-            thumbnailQuality: options.thumbnailQuality || 60,
-            captionMaxLength: options.captionMaxLength || 60,
-            seriesGrouping: options.seriesGrouping || 'flow', // 'flow', 'project', 'tags'
-            enableKeyboard: options.enableKeyboard !== false,
-            enableTouch: options.enableTouch !== false,
-            preloadAdjacent: options.preloadAdjacent !== false,
-            ...options
-        };
+  constructor(container, options = {}) {
+    this.container = typeof container === 'string' ? document.querySelector(container) : container;
+    this.options = {
+      thumbnailSize: options.thumbnailSize || 200,
+      thumbnailQuality: options.thumbnailQuality || 60,
+      captionMaxLength: options.captionMaxLength || 60,
+      seriesGrouping: options.seriesGrouping || 'flow', // 'flow', 'project', 'tags'
+      enableKeyboard: options.enableKeyboard !== false,
+      enableTouch: options.enableTouch !== false,
+      preloadAdjacent: options.preloadAdjacent !== false,
+      ...options,
+    };
         
-        this.images = [];
-        this.currentIndex = 0;
-        this.series = [];
-        this.isModalOpen = false;
+    this.images = [];
+    this.currentIndex = 0;
+    this.series = [];
+    this.isModalOpen = false;
         
-        this.init();
-    }
+    this.init();
+  }
 
-    init() {
-        this.createModal();
-        this.setupEventListeners();
-        this.render();
-    }
+  init() {
+    this.createModal();
+    this.setupEventListeners();
+    this.render();
+  }
 
-    setImages(images) {
-        this.images = images.map(img => ({
-            ...img,
-            thumbnail: this.generateThumbnailUrl(img.url),
-            teaserCaption: this.generateTeaserCaption(img.caption || img.title || ''),
-            series: this.detectSeries(img)
-        }));
+  setImages(images) {
+    this.images = images.map(img => ({
+      ...img,
+      thumbnail: this.generateThumbnailUrl(img.url),
+      teaserCaption: this.generateTeaserCaption(img.caption || img.title || ''),
+      series: this.detectSeries(img),
+    }));
         
-        this.groupImagesBySeries();
-        this.render();
-    }
+    this.groupImagesBySeries();
+    this.render();
+  }
 
-    generateThumbnailUrl(imageUrl) {
-        // Generate optimized thumbnail URL
-        // In a real implementation, this would use a CDN or image processing service
-        try {
-            const url = new URL(imageUrl, window.location.origin);
-            url.searchParams.set('w', this.options.thumbnailSize);
-            url.searchParams.set('h', this.options.thumbnailSize);
-            url.searchParams.set('q', this.options.thumbnailQuality);
-            url.searchParams.set('fit', 'cover');
-            url.searchParams.set('format', 'webp');
-            return url.toString();
-        } catch (error) {
-            // Fallback to original URL if URL parsing fails
-            return imageUrl;
-        }
+  generateThumbnailUrl(imageUrl) {
+    // Generate optimized thumbnail URL
+    // In a real implementation, this would use a CDN or image processing service
+    try {
+      const url = new URL(imageUrl, window.location.origin);
+      url.searchParams.set('w', this.options.thumbnailSize);
+      url.searchParams.set('h', this.options.thumbnailSize);
+      url.searchParams.set('q', this.options.thumbnailQuality);
+      url.searchParams.set('fit', 'cover');
+      url.searchParams.set('format', 'webp');
+      return url.toString();
+    } catch (error) {
+      // Fallback to original URL if URL parsing fails
+      return imageUrl;
     }
+  }
 
-    generateTeaserCaption(caption) {
-        if (!caption) return '';
+  generateTeaserCaption(caption) {
+    if (!caption) {return '';}
         
-        // Truncate to one line
-        const truncated = caption.length > this.options.captionMaxLength 
-            ? caption.substring(0, this.options.captionMaxLength - 3) + '...'
-            : caption;
+    // Truncate to one line
+    const truncated = caption.length > this.options.captionMaxLength 
+      ? `${caption.substring(0, this.options.captionMaxLength - 3)}...`
+      : caption;
         
-        return truncated;
+    return truncated;
+  }
+
+  detectSeries(image) {
+    // Detect series based on filename patterns, tags, or metadata
+    const fileName = image.url.split('/').pop().toLowerCase();
+        
+    // Common UX flow patterns
+    const flowPatterns = {
+      'research': ['research', 'interview', 'survey', 'persona', 'journey'],
+      'design': ['wireframe', 'mockup', 'design', 'layout', 'prototype'],
+      'testing': ['test', 'usability', 'feedback', 'validation'],
+      'implementation': ['final', 'production', 'launch', 'deploy'],
+    };
+        
+    for (const [flow, keywords] of Object.entries(flowPatterns)) {
+      if (keywords.some(keyword => fileName.includes(keyword))) {
+        return flow;
+      }
     }
+        
+    // Fallback to project-based grouping
+    return image.project || 'general';
+  }
 
-    detectSeries(image) {
-        // Detect series based on filename patterns, tags, or metadata
-        const fileName = image.url.split('/').pop().toLowerCase();
+  groupImagesBySeries() {
+    const groups = {};
         
-        // Common UX flow patterns
-        const flowPatterns = {
-            'research': ['research', 'interview', 'survey', 'persona', 'journey'],
-            'design': ['wireframe', 'mockup', 'design', 'layout', 'prototype'],
-            'testing': ['test', 'usability', 'feedback', 'validation'],
-            'implementation': ['final', 'production', 'launch', 'deploy']
-        };
+    this.images.forEach((image, index) => {
+      const seriesKey = image.series;
+      if (!groups[seriesKey]) {
+        groups[seriesKey] = [];
+      }
+      groups[seriesKey].push({ ...image, originalIndex: index });
+    });
         
-        for (const [flow, keywords] of Object.entries(flowPatterns)) {
-            if (keywords.some(keyword => fileName.includes(keyword))) {
-                return flow;
-            }
-        }
-        
-        // Fallback to project-based grouping
-        return image.project || 'general';
-    }
+    this.series = Object.entries(groups).map(([name, images]) => ({
+      name,
+      images,
+      count: images.length,
+    }));
+  }
 
-    groupImagesBySeries() {
-        const groups = {};
+  render() {
+    if (!this.container) {return;}
         
-        this.images.forEach((image, index) => {
-            const seriesKey = image.series;
-            if (!groups[seriesKey]) {
-                groups[seriesKey] = [];
-            }
-            groups[seriesKey].push({ ...image, originalIndex: index });
-        });
+    this.container.innerHTML = '';
         
-        this.series = Object.entries(groups).map(([name, images]) => ({
-            name,
-            images,
-            count: images.length
-        }));
-    }
+    this.series.forEach(series => {
+      const seriesContainer = this.createSeriesContainer(series);
+      this.container.appendChild(seriesContainer);
+    });
+  }
 
-    render() {
-        if (!this.container) return;
+  createSeriesContainer(series) {
+    const container = document.createElement('div');
+    container.className = 'gallery-series';
         
-        this.container.innerHTML = '';
-        
-        this.series.forEach(series => {
-            const seriesContainer = this.createSeriesContainer(series);
-            this.container.appendChild(seriesContainer);
-        });
-    }
-
-    createSeriesContainer(series) {
-        const container = document.createElement('div');
-        container.className = 'gallery-series';
-        
-        // Series header
-        const header = document.createElement('div');
-        header.className = 'series-header';
-        header.innerHTML = `
+    // Series header
+    const header = document.createElement('div');
+    header.className = 'series-header';
+    header.innerHTML = `
             <h3 class="series-title">${this.formatSeriesTitle(series.name)}</h3>
             <span class="series-count">${series.count} images</span>
         `;
-        container.appendChild(header);
+    container.appendChild(header);
         
-        // Thumbnails grid
-        const grid = document.createElement('div');
-        grid.className = 'thumbnails-grid';
+    // Thumbnails grid
+    const grid = document.createElement('div');
+    grid.className = 'thumbnails-grid';
         
-        series.images.forEach((image, index) => {
-            const thumbnail = this.createThumbnail(image, series, index);
-            grid.appendChild(thumbnail);
-        });
+    series.images.forEach((image, index) => {
+      const thumbnail = this.createThumbnail(image, series, index);
+      grid.appendChild(thumbnail);
+    });
         
-        container.appendChild(grid);
-        return container;
-    }
+    container.appendChild(grid);
+    return container;
+  }
 
-    formatSeriesTitle(seriesName) {
-        const titles = {
-            'research': 'User Research',
-            'design': 'Design Process',
-            'testing': 'Usability Testing',
-            'implementation': 'Final Implementation',
-            'general': 'General Screenshots'
-        };
+  formatSeriesTitle(seriesName) {
+    const titles = {
+      'research': 'User Research',
+      'design': 'Design Process',
+      'testing': 'Usability Testing',
+      'implementation': 'Final Implementation',
+      'general': 'General Screenshots',
+    };
         
-        return titles[seriesName] || seriesName.charAt(0).toUpperCase() + seriesName.slice(1);
-    }
+    return titles[seriesName] || seriesName.charAt(0).toUpperCase() + seriesName.slice(1);
+  }
 
-    createThumbnail(image, series, seriesIndex) {
-        const thumbnail = document.createElement('div');
-        thumbnail.className = 'thumbnail-item';
-        thumbnail.dataset.imageIndex = image.originalIndex;
-        thumbnail.dataset.seriesName = series.name;
-        thumbnail.dataset.seriesIndex = seriesIndex;
+  createThumbnail(image, series, seriesIndex) {
+    const thumbnail = document.createElement('div');
+    thumbnail.className = 'thumbnail-item';
+    thumbnail.dataset.imageIndex = image.originalIndex;
+    thumbnail.dataset.seriesName = series.name;
+    thumbnail.dataset.seriesIndex = seriesIndex;
         
-        // Lazy loading wrapper
-        const lazyWrapper = document.createElement('div');
-        lazyWrapper.className = 'lazy-wrapper';
+    // Lazy loading wrapper
+    const lazyWrapper = document.createElement('div');
+    lazyWrapper.className = 'lazy-wrapper';
         
-        // Thumbnail image
-        const img = document.createElement('img');
-        img.className = 'thumbnail-image';
-        img.loading = 'lazy';
-        img.alt = image.teaserCaption || 'UX Design Image';
+    // Thumbnail image
+    const img = document.createElement('img');
+    img.className = 'thumbnail-image';
+    img.loading = 'lazy';
+    img.alt = image.teaserCaption || 'UX Design Image';
         
-        // Use Intersection Observer for lazy loading
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    img.src = image.thumbnail;
-                    img.classList.add('loaded');
-                    observer.unobserve(img);
-                }
-            });
-        });
+    // Use Intersection Observer for lazy loading
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          img.src = image.thumbnail;
+          img.classList.add('loaded');
+          observer.unobserve(img);
+        }
+      });
+    });
         
-        observer.observe(img);
+    observer.observe(img);
         
-        // Teaser caption
-        const caption = document.createElement('div');
-        caption.className = 'teaser-caption';
-        caption.textContent = image.teaserCaption;
+    // Teaser caption
+    const caption = document.createElement('div');
+    caption.className = 'teaser-caption';
+    caption.textContent = image.teaserCaption;
         
-        // Loading placeholder
-        const placeholder = document.createElement('div');
-        placeholder.className = 'thumbnail-placeholder';
-        placeholder.innerHTML = '<div class="loading-spinner"></div>';
+    // Loading placeholder
+    const placeholder = document.createElement('div');
+    placeholder.className = 'thumbnail-placeholder';
+    placeholder.innerHTML = '<div class="loading-spinner"></div>';
         
-        lazyWrapper.appendChild(placeholder);
-        lazyWrapper.appendChild(img);
-        lazyWrapper.appendChild(caption);
+    lazyWrapper.appendChild(placeholder);
+    lazyWrapper.appendChild(img);
+    lazyWrapper.appendChild(caption);
         
-        thumbnail.appendChild(lazyWrapper);
+    thumbnail.appendChild(lazyWrapper);
         
-        // Click handler
-        thumbnail.addEventListener('click', () => {
-            this.openModal(image.originalIndex, series.name);
-        });
+    // Click handler
+    thumbnail.addEventListener('click', () => {
+      this.openModal(image.originalIndex, series.name);
+    });
         
-        return thumbnail;
-    }
+    return thumbnail;
+  }
 
-    createModal() {
-        const modal = document.createElement('div');
-        modal.className = 'gallery-modal';
-        modal.innerHTML = `
+  createModal() {
+    const modal = document.createElement('div');
+    modal.className = 'gallery-modal';
+    modal.innerHTML = `
             <div class="modal-overlay"></div>
             <div class="modal-container">
                 <div class="modal-header">
@@ -282,236 +282,236 @@ class OptimizedGallery {
             </div>
         `;
         
-        document.body.appendChild(modal);
-        this.modal = modal;
+    document.body.appendChild(modal);
+    this.modal = modal;
         
-        // Modal event listeners
-        this.modal.querySelector('.modal-overlay').addEventListener('click', () => this.closeModal());
-        this.modal.querySelector('.modal-close').addEventListener('click', () => this.closeModal());
-        this.modal.querySelector('.modal-prev').addEventListener('click', () => this.previousImage());
-        this.modal.querySelector('.modal-next').addEventListener('click', () => this.nextImage());
-        this.modal.querySelector('.modal-zoom').addEventListener('click', () => this.toggleZoom());
-        this.modal.querySelector('.modal-download').addEventListener('click', () => this.downloadImage());
-    }
+    // Modal event listeners
+    this.modal.querySelector('.modal-overlay').addEventListener('click', () => this.closeModal());
+    this.modal.querySelector('.modal-close').addEventListener('click', () => this.closeModal());
+    this.modal.querySelector('.modal-prev').addEventListener('click', () => this.previousImage());
+    this.modal.querySelector('.modal-next').addEventListener('click', () => this.nextImage());
+    this.modal.querySelector('.modal-zoom').addEventListener('click', () => this.toggleZoom());
+    this.modal.querySelector('.modal-download').addEventListener('click', () => this.downloadImage());
+  }
 
-    setupEventListeners() {
-        // Keyboard navigation
-        if (this.options.enableKeyboard) {
-            document.addEventListener('keydown', (e) => {
-                if (!this.isModalOpen) return;
+  setupEventListeners() {
+    // Keyboard navigation
+    if (this.options.enableKeyboard) {
+      document.addEventListener('keydown', (e) => {
+        if (!this.isModalOpen) {return;}
                 
-                switch (e.key) {
-                    case 'Escape':
-                        this.closeModal();
-                        break;
-                    case 'ArrowLeft':
-                        this.previousImage();
-                        break;
-                    case 'ArrowRight':
-                        this.nextImage();
-                        break;
-                    case 'z':
-                    case 'Z':
-                        this.toggleZoom();
-                        break;
-                }
-            });
+        switch (e.key) {
+        case 'Escape':
+          this.closeModal();
+          break;
+        case 'ArrowLeft':
+          this.previousImage();
+          break;
+        case 'ArrowRight':
+          this.nextImage();
+          break;
+        case 'z':
+        case 'Z':
+          this.toggleZoom();
+          break;
         }
+      });
+    }
         
-        // Touch/swipe support
-        if (this.options.enableTouch) {
-            let startX = 0;
-            let startY = 0;
+    // Touch/swipe support
+    if (this.options.enableTouch) {
+      let startX = 0;
+      let startY = 0;
             
-            this.modal.addEventListener('touchstart', (e) => {
-                startX = e.touches[0].clientX;
-                startY = e.touches[0].clientY;
-            });
+      this.modal.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+      });
             
-            this.modal.addEventListener('touchend', (e) => {
-                if (!this.isModalOpen) return;
+      this.modal.addEventListener('touchend', (e) => {
+        if (!this.isModalOpen) {return;}
                 
-                const endX = e.changedTouches[0].clientX;
-                const endY = e.changedTouches[0].clientY;
-                const diffX = startX - endX;
-                const diffY = startY - endY;
+        const endX = e.changedTouches[0].clientX;
+        const endY = e.changedTouches[0].clientY;
+        const diffX = startX - endX;
+        const diffY = startY - endY;
                 
-                // Minimum swipe distance
-                if (Math.abs(diffX) > 50 && Math.abs(diffY) < 100) {
-                    if (diffX > 0) {
-                        this.nextImage();
-                    } else {
-                        this.previousImage();
-                    }
-                }
-            });
+        // Minimum swipe distance
+        if (Math.abs(diffX) > 50 && Math.abs(diffY) < 100) {
+          if (diffX > 0) {
+            this.nextImage();
+          } else {
+            this.previousImage();
+          }
         }
+      });
     }
+  }
 
-    openModal(imageIndex, seriesName) {
-        this.currentIndex = imageIndex;
-        this.currentSeries = seriesName;
-        this.isModalOpen = true;
+  openModal(imageIndex, seriesName) {
+    this.currentIndex = imageIndex;
+    this.currentSeries = seriesName;
+    this.isModalOpen = true;
         
-        this.updateModal();
-        this.modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
+    this.updateModal();
+    this.modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
         
-        // Preload adjacent images
-        if (this.options.preloadAdjacent) {
-            this.preloadAdjacentImages();
-        }
+    // Preload adjacent images
+    if (this.options.preloadAdjacent) {
+      this.preloadAdjacentImages();
     }
+  }
 
-    closeModal() {
-        this.isModalOpen = false;
-        this.modal.classList.remove('active');
-        document.body.style.overflow = '';
-    }
+  closeModal() {
+    this.isModalOpen = false;
+    this.modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
 
-    updateModal() {
-        const image = this.images[this.currentIndex];
-        if (!image) return;
+  updateModal() {
+    const image = this.images[this.currentIndex];
+    if (!image) {return;}
         
-        // Update image
-        const modalImage = this.modal.querySelector('.modal-image');
-        modalImage.src = image.url;
-        modalImage.alt = image.caption || image.title || '';
+    // Update image
+    const modalImage = this.modal.querySelector('.modal-image');
+    modalImage.src = image.url;
+    modalImage.alt = image.caption || image.title || '';
         
-        // Update caption
-        const modalCaption = this.modal.querySelector('.modal-caption');
-        modalCaption.textContent = image.caption || image.title || '';
+    // Update caption
+    const modalCaption = this.modal.querySelector('.modal-caption');
+    modalCaption.textContent = image.caption || image.title || '';
         
-        // Update title and counter
-        const modalTitle = this.modal.querySelector('.modal-title');
-        const modalCounter = this.modal.querySelector('.modal-counter');
-        const currentSeries = this.series.find(s => s.name === this.currentSeries);
-        const seriesIndex = currentSeries?.images.findIndex(img => img.originalIndex === this.currentIndex) || 0;
+    // Update title and counter
+    const modalTitle = this.modal.querySelector('.modal-title');
+    const modalCounter = this.modal.querySelector('.modal-counter');
+    const currentSeries = this.series.find(s => s.name === this.currentSeries);
+    const seriesIndex = currentSeries?.images.findIndex(img => img.originalIndex === this.currentIndex) || 0;
         
-        modalTitle.textContent = image.title || this.formatSeriesTitle(this.currentSeries);
-        modalCounter.textContent = `${seriesIndex + 1} of ${currentSeries?.count || 1}`;
+    modalTitle.textContent = image.title || this.formatSeriesTitle(this.currentSeries);
+    modalCounter.textContent = `${seriesIndex + 1} of ${currentSeries?.count || 1}`;
         
-        // Update series info
-        const modalSeriesInfo = this.modal.querySelector('.modal-series-info');
-        modalSeriesInfo.textContent = `${this.formatSeriesTitle(this.currentSeries)} • ${image.tags?.join(', ') || ''}`;
+    // Update series info
+    const modalSeriesInfo = this.modal.querySelector('.modal-series-info');
+    modalSeriesInfo.textContent = `${this.formatSeriesTitle(this.currentSeries)} • ${image.tags?.join(', ') || ''}`;
         
-        // Update navigation buttons
-        this.updateNavigationButtons();
-    }
+    // Update navigation buttons
+    this.updateNavigationButtons();
+  }
 
-    updateNavigationButtons() {
-        const currentSeries = this.series.find(s => s.name === this.currentSeries);
-        const seriesIndex = currentSeries?.images.findIndex(img => img.originalIndex === this.currentIndex) || 0;
+  updateNavigationButtons() {
+    const currentSeries = this.series.find(s => s.name === this.currentSeries);
+    const seriesIndex = currentSeries?.images.findIndex(img => img.originalIndex === this.currentIndex) || 0;
         
-        const prevButton = this.modal.querySelector('.modal-prev');
-        const nextButton = this.modal.querySelector('.modal-next');
+    const prevButton = this.modal.querySelector('.modal-prev');
+    const nextButton = this.modal.querySelector('.modal-next');
         
-        prevButton.disabled = seriesIndex === 0;
-        nextButton.disabled = seriesIndex === (currentSeries?.count - 1);
+    prevButton.disabled = seriesIndex === 0;
+    nextButton.disabled = seriesIndex === (currentSeries?.count - 1);
         
-        prevButton.style.opacity = prevButton.disabled ? '0.3' : '1';
-        nextButton.style.opacity = nextButton.disabled ? '0.3' : '1';
-    }
+    prevButton.style.opacity = prevButton.disabled ? '0.3' : '1';
+    nextButton.style.opacity = nextButton.disabled ? '0.3' : '1';
+  }
 
-    previousImage() {
-        const currentSeries = this.series.find(s => s.name === this.currentSeries);
-        const seriesIndex = currentSeries?.images.findIndex(img => img.originalIndex === this.currentIndex) || 0;
+  previousImage() {
+    const currentSeries = this.series.find(s => s.name === this.currentSeries);
+    const seriesIndex = currentSeries?.images.findIndex(img => img.originalIndex === this.currentIndex) || 0;
         
-        if (seriesIndex > 0) {
-            const prevImage = currentSeries.images[seriesIndex - 1];
-            this.currentIndex = prevImage.originalIndex;
-            this.updateModal();
-        }
+    if (seriesIndex > 0) {
+      const prevImage = currentSeries.images[seriesIndex - 1];
+      this.currentIndex = prevImage.originalIndex;
+      this.updateModal();
     }
+  }
 
-    nextImage() {
-        const currentSeries = this.series.find(s => s.name === this.currentSeries);
-        const seriesIndex = currentSeries?.images.findIndex(img => img.originalIndex === this.currentIndex) || 0;
+  nextImage() {
+    const currentSeries = this.series.find(s => s.name === this.currentSeries);
+    const seriesIndex = currentSeries?.images.findIndex(img => img.originalIndex === this.currentIndex) || 0;
         
-        if (seriesIndex < currentSeries.count - 1) {
-            const nextImage = currentSeries.images[seriesIndex + 1];
-            this.currentIndex = nextImage.originalIndex;
-            this.updateModal();
-        }
+    if (seriesIndex < currentSeries.count - 1) {
+      const nextImage = currentSeries.images[seriesIndex + 1];
+      this.currentIndex = nextImage.originalIndex;
+      this.updateModal();
     }
+  }
 
-    toggleZoom() {
-        const modalImage = this.modal.querySelector('.modal-image');
-        modalImage.classList.toggle('zoomed');
-    }
+  toggleZoom() {
+    const modalImage = this.modal.querySelector('.modal-image');
+    modalImage.classList.toggle('zoomed');
+  }
 
-    downloadImage() {
-        const image = this.images[this.currentIndex];
-        if (!image) return;
+  downloadImage() {
+    const image = this.images[this.currentIndex];
+    if (!image) {return;}
         
-        const link = document.createElement('a');
-        link.href = image.url;
-        link.download = image.title || 'ux-image';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    }
+    const link = document.createElement('a');
+    link.href = image.url;
+    link.download = image.title || 'ux-image';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
 
-    preloadAdjacentImages() {
-        const currentSeries = this.series.find(s => s.name === this.currentSeries);
-        const seriesIndex = currentSeries?.images.findIndex(img => img.originalIndex === this.currentIndex) || 0;
+  preloadAdjacentImages() {
+    const currentSeries = this.series.find(s => s.name === this.currentSeries);
+    const seriesIndex = currentSeries?.images.findIndex(img => img.originalIndex === this.currentIndex) || 0;
         
-        // Preload next image
-        if (seriesIndex < currentSeries.count - 1) {
-            const nextImage = currentSeries.images[seriesIndex + 1];
-            const img = new Image();
-            img.src = nextImage.url;
-        }
+    // Preload next image
+    if (seriesIndex < currentSeries.count - 1) {
+      const nextImage = currentSeries.images[seriesIndex + 1];
+      const img = new Image();
+      img.src = nextImage.url;
+    }
         
-        // Preload previous image
-        if (seriesIndex > 0) {
-            const prevImage = currentSeries.images[seriesIndex - 1];
-            const img = new Image();
-            img.src = prevImage.url;
-        }
+    // Preload previous image
+    if (seriesIndex > 0) {
+      const prevImage = currentSeries.images[seriesIndex - 1];
+      const img = new Image();
+      img.src = prevImage.url;
     }
+  }
 
-    // Public API methods
-    addImage(image) {
-        this.images.push({
-            ...image,
-            thumbnail: this.generateThumbnailUrl(image.url),
-            teaserCaption: this.generateTeaserCaption(image.caption || image.title || ''),
-            series: this.detectSeries(image)
-        });
+  // Public API methods
+  addImage(image) {
+    this.images.push({
+      ...image,
+      thumbnail: this.generateThumbnailUrl(image.url),
+      teaserCaption: this.generateTeaserCaption(image.caption || image.title || ''),
+      series: this.detectSeries(image),
+    });
         
-        this.groupImagesBySeries();
-        this.render();
-    }
+    this.groupImagesBySeries();
+    this.render();
+  }
 
-    removeImage(imageIndex) {
-        this.images.splice(imageIndex, 1);
-        this.groupImagesBySeries();
-        this.render();
-    }
+  removeImage(imageIndex) {
+    this.images.splice(imageIndex, 1);
+    this.groupImagesBySeries();
+    this.render();
+  }
 
-    updateImage(imageIndex, updates) {
-        if (this.images[imageIndex]) {
-            this.images[imageIndex] = { ...this.images[imageIndex], ...updates };
-            this.groupImagesBySeries();
-            this.render();
-        }
+  updateImage(imageIndex, updates) {
+    if (this.images[imageIndex]) {
+      this.images[imageIndex] = { ...this.images[imageIndex], ...updates };
+      this.groupImagesBySeries();
+      this.render();
     }
+  }
 
-    destroy() {
-        if (this.modal && this.modal.parentNode) {
-            this.modal.parentNode.removeChild(this.modal);
-        }
+  destroy() {
+    if (this.modal && this.modal.parentNode) {
+      this.modal.parentNode.removeChild(this.modal);
+    }
         
-        if (this.container) {
-            this.container.innerHTML = '';
-        }
+    if (this.container) {
+      this.container.innerHTML = '';
     }
+  }
 }
 
 // Export for use in other modules
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = OptimizedGallery;
+  module.exports = OptimizedGallery;
 } else {
-    window.OptimizedGallery = OptimizedGallery;
+  window.OptimizedGallery = OptimizedGallery;
 }

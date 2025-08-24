@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Build outputs
+dist/
+build/
+*.min.js
+*.min.css
+
+# Legacy files
+backend/
+scripts/
+public/
+archive/
+
+# Configuration files
+*.config.js
+*.config.ts
+
+# Documentation
+*.md
+!README.md
+
+# Images and assets
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.webp
+*.ico
+*.pdf
+
+# Data files
+*.json
+!package.json
+!package-lock.json

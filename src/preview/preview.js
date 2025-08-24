@@ -4,179 +4,179 @@
  */
 
 class LivePreview {
-    constructor() {
-        this.projectId = this.getProjectIdFromUrl();
-        this.autoRefreshInterval = null;
-        this.lastData = null;
-        this.isAutoRefreshEnabled = true;
+  constructor() {
+    this.projectId = this.getProjectIdFromUrl();
+    this.autoRefreshInterval = null;
+    this.lastData = null;
+    this.isAutoRefreshEnabled = true;
         
-        this.init();
-    }
+    this.init();
+  }
 
-    init() {
-        this.setupEventListeners();
-        this.loadPreview();
-        this.startAutoRefresh();
-    }
+  init() {
+    this.setupEventListeners();
+    this.loadPreview();
+    this.startAutoRefresh();
+  }
 
-    getProjectIdFromUrl() {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get('project') || this.extractProjectIdFromPath();
-    }
+  getProjectIdFromUrl() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('project') || this.extractProjectIdFromPath();
+  }
 
-    extractProjectIdFromPath() {
-        const path = window.location.pathname;
-        const match = path.match(/\/preview\/([^\/]+)/);
-        return match ? match[1] : null;
-    }
+  extractProjectIdFromPath() {
+    const path = window.location.pathname;
+    const match = path.match(/\/preview\/([^\/]+)/);
+    return match ? match[1] : null;
+  }
 
-    setupEventListeners() {
-        // Refresh button
-        document.getElementById('refreshBtn').addEventListener('click', () => {
-            this.loadPreview(true);
-        });
+  setupEventListeners() {
+    // Refresh button
+    document.getElementById('refreshBtn').addEventListener('click', () => {
+      this.loadPreview(true);
+    });
 
-        // Edit button
-        document.getElementById('editBtn').addEventListener('click', () => {
-            this.openEditor();
-        });
+    // Edit button
+    document.getElementById('editBtn').addEventListener('click', () => {
+      this.openEditor();
+    });
 
-        // Publish button
-        document.getElementById('publishBtn').addEventListener('click', () => {
-            this.publishProject();
-        });
+    // Publish button
+    document.getElementById('publishBtn').addEventListener('click', () => {
+      this.publishProject();
+    });
 
-        // Toggle preview button
-        document.getElementById('togglePreviewBtn').addEventListener('click', () => {
-            this.toggleAutoRefresh();
-        });
+    // Toggle preview button
+    document.getElementById('togglePreviewBtn').addEventListener('click', () => {
+      this.toggleAutoRefresh();
+    });
 
-        // Keyboard shortcuts
-        document.addEventListener('keydown', (e) => {
-            if (e.ctrlKey || e.metaKey) {
-                switch (e.key) {
-                    case 'r':
-                        e.preventDefault();
-                        this.loadPreview(true);
-                        break;
-                    case 'e':
-                        e.preventDefault();
-                        this.openEditor();
-                        break;
-                    case 'p':
-                        e.preventDefault();
-                        this.publishProject();
-                        break;
-                }
-            }
-        });
-    }
-
-    async loadPreview(forceRefresh = false) {
-        if (!this.projectId) {
-            this.showError('No project ID found in URL');
-            return;
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+      if (e.ctrlKey || e.metaKey) {
+        switch (e.key) {
+        case 'r':
+          e.preventDefault();
+          this.loadPreview(true);
+          break;
+        case 'e':
+          e.preventDefault();
+          this.openEditor();
+          break;
+        case 'p':
+          e.preventDefault();
+          this.publishProject();
+          break;
         }
+      }
+    });
+  }
 
-        try {
-            this.showLoading();
+  async loadPreview(forceRefresh = false) {
+    if (!this.projectId) {
+      this.showError('No project ID found in URL');
+      return;
+    }
 
-            const response = await fetch(`/api/preview/${this.projectId}`, {
-                headers: {
-                    'Cache-Control': forceRefresh ? 'no-cache' : 'default'
-                }
-            });
+    try {
+      this.showLoading();
 
-            if (!response.ok) {
-                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-            }
+      const response = await fetch(`/api/preview/${this.projectId}`, {
+        headers: {
+          'Cache-Control': forceRefresh ? 'no-cache' : 'default',
+        },
+      });
 
-            const data = await response.json();
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+
+      const data = await response.json();
             
-            // Check if data has changed
-            if (!forceRefresh && this.lastData && JSON.stringify(this.lastData) === JSON.stringify(data)) {
-                return; // No changes
-            }
+      // Check if data has changed
+      if (!forceRefresh && this.lastData && JSON.stringify(this.lastData) === JSON.stringify(data)) {
+        return; // No changes
+      }
 
-            this.lastData = data;
-            this.renderPreview(data);
-            this.updateLastUpdated();
-            this.showAutoRefreshIndicator();
+      this.lastData = data;
+      this.renderPreview(data);
+      this.updateLastUpdated();
+      this.showAutoRefreshIndicator();
 
-        } catch (error) {
-            console.error('Error loading preview:', error);
-            this.showError(error.message);
-        }
+    } catch (error) {
+      console.error('Error loading preview:', error);
+      this.showError(error.message);
     }
+  }
 
-    renderPreview(data) {
-        const { project, flows } = data;
+  renderPreview(data) {
+    const { project, flows } = data;
 
-        // Hide loading, show content
-        document.getElementById('loadingState').style.display = 'none';
-        document.getElementById('errorState').style.display = 'none';
-        document.getElementById('previewContent').style.display = 'block';
+    // Hide loading, show content
+    document.getElementById('loadingState').style.display = 'none';
+    document.getElementById('errorState').style.display = 'none';
+    document.getElementById('previewContent').style.display = 'block';
 
-        // Render project info
-        this.renderProjectInfo(project);
+    // Render project info
+    this.renderProjectInfo(project);
 
-        // Render flow sections
-        this.renderFlowSections(flows, data.flowManager);
+    // Render flow sections
+    this.renderFlowSections(flows, data.flowManager);
 
-        // Show/hide empty state
-        const hasContent = Object.keys(flows).length > 0;
-        document.getElementById('emptyState').style.display = hasContent ? 'none' : 'block';
+    // Show/hide empty state
+    const hasContent = Object.keys(flows).length > 0;
+    document.getElementById('emptyState').style.display = hasContent ? 'none' : 'block';
+  }
+
+  renderProjectInfo(project) {
+    document.getElementById('projectTitle').textContent = project.title || 'Untitled Project';
+    document.getElementById('projectDescription').textContent = project.description || 'No description available';
+    document.getElementById('projectStatus').textContent = project.status || 'draft';
+    document.getElementById('projectStatus').className = `badge status-badge ${project.status || 'draft'}`;
+    document.getElementById('projectClient').textContent = project.client || 'Not specified';
+    document.getElementById('projectCreated').textContent = this.formatDate(project.createdAt);
+    document.getElementById('projectUpdated').textContent = this.formatDate(project.updatedAt);
+
+    // Render tags
+    const tagsContainer = document.getElementById('projectTags');
+    tagsContainer.innerHTML = '';
+    if (project.tags && project.tags.length > 0) {
+      project.tags.forEach(tag => {
+        const badge = document.createElement('span');
+        badge.className = 'badge bg-secondary me-2';
+        badge.textContent = tag;
+        tagsContainer.appendChild(badge);
+      });
     }
+  }
 
-    renderProjectInfo(project) {
-        document.getElementById('projectTitle').textContent = project.title || 'Untitled Project';
-        document.getElementById('projectDescription').textContent = project.description || 'No description available';
-        document.getElementById('projectStatus').textContent = project.status || 'draft';
-        document.getElementById('projectStatus').className = `badge status-badge ${project.status || 'draft'}`;
-        document.getElementById('projectClient').textContent = project.client || 'Not specified';
-        document.getElementById('projectCreated').textContent = this.formatDate(project.createdAt);
-        document.getElementById('projectUpdated').textContent = this.formatDate(project.updatedAt);
+  renderFlowSections(flows, flowManager) {
+    const container = document.getElementById('flowSections');
+    container.innerHTML = '';
 
-        // Render tags
-        const tagsContainer = document.getElementById('projectTags');
-        tagsContainer.innerHTML = '';
-        if (project.tags && project.tags.length > 0) {
-            project.tags.forEach(tag => {
-                const badge = document.createElement('span');
-                badge.className = 'badge bg-secondary me-2';
-                badge.textContent = tag;
-                tagsContainer.appendChild(badge);
-            });
-        }
-    }
+    // Get ordered flow types
+    const flowTypes = Object.keys(flows).sort((a, b) => {
+      const orderA = this.getFlowOrder(a, flowManager);
+      const orderB = this.getFlowOrder(b, flowManager);
+      return orderA - orderB;
+    });
 
-    renderFlowSections(flows, flowManager) {
-        const container = document.getElementById('flowSections');
-        container.innerHTML = '';
+    flowTypes.forEach(flowType => {
+      const series = flows[flowType];
+      if (series && series.length > 0) {
+        const section = this.createFlowSection(flowType, series, flowManager);
+        container.appendChild(section);
+      }
+    });
+  }
 
-        // Get ordered flow types
-        const flowTypes = Object.keys(flows).sort((a, b) => {
-            const orderA = this.getFlowOrder(a, flowManager);
-            const orderB = this.getFlowOrder(b, flowManager);
-            return orderA - orderB;
-        });
+  createFlowSection(flowType, series, flowManager) {
+    const section = document.createElement('div');
+    section.className = 'flow-section';
 
-        flowTypes.forEach(flowType => {
-            const series = flows[flowType];
-            if (series && series.length > 0) {
-                const section = this.createFlowSection(flowType, series, flowManager);
-                container.appendChild(section);
-            }
-        });
-    }
-
-    createFlowSection(flowType, series, flowManager) {
-        const section = document.createElement('div');
-        section.className = 'flow-section';
-
-        const flowInfo = this.getFlowInfo(flowType, flowManager);
+    const flowInfo = this.getFlowInfo(flowType, flowManager);
         
-        section.innerHTML = `
+    section.innerHTML = `
             <div class="flow-header">
                 <div class="d-flex align-items-center">
                     <i class="${flowInfo.icon} flow-icon"></i>
@@ -195,14 +195,14 @@ class LivePreview {
             </div>
         `;
 
-        return section;
-    }
+    return section;
+  }
 
-    createSeriesCard(series) {
-        const imageCount = series.images ? series.images.length : 0;
-        const firstImage = series.images && series.images.length > 0 ? series.images[0] : null;
+  createSeriesCard(series) {
+    const imageCount = series.images ? series.images.length : 0;
+    const firstImage = series.images && series.images.length > 0 ? series.images[0] : null;
         
-        return `
+    return `
             <div class="series-card">
                 <div class="series-title">${series.title}</div>
                 <div class="series-description">${series.description || 'No description'}</div>
@@ -224,140 +224,140 @@ class LivePreview {
                 </div>
             </div>
         `;
-    }
+  }
 
-    getFlowInfo(flowType, flowManager) {
-        // Try to find flow info from flowManager
-        const availableFlows = flowManager.availableFlows || [];
-        let flowInfo = availableFlows.find(f => f.id === flowType);
+  getFlowInfo(flowType, flowManager) {
+    // Try to find flow info from flowManager
+    const availableFlows = flowManager.availableFlows || [];
+    let flowInfo = availableFlows.find(f => f.id === flowType);
         
-        if (!flowInfo) {
-            // Fallback to basic info
-            flowInfo = {
-                title: this.capitalizeFirst(flowType),
-                description: `Content for ${flowType} stage`,
-                icon: 'fas fa-folder',
-                color: 'secondary'
-            };
-        }
-
-        return flowInfo;
+    if (!flowInfo) {
+      // Fallback to basic info
+      flowInfo = {
+        title: this.capitalizeFirst(flowType),
+        description: `Content for ${flowType} stage`,
+        icon: 'fas fa-folder',
+        color: 'secondary',
+      };
     }
 
-    getFlowOrder(flowType, flowManager) {
-        const availableFlows = flowManager.availableFlows || [];
-        const flow = availableFlows.find(f => f.id === flowType);
-        return flow ? (flow.order || 999) : 999;
+    return flowInfo;
+  }
+
+  getFlowOrder(flowType, flowManager) {
+    const availableFlows = flowManager.availableFlows || [];
+    const flow = availableFlows.find(f => f.id === flowType);
+    return flow ? (flow.order || 999) : 999;
+  }
+
+  capitalizeFirst(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
+  formatDate(dateString) {
+    if (!dateString) {return 'Unknown';}
+    const date = new Date(dateString);
+    return `${date.toLocaleDateString()} ${date.toLocaleTimeString([], { hour: '2-digit', minute:'2-digit' })}`;
+  }
+
+  showLoading() {
+    document.getElementById('loadingState').style.display = 'block';
+    document.getElementById('errorState').style.display = 'none';
+    document.getElementById('previewContent').style.display = 'none';
+  }
+
+  showError(message) {
+    document.getElementById('loadingState').style.display = 'none';
+    document.getElementById('previewContent').style.display = 'none';
+    document.getElementById('errorState').style.display = 'block';
+    document.getElementById('errorMessage').textContent = message;
+  }
+
+  showAutoRefreshIndicator() {
+    const indicator = document.createElement('div');
+    indicator.className = 'auto-refresh';
+    indicator.innerHTML = '<i class="fas fa-sync-alt"></i> Updated';
+    document.body.appendChild(indicator);
+
+    // Show indicator
+    setTimeout(() => indicator.classList.add('show'), 100);
+
+    // Remove indicator after 3 seconds
+    setTimeout(() => {
+      indicator.classList.remove('show');
+      setTimeout(() => indicator.remove(), 300);
+    }, 3000);
+  }
+
+  updateLastUpdated() {
+    const now = new Date();
+    document.getElementById('lastUpdated').textContent = now.toLocaleTimeString();
+  }
+
+  startAutoRefresh() {
+    if (this.autoRefreshInterval) {
+      clearInterval(this.autoRefreshInterval);
     }
 
-    capitalizeFirst(str) {
-        return str.charAt(0).toUpperCase() + str.slice(1);
-    }
+    this.autoRefreshInterval = setInterval(() => {
+      if (this.isAutoRefreshEnabled) {
+        this.loadPreview();
+      }
+    }, 5000); // Refresh every 5 seconds
+  }
 
-    formatDate(dateString) {
-        if (!dateString) return 'Unknown';
-        const date = new Date(dateString);
-        return date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-    }
-
-    showLoading() {
-        document.getElementById('loadingState').style.display = 'block';
-        document.getElementById('errorState').style.display = 'none';
-        document.getElementById('previewContent').style.display = 'none';
-    }
-
-    showError(message) {
-        document.getElementById('loadingState').style.display = 'none';
-        document.getElementById('previewContent').style.display = 'none';
-        document.getElementById('errorState').style.display = 'block';
-        document.getElementById('errorMessage').textContent = message;
-    }
-
-    showAutoRefreshIndicator() {
-        const indicator = document.createElement('div');
-        indicator.className = 'auto-refresh';
-        indicator.innerHTML = '<i class="fas fa-sync-alt"></i> Updated';
-        document.body.appendChild(indicator);
-
-        // Show indicator
-        setTimeout(() => indicator.classList.add('show'), 100);
-
-        // Remove indicator after 3 seconds
-        setTimeout(() => {
-            indicator.classList.remove('show');
-            setTimeout(() => indicator.remove(), 300);
-        }, 3000);
-    }
-
-    updateLastUpdated() {
-        const now = new Date();
-        document.getElementById('lastUpdated').textContent = now.toLocaleTimeString();
-    }
-
-    startAutoRefresh() {
-        if (this.autoRefreshInterval) {
-            clearInterval(this.autoRefreshInterval);
-        }
-
-        this.autoRefreshInterval = setInterval(() => {
-            if (this.isAutoRefreshEnabled) {
-                this.loadPreview();
-            }
-        }, 5000); // Refresh every 5 seconds
-    }
-
-    toggleAutoRefresh() {
-        this.isAutoRefreshEnabled = !this.isAutoRefreshEnabled;
-        const btn = document.getElementById('togglePreviewBtn');
+  toggleAutoRefresh() {
+    this.isAutoRefreshEnabled = !this.isAutoRefreshEnabled;
+    const btn = document.getElementById('togglePreviewBtn');
         
-        if (this.isAutoRefreshEnabled) {
-            btn.innerHTML = '<i class="fas fa-desktop"></i> Auto-refresh ON';
-            btn.classList.remove('btn-outline-secondary');
-            btn.classList.add('btn-success');
-        } else {
-            btn.innerHTML = '<i class="fas fa-desktop"></i> Auto-refresh OFF';
-            btn.classList.remove('btn-success');
-            btn.classList.add('btn-outline-secondary');
-        }
+    if (this.isAutoRefreshEnabled) {
+      btn.innerHTML = '<i class="fas fa-desktop"></i> Auto-refresh ON';
+      btn.classList.remove('btn-outline-secondary');
+      btn.classList.add('btn-success');
+    } else {
+      btn.innerHTML = '<i class="fas fa-desktop"></i> Auto-refresh OFF';
+      btn.classList.remove('btn-success');
+      btn.classList.add('btn-outline-secondary');
+    }
+  }
+
+  openEditor() {
+    // Open serial upload with this project
+    window.open(`/src/serial-upload/?project=${this.projectId}`, '_blank');
+  }
+
+  async publishProject() {
+    if (!this.projectId) {
+      alert('No project ID found');
+      return;
     }
 
-    openEditor() {
-        // Open serial upload with this project
-        window.open(`/src/serial-upload/?project=${this.projectId}`, '_blank');
+    try {
+      const response = await fetch(`/api/admin/publish-project/${this.projectId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('adminToken')}`,
+        },
+      });
+
+      if (response.ok) {
+        alert('Project published successfully!');
+        this.loadPreview(true);
+      } else {
+        const error = await response.json();
+        alert(`Publish failed: ${error.error}`);
+      }
+    } catch (error) {
+      console.error('Publish error:', error);
+      alert('Failed to publish project');
     }
-
-    async publishProject() {
-        if (!this.projectId) {
-            alert('No project ID found');
-            return;
-        }
-
-        try {
-            const response = await fetch(`/api/admin/publish-project/${this.projectId}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
-                }
-            });
-
-            if (response.ok) {
-                alert('Project published successfully!');
-                this.loadPreview(true);
-            } else {
-                const error = await response.json();
-                alert(`Publish failed: ${error.error}`);
-            }
-        } catch (error) {
-            console.error('Publish error:', error);
-            alert('Failed to publish project');
-        }
-    }
+  }
 }
 
 // Initialize preview when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-    new LivePreview();
+  new LivePreview();
 });
 
 // Export for global access
