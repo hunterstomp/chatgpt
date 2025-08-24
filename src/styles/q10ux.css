@@ -1460,18 +1460,7 @@ footer .logo-image {
 .resume-pill-container {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
   margin-left: 1rem;
-}
-
-.resume-label {
-  color: var(--text-primary);
-  font-family: 'Roboto Condensed', sans-serif;
-  font-weight: 700;
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  white-space: nowrap;
 }
 
 .resume-pill {
