@@ -1,0 +1,214 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Initialize Project Repository and Tooling",
+        "description": "Set up a version-controlled project repository with modern frontend tooling and enforce code quality standards.",
+        "details": "Create a Git repository. Use Node.js (LTS, v20+) and npm. Initialize with Vite (v5+) for fast development and build. Configure ESLint (v9+) and Prettier for code quality. Add Husky for pre-commit hooks. Set up .editorconfig and .gitignore. Choose MIT license.",
+        "testStrategy": "Verify repository setup, run lint and format scripts, ensure pre-commit hooks block bad code.",
+        "priority": "high",
+        "dependencies": [],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 2,
+        "title": "Design and Implement Project Structure",
+        "description": "Establish a scalable, organized file and folder structure for the portfolio website.",
+        "details": "Follow atomic design principles. Create src/components, src/pages, src/assets, src/data, and src/utils. Use PascalCase for components. Document structure in README. Use TypeScript for type safety.",
+        "testStrategy": "Check for logical organization, adherence to naming conventions, and TypeScript compilation.",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 3,
+        "title": "Setup Core UI Framework and Styling",
+        "description": "Integrate a modern UI framework and global styling system.",
+        "details": "Install React (v18+), React Router (v6+), and Tailwind CSS (v3.4+). Configure Tailwind with custom theme for branding. Add PostCSS and autoprefixer. Set up global styles and CSS reset. Use CSS variables for color and typography.",
+        "testStrategy": "Render sample components, verify Tailwind classes and custom theme, check responsive breakpoints.",
+        "priority": "high",
+        "dependencies": [
+          2
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 4,
+        "title": "Implement Navigation System",
+        "description": "Develop an intuitive, accessible navigation bar and breadcrumb system.",
+        "details": "Use React Router for SPA navigation. Build a top navigation bar with clear CTAs: About, Portfolio, Contact, Resume. Add breadcrumbs for subpages. Ensure keyboard navigation and ARIA roles for accessibility. Follow 'One-Click Rule' for key content.",
+        "testStrategy": "Test navigation on desktop and mobile, validate ARIA roles, check tab order and focus states.",
+        "priority": "high",
+        "dependencies": [
+          3
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 5,
+        "title": "Develop Case Study Templates and Data Model",
+        "description": "Create reusable templates and data structures for case studies.",
+        "details": "Define a TypeScript interface for project metadata (title, client, date, skills, deliverables, images, description). Build a CaseStudy component with sections for overview, process, outcomes, and gallery. Store case study data as JSON or MDX for easy updates.",
+        "testStrategy": "Render multiple case studies with different data, validate schema, check for missing fields.",
+        "priority": "high",
+        "dependencies": [
+          2,
+          3
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 6,
+        "title": "Automated Image Processing Pipeline",
+        "description": "Implement automated image optimization and organization.",
+        "details": "Use Sharp (v0.33+) for server-side image resizing and compression. Integrate with npm scripts for batch processing. Store images in src/assets/images with naming conventions. Generate WebP and fallback JPEG/PNG. Add alt text metadata.",
+        "testStrategy": "Process sample images, check output sizes and formats, verify alt text presence, run Lighthouse performance audit.",
+        "priority": "high",
+        "dependencies": [
+          2
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 7,
+        "title": "Build Portfolio Gallery with Filtering and Lightbox",
+        "description": "Create a gallery to showcase projects with filtering and lightbox features.",
+        "details": "Use React and Framer Motion for smooth animations. Implement filtering by client, project type, and skills. Integrate React Photo Gallery (v8+) and React-Modal for lightbox. Ensure keyboard and screen reader accessibility.",
+        "testStrategy": "Test filtering logic, open/close lightbox, check accessibility, verify image quality and performance.",
+        "priority": "high",
+        "dependencies": [
+          4,
+          5,
+          6
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 8,
+        "title": "Implement About Page and Skills Visualization",
+        "description": "Develop an About page with professional background and a visual skills showcase.",
+        "details": "Create AboutPage component with structured sections: bio, experience, certifications. Use React Simple Bar Chart or D3.js for skills visualization. Ensure responsive layout and accessible color contrast.",
+        "testStrategy": "Render About page on all devices, validate chart accessibility, check for content clarity.",
+        "priority": "medium",
+        "dependencies": [
+          3
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 9,
+        "title": "Develop Contact Form with Validation and Email Integration",
+        "description": "Create a professional contact form with validation and backend email delivery.",
+        "details": "Use React Hook Form (v7+) for form state and validation. Integrate with EmailJS or a serverless function (e.g., Vercel/Netlify Functions) for email delivery. Add spam protection (honeypot + reCAPTCHA v3). Store submissions in a secure backend (e.g., Firebase or Supabase, optional).",
+        "testStrategy": "Submit valid/invalid forms, check email delivery, test spam protection, verify accessibility.",
+        "priority": "high",
+        "dependencies": [
+          3,
+          4
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 10,
+        "title": "Resume Download and Asset Delivery",
+        "description": "Enable secure, accessible downloads for resume and project deliverables.",
+        "details": "Store resume and assets in public directory or CDN. Use signed URLs for sensitive files if needed. Add download buttons with clear labels and ARIA attributes. Track downloads via analytics.",
+        "testStrategy": "Download files on all devices, check file integrity, validate accessibility and analytics events.",
+        "priority": "medium",
+        "dependencies": [
+          4
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 11,
+        "title": "Responsive Design and Mobile Optimization",
+        "description": "Ensure a mobile-first, fully responsive layout across all pages and components.",
+        "details": "Use Tailwind's responsive utilities and CSS grid/flexbox. Test on Chrome, Firefox, Safari, Edge, iOS Safari, Chrome Mobile, Samsung Internet. Optimize touch targets and font sizes. Use Lighthouse and BrowserStack for device testing.",
+        "testStrategy": "Test on multiple devices and browsers, run Lighthouse mobile audit, check for layout issues.",
+        "priority": "high",
+        "dependencies": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 12,
+        "title": "Accessibility (WCAG 2.1 AA) Compliance",
+        "description": "Implement and verify accessibility features for inclusive design.",
+        "details": "Use semantic HTML, ARIA roles, and keyboard navigation. Ensure color contrast, alt text, focus indicators, and skip links. Test with axe-core and Lighthouse. Provide accessible labels for all interactive elements.",
+        "testStrategy": "Run automated accessibility tests, perform manual keyboard and screen reader checks, fix violations.",
+        "priority": "high",
+        "dependencies": [
+          11
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 13,
+        "title": "Performance Optimization (Lazy Loading, Caching, CDN)",
+        "description": "Optimize site performance for fast loading and high Lighthouse scores.",
+        "details": "Implement lazy loading for images (native loading='lazy' and React LazyLoad). Use Vite's code splitting. Configure HTTP caching headers. Deploy static assets to CDN (e.g., Cloudflare). Monitor with WebPageTest and Google PageSpeed Insights.",
+        "testStrategy": "Measure load times, Lighthouse performance score, verify lazy loading and CDN delivery.",
+        "priority": "high",
+        "dependencies": [
+          6,
+          7,
+          11
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 14,
+        "title": "SEO and Structured Data Implementation",
+        "description": "Add SEO meta tags, Open Graph, and structured data for discoverability.",
+        "details": "Use React Helmet Async for dynamic meta tags. Add JSON-LD structured data for projects and person schema. Optimize titles, descriptions, and canonical URLs. Generate sitemap.xml and robots.txt. Test with Google Search Console.",
+        "testStrategy": "Validate with Lighthouse SEO audit, test rich results in Google, check sitemap and robots.txt.",
+        "priority": "medium",
+        "dependencies": [
+          11
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 15,
+        "title": "Analytics and User Engagement Tracking",
+        "description": "Integrate analytics to monitor portfolio engagement and user flows.",
+        "details": "Use Plausible Analytics (privacy-friendly) or Google Analytics 4. Track page views, downloads, contact submissions, and filter usage. Add event tracking for key interactions. Ensure GDPR compliance (cookie consent if needed).",
+        "testStrategy": "Verify analytics events fire correctly, check dashboard for real-time data, test opt-out functionality.",
+        "priority": "medium",
+        "dependencies": [
+          11,
+          14
+        ],
+        "status": "pending",
+        "subtasks": []
+      }
+    ],
+    "metadata": {
+      "created": "2025-08-24T10:56:59.816Z",
+      "updated": "2025-08-24T10:56:59.816Z",
+      "description": "Tasks for master context"
+    }
+  }
+}
