@@ -1,17 +1,1 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
-echo "🔍 Running pre-commit checks..."
-
-# Run ESLint
-echo "📝 Checking code quality with ESLint..."
-npm run lint:fix
-
-# Run Prettier
-echo "🎨 Formatting code with Prettier..."
-npm run format
-
-# Add any formatted files back to staging
-git add -A
-
-echo "✅ Pre-commit checks completed successfully!"
+npm test
