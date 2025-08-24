@@ -518,10 +518,7 @@ html body .bg-light small {
   margin-top: 2rem;
   margin-bottom: 2rem;
   text-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
-  background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #ffffff;
   letter-spacing: -0.02em;
 }
 
@@ -1312,7 +1309,7 @@ footer .logo-image {
 /* Dropdown Menu */
 .q10ux-nav .dropdown-menu {
   background: var(--surface);
-  border: 1px solid var(--muted);
+  border: none;
   border-radius: var(--radius);
   box-shadow: var(--shadow-lg);
   margin-top: 1.5rem;
@@ -1361,7 +1358,75 @@ footer .logo-image {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 229, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
-/* Header Résumé Button */
+/* Resume Pill Container */
+.resume-pill-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 1rem;
+}
+
+.resume-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+  opacity: 0.8;
+}
+
+.resume-pill {
+  display: flex;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  transition: all var(--transition);
+}
+
+.resume-pill:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+}
+
+.resume-pill-left,
+.resume-pill-right {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  color: white;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all var(--transition);
+  border: none;
+  background: transparent;
+}
+
+.resume-pill-left {
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.resume-pill-left:hover,
+.resume-pill-right:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  text-decoration: none;
+}
+
+.resume-pill-left i,
+.resume-pill-right i {
+  margin-right: 0.5rem;
+  font-size: 0.75rem;
+}
+
+/* Header Résumé Button (Legacy - keeping for compatibility) */
 .q10ux-nav .nav-link.btn {
   margin-left: 0.5rem;
   padding: 0.75rem 1.5rem;
