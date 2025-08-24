@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="240px" height="240px" viewBox="0 0 240 240" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Trello@1x</title>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#0091E6" offset="0%"></stop>
+            <stop stop-color="#0079BF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Trello" stroke="none" fill="none" fill-rule="evenodd" stroke-width="1">
+        <g transform="translate(40, 40)">
+            <rect id="Form" fill="#FFFFFF" x="0" y="0" width="160" height="160" rx="20"></rect>
+            <g id="icon" transform="translate(30, 30)" fill-rule="nonzero">
+                <rect id="Rectangle-path" fill="url(#linearGradient-1)" x="0" y="0" width="100" height="100" rx="15.625"></rect>
+                <rect id="Rectangle-path" fill="#FFFFFF" x="56.5" y="13" width="30.5" height="43.75" rx="7.5"></rect>
+                <rect id="Rectangle-path" fill="#FFFFFF" x="13" y="13" width="30.5" height="68.75" rx="7.5"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

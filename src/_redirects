@@ -1,0 +1,6 @@
+# Redirects for clean URLs
+/case-studies /case-studies/
+/about /about/
+
+# Handle client-side routing
+/* /index.html 200
