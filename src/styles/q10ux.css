@@ -101,6 +101,83 @@ p, span, div, .description, .caption, .text, .content {
   color: #000 !important;
 }
 
+/* Ensure proper contrast for dark backgrounds */
+.bg-dark,
+.bg-dark *,
+.section.bg-dark,
+.section.bg-dark *,
+[class*="bg-dark"],
+[class*="bg-dark"] * {
+  color: #fff !important;
+}
+
+/* Fix for white text on white backgrounds */
+.text-white {
+  color: #fff !important;
+}
+
+/* Fix for black text on black backgrounds */
+.text-dark {
+  color: #000 !important;
+}
+
+/* Ensure proper contrast for cards */
+.card {
+  color: #000 !important;
+}
+
+.card * {
+  color: #000 !important;
+}
+
+/* Exception for dark cards */
+.card.bg-dark,
+.card.bg-dark * {
+  color: #fff !important;
+}
+
+/* Fix for phase sections */
+.phase-section {
+  color: #fff !important;
+}
+
+.phase-section * {
+  color: #fff !important;
+}
+
+/* Exception for light phase sections */
+.phase-section.bg-light,
+.phase-section.bg-light * {
+  color: #000 !important;
+}
+
+/* Additional contrast fixes for specific elements */
+.content-card {
+  color: #000 !important;
+}
+
+.content-card * {
+  color: #000 !important;
+}
+
+/* Fix for any remaining white-on-white issues */
+.text-white-50 {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Ensure proper contrast for all text elements */
+p, h1, h2, h3, h4, h5, h6, li, span, div {
+  color: inherit !important;
+}
+
+/* Force contrast for specific problematic classes */
+.phase-title,
+.phase-subtitle,
+.section-title,
+.section-subtitle {
+  color: inherit !important;
+}
+
 /* Override any inline styles on light backgrounds */
 .bg-light h1,
 .bg-light h2,

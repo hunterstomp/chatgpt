@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    
+    <!-- SEO Meta Tags -->
+    <title>Microsoft Office Live Workspaces - UX Case Study | Q10UX.com</title>
+    <meta name="description" content="Microsoft Office Live Workspaces UX case study - A dropbox equivalent for Microsoft Office Information Workers with WYSIWYG site builder capabilities.">
+    <meta name="keywords" content="Microsoft Office Live, UX design, WYSIWYG, site builder, file locker, collaboration, Office integration">
+    <meta name="author" content="Quentin Little">
+    <link rel="canonical" href="https://portfolio.q10ux.com/microsoft-office-live.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Microsoft Office Live Workspaces - UX Case Study">
+    <meta property="og:description" content="A dropbox equivalent for Microsoft Office Information Workers with WYSIWYG site builder capabilities.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://portfolio.q10ux.com/microsoft-office-live.html">
+    <meta property="og:image" content="/public/mamp-images/hero-olw-1034x1421.jpg">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Manrope:wght@200;300;400;500;600;700;800&family=Permanent+Marker&family=Roboto+Condensed:wght@300;400;700&family=Barlow+Condensed:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Q10UX Design System -->
+    <link rel="stylesheet" href="../styles/q10ux.css">
+    
+    <!-- Case Study Specific Styles -->
+    <style>
+        .case-study-hero {
+            background: linear-gradient(135deg, #0B0B0B 0%, #1a1a1a 50%, #0B0B0B 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .case-study-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('/public/mamp-images/backgrounds/Dark Gradient 01.png') center center/cover no-repeat;
+            opacity: 0.3;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .client-info {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius);
+        }
+        
+        .phase-section {
+            padding: 80px 0;
+        }
+        
+        .phase-number {
+            width: 80px;
+            height: 80px;
+            font-size: 2rem;
+            font-weight: bold;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .content-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: none;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .image-gallery {
+            min-height: 300px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: #f8f9fa;
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: var(--radius);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .tool-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .tool-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div id="header-container"></div>
+    
+    <main id="main-content">
+        <!-- Case Study Hero -->
+        <section class="case-study-hero py-5" style="min-height: 100vh; display: flex; align-items: center;">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-8">
+                        <div class="hero-content text-white">
+                            <h1 class="display-3 fw-bold mb-4">
+                                Microsoft Office Live Workspaces
+                            </h1>
+                            <p class="lead mb-4">
+                                A dropbox equivalent for Microsoft Office Information Workers, supporting both WYSIWYG site builder capabilities and collaborative file storage.
+                            </p>
+                            <div class="client-info p-4 mb-4">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <strong>Client</strong><br>
+                                        Microsoft
+                                    </div>
+                                    <div class="col-md-3">
+                                        <strong>Role</strong><br>
+                                        UX Designer
+                                    </div>
+                                    <div class="col-md-3">
+                                        <strong>Duration</strong><br>
+                                        18 Months
+                                    </div>
+                                    <div class="col-md-3">
+                                        <strong>Team</strong><br>
+                                        6 UX Designers, 2 UX Leads, Technical Fellow
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <img src="/public/mamp-images/hero-olw-1034x1421.jpg" alt="Microsoft Office Live Workspaces interface" class="img-fluid rounded shadow-lg">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Summary -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <h2 class="display-5 fw-bold mb-4">Project Summary</h2>
+                        <div class="row g-4">
+                            <div class="col-md-4">
+                                <div class="card h-100 border-0 shadow">
+                                    <div class="card-body text-center">
+                                        <i class="fas fa-exclamation-triangle text-warning mb-3" style="font-size: 2rem;"></i>
+                                        <h5 class="card-title">Problem</h5>
+                                        <p class="card-text">Office Live served two audiences: a small‑business site builder and a Workspaces file locker; both needed clearer IA and simpler setup.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card h-100 border-0 shadow">
+                                    <div class="card-body text-center">
+                                        <i class="fas fa-lightbulb text-info mb-3" style="font-size: 2rem;"></i>
+                                        <h5 class="card-title">Approach</h5>
+                                        <p class="card-text">Reworked the home shell and "Configurator" for site setup; clarified storage plans, templates, and publishing steps.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card h-100 border-0 shadow">
+                                    <div class="card-body text-center">
+                                        <i class="fas fa-chart-line text-success mb-3" style="font-size: 2rem;"></i>
+                                        <h5 class="card-title">Result</h5>
+                                        <p class="card-text">Faster time‑to‑publish for SMBs and cleaner Workspaces flows; reduced support friction during launch.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8 UX Design Phases -->
+        
+        <!-- Research Phase -->
+        <section class="section phase-section research-phase" id="research" style="background: url('/public/mamp-images/backgrounds/Dark Gradient 01.png') center center/cover no-repeat; position: relative;">
+            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.3); z-index: 1;"></div>
+            <div class="container" style="position: relative; z-index: 2;">
+                <div class="phase-header text-center mb-5">
+                    <div class="phase-number bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">1</div>
+                    <h2 class="phase-title text-white display-4 fw-bold mb-2">Research</h2>
+                    <p class="phase-subtitle text-white-50 lead">Understanding users, market, and opportunities</p>
+                </div>
+                
+                <div class="content-card card border-0 shadow-lg">
+                    <div class="card-body p-5">
+                        <div class="row g-4">
+                            <div class="col-lg-8">
+                                <h3 class="text-dark mb-3">Discovery & Analysis</h3>
+                                <p class="text-dark">Deep dive into user needs, behaviors, and pain points through comprehensive research methods.</p>
+                                <ul class="text-dark mb-4">
+                                    <li>User interviews and surveys with Information Workers</li>
+                                    <li>Competitive analysis of Dropbox and similar file storage solutions</li>
+                                    <li>Market research for small business website builders</li>
+                                    <li>Stakeholder interviews with Technical Fellow Suri Raman</li>
+                                    <li>Analytics review of existing Office Live usage patterns</li>
+                                </ul>
+                                <h4 class="text-dark mb-3">Key Insights</h4>
+                                <ul class="text-dark">
+                                    <li>Information Workers needed seamless Office document integration</li>
+                                    <li>Small businesses struggled with website setup complexity</li>
+                                    <li>Users wanted familiar Office-like interface patterns</li>
+                                    <li>Collaboration features were highly valued but underutilized</li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="image-gallery" id="research-gallery">
+                                    <div class="placeholder-image mb-3" style="height: 200px; background: linear-gradient(45deg, #f0f0f0, #e0e0e0); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; color: #666;">
+                                        <div class="text-center">
+                                            <i class="fas fa-search" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                                            <p class="mb-0">User Research Findings</p>
+                                        </div>
+                                    </div>
+                                    <div class="placeholder-image mb-3" style="height: 200px; background: linear-gradient(45deg, #f0f0f0, #e0e0e0); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; color: #666;">
+                                        <div class="text-center">
+                                            <i class="fas fa-chart-line" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                                            <p class="mb-0">Competitive Analysis</p>
+                                        </div>
+                                    </div>
+                                    <div class="placeholder-image" style="height: 200px; background: linear-gradient(45deg, #f0f0f0, #e0e0e0); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; color: #666;">
+                                        <div class="text-center">
+                                            <i class="fas fa-route" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                                            <p class="mb-0">User Journey Mapping</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Strategy Phase -->
+        <section class="section phase-section strategy-phase bg-light" id="strategy">
+            <div class="container">
+                <div class="phase-header text-center mb-5">
+                    <div class="phase-number bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">2</div>
+                    <h2 class="phase-title text-dark display-4 fw-bold mb-2">Strategy</h2>
+                    <p class="phase-subtitle text-muted lead">Defining direction and business alignment</p>
+                </div>
+                
+                <div class="content-card card border-0 shadow-lg">
+                    <div class="card-body p-5">
+                        <div class="row g-4">
+                            <div class="col-lg-8">
+                                <h3 class="text-dark mb-3">Strategic Foundation</h3>
+                                <p class="text-dark">Translating research insights into actionable strategy and clear project direction.</p>
+                                <ul class="text-dark mb-4">
+                                    <li>User personas for Information Workers and Small Business owners</li>
+                                    <li>Business goal alignment with Microsoft's cloud strategy</li>
+                                    <li>Feature prioritization based on user value and technical feasibility</li>
+                                    <li>Success metrics definition for adoption and engagement</li>
+                                    <li>Technical constraints assessment for Office integration</li>
+                                </ul>
+                                <h4 class="text-dark mb-3">Strategic Vision</h4>
+                                <p class="text-dark">Create a unified platform that serves both Information Workers with file storage needs and Small Businesses with website creation requirements, leveraging Microsoft's Office ecosystem for seamless integration.</p>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="image-gallery" id="strategy-gallery">
+                                    <div class="placeholder-image mb-3" style="height: 200px; background: linear-gradient(45deg, #f0f0f0, #e0e0e0); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; color: #666;">
+                                        <div class="text-center">
+                                            <i class="fas fa-users" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                                            <p class="mb-0">User Personas</p>
+                                        </div>
+                                    </div>
+                                    <div class="placeholder-image mb-3" style="height: 200px; background: linear-gradient(45deg, #f0f0f0, #e0e0e0); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; color: #666;">
+                                        <div class="text-center">
+                                            <i class="fas fa-bullseye" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                                            <p class="mb-0">Business Alignment</p>
+                                        </div>
+                                    </div>
+                                    <div class="placeholder-image" style="height: 200px; background: linear-gradient(45deg, #f0f0f0, #e0e0e0); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; color: #666;">
+                                        <div class="text-center">
+                                            <i class="fas fa-road" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                                            <p class="mb-0">Feature Roadmap</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ideation Phase -->
+        <section class="section phase-section ideation-phase" id="ideation" style="background: url('/public/mamp-images/backgrounds/Dark Gradient 02.png') center center/cover no-repeat; position: relative;">
+            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.3); z-index: 1;"></div>
+            <div class="container" style="position: relative; z-index: 2;">
+                <div class="phase-header text-center mb-5">
+                    <div class="phase-number bg-info text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">3</div>
+                    <h2 class="phase-title text-white display-4 fw-bold mb-2">Ideation</h2>
+                    <p class="phase-subtitle text-white-50 lead">Exploring concepts and solutions</p>
+                </div>
+                
+                <div class="content-card card border-0 shadow-lg">
+                    <div class="card-body p-5">
+                        <div class="row g-4">
+                            <div class="col-lg-8">
+                                <h3 class="text-dark mb-3">Creative Exploration</h3>
+                                <p class="text-dark">Generating and evaluating multiple solution concepts through collaborative ideation with the Technical Fellow.</p>
+                                <ul class="text-dark mb-4">
+                                    <li>Lightweight Ribbon concepts for web interface</li>
+                                    <li>Floating tool palettes for contextual editing</li>
+                                    <li>Progressive disclosure techniques for new users</li>
+                                    <li>Adaptive layouts for responsive design</li>
+                                    <li>Office template integration scenarios</li>
+                                </ul>
+                                <h4 class="text-dark mb-3">Collaborative Magic</h4>
+                                <p class="text-dark">Working with the Technical Fellow was one of the highlights of this project. His ability to envision bold concepts, paired with our collaborative synergy, made the process inspiring and deeply energizing.</p>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="image-gallery" id="ideation-gallery">
+                                    <div class="placeholder-image mb-3" style="height: 200px; background: linear-gradient(45deg, #f0f0f0, #e0e0e0); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; color: #666;">
+                                        <div class="text-center">
+                                            <i class="fas fa-palette" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                                            <p class="mb-0">Ribbon Interface Concepts</p>
+                                        </div>
+                                    </div>
+                                    <div class="placeholder-image mb-3" style="height: 200px; background: linear-gradient(45deg, #f0f0f0, #e0e0e0); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; color: #666;">
+                                        <div class="text-center">
+                                            <i class="fas fa-tools" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                                            <p class="mb-0">Tool Palette Designs</p>
+                                        </div>
+                                    </div>
+                                    <div class="placeholder-image" style="height: 200px; background: linear-gradient(45deg, #f0f0f0, #e0e0e0); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; color: #666;">
+                                        <div class="text-center">
+                                            <i class="fas fa-mobile-alt" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                                            <p class="mb-0">Responsive Layouts</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Design Phase -->
+        <section class="section phase-section design-phase bg-light" id="design">
+            <div class="container">
+                <div class="phase-header text-center mb-5">
+                    <div class="phase-number bg-warning text-dark rounded-circle d-inline-flex align-items-center justify-content-center mb-3">4</div>
+                    <h2 class="phase-title text-dark display-4 fw-bold mb-2">Design</h2>
+                    <p class="phase-subtitle text-muted lead">Creating detailed interfaces and interactions</p>
+                </div>
+                
+                <div class="content-card card border-0 shadow-lg">
+                    <div class="card-body p-5">
+                        <div class="row g-4">
+                            <div class="col-lg-8">
+                                <h3 class="text-dark mb-3">Interface Design</h3>
+                                <p class="text-dark">Developing detailed wireframes and high-fidelity mockups for both Workspaces and site builder experiences.</p>
+                                <ul class="text-dark mb-4">
+                                    <li>Home shell redesign for unified experience</li>
+                                    <li>Configurator interface for site setup</li>
+                                    <li>Workspaces file management interface</li>
+                                    <li>Sharing and collaboration flows</li>
+                                    <li>Mobile-responsive design patterns</li>
+                                </ul>
+                                <h4 class="text-dark mb-3">Design Principles</h4>
+                                <ul class="text-dark">
+                                    <li>Command Discovery - Make powerful tools visually findable</li>
+                                    <li>Context Awareness - Show only what's relevant to the task</li>
+                                    <li>Consistency - Unify commands across apps in both layout and logic</li>
+                                    <li>Efficiency - Fewer clicks to accomplish tasks</li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="image-gallery" id="design-gallery">
+                                    <img src="/public/mamp-images/microsoft/office-live-design-1.jpg" alt="Home shell redesign" class="gallery-image mb-3">
+                                    <img src="/public/mamp-images/microsoft/office-live-design-2.jpg" alt="Configurator interface" class="gallery-image mb-3">
+                                    <img src="/public/mamp-images/microsoft/office-live-design-3.jpg" alt="Workspaces interface" class="gallery-image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prototyping Phase -->
+        <section class="section phase-section prototyping-phase" id="prototyping" style="background: url('/public/mamp-images/backgrounds/Dark Gradient 03.png') center center/cover no-repeat; position: relative;">
+            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.3); z-index: 1;"></div>
+            <div class="container" style="position: relative; z-index: 2;">
+                <div class="phase-header text-center mb-5">
+                    <div class="phase-number bg-danger text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">5</div>
+                    <h2 class="phase-title text-white display-4 fw-bold mb-2">Prototyping</h2>
+                    <p class="phase-subtitle text-white-50 lead">Building interactive prototypes</p>
+                </div>
+                
+                <div class="content-card card border-0 shadow-lg">
+                    <div class="card-body p-5">
+                        <div class="row g-4">
+                            <div class="col-lg-8">
+                                <h3 class="text-dark mb-3">Interactive Prototypes</h3>
+                                <p class="text-dark">Creating functional prototypes to test user flows and interactions.</p>
+                                <ul class="text-dark mb-4">
+                                    <li>Axure prototypes for user testing</li>
+                                    <li>InVision prototypes for stakeholder review</li>
+                                    <li>HTML/CSS prototypes for developer handoff</li>
+                                    <li>Motion prototypes for interaction design</li>
+                                    <li>Silverlight prototypes for advanced interactions</li>
+                                </ul>
+                                <h4 class="text-dark mb-3">Pair Programming & Dev Alignment</h4>
+                                <p class="text-dark">When late-stage dev complications threatened the release timeline, I jumped into late-night sessions with engineering to work side-by-side in a tight design–build loop.</p>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="image-gallery" id="prototyping-gallery">
+                                    <img src="/public/mamp-images/microsoft/office-live-prototype-1.jpg" alt="Axure prototype" class="gallery-image mb-3">
+                                    <img src="/public/mamp-images/microsoft/office-live-prototype-2.jpg" alt="InVision prototype" class="gallery-image mb-3">
+                                    <img src="/public/mamp-images/microsoft/office-live-prototype-3.jpg" alt="HTML prototype" class="gallery-image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testing Phase -->
+        <section class="section phase-section testing-phase bg-light" id="testing">
+            <div class="container">
+                <div class="phase-header text-center mb-5">
+                    <div class="phase-number bg-secondary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">6</div>
+                    <h2 class="phase-title text-dark display-4 fw-bold mb-2">Testing</h2>
+                    <p class="phase-subtitle text-muted lead">Validating with users</p>
+                </div>
+                
+                <div class="content-card card border-0 shadow-lg">
+                    <div class="card-body p-5">
+                        <div class="row g-4">
+                            <div class="col-lg-8">
+                                <h3 class="text-dark mb-3">User Testing</h3>
+                                <p class="text-dark">Comprehensive testing to validate design decisions and identify improvement opportunities.</p>
+                                <ul class="text-dark mb-4">
+                                    <li>Usability testing with Information Workers</li>
+                                    <li>Small business owner feedback sessions</li>
+                                    <li>A/B testing for key user flows</li>
+                                    <li>Accessibility testing and compliance</li>
+                                    <li>Cross-browser compatibility testing</li>
+                                </ul>
+                                <h4 class="text-dark mb-3">Key Findings</h4>
+                                <ul class="text-dark">
+                                    <li>Users preferred familiar Office-like interface patterns</li>
+                                    <li>Simplified setup process significantly reduced drop-off</li>
+                                    <li>Clear visual hierarchy improved task completion</li>
+                                    <li>Mobile responsiveness was crucial for small business users</li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="image-gallery" id="testing-gallery">
+                                    <img src="/public/mamp-images/microsoft/office-live-testing-1.jpg" alt="Usability testing session" class="gallery-image mb-3">
+                                    <img src="/public/mamp-images/microsoft/office-live-testing-2.jpg" alt="User feedback analysis" class="gallery-image mb-3">
+                                    <img src="/public/mamp-images/microsoft/office-live-testing-3.jpg" alt="A/B test results" class="gallery-image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Implementation Phase -->
+        <section class="section phase-section implementation-phase" id="implementation" style="background: url('/public/mamp-images/backgrounds/Dark Gradient 04.png') center center/cover no-repeat; position: relative;">
+            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.3); z-index: 1;"></div>
+            <div class="container" style="position: relative; z-index: 2;">
+                <div class="phase-header text-center mb-5">
+                    <div class="phase-number bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">7</div>
+                    <h2 class="phase-title text-white display-4 fw-bold mb-2">Implementation</h2>
+                    <p class="phase-subtitle text-white-50 lead">Bringing designs to life</p>
+                </div>
+                
+                <div class="content-card card border-0 shadow-lg">
+                    <div class="card-body p-5">
+                        <div class="row g-4">
+                            <div class="col-lg-8">
+                                <h3 class="text-dark mb-3">Development Collaboration</h3>
+                                <p class="text-dark">Working closely with engineering teams to ensure pixel-perfect implementation.</p>
+                                <ul class="text-dark mb-4">
+                                    <li>Daily stand-ups with development team</li>
+                                    <li>CSS and frontend optimization</li>
+                                    <li>Bug fixing and interaction refinement</li>
+                                    <li>Performance optimization</li>
+                                    <li>Cross-browser compatibility fixes</li>
+                                </ul>
+                                <h4 class="text-dark mb-3">Release Management</h4>
+                                <p class="text-dark">Navigated a dual-track workflow that blended elements of Agile and Waterfall, ensuring pixel-perfect fidelity across layouts and smoothing out key interaction bugs.</p>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="image-gallery" id="implementation-gallery">
+                                    <img src="/public/mamp-images/microsoft/office-live-implementation-1.jpg" alt="Development collaboration" class="gallery-image mb-3">
+                                    <img src="/public/mamp-images/microsoft/office-live-implementation-2.jpg" alt="Code review session" class="gallery-image mb-3">
+                                    <img src="/public/mamp-images/microsoft/office-live-implementation-3.jpg" alt="Final implementation" class="gallery-image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Launch Phase -->
+        <section class="section phase-section launch-phase bg-light" id="launch">
+            <div class="container">
+                <div class="phase-header text-center mb-5">
+                    <div class="phase-number bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">8</div>
+                    <h2 class="phase-title text-dark display-4 fw-bold mb-2">Launch</h2>
+                    <p class="phase-subtitle text-muted lead">Going live and measuring success</p>
+                </div>
+                
+                <div class="content-card card border-0 shadow-lg">
+                    <div class="card-body p-5">
+                        <div class="row g-4">
+                            <div class="col-lg-8">
+                                <h3 class="text-dark mb-3">Launch & Results</h3>
+                                <p class="text-dark">Successfully launching the product and measuring impact.</p>
+                                <ul class="text-dark mb-4">
+                                    <li>Faster time‑to‑publish for SMBs</li>
+                                    <li>Cleaner Workspaces flows</li>
+                                    <li>Reduced support friction during launch</li>
+                                    <li>Improved user satisfaction scores</li>
+                                    <li>Increased adoption rates</li>
+                                </ul>
+                                <h4 class="text-dark mb-3">Key UX Wins</h4>
+                                <ul class="text-dark">
+                                    <li>Huge jump in feature discoverability</li>
+                                    <li>Consistent structure across Office apps</li>
+                                    <li>Visually modern, embracing task-oriented metaphor</li>
+                                    <li>Encouraged exploration and learning</li>
+                                    <li>Boosted efficiency for new users and casual users</li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="image-gallery" id="launch-gallery">
+                                    <img src="/public/mamp-images/microsoft/office-live-launch-1.jpg" alt="Launch celebration" class="gallery-image mb-3">
+                                    <img src="/public/mamp-images/microsoft/office-live-launch-2.jpg" alt="Success metrics" class="gallery-image mb-3">
+                                    <img src="/public/mamp-images/microsoft/office-live-launch-3.jpg" alt="User feedback" class="gallery-image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tools Used -->
+        <section class="py-5" style="background: linear-gradient(135deg, #0B0B0B 0%, #1a1a1a 100%);">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="text-white display-5 fw-bold mb-3">Tools Used</h2>
+                    <p class="text-white-50 lead">The design and development tools used for this initiative</p>
+                </div>
+                <div class="tools-grid">
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fab fa-sketch"></i>
+                        </div>
+                        <div class="text-white">Sketch</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="text-white">InVision</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-pencil-ruler"></i>
+                        </div>
+                        <div class="text-white">Axure</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="text-white">UserTesting</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fab fa-html5"></i>
+                        </div>
+                        <div class="text-white">HTML/CSS</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fab fa-js"></i>
+                        </div>
+                        <div class="text-white">JavaScript</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lessons Learned -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <h2 class="text-center display-5 fw-bold mb-5">Lessons Learned</h2>
+                        <div class="card border-0 shadow-lg">
+                            <div class="card-body p-5">
+                                <h3 class="text-dark mb-4">Collaborative Magic</h3>
+                                <p class="text-dark mb-4">Working with the Technical Fellow was one of the highlights of this project. His ability to envision bold concepts, paired with our collaborative synergy, made the process inspiring and deeply energizing. I thrive when someone brings a strong vision to the table — it's incredibly rewarding to build on that momentum with layered ideas, nuanced features, and thoughtful interaction design.</p>
+                                
+                                <h3 class="text-dark mb-4">Pair Programming & Dev Alignment</h3>
+                                <p class="text-dark mb-4">When late-stage dev complications threatened the release timeline, I jumped into late-night sessions with engineering to work side-by-side in a tight design–build loop. We navigated a dual-track workflow that blended elements of Agile and Waterfall, ensuring pixel-perfect fidelity across layouts, smoothing out key interaction bugs, and rapidly optimizing CSS and frontend user flows. Honestly? It was fun. I love being hands-on and collaborative when things get crunchy.</p>
+                                
+                                <h3 class="text-dark mb-4">What I'd Improve</h3>
+                                <p class="text-dark">Earlier in the process, we developed presentations and motion prototypes that gained traction across the org — they had legs. I only wish our final vision presentation had been seen more widely. We'd built blue-sky user flows and scenarios that were bold, future-facing, and rooted in community-first thinking, but some of that work was lost during reorg transitions. If I could go back, I'd push harder for early alignment with leadership to ensure those efforts landed with full strategic visibility.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Study Navigation -->
+        <section class="py-5 bg-dark">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <a href="#" class="btn btn-outline-light btn-lg">
+                                <i class="fas fa-arrow-left me-2"></i>
+                                Previous Case Study
+                            </a>
+                            <span class="text-light fw-bold">Microsoft Office Live Workspaces</span>
+                            <a href="tmobile-how-to-switch.html" class="btn btn-outline-light btn-lg">
+                                Next Case Study
+                                <i class="fas fa-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <div id="footer-container"></div>
+    </main>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Q10UX Scripts -->
+    <script src="../scripts/app.js"></script>
+    
+    <!-- Load Header and Footer -->
+    <script>
+        // Load header
+        fetch('../partials/header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-container').innerHTML = data;
+                initBootstrapDropdowns();
+            });
+        
+        // Load footer
+        fetch('../partials/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-container').innerHTML = data;
+            });
+        
+        // Initialize Bootstrap dropdowns
+        function initBootstrapDropdowns() {
+            if (typeof bootstrap === 'undefined') {
+                setTimeout(initBootstrapDropdowns, 100);
+                return;
+            }
+            
+            try {
+                const dropdownElementList = document.querySelectorAll('.dropdown-toggle');
+                dropdownElementList.forEach(dropdownToggleEl => {
+                    if (!bootstrap.Dropdown.getInstance(dropdownToggleEl)) {
+                        new bootstrap.Dropdown(dropdownToggleEl);
+                    }
+                });
+                
+                document.querySelectorAll('.dropdown-item').forEach(item => {
+                    item.addEventListener('click', function(e) {
+                        const dropdown = this.closest('.dropdown');
+                        if (dropdown) {
+                            const dropdownToggle = dropdown.querySelector('.dropdown-toggle');
+                            if (dropdownToggle) {
+                                const bsDropdown = bootstrap.Dropdown.getInstance(dropdownToggle);
+                                if (bsDropdown) {
+                                    bsDropdown.hide();
+                                }
+                            }
+                        }
+                    });
+                });
+            } catch (error) {
+                console.error('Error initializing Bootstrap dropdowns:', error);
+                setTimeout(initBootstrapDropdowns, 200);
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(initBootstrapDropdowns, 500);
+        });
+        
+        window.addEventListener('load', function() {
+            setTimeout(initBootstrapDropdowns, 1000);
+        });
+    </script>
+</body>
+</html>
