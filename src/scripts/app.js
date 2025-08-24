@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     
     // Hero Slideshow
-    initHeroSlideshow();
+    // initHeroSlideshow(); // Disabled to prevent background fading
     
     // Lightbox
     initLightbox();
