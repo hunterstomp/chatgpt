@@ -2,9 +2,7 @@
 title: AtmosFX eCommerce Platform — AtmosFX
 slug: atmosfx-ecommerce
 client: AtmosFX
-role:
-  - UX Designer
-  - Prototyper
+role: UX Designer,Prototyper
 date: 2024-08-24
 tags:
   - eCommerce
@@ -15,13 +13,7 @@ hero: /assets/case-studies/atmosfx-ecommerce/hero.webp
 summary: Redesigned eCommerce platform increased conversion by 38% and improved
   accessibility compliance.
 outcomes:
-  metrics:
-    - Conversion rate ↑ 38%
-    - Cart abandonment ↓ 24%
-    - Accessibility score ↑ 95%
-  quotes:
-    - '"The new platform exceeded our expectations for both usability and
-      performance." — Product Manager'
+  - "[object Object]"
 phases:
   - id: research
     title: Research
@@ -46,6 +38,8 @@ phases:
   - id: impact
     title: Impact & Learnings
     summary: Results analysis, future recommendations
+skills: []
+quotes: []
 ---
 
 import BaseLayout from '../../layouts/BaseLayout.astro';

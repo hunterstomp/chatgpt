@@ -8,11 +8,7 @@ tags:
   - Design
 summary: Bill & Melinda Gates Foundation - UX Case Study | Q10UX Portfolio...
 outcomes:
-  metrics:
-    - Improved user experience
-    - Enhanced functionality
-  quotes:
-    - Great work on this project. — Stakeholder
+  - "[object Object]"
 gallery:
   - src: /../assets/images/2015-gates-annual-letter-2-2000x1068-800x427.png
     alt: 2015 Gates Annual Letter 2 2000x1068 800x427
@@ -43,9 +39,9 @@ gallery:
     alt: 2015 Gates Annual Letter
     caption: 2015 Gates Annual Letter
   - src: /../assets/images/2015_Gates_Annual_Letter_and_Portfolio_‹_Quentin_Little_-_UX_Design_—_WordPress_and_1ATT.png
-    alt: 2015 Gates Annual Letter And Portfolio ‹ Quentin Little   UX Design —
+    alt: 2015 Gates Annual Letter And Portfolio ‹ Quentin Little UX Design —
       WordPress And 1ATT
-    caption: 2015 Gates Annual Letter And Portfolio ‹ Quentin Little   UX Design —
+    caption: 2015 Gates Annual Letter And Portfolio ‹ Quentin Little UX Design —
       WordPress And 1ATT
   - src: /../assets/images/2BMGF6.jpg
     alt: 2BMGF6
@@ -71,6 +67,8 @@ gallery:
   - src: /../assets/images/hero-bmgf-1276x1754.jpg
     alt: Hero Bmgf 1276x1754
     caption: Hero Bmgf 1276x1754
+skills: []
+quotes: []
 ---
 
 Bill & Melinda Gates Foundation - UX Case Study | Q10UX Portfolio

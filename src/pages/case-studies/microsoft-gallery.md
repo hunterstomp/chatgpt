@@ -8,11 +8,7 @@ tags:
   - Design
 summary: Microsoft - UX Case Study | Q10UX Portfolio...
 outcomes:
-  metrics:
-    - Improved user experience
-    - Enhanced functionality
-  quotes:
-    - Great work on this project. — Stakeholder
+  - "[object Object]"
 gallery:
   - src: /../assets/images/010-we-projecttopowerpointaddontoolforoffice.jpg
     alt: 010 We Projecttopowerpointaddontoolforoffice
@@ -567,6 +563,8 @@ gallery:
   - src: /../assets/images/workspaces-and-office-live-collaboration_5148008044_o.jpg
     alt: Workspaces And Office Live Collaboration 5148008044 O
     caption: Workspaces And Office Live Collaboration 5148008044 O
+skills: []
+quotes: []
 ---
 
 Microsoft - UX Case Study | Q10UX Portfolio

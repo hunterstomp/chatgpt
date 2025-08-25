@@ -3,9 +3,7 @@ layout: "@/layouts/CaseStudyLayout.astro"
 title: AtmosFX Media Player
 slug: atmosfx-media-player
 client: AtmosFX
-role:
-  - UX Designer
-  - Prototyper
+role: UX Designer,Prototyper
 date: 2025-01-15
 tags:
   - Prototyping
@@ -14,11 +12,7 @@ tags:
 hero: /assets/case-studies/atmosfx-media-player/hero.webp
 summary: Custom mini-PC OS and playlist UX for seasonal digital decorations.
 outcomes:
-  metrics:
-    - Task time ↓ 38%
-    - NPS +14
-  quotes:
-    - '"Shipped faster than anything last year." — PM'
+  - "[object Object]"
 phases:
   - id: research
     title: Research
@@ -42,6 +36,8 @@ gallery:
   - src: /assets/case-studies/atmosfx-media-player/settings.webp
     alt: Device settings
     caption: Hardware-aware defaults
+skills: []
+quotes: []
 ---
 
 ## Problem

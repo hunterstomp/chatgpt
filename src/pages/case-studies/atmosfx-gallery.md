@@ -8,11 +8,7 @@ tags:
   - Design
 summary: AtmosFX - UX Case Study | Q10UX Portfolio...
 outcomes:
-  metrics:
-    - Improved user experience
-    - Enhanced functionality
-  quotes:
-    - Great work on this project. — Stakeholder
+  - "[object Object]"
 gallery:
   - src: /../assets/images/0-AtmosFX.png
     alt: 0 AtmosFX
@@ -23,6 +19,8 @@ gallery:
   - src: /../assets/images/afx-prototype-ecommerce.jpg
     alt: Afx Prototype Ecommerce
     caption: Afx Prototype Ecommerce
+skills: []
+quotes: []
 ---
 
 AtmosFX - UX Case Study | Q10UX Portfolio

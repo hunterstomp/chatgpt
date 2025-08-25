@@ -8,11 +8,7 @@ tags:
   - Design
 summary: T-Mobile - UX Case Study | Q10UX Portfolio...
 outcomes:
-  metrics:
-    - Improved user experience
-    - Enhanced functionality
-  quotes:
-    - Great work on this project. — Stakeholder
+  - "[object Object]"
 gallery:
   - src: /../assets/images/0tmobile-1-1920x1234.jpg
     alt: 0tmobile 1 1920x1234
@@ -30,14 +26,14 @@ gallery:
     alt: 0tmobile 2 1920x1234
     caption: 0tmobile 2 1920x1234
   - src: /../assets/images/1.1 - T-Mobile Retail.png
-    alt: 1.1   T Mobile Retail
-    caption: 1.1   T Mobile Retail
+    alt: 1.1 T Mobile Retail
+    caption: 1.1 T Mobile Retail
   - src: /../assets/images/1.1 - T-Mobile Signature.png
-    alt: 1.1   T Mobile Signature
-    caption: 1.1   T Mobile Signature
+    alt: 1.1 T Mobile Signature
+    caption: 1.1 T Mobile Signature
   - src: /../assets/images/1.11 Store Detail - Sprint & T-Mobile (Mobile).png
-    alt: 1.11 Store Detail   Sprint & T Mobile (Mobile)
-    caption: 1.11 Store Detail   Sprint & T Mobile (Mobile)
+    alt: 1.11 Store Detail Sprint & T Mobile (Mobile)
+    caption: 1.11 Store Detail Sprint & T Mobile (Mobile)
   - src: /../assets/images/1.11-store-detailsprint-&-t-mobile-(mobile).png
     alt: 1.11 Store Detailsprint & T Mobile (Mobile)
     caption: 1.11 Store Detailsprint & T Mobile (Mobile)
@@ -48,23 +44,23 @@ gallery:
     alt: 1.1t Mobile Signature
     caption: 1.1t Mobile Signature
   - src: /../assets/images/1.2 - T-Mobile Repair.png
-    alt: 1.2   T Mobile Repair
-    caption: 1.2   T Mobile Repair
+    alt: 1.2 T Mobile Repair
+    caption: 1.2 T Mobile Repair
   - src: /../assets/images/1.2t-mobile-repair.png
     alt: 1.2t Mobile Repair
     caption: 1.2t Mobile Repair
   - src: /../assets/images/1.3 - T-Mobile and Sprint.png
-    alt: 1.3   T Mobile And Sprint
-    caption: 1.3   T Mobile And Sprint
+    alt: 1.3 T Mobile And Sprint
+    caption: 1.3 T Mobile And Sprint
   - src: /../assets/images/1.3t-mobile-and-sprint.png
     alt: 1.3t Mobile And Sprint
     caption: 1.3t Mobile And Sprint
   - src: /../assets/images/1.5 - Store Selector T-Mobile (Mobile)-1.png
-    alt: 1.5   Store Selector T Mobile (Mobile) 1
-    caption: 1.5   Store Selector T Mobile (Mobile) 1
+    alt: 1.5 Store Selector T Mobile (Mobile) 1
+    caption: 1.5 Store Selector T Mobile (Mobile) 1
   - src: /../assets/images/1.5 - Store Selector T-Mobile (Mobile).png
-    alt: 1.5   Store Selector T Mobile (Mobile)
-    caption: 1.5   Store Selector T Mobile (Mobile)
+    alt: 1.5 Store Selector T Mobile (Mobile)
+    caption: 1.5 Store Selector T Mobile (Mobile)
   - src: /../assets/images/1.5store-selector-t-mobile-(mobile)-1.png
     alt: 1.5store Selector T Mobile (Mobile) 1
     caption: 1.5store Selector T Mobile (Mobile) 1
@@ -72,8 +68,8 @@ gallery:
     alt: 1.5store Selector T Mobile (Mobile)
     caption: 1.5store Selector T Mobile (Mobile)
   - src: /../assets/images/1.6 - Store Selector T-Mobile and Sprint (Mobile).png
-    alt: 1.6   Store Selector T Mobile And Sprint (Mobile)
-    caption: 1.6   Store Selector T Mobile And Sprint (Mobile)
+    alt: 1.6 Store Selector T Mobile And Sprint (Mobile)
+    caption: 1.6 Store Selector T Mobile And Sprint (Mobile)
   - src: /../assets/images/1.6store-selector-t-mobile-and-sprint-(mobile).png
     alt: 1.6store Selector T Mobile And Sprint (Mobile)
     caption: 1.6store Selector T Mobile And Sprint (Mobile)
@@ -263,6 +259,8 @@ gallery:
   - src: /../assets/images/tmobile2-meta.png
     alt: Tmobile2 Meta
     caption: Tmobile2 Meta
+skills: []
+quotes: []
 ---
 
 T-Mobile - UX Case Study | Q10UX Portfolio

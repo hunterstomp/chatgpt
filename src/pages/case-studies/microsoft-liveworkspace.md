@@ -8,11 +8,9 @@ tags:
   - Prototype
 summary: One-line description of what this case study is about.
 outcomes:
-  metrics:
-    - Metric 1 improved
-    - Metric 2 improved
-  quotes:
-    - Sample stakeholder quote. — PM
+  - "[object Object]"
+skills: []
+quotes: []
 ---
 
 ## Problem
