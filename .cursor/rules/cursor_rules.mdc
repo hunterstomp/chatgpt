@@ -1,4 +1,15 @@
----
+**🚨 RULES FOR Q10UX PROJECT 🚨**
+
+- CANONICAL SOURCE = /Users/quentstyle/Pictures/_0_Q10UXPortfolioStaging/New stage/chatgpt/src
+- LEGACY SOURCE = /Applications/MAMP/htdocs/Q10UXPortfolio (Mobirise) — use ONLY as reference for case study copy/images.
+- DO NOT overwrite, reset, or re-import Mobirise structure. Extract content *out of it* when I ask.
+- When merging: KEEP all header/nav/footer elements from chatgpt/src unless I explicitly say to remove them.
+- All new pages/components must be added under chatgpt/src.
+- When unsure: ASK before discarding or overwriting files.
+- Deployment targets:
+  - Local: MAMP (htdocs/Q10UXPortfolio)
+  - Remote: Verify CDN for images + eventual Netlify/Vercel for site
+- Images: Serve from Verify CDN if available, fallback to /public/assets/images in this repo.---
 description: Guidelines for creating and maintaining Cursor rules to ensure consistency and effectiveness.
 globs: .cursor/rules/*.mdc
 alwaysApply: true

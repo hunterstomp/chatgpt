@@ -1,207 +1,236 @@
-# Q10UX Portfolio - Modern UX Design Portfolio
+# Q10UX Portfolio
 
-A comprehensive, responsive portfolio showcasing UX design work with case studies, interactive elements, and modern design patterns.
+A modern, accessible UX portfolio built with Astro and the Q10UX Command Pack. Features enterprise case studies, design system tokens, and comprehensive accessibility compliance.
 
 ## 🚀 Quick Start
 
-### Local Development
-```bash
-# Start local server
-python3 -m http.server 8000
+### Prerequisites
+- Node.js 16+ 
+- npm or yarn
 
-# Open in browser
-open http://localhost:8000/src/
+### Installation
+
+1. **Clone and install dependencies:**
+```bash
+git clone <repository-url>
+cd q10ux-portfolio
+npm install
 ```
 
-### Deployment
+2. **Install Astro dependencies:**
 ```bash
-# Deploy to Netlify
-netlify deploy --prod
+npm install astro @astrojs/mdx
 ```
+
+3. **Start development server:**
+```bash
+npm run dev
+```
+
+Visit `http://localhost:4321` to see your portfolio!
 
 ## 📁 Project Structure
 
 ```
 src/
-├── index.html                 # Main portfolio page
-├── about/                     # About page
-├── contact/                   # Contact form
-├── case-studies/             # Case study pages
-│   ├── index.html            # Case studies hub
-│   ├── microsoft-office-365.html
-│   ├── tmobile-idea-lab.html
-│   ├── att-international-roaming.html
-│   ├── atmosfx-ecommerce.html
-│   └── bmgf/
-├── styles/
-│   └── q10ux.css            # Main design system
-├── scripts/
-│   ├── main.js              # Core functionality
-│   └── case-study-navigation.js
-├── partials/                 # Reusable components
-│   ├── header.html
-│   ├── footer.html
-│   └── case-study-navigation.html
-└── assets/
-    └── images/              # Portfolio images
+├── layouts/
+│   └── BaseLayout.astro          # Main layout with Q10UX tokens
+├── pages/
+│   ├── index.astro               # Homepage
+│   ├── about.astro               # About page
+│   ├── contact.astro             # Contact page
+│   ├── case-studies/
+│   │   ├── index.astro           # Case studies listing
+│   │   └── [slug].mdx            # Individual case studies
+│   └── api/
+│       └── contact.js            # Contact form handler
+└── Q10UX_Command_Pack/           # Design system & tools
+    ├── styleguide/
+    │   └── tokens.css            # Q10UX design tokens
+    ├── templates/
+    │   └── case-study.mdx        # Case study template
+    └── scripts/                  # Build & optimization tools
 ```
 
 ## 🎨 Design System
 
-### Core Features
-- **Responsive Design**: Mobile-first approach with breakpoints for all devices
-- **Accessibility**: WCAG 2.1 AA compliant with proper contrast ratios
-- **Modern CSS**: Flexbox, Grid, CSS Custom Properties, and smooth animations
-- **Typography**: Google Fonts (Roboto Condensed, Inter) with proper hierarchy
-- **Color Palette**: Dark theme with accent colors and proper contrast
+The portfolio uses the Q10UX design system with:
 
-### Key Components
-- **Navigation**: Fixed header with dropdown menus and mobile hamburger
-- **Hero Sections**: Full-screen with gradient overlays and centered content
-- **Case Study Cards**: Hover effects with backdrop blur and smooth transitions
-- **Contact Forms**: Accessible forms with proper validation
-- **Case Study Navigation**: Previous/Next navigation between studies
+- **Color Palette**: Extracted from your Q10 card
+- **Typography**: Inter + Permanent Marker
+- **Components**: Rigid button system (primary/secondary/tertiary/danger)
+- **Accessibility**: WCAG 2.1 AA compliant
+- **Tokens**: CSS custom properties for consistent theming
 
-## 📱 Responsive Breakpoints
-
-```css
-/* Mobile First */
-@media (max-width: 576px) { /* Extra Small */ }
-@media (max-width: 768px) { /* Small */ }
-@media (min-width: 769px) and (max-width: 1024px) { /* Medium */ }
-@media (min-width: 1025px) { /* Large */ }
+### Button Classes
+```html
+<a class="btn btn--primary">Primary Action</a>
+<a class="btn btn--secondary">Secondary Action</a>
+<button class="btn btn--tertiary">Tertiary Action</button>
+<button class="btn btn--danger">Delete</button>
 ```
 
-## 🔧 Development
+## 📝 Case Studies
 
-### Prerequisites
-- Python 3.x (for local server)
-- Modern web browser
-- Git
+### Creating a New Case Study
 
-### Setup
-1. Clone the repository
-2. Navigate to project directory
-3. Start local server: `python3 -m http.server 8000`
-4. Open `http://localhost:8000/src/`
+1. **Use the template:**
+```bash
+cp src/Q10UX_Command_Pack/templates/case-study.mdx src/pages/case-studies/your-project.mdx
+```
 
-### File Organization
-- **HTML**: Semantic structure with proper accessibility attributes
-- **CSS**: Modular design system with consistent naming conventions
-- **JavaScript**: Vanilla JS with modular functions and classes
-- **Images**: Optimized for web with proper alt text
+2. **Update the frontmatter:**
+```yaml
+---
+title: "Project Title — Client"
+slug: "project-slug"
+client: "Client Name"
+role: ["UX Designer", "Prototyper"]
+date: "2024-01-01"
+tags: ["UX Design", "Enterprise", "Accessibility"]
+hero: "/assets/case-studies/project-slug/hero.webp"
+summary: "One-line value proposition"
+outcomes: 
+  metrics: ["Metric 1", "Metric 2"]
+  quotes: ["Client quote"]
+phases:
+  - { id: research, title: "Research", summary: "What was done" }
+  # ... more phases
+---
+```
+
+3. **Add your content** following the template structure
+
+### Case Study Structure
+- **Hero Section**: Project overview and key metrics
+- **Problem**: User and business challenges
+- **Process**: 8-phase methodology
+- **Solution**: Implementation details
+- **Results**: Outcomes and learnings
+
+## 🛠️ Command Pack Tools
+
+The Q10UX Command Pack provides automated tools for:
+
+### Image Management
+```bash
+# Consolidate scattered images into organized structure
+npm run images:consolidate
+
+# Optimize images for web (WebP + responsive sizes)
+npm run images:opt
+
+# Remap asset paths after reorganization
+npm run assets:remap
+```
+
+### Quality Assurance
+```bash
+# Check for Mobirise classes/assets (prevents backsliding)
+npm run guard:mobirise
+
+# Accessibility sanity checks
+npm run lint:a11y
+
+# Run all checks
+npm run check
+```
+
+### Git Workflow
+```bash
+# Checkpoint your work with descriptive messages
+bash src/Q10UX_Command_Pack/scripts/git-phase.sh "feat: added new case study"
+```
 
 ## 🚀 Deployment
 
-### Netlify (Recommended)
-1. Connect your GitHub repository to Netlify
-2. Set build settings:
-   - Build command: `echo "Static site - no build required"`
-   - Publish directory: `src/`
-3. Deploy automatically on push to main branch
-
-### Manual Deployment
+### Build for Production
 ```bash
-# Install Netlify CLI
-npm install -g netlify-cli
-
-# Deploy
-netlify deploy --prod --dir=src
+npm run build
 ```
 
-## 📋 Case Studies
+### Deploy to Netlify
+```bash
+# Build and deploy
+npm run build
+netlify deploy --prod --dir=dist
+```
 
-### Available Studies
-1. **Microsoft Office 365** - Enterprise UX redesign
-2. **T-Mobile Idea Lab** - Innovation platform design
-3. **AT&T International Roaming** - Mobile app design
-4. **AtmosFX E-commerce** - Digital retail experience
-5. **BMGF** - Healthcare platform design
+### Environment Variables
+Create a `.env` file for any API keys or configuration:
+```env
+# Contact form (optional)
+CONTACT_EMAIL=hello@q10ux.com
+SMTP_HOST=smtp.example.com
+SMTP_USER=your-email
+SMTP_PASS=your-password
+```
 
-### Case Study Structure
-Each case study follows an 8-phase UX process:
-1. **Research** - User research and insights
-2. **Strategy** - Design strategy and goals
-3. **Ideation** - Brainstorming and concept development
-4. **Design** - Wireframes and visual design
-5. **Prototype** - Interactive prototypes
-6. **Test** - User testing and validation
-7. **Iterate** - Refinement based on feedback
-8. **Launch** - Final implementation and results
+## 📋 Development Workflow
 
-## 🎯 Features
+1. **Start development:**
+   ```bash
+   npm run dev
+   ```
 
-### Interactive Elements
-- **Smooth Scrolling**: CSS-based smooth scrolling navigation
-- **Hover Effects**: Subtle animations and transitions
-- **Form Validation**: Client-side validation with accessibility
-- **Dynamic Content**: JavaScript-powered content loading
-- **Responsive Images**: Optimized images for all screen sizes
+2. **Create content:**
+   - Use the case study template for new projects
+   - Follow the design system tokens
+   - Ensure accessibility compliance
 
-### Accessibility
-- **Semantic HTML**: Proper heading hierarchy and landmarks
-- **ARIA Labels**: Screen reader support
-- **Keyboard Navigation**: Full keyboard accessibility
-- **Color Contrast**: WCAG AA compliant contrast ratios
-- **Focus Management**: Visible focus indicators
+3. **Quality checks:**
+   ```bash
+   npm run check
+   ```
 
-### Performance
-- **Optimized Images**: WebP format with fallbacks
-- **Minified CSS**: Production-ready stylesheets
-- **Lazy Loading**: Images load as needed
-- **Fast Loading**: Optimized for Core Web Vitals
+4. **Commit with context:**
+   ```bash
+   bash src/Q10UX_Command_Pack/scripts/git-phase.sh "descriptive message"
+   ```
 
-## 🔍 Quality Assurance
+## 🎯 Key Features
 
-### Testing Checklist
-- [ ] All pages load without errors
-- [ ] Navigation works on all devices
-- [ ] Forms submit correctly
-- [ ] Images display properly
-- [ ] Links are functional
-- [ ] Accessibility standards met
-- [ ] Performance metrics acceptable
+- **Accessibility First**: WCAG 2.1 AA compliant
+- **Performance Optimized**: Lazy loading, WebP images, minimal JS
+- **SEO Ready**: Meta tags, structured data, sitemap
+- **Mobile Responsive**: Works perfectly on all devices
+- **Design System**: Consistent, token-driven styling
+- **Case Study Template**: Structured, professional case studies
+- **Contact Form**: Functional contact system
+- **Build Tools**: Image optimization, quality checks
 
-### Browser Support
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-- Mobile browsers (iOS Safari, Chrome Mobile)
+## 🔧 Customization
 
-## 📚 Documentation
+### Colors
+Edit `src/Q10UX_Command_Pack/styleguide/tokens.css` to modify the color palette.
 
-### Additional Resources
-- `NETLIFY_DEPLOYMENT.md` - Detailed deployment instructions
-- `ACCESSIBILITY_REPORT.md` - Accessibility audit results
-- `BUG_BASH_REPORT.md` - Quality assurance findings
-- `CASE_STUDIES_COMPLETION_SUMMARY.md` - Case study details
+### Typography
+Update font imports in `src/layouts/BaseLayout.astro`.
 
-### Maintenance
-- Regular accessibility audits
-- Performance monitoring
-- Content updates
-- Security updates
-- Browser compatibility testing
+### Layout
+Modify `src/layouts/BaseLayout.astro` for global layout changes.
+
+### Case Studies
+Use the template in `src/Q10UX_Command_Pack/templates/case-study.mdx` as your starting point.
+
+## 📚 Resources
+
+- [Astro Documentation](https://docs.astro.build/)
+- [Q10UX Command Pack](src/Q10UX_Command_Pack/README.md)
+- [Accessibility Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
+- [Design System Documentation](src/Q10UX_Command_Pack/styleguide/)
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
+1. Follow the design system tokens
+2. Ensure accessibility compliance
+3. Run quality checks before committing
+4. Use descriptive commit messages
 
 ## 📄 License
 
-This project is for portfolio purposes. All case study content and designs are the property of their respective clients and companies.
-
-## 📞 Contact
-
-- **Portfolio**: [https://portfolio.q10ux.com](https://portfolio.q10ux.com)
-- **Email**: [Contact through portfolio](https://portfolio.q10ux.com/contact)
-- **LinkedIn**: [Quentin Little](https://linkedin.com/in/quentinlittle)
+MIT License - see LICENSE file for details.
 
 ---
 
-**Built with ❤️ using modern web standards and accessibility best practices.**
+**Built with ❤️ using the Q10UX Command Pack**

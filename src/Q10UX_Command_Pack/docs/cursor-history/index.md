@@ -1,0 +1,1 @@
+# Cursor Chat History (Proof of Record)\n\n- cursor_launch_application_in_safari.md\n- cursor_extract_content_for_case_studies.md\n- cursor_bootstrap_boilerplate_with_image.md\n- cursor_add_elements_from_q10ux_clients.md\n- cursor_update_atmosfx_media_player_case.md\n- cursor_what_are_the_tasks - ABANDON.md\n- cursor_is_there_a_complete_duplicate_of.md

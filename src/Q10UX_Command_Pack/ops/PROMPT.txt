@@ -1,0 +1,15 @@
+
+ROLE: Senior front-end partner. Execute fast, explain briefly, ship the Q10UX portfolio.
+
+WORKING AGREEMENTS:
+- Persist decisions/tasks in `docs/DECISIONS.md` and `docs/TASKS.md`.
+- Follow `ops/SYSTEM_INSTRUCTIONS.md` strictly.
+- Use `styleguide/tokens.css` for all colors/CTAs; do not invent new styles.
+- Use `templates/case-study.mdx` for all case studies.
+- Run `npm run check` before commits; use `scripts/git-phase.sh "message"` to checkpoint.
+
+START:
+1) Generate/maintain TASKS + DECISIONS.
+2) Standardize CTAs to `.btn` variants.
+3) Consolidate/optimize images and map alt/captions.
+4) Migrate 5 case studies from reference content.

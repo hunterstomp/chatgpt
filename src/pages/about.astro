@@ -1,0 +1,391 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout 
+  title="About - Quentin Little"
+  description="UX Designer & Prototyper with 15+ years experience in enterprise software, accessibility, and design systems. Worked with Disney, AT&T, Microsoft, and more."
+>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>About Me</h1>
+          <p class="lead">
+            I'm a UX Designer & Prototyper with 15+ years of experience creating accessible, 
+            scalable experiences for enterprise users and global brands.
+          </p>
+        </div>
+        <div class="hero-image">
+          <img 
+            src="/assets/quentin-portrait.webp" 
+            alt="Quentin Little - UX Designer"
+            width="400"
+            height="500"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section class="experience">
+    <div class="container">
+      <h2>Experience</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <h3>Senior UX Designer</h3>
+            <p class="company">Disney Interactive</p>
+            <p class="period">2020 - 2023</p>
+            <p>Led UX design for Club Penguin and Disney gaming platforms, focusing on accessibility and user engagement.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <h3>UX Designer</h3>
+            <p class="company">AT&T</p>
+            <p class="period">2018 - 2020</p>
+            <p>Designed international roaming experiences for millions of users, improving conversion rates by 38%.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <h3>UX Designer</h3>
+            <p class="company">Microsoft</p>
+            <p class="period">2015 - 2018</p>
+            <p>Redesigned Office 365 admin experiences and contributed to Microsoft's design system.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <h3>UX Designer</h3>
+            <p class="company">Bill & Melinda Gates Foundation</p>
+            <p class="period">2013 - 2015</p>
+            <p>Created interactive data visualizations and storytelling experiences for the Annual Letter.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="skills">
+    <div class="container">
+      <h2>Skills & Expertise</h2>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h3>Design</h3>
+          <ul>
+            <li>User Research & Testing</li>
+            <li>Information Architecture</li>
+            <li>Wireframing & Prototyping</li>
+            <li>Design Systems</li>
+            <li>Accessibility (WCAG 2.1 AA)</li>
+          </ul>
+        </div>
+        
+        <div class="skill-category">
+          <h3>Tools</h3>
+          <ul>
+            <li>Figma & Sketch</li>
+            <li>Axure RP</li>
+            <li>Adobe Creative Suite</li>
+            <li>HTML/CSS/JavaScript</li>
+            <li>React & Vue.js</li>
+          </ul>
+        </div>
+        
+        <div class="skill-category">
+          <h3>Domains</h3>
+          <ul>
+            <li>Enterprise Software</li>
+            <li>eCommerce</li>
+            <li>Gaming & Entertainment</li>
+            <li>Mobile Applications</li>
+            <li>Data Visualization</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Philosophy -->
+  <section class="philosophy">
+    <div class="container">
+      <h2>Design Philosophy</h2>
+      <div class="philosophy-content">
+        <p>
+          I believe great design starts with understanding users deeply. Every decision should be grounded in research, 
+          validated through testing, and executed with accessibility in mind from day one.
+        </p>
+        <p>
+          My approach combines rapid prototyping with systematic thinking. I create experiences that are not only 
+          beautiful and functional, but also inclusive and scalable for enterprise environments.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container">
+      <h2>Ready to work together?</h2>
+      <p>Let's discuss your project and how I can help create exceptional user experiences.</p>
+      <a href="/contact" class="btn btn--primary">Get in Touch</a>
+    </div>
+  </section>
+
+  <style>
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    /* Hero */
+    .hero {
+      padding: 4rem 0;
+      background: var(--q-surface);
+    }
+    
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: #E8EAED;
+    }
+    
+    .lead {
+      font-size: 1.25rem;
+      line-height: 1.6;
+      color: #A0A0A0;
+    }
+    
+    .hero-image img {
+      width: 100%;
+      height: auto;
+      border-radius: var(--q-radius-lg);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    
+    /* Experience */
+    .experience {
+      padding: 4rem 0;
+      background: var(--q-bg);
+    }
+    
+    .experience h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 3rem;
+      color: #E8EAED;
+      text-align: center;
+    }
+    
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--q-border);
+    }
+    
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
+      padding-left: 60px;
+    }
+    
+    .timeline-marker {
+      position: absolute;
+      left: 11px;
+      top: 0;
+      width: 20px;
+      height: 20px;
+      background: var(--q-brand-500);
+      border-radius: 50%;
+      border: 3px solid var(--q-bg);
+    }
+    
+    .timeline-content {
+      background: var(--q-surface);
+      padding: 2rem;
+      border-radius: var(--q-radius-lg);
+      border: 1px solid var(--q-border);
+    }
+    
+    .timeline-content h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #E8EAED;
+    }
+    
+    .company {
+      color: var(--q-brand-500);
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    
+    .period {
+      color: #A0A0A0;
+      font-size: 0.875rem;
+      margin-bottom: 1rem;
+    }
+    
+    .timeline-content p:last-child {
+      color: #A0A0A0;
+      line-height: 1.6;
+    }
+    
+    /* Skills */
+    .skills {
+      padding: 4rem 0;
+      background: var(--q-surface);
+    }
+    
+    .skills h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 3rem;
+      color: #E8EAED;
+      text-align: center;
+    }
+    
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .skill-category {
+      background: var(--q-bg);
+      padding: 2rem;
+      border-radius: var(--q-radius-lg);
+      border: 1px solid var(--q-border);
+    }
+    
+    .skill-category h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--q-brand-500);
+    }
+    
+    .skill-category ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .skill-category li {
+      color: #A0A0A0;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--q-border);
+    }
+    
+    .skill-category li:last-child {
+      border-bottom: none;
+    }
+    
+    /* Philosophy */
+    .philosophy {
+      padding: 4rem 0;
+      background: var(--q-bg);
+    }
+    
+    .philosophy h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      color: #E8EAED;
+      text-align: center;
+    }
+    
+    .philosophy-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .philosophy-content p {
+      font-size: 1.125rem;
+      line-height: 1.6;
+      color: #A0A0A0;
+      margin-bottom: 1.5rem;
+    }
+    
+    /* CTA */
+    .cta {
+      padding: 4rem 0;
+      background: var(--q-surface);
+      text-align: center;
+    }
+    
+    .cta h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #E8EAED;
+    }
+    
+    .cta p {
+      font-size: 1.125rem;
+      color: #A0A0A0;
+      margin-bottom: 2rem;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .timeline::before {
+        left: 15px;
+      }
+      
+      .timeline-item {
+        padding-left: 50px;
+      }
+      
+      .timeline-marker {
+        left: 6px;
+      }
+      
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</BaseLayout>

@@ -2,7 +2,7 @@
   "name": "q10ux-portfolio",
   "version": "1.0.0",
   "description": "Q10UX Professional UX Portfolio with NDA Firewall and Ultra-Streamlined Smart Upload System",
-  "main": "backend/admin-server.js",
+  "type": "module",
   "keywords": [
     "ux",
     "portfolio",
@@ -15,24 +15,32 @@
     "instant-upload",
     "media-processing",
     "cloud-integration",
-    "zero-configuration"
+    "zero-configuration",
+    "astro",
+    "accessibility"
   ],
   "author": "Quentin Little",
   "license": "MIT",
   "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
     "start": "node backend/admin-server.js",
-    "dev": "python3 -m http.server 8001",
     "admin": "node backend/admin-server.js",
-    "serve": "python3 -m http.server 8001",
     "smart-upload": "node scripts/smart-upload.js",
     "instant-upload": "node scripts/one-click-upload.js",
     "go": "./scripts/start.sh",
     "setup": "npm install && npm run setup-deps",
     "setup-deps": "echo 'Installing system dependencies...' && brew install ffmpeg imagemagick",
-    "build": "echo 'Static site - no build required'",
     "test": "echo 'No tests specified'",
     "clean": "rm -rf node_modules package-lock.json",
-    "reset": "npm run clean && npm install"
+    "reset": "npm run clean && npm install",
+    "images:opt": "node scripts/optimize-images.mjs",
+    "images:consolidate": "node scripts/consolidate-images.mjs",
+    "assets:remap": "node scripts/remap-assets.mjs public/assets/image-remap.json",
+    "guard:mobirise": "node scripts/mobirise-guard.mjs",
+    "lint:a11y": "node scripts/a11y-sanity.mjs",
+    "check": "npm run guard:mobirise && npm run lint:a11y"
   },
   "dependencies": {
     "@sanity/client": "^6.29.1",
@@ -47,11 +55,13 @@
     "jsonwebtoken": "^9.0.2",
     "multer": "^1.4.5-lts.1",
     "ora": "^7.0.1",
-    "sharp": "^0.32.6",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
+    "@astrojs/mdx": "^2.3.1",
+    "astro": "^4.16.19",
     "nodemon": "^3.0.2",
+    "sharp": "^0.34.3",
     "vite": "^7.1.3"
   },
   "engines": {

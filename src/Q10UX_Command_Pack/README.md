@@ -1,0 +1,1 @@
+# Q10UX Command Pack\nDrop into project root. Pin `ops/SYSTEM_INSTRUCTIONS.md` in Cursor. Install: `npm i && npm i -D sharp`. Commands: images:consolidate, images:opt, assets:remap, check. Checkpoints: `bash scripts/git-phase.sh "message"`\n

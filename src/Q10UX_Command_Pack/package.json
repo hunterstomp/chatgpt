@@ -1,0 +1,16 @@
+{
+  "name": "q10ux-command-pack",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "images:opt": "node scripts/optimize-images.mjs",
+    "images:consolidate": "node scripts/consolidate-images.mjs",
+    "assets:remap": "node scripts/remap-assets.mjs public/assets/image-remap.json",
+    "guard:mobirise": "node scripts/mobirise-guard.mjs",
+    "lint:a11y": "node scripts/a11y-sanity.mjs",
+    "check": "npm run guard:mobirise && npm run lint:a11y"
+  },
+  "devDependencies": {
+    "sharp": "^0.33.0"
+  }
+}
