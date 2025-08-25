@@ -18,17 +18,17 @@ const body = m[2]?.trim() || "";
 // normalize fields we care about
 const fm = {
   layout: "@/layouts/CaseStudyLayout.astro",
-  title: data.title || "Bill & Melinda Gates Foundation — Annual Newsletter",
-  client: data.client || "Bill & Melinda Gates Foundation",
+  title: data.title || "Case Study",
+  client: data.client || "Client",
   role: data.role || "UX Designer",
-  year: data.year || "2020",
-  kpi: data.kpi || "Interactive data stories shipped; stakeholder engagement ↑",
-  summary: data.summary || "Interactive annual newsletter experience with data visualization and storytelling.",
-  tags: Array.isArray(data.tags) ? data.tags : (data.tags ? String(data.tags).split(/[;,]\s*|\n+/).filter(Boolean) : ["Data Viz","Storytelling","Non‑profit"]),
-  outcomes: Array.isArray(data.outcomes) ? data.outcomes : [
-    "Faster story comprehension via interactive charts",
-    "Reusable patterns for future annual reports",
-    "Improved engagement on key sections"
+  year: data.year || data.date || "2020",
+  kpi: data.kpi || "Improved user experience and engagement",
+  summary: data.summary || "UX case study with measurable outcomes.",
+  tags: Array.isArray(data.tags) ? data.tags : (data.tags ? String(data.tags).split(/[;,]\s*|\n+/).filter(Boolean) : ["UX", "Design", "Research"]),
+  outcomes: [
+    "Improved user experience and engagement",
+    "Enhanced visual design and accessibility", 
+    "Streamlined user workflows and processes"
   ],
   gallery: Array.isArray(data.gallery) ? data.gallery : []
 };
@@ -38,25 +38,25 @@ const md = `
 ---
 ${YAML.stringify(fm)}---
 ## Objective
-Create an engaging, interactive annual letter experience that turns complex data into clear, visual stories for a wide audience.
+Create an engaging user experience that addresses specific user needs and business goals.
 
 ## My Role
-Led UX for interactive storytelling: structure, flows, wireframes, high‑fidelity comps, and motion prototypes. Partnered with engineers on chart behaviors and performance.
+Led UX design and research: user research, wireframing, prototyping, and visual design. Collaborated with stakeholders and development teams.
 
 ## Constraints
-Tight timeline, mixed data sources, and large accessibility surface (keyboard + screen reader friendly charts).
+Timeline, technical limitations, and accessibility requirements.
 
 ## Process
-1. **Content modeling** → identified narrative beats and KPIs to highlight.
-2. **Wireframes & flows** → defined scannable sections with progressive disclosure.
-3. **Visualization patterns** → reusable chart templates and annotation styles.
-4. **Proto & validation** → motion prototypes for transitions; quick hallway tests.
-5. **Handoff** → design tokens + fig/spec patterns for dev parity.
+1. **User Research** → understanding user needs and pain points
+2. **Information Architecture** → organizing content and functionality
+3. **Wireframing & Prototyping** → creating interactive prototypes
+4. **Visual Design** → high-fidelity designs and design systems
+5. **Testing & Iteration** → user testing and design refinement
 
 ## Results
-- Stakeholders could publish data stories faster with consistent design patterns.
-- Higher interaction with key modules (time‑on‑section ↑, drop‑offs ↓).
-- Foundation gained a repeatable approach for future letters.
+- Improved user satisfaction and task completion rates
+- Enhanced accessibility and usability
+- Streamlined workflows and processes
 
 ${body ? "\n---\n\n<!-- Original body migrated below; review/edit as needed. -->\n\n" + body : ""}
 `.trimStart();
