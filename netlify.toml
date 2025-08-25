@@ -5,11 +5,7 @@
 [build.environment]
   NODE_VERSION = "18"
 
-# Redirect rules for SPA-like behavior
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# No redirects needed for static HTML files
 
 # Handle 404s
 [[redirects]]
