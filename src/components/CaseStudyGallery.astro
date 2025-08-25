@@ -1,0 +1,8 @@
+---
+import ReactGallery from "./CaseStudyGallery.tsx";
+const { images } = Astro.props;
+---
+
+<section aria-label="Case study gallery" class="my-8">
+  <ReactGallery client:visible items={images} />
+</section>
