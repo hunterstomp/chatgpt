@@ -1,1 +1,46 @@
-import fs from 'node:fs'; import path from 'node:path'; import crypto from 'node:crypto'; const BASE=new URL('../public/assets/images',import.meta.url).pathname; const OUT=new URL('../public/assets/images-consolidated',import.meta.url).pathname; const IMG_EXT=new Set(['.jpg','.jpeg','.png','.webp','.svg','.gif','.pdf']); function hash(f){return crypto.createHash('md5').update(fs.readFileSync(f)).digest('hex');} function mkdirp(p){fs.mkdirSync(p,{recursive:true});} function walk(d,o=[]){ for(const e of fs.readdirSync(d,{withFileTypes:true})){const p=path.join(d,e.name); if(e.isDirectory()) walk(p,o); else if(IMG_EXT.has(path.extname(e.name).toLowerCase())) o.push(p);} return o;} mkdirp(OUT); const all=walk(BASE); const report=[]; for(const f of all){ const dest=path.join(OUT, path.basename(f)); let out=dest,i=1; while(fs.existsSync(out)){ const ext=path.extname(dest),base=path.basename(dest,ext); out=path.join(OUT, `${base}_${i++}${ext}`);} fs.copyFileSync(f,out); report.push({from:f,to:out}); } fs.writeFileSync(path.join(OUT,'duplicate-report.json'), JSON.stringify(report,null,2)); console.log('✅ Consolidation complete:', OUT);
+import fs from 'node:fs'; 
+import path from 'node:path'; 
+import crypto from 'node:crypto'; 
+import { fileURLToPath } from 'node:url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const BASE = path.resolve(__dirname, '../public/assets/images');
+const OUT = path.resolve(__dirname, '../public/assets/images-consolidated');
+const IMG_EXT = new Set(['.jpg','.jpeg','.png','.webp','.svg','.gif','.pdf']);
+
+function hash(f) {
+  return crypto.createHash('md5').update(fs.readFileSync(f)).digest('hex');
+}
+
+function mkdirp(p) {
+  fs.mkdirSync(p, { recursive: true });
+}
+
+function walk(d, o = []) {
+  for (const e of fs.readdirSync(d, { withFileTypes: true })) {
+    const p = path.join(d, e.name);
+    if (e.isDirectory()) walk(p, o);
+    else if (IMG_EXT.has(path.extname(e.name).toLowerCase())) o.push(p);
+  }
+  return o;
+}
+
+mkdirp(OUT);
+const all = walk(BASE);
+const report = [];
+
+for (const f of all) {
+  const dest = path.join(OUT, path.basename(f));
+  let out = dest, i = 1;
+  while (fs.existsSync(out)) {
+    const ext = path.extname(dest), base = path.basename(dest, ext);
+    out = path.join(OUT, `${base}_${i++}${ext}`);
+  }
+  fs.copyFileSync(f, out);
+  report.push({ from: f, to: out });
+}
+
+fs.writeFileSync(path.join(OUT, 'duplicate-report.json'), JSON.stringify(report, null, 2));
+console.log('✅ Consolidation complete:', OUT);
