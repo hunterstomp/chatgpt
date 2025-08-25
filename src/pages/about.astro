@@ -1,391 +1,984 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
 ---
 
-<BaseLayout 
-  title="About - Quentin Little"
-  description="UX Designer & Prototyper with 15+ years experience in enterprise software, accessibility, and design systems. Worked with Disney, AT&T, Microsoft, and more."
->
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-content">
-        <div class="hero-text">
-          <h1>About Me</h1>
-          <p class="lead">
-            I'm a UX Designer & Prototyper with 15+ years of experience creating accessible, 
-            scalable experiences for enterprise users and global brands.
-          </p>
-        </div>
-        <div class="hero-image">
-          <img 
-            src="/assets/quentin-portrait.webp" 
-            alt="Quentin Little - UX Designer"
-            width="400"
-            height="500"
-            loading="eager"
-            decoding="async"
-          />
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Experience -->
-  <section class="experience">
-    <div class="container">
-      <h2>Experience</h2>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <h3>Senior UX Designer</h3>
-            <p class="company">Disney Interactive</p>
-            <p class="period">2020 - 2023</p>
-            <p>Led UX design for Club Penguin and Disney gaming platforms, focusing on accessibility and user engagement.</p>
-          </div>
-        </div>
-        
-        <div class="timeline-item">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <h3>UX Designer</h3>
-            <p class="company">AT&T</p>
-            <p class="period">2018 - 2020</p>
-            <p>Designed international roaming experiences for millions of users, improving conversion rates by 38%.</p>
-          </div>
-        </div>
-        
-        <div class="timeline-item">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <h3>UX Designer</h3>
-            <p class="company">Microsoft</p>
-            <p class="period">2015 - 2018</p>
-            <p>Redesigned Office 365 admin experiences and contributed to Microsoft's design system.</p>
-          </div>
-        </div>
-        
-        <div class="timeline-item">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <h3>UX Designer</h3>
-            <p class="company">Bill & Melinda Gates Foundation</p>
-            <p class="period">2013 - 2015</p>
-            <p>Created interactive data visualizations and storytelling experiences for the Annual Letter.</p>
+<BaseLayout title="About — Quentin Little">
+  <main class="about-page">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="hero-title">
+            <span class="resume-link">
+              <a href="/assets/files/QuentinLittle-UX-Resume-2025.pdf" target="_blank" rel="noopener">
+                Résumé
+              </a>
+            </span>
+            <br>
+            <strong>About Me,</strong><br>
+            <strong>Quentin Little</strong>
+          </h1>
+          <h2 class="hero-subtitle">
+            Pioneering User Experiences for 20 years for startups to enterprise businesses in the Age of AI
+          </h2>
+          <div class="hero-nav">
+            <a href="#profile" class="nav-link">My Profile</a>
+            <a href="#skills" class="nav-link">Jump to Skills</a>
+            <a href="/assets/files/Quentin-Little-UX-Designer-Resume.pdf" class="nav-link" target="_blank" rel="noopener">
+              Résumé (PDF)
+            </a>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Skills -->
-  <section class="skills">
-    <div class="container">
-      <h2>Skills & Expertise</h2>
-      <div class="skills-grid">
-        <div class="skill-category">
-          <h3>Design</h3>
-          <ul>
-            <li>User Research & Testing</li>
-            <li>Information Architecture</li>
-            <li>Wireframing & Prototyping</li>
-            <li>Design Systems</li>
-            <li>Accessibility (WCAG 2.1 AA)</li>
-          </ul>
-        </div>
-        
-        <div class="skill-category">
-          <h3>Tools</h3>
-          <ul>
-            <li>Figma & Sketch</li>
-            <li>Axure RP</li>
-            <li>Adobe Creative Suite</li>
-            <li>HTML/CSS/JavaScript</li>
-            <li>React & Vue.js</li>
-          </ul>
-        </div>
-        
-        <div class="skill-category">
-          <h3>Domains</h3>
-          <ul>
-            <li>Enterprise Software</li>
-            <li>eCommerce</li>
-            <li>Gaming & Entertainment</li>
-            <li>Mobile Applications</li>
-            <li>Data Visualization</li>
-          </ul>
+    <!-- About Me Section -->
+    <section class="about-me-section" id="profile">
+      <div class="container">
+        <div class="about-content">
+          <h3 class="section-title">Hey there! A little about me...</h3>
+          
+          <div class="about-text">
+            <p>
+              I am Quentin Little, a Senior User Experience Designer with over two decades of professional experience in crafting intuitive, impactful digital products. My journey through the entire digital revolution, from tinkering with 386 processors to navigating today's AI landscape, has given me a unique, hands-on perspective on the intricate dance between humans and machines. This extensive background, coupled with a natural inclination for systematic analysis and meticulous attention to detail, fuels my passion for designing future-forward experiences.
+            </p>
+          </div>
+
+          <div class="career-section">
+            <h4><strong>About my career</strong></h4>
+            <p>
+              My career has seen me lead UX initiatives across enterprise, mid-to-small businesses, and innovative startups, with transformative stints at Microsoft (including a company-wide Gold Star Award for executive vision work) and T-Mobile. I thrive in dynamic environments, adeptly bridging technical capabilities with human-centered design principles across diverse platforms including web, mobile, and television. I am particularly passionate about securing a lucrative UX design job in progressing tech, especially where UX can directly help with AI and UX integration, or in future-forward areas like AR/VR/MR/XR.
+            </p>
+          </div>
+
+          <div class="what-sets-apart">
+            <h4><strong>What sets me apart</strong></h4>
+            <p>
+              What sets me apart is my unwavering dedication to creating authentic, data-driven experiences. I believe in building fully interactive prototypes fed by real data streams, moving beyond static mockups to uncover genuine user insights and edge cases. This methodical approach ensures that designs are not only user-centered but also robust and reflective of real-world usage. For instance, at Disney, I prototyped a dashboard that ingested complex datasets, and at T-Mobile and AtmosFX, I developed internal content management systems that incorporated actual libraries and catalogs of data, allowing stakeholders to visualize and test the final product in real-world contexts. My work has consistently delivered measurable impact, such as achieving a 30% increase in e-commerce conversion rates for AtmosFX and improving task completion rates by 35% on Microsoft's Unified Action Tracker platform.
+            </p>
+          </div>
+
+          <div class="sabbatical-section">
+            <h4><strong>Sabbatical</strong></h4>
+            <p>
+              During a recent sabbatical, I immersed myself in AI to wrangle solutions built for UX and Machine Learning technologies, building prototypes and developing scripts to automate foundational tasks. This hands-on experience, combined with my proven ability to pioneer integrations with emerging technologies like AR, VR, ML, chatbots, and digital voice assistants at T-Mobile, positions me at the forefront of the evolving UX landscape. I am eager to apply this expertise to new opportunities in Bellevue, Seattle, WA, and surrounding areas, where I can contribute to the next wave of digital transformation.
+            </p>
+            <p>
+              With all the tools I've learned I can bring a UX powerhouse of swift user-validated design and A.I automation to the challenges your company is facing.
+            </p>
+          </div>
+
+          <div class="hobbies-section">
+            <h4><strong>Other Hobbies</strong></h4>
+            <p>
+              Beyond the pixels and code, I bring a unique creative perspective shaped by my hobbies as a circuit bender (building theremins and modifying MIDI synthesizers), and my appreciation for visual storytelling (influenced by directors like Michel Gondry and Spike Jonze) and data visualization (drawing inspiration from Edward Tufte, I love all of his books and insights). I am a firm believer in continuous learning and knowledge sharing, striving to be an effective mentor and collaborator through a practical, measured approach to problem-solving. And yes, when I'm not pushing pixels or coding, you might find me paragliding over Seattle or performing Britney Spears' "Toxic" at karaoke or Life on Mars by David Bowie (with surprising accuracy, I might add!).
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Philosophy -->
-  <section class="philosophy">
-    <div class="container">
-      <h2>Design Philosophy</h2>
-      <div class="philosophy-content">
-        <p>
-          I believe great design starts with understanding users deeply. Every decision should be grounded in research, 
-          validated through testing, and executed with accessibility in mind from day one.
-        </p>
-        <p>
-          My approach combines rapid prototyping with systematic thinking. I create experiences that are not only 
-          beautiful and functional, but also inclusive and scalable for enterprise environments.
-        </p>
+    <!-- Skills Section -->
+    <section class="skills-section" id="skills">
+      <div class="container">
+        <h3 class="section-title">Skilled in the following tools</h3>
+        <p class="skills-intro">Your imagination is your playground.</p>
+        
+        <div class="skills-grid">
+          <div class="skill-item">
+            <h4><strong>Figma</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Sketch</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Photoshop</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Axure</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>XD</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Keynote</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Illustrator</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Github</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Lottie</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Office</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Visio</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Powerpoint</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Notion</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Premiere</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Python</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>React</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Runway</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Sublime Text</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>InDesign</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>After Effects</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Zeplin</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Canva</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>D3.js</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Flash + ActionScript</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Google Drive</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>SharePoint</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Three.js</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Animate</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>iMovie</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Cursor</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Claude</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Spark XR</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Marvel</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Highcharts</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Silverlight</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Expression Blend</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Wordpress</strong></h4>
+            <p>google analytics</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Google Analytics</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Invision</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>CSS3</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>HTML5</strong></h4>
+            <p>UX Design Process and Wireframes</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Apple</strong></h4>
+            <p>Windows 8</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Windows 8</strong></h4>
+            <p>Windows 8</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Trello</strong></h4>
+            <p>Windows 8</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Pixate</strong></h4>
+            <p>Windows 8</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Framer</strong></h4>
+            <p>Windows 8</p>
+          </div>
+          <div class="skill-item">
+            <h4><strong>Procreate</strong></h4>
+            <p></p>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CTA -->
-  <section class="cta">
-    <div class="container">
-      <h2>Ready to work together?</h2>
-      <p>Let's discuss your project and how I can help create exceptional user experiences.</p>
-      <a href="/contact" class="btn btn--primary">Get in Touch</a>
-    </div>
-  </section>
+    <!-- Highlights Section -->
+    <section class="highlights-section">
+      <div class="container">
+        <h3 class="section-title">Highlights and Successes</h3>
+        
+        <div class="highlights-grid">
+          <div class="highlight-item">
+            <h4><strong>Microsoft Gold Star Award & Onboarding Improvement</strong></h4>
+            <p>Received a company-wide Gold Star Award for executive vision work, improving Office 365 onboarding by 50%.</p>
+          </div>
+          
+          <div class="highlight-item">
+            <h4><strong>T-Mobile Marketing Site Conversion Boost</strong></h4>
+            <p>Spearheaded the redesign of T-Mobile's prospect-facing marketing site, resulting in a 28% increase in conversion rates.</p>
+          </div>
+          
+          <div class="highlight-item">
+            <h4><strong>AT&T International Roaming UX Transformation</strong></h4>
+            <p>Reimagined AT&T's International Roaming UX, leading to a 25% decrease in support calls and a 37% improvement in task completion rates.</p>
+          </div>
+          
+          <div class="highlight-item">
+            <h4><strong>AtmosFX E-commerce Conversion Increase</strong></h4>
+            <p>Achieved a 30% increase in e-commerce conversion rates for AtmosFX through comprehensive UX redesign of their Shopify platform.</p>
+          </div>
+          
+          <div class="highlight-item">
+            <h4><strong>T-Mobile Omni-Channel UX Integration</strong></h4>
+            <p>Pioneered omni-channel UX integrations with AR/VR and digital voice assistants, boosting user engagement metrics by 42%.</p>
+          </div>
+          
+          <div class="highlight-item">
+            <h4><strong>Bill & Melinda Gates Foundation Newsletter</strong></h4>
+            <p>Crafted innovative data visualisation interfaces for the Bill & Melinda Gates Foundation's 2015 Annual Newsletter, increasing content engagement by 45%.</p>
+          </div>
+          
+          <div class="highlight-item">
+            <h4><strong>Microsoft Unified Action Tracker Optimization</strong></h4>
+            <p>Improved task completion rates by 35% and reduced design inconsistencies by 60% on Microsoft's Unified Action Tracker platform.</p>
+          </div>
+          
+          <div class="highlight-item">
+            <h4><strong>AtmosFX Design Workflow Acceleration</strong></h4>
+            <p>Accelerated AtmosFX's design-to-development workflow by 40% through implementing Sketch and Zeplin for streamlined asset handoff.</p>
+          </div>
+          
+          <div class="highlight-item">
+            <h4><strong>Data-Driven Interactive Prototyping</strong></h4>
+            <p>Developed fully interactive prototypes fed by real data streams at Disney, T-Mobile, and AtmosFX, uncovering genuine user insights and saving development time.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <style>
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
+    <!-- Clients Section -->
+    <section class="clients-section">
+      <div class="container">
+        <h3 class="section-title">Worked with the following clients</h3>
+        <div class="clients-grid">
+          <div class="client">Disney</div>
+          <div class="client">Microsoft</div>
+          <div class="client">AtmosFX</div>
+          <div class="client">Office 365</div>
+          <div class="client">Office Live</div>
+          <div class="client">Riverdeep</div>
+          <div class="client">POP</div>
+          <div class="client">BMGF</div>
+          <div class="client">VMC</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+      <div class="container">
+        <h3 class="section-title">Testimonials</h3>
+        <p class="testimonials-intro">Here are some nice testimonials from awesome people I've had the pleasure to work with:</p>
+        
+        <div class="testimonials-grid">
+          <div class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>Quentin is a very creative and has a "can-do" attitude that goes a long way. He is a team player and is always willing to lend a hand or pick up extra work to help balance out the team. Quentin is also smart and take constructive criticisms well and therefore is able to iterate better and better designs time after time. I'd love to work with Quentin again in the future. :)</p>
+            <div class="testimonial-author">Alix Han (UX Lorax)</div>
+          </div>
+          
+          <div class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>Quentin is a talented designer and leader. He is able to solve complex design problems quickly, while still being able to help and lead others. He is great to work with and an asset to any team.</p>
+            <div class="testimonial-author">Isaak Hayes (CEO and Founder)</div>
+          </div>
+          
+          <div class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>I had the pleasure of working with Quentin for a little over a year. He has an amazing knack for designs that are engaging and intuitive. He can take complex ideas or datasets and translate them into easy-to-understand graphical representations. On top of all that, he's a really fun guy to have on the team!</p>
+            <div class="testimonial-author">Scott Bowen (DevOps)</div>
+          </div>
+        </div>
+        
+        <div class="cta-links">
+          <a href="/assets/files/Quentin-Little-UX-Designer-Resume.pdf" class="btn btn-primary" target="_blank" rel="noopener">
+            Download my résumé (PDF)
+          </a>
+          <a href="mailto:design@q10ux.com" class="btn btn-secondary">
+            Email me: design@q10ux.com
+          </a>
+          <a href="tel:+1-206-427-9129" class="btn btn-secondary">
+            Call me
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI Generations Section -->
+    <section class="ai-generations-section">
+      <div class="container">
+        <h3 class="section-title">Random AI generations of me</h3>
+        <div class="ai-generations">
+          <div class="ai-gen">Sending good vibes</div>
+          <div class="ai-gen">Sending good vibes</div>
+          <div class="ai-gen">Sending good vibes</div>
+          <div class="ai-gen">Sending good vibes</div>
+          <div class="ai-gen">Sending good vibes</div>
+          <div class="ai-gen">Sending good vibes</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+      <div class="container">
+        <div class="contact-content">
+          <div class="contact-info">
+            <h3 class="section-title">Contact</h3>
+            <h4><strong>Need UX design help?</strong></h4>
+            <ul class="contact-details">
+              <li>Phone: <a href="tel:+1-206-427-9129">1 (206)-427-9129</a></li>
+              <li>Email: <a href="mailto:design@q10ux.com">design@q10ux.com</a></li>
+              <li>Location: Bellevue, WA (Serving the greater Pacific Northwest)</li>
+              <li>Available for Remote & Onsite</li>
+            </ul>
+          </div>
+          
+          <div class="contact-form">
+            <h3 class="section-title">Get In Touch</h3>
+            <form class="contact-form-element">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required minlength="2">
+              </div>
+              
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required minlength="10" maxlength="1000" placeholder="Minimum 10 characters, maximum 1000 characters"></textarea>
+              </div>
+              
+              <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Section -->
+    <section class="footer-section">
+      <div class="container">
+        <div class="footer-content">
+          <h3 class="section-title">Let's Work Together</h3>
+          <p class="footer-intro">Based in Bellevue, available for remote and local projects.</p>
+          
+          <div class="footer-grid">
+            <div class="footer-item">
+              <strong>Email</strong>
+              <a href="mailto:design@q10ux.com">design@q10ux.com</a>
+            </div>
+            <div class="footer-item">
+              <strong>Phone</strong>
+              <a href="tel:+1-206-427-9129">(206) 427-9129</a>
+            </div>
+            <div class="footer-item">
+              <strong>Location</strong>
+              <span>Bellevue, WA</span>
+            </div>
+            <div class="footer-item">
+              <strong>GitHub</strong>
+              <a href="https://github.com/hunterstomp" target="_blank" rel="noopener">hunterstomp</a>
+            </div>
+            <div class="footer-item">
+              <strong>Previous Portfolio</strong>
+              <a href="sftp://u93937016@home741783699.1and1-data.host/quentstudios" target="_blank" rel="noopener">View Old Site</a>
+            </div>
+            <div class="footer-item">
+              <strong>Hours</strong>
+              <span>9 AM - 9 PM PST</span>
+            </div>
+            <div class="footer-item">
+              <strong>Résumé</strong>
+              <a href="/assets/files/Quentin-Little-UX-Designer-Resume.pdf" target="_blank" rel="noopener">Download PDF</a>
+            </div>
+          </div>
+          
+          <div class="footer-bottom">
+            <p><strong>Serving the Greater Pacific Northwest</strong> • Available for remote work and onsite collaboration in the Seattle/Bellevue area</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .about-page {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: #333;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* Hero Section */
+  .hero-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+
+  .resume-link a {
+    color: #ffd700;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  .hero-subtitle {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 40px;
+    opacity: 0.9;
+  }
+
+  .hero-nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 12px 24px;
+    border: 2px solid white;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+  }
+
+  .nav-link:hover {
+    background: white;
+    color: #667eea;
+  }
+
+  /* Section Styles */
+  .about-me-section,
+  .skills-section,
+  .highlights-section,
+  .clients-section,
+  .testimonials-section,
+  .ai-generations-section,
+  .contact-section,
+  .footer-section {
+    padding: 80px 0;
+  }
+
+  .about-me-section {
+    background: #f8f9fa;
+  }
+
+  .skills-section {
+    background: white;
+  }
+
+  .highlights-section {
+    background: #f8f9fa;
+  }
+
+  .clients-section {
+    background: white;
+  }
+
+  .testimonials-section {
+    background: #f8f9fa;
+  }
+
+  .ai-generations-section {
+    background: white;
+  }
+
+  .contact-section {
+    background: #f8f9fa;
+  }
+
+  .footer-section {
+    background: #2c3e50;
+    color: white;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  /* About Me Content */
+  .about-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .about-text,
+  .career-section,
+  .what-sets-apart,
+  .sabbatical-section,
+  .hobbies-section {
+    margin-bottom: 40px;
+  }
+
+  .about-content h4 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #2c3e50;
+  }
+
+  .about-content p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: #555;
+  }
+
+  /* Skills Grid */
+  .skills-intro {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 50px;
+    color: #666;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+  }
+
+  .skill-item {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .skill-item:hover {
+    transform: translateY(-5px);
+  }
+
+  .skill-item h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #2c3e50;
+  }
+
+  .skill-item p {
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  /* Highlights Grid */
+  .highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+  }
+
+  .highlight-item {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .highlight-item h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #2c3e50;
+  }
+
+  .highlight-item p {
+    color: #555;
+    line-height: 1.6;
+  }
+
+  /* Clients Grid */
+  .clients-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    text-align: center;
+  }
+
+  .client {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-weight: 600;
+    color: #2c3e50;
+  }
+
+  /* Testimonials */
+  .testimonials-intro {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 50px;
+    color: #666;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+  }
+
+  .testimonial {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .stars {
+    color: #ffd700;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
+
+  .testimonial p {
+    font-style: italic;
+    margin-bottom: 15px;
+    color: #555;
+  }
+
+  .testimonial-author {
+    font-weight: 600;
+    color: #2c3e50;
+  }
+
+  .cta-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  /* AI Generations */
+  .ai-generations {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    text-align: center;
+  }
+
+  .ai-gen {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-weight: 500;
+    color: #2c3e50;
+  }
+
+  /* Contact Section */
+  .contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .contact-details {
+    list-style: none;
+    padding: 0;
+  }
+
+  .contact-details li {
+    margin-bottom: 15px;
+    color: #555;
+  }
+
+  .contact-details a {
+    color: #667eea;
+    text-decoration: none;
+  }
+
+  .contact-details a:hover {
+    text-decoration: underline;
+  }
+
+  /* Contact Form */
+  .contact-form-element {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-group {
+    margin-bottom: 25px;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #2c3e50;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e1e5e9;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #667eea;
+  }
+
+  .form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+  }
+
+  .btn-primary {
+    background: #667eea;
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background: #5a6fd8;
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: #667eea;
+    border: 2px solid #667eea;
+  }
+
+  .btn-secondary:hover {
+    background: #667eea;
+    color: white;
+  }
+
+  /* Footer */
+  .footer-intro {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    opacity: 0.9;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+  }
+
+  .footer-item {
+    text-align: center;
+  }
+
+  .footer-item strong {
+    display: block;
+    margin-bottom: 8px;
+    color: #ffd700;
+  }
+
+  .footer-item a {
+    color: white;
+    text-decoration: none;
+  }
+
+  .footer-item a:hover {
+    text-decoration: underline;
+  }
+
+  .footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .footer-bottom p {
+    opacity: 0.8;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2.5rem;
     }
-    
-    /* Hero */
-    .hero {
-      padding: 4rem 0;
-      background: var(--q-surface);
+
+    .hero-subtitle {
+      font-size: 1.2rem;
     }
-    
-    .hero-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
+
+    .hero-nav {
+      flex-direction: column;
       align-items: center;
     }
-    
-    .hero h1 {
-      font-size: 3rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-      color: #E8EAED;
+
+    .contact-content {
+      grid-template-columns: 1fr;
+      gap: 40px;
     }
-    
-    .lead {
-      font-size: 1.25rem;
-      line-height: 1.6;
-      color: #A0A0A0;
+
+    .skills-grid,
+    .highlights-grid,
+    .testimonials-grid {
+      grid-template-columns: 1fr;
     }
-    
-    .hero-image img {
-      width: 100%;
-      height: auto;
-      border-radius: var(--q-radius-lg);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+
+    .cta-links {
+      flex-direction: column;
+      align-items: center;
     }
-    
-    /* Experience */
-    .experience {
-      padding: 4rem 0;
-      background: var(--q-bg);
-    }
-    
-    .experience h2 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 3rem;
-      color: #E8EAED;
-      text-align: center;
-    }
-    
-    .timeline {
-      position: relative;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 20px;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: var(--q-border);
-    }
-    
-    .timeline-item {
-      position: relative;
-      margin-bottom: 3rem;
-      padding-left: 60px;
-    }
-    
-    .timeline-marker {
-      position: absolute;
-      left: 11px;
-      top: 0;
-      width: 20px;
-      height: 20px;
-      background: var(--q-brand-500);
-      border-radius: 50%;
-      border: 3px solid var(--q-bg);
-    }
-    
-    .timeline-content {
-      background: var(--q-surface);
-      padding: 2rem;
-      border-radius: var(--q-radius-lg);
-      border: 1px solid var(--q-border);
-    }
-    
-    .timeline-content h3 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      color: #E8EAED;
-    }
-    
-    .company {
-      color: var(--q-brand-500);
-      font-weight: 600;
-      margin-bottom: 0.25rem;
-    }
-    
-    .period {
-      color: #A0A0A0;
-      font-size: 0.875rem;
-      margin-bottom: 1rem;
-    }
-    
-    .timeline-content p:last-child {
-      color: #A0A0A0;
-      line-height: 1.6;
-    }
-    
-    /* Skills */
-    .skills {
-      padding: 4rem 0;
-      background: var(--q-surface);
-    }
-    
-    .skills h2 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 3rem;
-      color: #E8EAED;
-      text-align: center;
-    }
-    
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-    
-    .skill-category {
-      background: var(--q-bg);
-      padding: 2rem;
-      border-radius: var(--q-radius-lg);
-      border: 1px solid var(--q-border);
-    }
-    
-    .skill-category h3 {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      color: var(--q-brand-500);
-    }
-    
-    .skill-category ul {
-      list-style: none;
-      padding: 0;
-    }
-    
-    .skill-category li {
-      color: #A0A0A0;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid var(--q-border);
-    }
-    
-    .skill-category li:last-child {
-      border-bottom: none;
-    }
-    
-    /* Philosophy */
-    .philosophy {
-      padding: 4rem 0;
-      background: var(--q-bg);
-    }
-    
-    .philosophy h2 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 2rem;
-      color: #E8EAED;
-      text-align: center;
-    }
-    
-    .philosophy-content {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    .philosophy-content p {
-      font-size: 1.125rem;
-      line-height: 1.6;
-      color: #A0A0A0;
-      margin-bottom: 1.5rem;
-    }
-    
-    /* CTA */
-    .cta {
-      padding: 4rem 0;
-      background: var(--q-surface);
-      text-align: center;
-    }
-    
-    .cta h2 {
+
+    .section-title {
       font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: #E8EAED;
     }
-    
-    .cta p {
-      font-size: 1.125rem;
-      color: #A0A0A0;
-      margin-bottom: 2rem;
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      padding: 0 15px;
     }
-    
-    /* Responsive */
-    @media (max-width: 768px) {
-      .hero-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 2rem;
-      }
-      
-      .hero h1 {
-        font-size: 2rem;
-      }
-      
-      .timeline::before {
-        left: 15px;
-      }
-      
-      .timeline-item {
-        padding-left: 50px;
-      }
-      
-      .timeline-marker {
-        left: 6px;
-      }
-      
-      .skills-grid {
-        grid-template-columns: 1fr;
-      }
+
+    .hero-title {
+      font-size: 2rem;
     }
-  </style>
-</BaseLayout>
+
+    .hero-section,
+    .about-me-section,
+    .skills-section,
+    .highlights-section,
+    .clients-section,
+    .testimonials-section,
+    .ai-generations-section,
+    .contact-section,
+    .footer-section {
+      padding: 60px 0;
+    }
+  }
+</style>
