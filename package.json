@@ -42,6 +42,7 @@
     "lint:a11y": "node src/Q10UX_Command_Pack/scripts/a11y-sanity.mjs",
     "check": "npm run guard:mobirise && npm run lint:a11y",
     "validate:galleries": "node scripts/validate-galleries.mjs",
+    "fix:frontmatter": "node scripts/fix-frontmatter.mjs",
     "phase": "bash scripts/git-phase.sh",
     "cases:list": "node scripts/cases-list.mjs",
     "approve": "node scripts/cases-set.mjs",
@@ -67,7 +68,8 @@
     "ora": "^7.0.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "yaml": "^2.8.1"
   },
   "devDependencies": {
     "@astrojs/mdx": "^2.3.1",

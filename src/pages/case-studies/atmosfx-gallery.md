@@ -1,17 +1,28 @@
 ---
 layout: "@/layouts/CaseStudyLayout.astro"
-title: "AtmosFX - UX Case Study | Q10UX Portfolio"
-slug: "atmosfx-gallery"
-date: "2025-08-25"
-tags: ["UX", "Design"]
-summary: "AtmosFX - UX Case Study | Q10UX Portfolio..."
+title: AtmosFX - UX Case Study | Q10UX Portfolio
+slug: atmosfx-gallery
+date: 2025-08-25
+tags:
+  - UX
+  - Design
+summary: AtmosFX - UX Case Study | Q10UX Portfolio...
 outcomes:
-  metrics: ["Improved user experience", "Enhanced functionality"]
-  quotes: ["Great work on this project. — Stakeholder"]
+  metrics:
+    - Improved user experience
+    - Enhanced functionality
+  quotes:
+    - Great work on this project. — Stakeholder
 gallery:
-  - { src: "/../assets/images/0-AtmosFX.png", alt: "0 AtmosFX", caption: "0 AtmosFX" }
-  - { src: "/../assets/images/AtmosFX SiteMap.jpg", alt: "AtmosFX SiteMap", caption: "AtmosFX SiteMap" }
-  - { src: "/../assets/images/afx-prototype-ecommerce.jpg", alt: "Afx Prototype Ecommerce", caption: "Afx Prototype Ecommerce" }
+  - src: /../assets/images/0-AtmosFX.png
+    alt: 0 AtmosFX
+    caption: 0 AtmosFX
+  - src: /../assets/images/AtmosFX SiteMap.jpg
+    alt: AtmosFX SiteMap
+    caption: AtmosFX SiteMap
+  - src: /../assets/images/afx-prototype-ecommerce.jpg
+    alt: Afx Prototype Ecommerce
+    caption: Afx Prototype Ecommerce
 ---
 
 AtmosFX - UX Case Study | Q10UX Portfolio

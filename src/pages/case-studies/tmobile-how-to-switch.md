@@ -1,13 +1,18 @@
 ---
 layout: "@/layouts/CaseStudyLayout.astro"
-title: "T-Mobile How to Switch"
-slug: "tmobile-how-to-switch"
-date: "2025-01-01"
-tags: ["UX","Prototype"]
-summary: "One-line description of what this case study is about."
+title: T-Mobile How to Switch
+slug: tmobile-how-to-switch
+date: 2025-01-01
+tags:
+  - UX
+  - Prototype
+summary: One-line description of what this case study is about.
 outcomes:
-  metrics: ["Metric 1 improved", "Metric 2 improved"]
-  quotes: ["Sample stakeholder quote. — PM"]
+  metrics:
+    - Metric 1 improved
+    - Metric 2 improved
+  quotes:
+    - Sample stakeholder quote. — PM
 ---
 
 ## Problem

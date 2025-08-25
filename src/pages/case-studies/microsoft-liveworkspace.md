@@ -1,13 +1,18 @@
 ---
 layout: "@/layouts/CaseStudyLayout.astro"
-title: "Microsoft Live Workspace"
-slug: "microsoft-liveworkspace"
-date: "2025-01-01"
-tags: ["UX","Prototype"]
-summary: "One-line description of what this case study is about."
+title: Microsoft Live Workspace
+slug: microsoft-liveworkspace
+date: 2025-01-01
+tags:
+  - UX
+  - Prototype
+summary: One-line description of what this case study is about.
 outcomes:
-  metrics: ["Metric 1 improved", "Metric 2 improved"]
-  quotes: ["Sample stakeholder quote. — PM"]
+  metrics:
+    - Metric 1 improved
+    - Metric 2 improved
+  quotes:
+    - Sample stakeholder quote. — PM
 ---
 
 ## Problem

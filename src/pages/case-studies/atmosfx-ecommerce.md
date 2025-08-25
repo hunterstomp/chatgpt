@@ -1,25 +1,51 @@
 ---
-title: "AtmosFX eCommerce Platform — AtmosFX"
-slug: "atmosfx-ecommerce"
-client: "AtmosFX"
-role: ["UX Designer", "Prototyper"]
-date: "2024-08-24"
-tags: ["eCommerce", "UX Design", "Prototyping", "Accessibility"]
-hero: "/assets/case-studies/atmosfx-ecommerce/hero.webp"
-summary: "Redesigned eCommerce platform increased conversion by 38% and improved accessibility compliance."
-outcomes: { 
-  metrics: ["Conversion rate ↑ 38%", "Cart abandonment ↓ 24%", "Accessibility score ↑ 95%"], 
-  quotes: ["\"The new platform exceeded our expectations for both usability and performance.\" — Product Manager"] 
-}
+title: AtmosFX eCommerce Platform — AtmosFX
+slug: atmosfx-ecommerce
+client: AtmosFX
+role:
+  - UX Designer
+  - Prototyper
+date: 2024-08-24
+tags:
+  - eCommerce
+  - UX Design
+  - Prototyping
+  - Accessibility
+hero: /assets/case-studies/atmosfx-ecommerce/hero.webp
+summary: Redesigned eCommerce platform increased conversion by 38% and improved
+  accessibility compliance.
+outcomes:
+  metrics:
+    - Conversion rate ↑ 38%
+    - Cart abandonment ↓ 24%
+    - Accessibility score ↑ 95%
+  quotes:
+    - '"The new platform exceeded our expectations for both usability and
+      performance." — Product Manager'
 phases:
-  - { id: research, title: "Research", summary: "User interviews, analytics review, accessibility audit" }
-  - { id: strategy, title: "Strategy", summary: "Information architecture, user flows, design system" }
-  - { id: ideation, title: "Ideation", summary: "Wireframes, user journey mapping" }
-  - { id: design, title: "Design", summary: "High-fidelity mockups, component library" }
-  - { id: prototyping, title: "Prototyping", summary: "Interactive prototypes, usability testing" }
-  - { id: validation, summary: "User testing, accessibility validation" }
-  - { id: delivery, title: "Delivery", summary: "Design tokens, developer handoff" }
-  - { id: impact, title: "Impact & Learnings", summary: "Results analysis, future recommendations" }
+  - id: research
+    title: Research
+    summary: User interviews, analytics review, accessibility audit
+  - id: strategy
+    title: Strategy
+    summary: Information architecture, user flows, design system
+  - id: ideation
+    title: Ideation
+    summary: Wireframes, user journey mapping
+  - id: design
+    title: Design
+    summary: High-fidelity mockups, component library
+  - id: prototyping
+    title: Prototyping
+    summary: Interactive prototypes, usability testing
+  - id: validation
+    summary: User testing, accessibility validation
+  - id: delivery
+    title: Delivery
+    summary: Design tokens, developer handoff
+  - id: impact
+    title: Impact & Learnings
+    summary: Results analysis, future recommendations
 ---
 
 import BaseLayout from '../../layouts/BaseLayout.astro';

@@ -1,25 +1,47 @@
 ---
 layout: "@/layouts/CaseStudyLayout.astro"
-title: "AtmosFX Media Player"
-slug: "atmosfx-media-player"
-client: "AtmosFX"
-role: ["UX Designer", "Prototyper"]
-date: "2025-01-15"
-tags: ["Prototyping", "Enterprise", "Accessibility"]
-hero: "/assets/case-studies/atmosfx-media-player/hero.webp"
-summary: "Custom mini-PC OS and playlist UX for seasonal digital decorations."
-outcomes: 
-  metrics: ["Task time ↓ 38%", "NPS +14"]
-  quotes: ["\"Shipped faster than anything last year.\" — PM"]
+title: AtmosFX Media Player
+slug: atmosfx-media-player
+client: AtmosFX
+role:
+  - UX Designer
+  - Prototyper
+date: 2025-01-15
+tags:
+  - Prototyping
+  - Enterprise
+  - Accessibility
+hero: /assets/case-studies/atmosfx-media-player/hero.webp
+summary: Custom mini-PC OS and playlist UX for seasonal digital decorations.
+outcomes:
+  metrics:
+    - Task time ↓ 38%
+    - NPS +14
+  quotes:
+    - '"Shipped faster than anything last year." — PM'
 phases:
-  - { id: research, title: "Research", summary: "Users, constraints" }
-  - { id: design, title: "Design", summary: "Interface, interactions" }
-  - { id: prototype, title: "Prototype", summary: "Interactive mockups" }
-  - { id: test, title: "Test", summary: "User validation" }
+  - id: research
+    title: Research
+    summary: Users, constraints
+  - id: design
+    title: Design
+    summary: Interface, interactions
+  - id: prototype
+    title: Prototype
+    summary: Interactive mockups
+  - id: test
+    title: Test
+    summary: User validation
 gallery:
-  - { src: "/assets/case-studies/atmosfx-media-player/hero.webp", alt: "Media player interface", caption: "Playback with seasonal pack loaded" }
-  - { src: "/assets/case-studies/atmosfx-media-player/playlists.webp", alt: "Playlist builder", caption: "Create → Preview → Save" }
-  - { src: "/assets/case-studies/atmosfx-media-player/settings.webp", alt: "Device settings", caption: "Hardware-aware defaults" }
+  - src: /assets/case-studies/atmosfx-media-player/hero.webp
+    alt: Media player interface
+    caption: Playback with seasonal pack loaded
+  - src: /assets/case-studies/atmosfx-media-player/playlists.webp
+    alt: Playlist builder
+    caption: Create → Preview → Save
+  - src: /assets/case-studies/atmosfx-media-player/settings.webp
+    alt: Device settings
+    caption: Hardware-aware defaults
 ---
 
 ## Problem
