@@ -1,0 +1,166 @@
+---
+interface Props {
+  images: string[];
+  interval?: number;
+  height?: string;
+  class?: string;
+}
+
+const { 
+  images = [], 
+  interval = 5000, 
+  height = "70vh",
+  class: className = "" 
+} = Astro.props;
+
+if (images.length === 0) {
+  images.push("/assets/images/hero-default.jpg");
+}
+---
+
+<div class={`relative overflow-hidden ${height} ${className}`}>
+  {images.map((src, index) => (
+    <div 
+      class={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+        index === 0 ? 'opacity-100' : 'opacity-0'
+      }`}
+      data-slide={index}
+    >
+      <img 
+        src={src} 
+        alt={`Hero image ${index + 1}`}
+        class="w-full h-full object-cover"
+        loading={index === 0 ? "eager" : "lazy"}
+      />
+      <div class="absolute inset-0 bg-black/30"></div>
+    </div>
+  ))}
+  
+  {images.length > 1 && (
+    <>
+      <!-- Navigation dots -->
+      <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
+        {images.map((_, index) => (
+          <button 
+            class={`w-2 h-2 rounded-full transition-colors ${
+              index === 0 ? 'bg-white' : 'bg-white/50 hover:bg-white/75'
+            }`}
+            data-slide={index}
+            aria-label={`Go to slide ${index + 1}`}
+          ></button>
+        ))}
+      </div>
+      
+      <!-- Arrow navigation -->
+      <button 
+        class="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/75 text-white rounded-full flex items-center justify-center transition-colors z-10"
+        data-action="prev"
+        aria-label="Previous slide"
+      >
+        ←
+      </button>
+      <button 
+        class="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/75 text-white rounded-full flex items-center justify-center transition-colors z-10"
+        data-action="next"
+        aria-label="Next slide"
+      >
+        →
+      </button>
+    </>
+  )}
+  
+  <slot />
+</div>
+
+<script define:vars={{ interval, totalSlides: images.length }}>
+  if (totalSlides <= 1) return;
+  
+  const carousel = document.currentScript.previousElementSibling;
+  const slides = carousel.querySelectorAll('[data-slide]');
+  const dots = carousel.querySelectorAll('[data-slide]');
+  const prevBtn = carousel.querySelector('[data-action="prev"]');
+  const nextBtn = carousel.querySelector('[data-action="next"]');
+  
+  let currentSlide = 0;
+  let autoplayInterval;
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.style.opacity = i === index ? '1' : '0';
+    });
+    
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('bg-white', i === index);
+      dot.classList.toggle('bg-white/50', i !== index);
+    });
+    
+    currentSlide = index;
+  }
+  
+  function nextSlide() {
+    const next = (currentSlide + 1) % totalSlides;
+    showSlide(next);
+  }
+  
+  function prevSlide() {
+    const prev = (currentSlide - 1 + totalSlides) % totalSlides;
+    showSlide(prev);
+  }
+  
+  function startAutoplay() {
+    if (reducedMotion) return;
+    autoplayInterval = setInterval(nextSlide, interval);
+  }
+  
+  function stopAutoplay() {
+    if (autoplayInterval) {
+      clearInterval(autoplayInterval);
+      autoplayInterval = null;
+    }
+  }
+  
+  // Event listeners
+  if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); stopAutoplay(); startAutoplay(); });
+  if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); stopAutoplay(); startAutoplay(); });
+  
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => { 
+      showSlide(index); 
+      stopAutoplay(); 
+      startAutoplay(); 
+    });
+  });
+  
+  // Pause on hover
+  carousel.addEventListener('mouseenter', stopAutoplay);
+  carousel.addEventListener('mouseleave', startAutoplay);
+  
+  // Keyboard navigation
+  carousel.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') { prevSlide(); stopAutoplay(); startAutoplay(); }
+    if (e.key === 'ArrowRight') { nextSlide(); stopAutoplay(); startAutoplay(); }
+  });
+  
+  // Touch/swipe support
+  let startX = 0;
+  let endX = 0;
+  
+  carousel.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+  });
+  
+  carousel.addEventListener('touchend', (e) => {
+    endX = e.changedTouches[0].clientX;
+    const diff = startX - endX;
+    
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) { nextSlide(); } else { prevSlide(); }
+      stopAutoplay(); 
+      startAutoplay();
+    }
+  });
+  
+  // Start autoplay
+  startAutoplay();
+</script>

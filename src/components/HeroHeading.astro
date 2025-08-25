@@ -1,0 +1,45 @@
+---
+interface Props {
+  title?: string;
+  subtitle?: string;
+  showCTAs?: boolean;
+  class?: string;
+}
+
+const { 
+  title = "Better Experiences. Real Results.",
+  subtitle = "UX Designer crafting impactful digital solutions",
+  showCTAs = true,
+  class: className = "" 
+} = Astro.props;
+---
+
+<div class={`absolute inset-0 flex items-center justify-center z-10 ${className}`}>
+  <div class="text-center text-white max-w-4xl mx-auto px-6">
+    <h1 class="text-4xl md:text-6xl font-bold mb-4 leading-tight">
+      {title}
+    </h1>
+    {subtitle && (
+      <p class="text-xl md:text-2xl mb-8 opacity-90 font-light">
+        {subtitle}
+      </p>
+    )}
+    
+    {showCTAs && (
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a 
+          href="/case-studies" 
+          class="bg-white text-black px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+        >
+          View Case Studies
+        </a>
+        <a 
+          href="/about" 
+          class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-black transition-colors"
+        >
+          About Me
+        </a>
+      </div>
+    )}
+  </div>
+</div>

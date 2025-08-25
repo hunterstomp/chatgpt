@@ -1,5 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import HeroCarousel from '../../components/HeroCarousel.astro';
+import HeroHeading from '../../components/HeroHeading.astro';
+import PageTransitions from '../../components/PageTransitions.astro';
 import { absUrl } from "@/lib/absUrl";
 
 const items = (await Astro.glob('./*.md*')).map(p => {
@@ -11,22 +14,28 @@ const items = (await Astro.glob('./*.md*')).map(p => {
     thumb: absUrl(fm.thumb || first),
   };
 });
+
+// Hero images for the case studies hub
+const heroImages = [
+  "/assets/images/2015-gates-annual-letter-2-2000x1068.png",
+  "/assets/images/hero-bmgf-1276x1754.jpg"
+];
 ---
 
 <BaseLayout 
   title="Case Studies - Quentin Little"
   description="UX case studies from Disney, AT&T, AtmosFX, Microsoft, and Bill & Melinda Gates Foundation. Enterprise UX, accessibility, and design systems."
 >
-  <!-- Page Header -->
-  <section class="page-header">
-    <div class="container">
-      <h1 class="page-title">Case Studies</h1>
-      <p class="page-description">
-        A collection of UX projects spanning enterprise software, eCommerce, gaming, and non-profit work. 
-        Each case study demonstrates my approach to user research, design, and validation.
-      </p>
-    </div>
-  </section>
+  <PageTransitions />
+  
+  <!-- Hero Section with Carousel -->
+  <HeroCarousel images={heroImages} height="50vh" interval={6500}>
+    <HeroHeading 
+      title="Case Studies"
+      subtitle="UX projects spanning enterprise software, eCommerce, gaming, and non-profit work"
+      showCTAs={false}
+    />
+  </HeroCarousel>
 
   <!-- Case Studies Grid -->
   <section class="case-studies">
@@ -80,31 +89,11 @@ const items = (await Astro.glob('./*.md*')).map(p => {
   </section>
 
   <style>
-    /* Page Header */
-    .page-header {
-      padding: 4rem 0;
-      background: var(--q-surface);
-      border-bottom: 1px solid var(--q-border);
-    }
-    
+    /* Container */
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 2rem;
-    }
-    
-    .page-title {
-      font-size: 3rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: #E8EAED;
-    }
-    
-    .page-description {
-      font-size: 1.25rem;
-      line-height: 1.6;
-      color: #A0A0A0;
-      max-width: 600px;
     }
     
     /* Case Studies */
@@ -247,10 +236,6 @@ const items = (await Astro.glob('./*.md*')).map(p => {
     
     /* Responsive */
     @media (max-width: 768px) {
-      .page-title {
-        font-size: 2rem;
-      }
-      
       .case-studies-grid {
         grid-template-columns: 1fr;
       }

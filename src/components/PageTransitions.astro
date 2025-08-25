@@ -1,0 +1,55 @@
+---
+// This component enables smooth page transitions using the View Transitions API
+// It's a progressive enhancement - works great when supported, graceful fallback when not
+---
+
+<script>
+  // Check if View Transitions API is supported
+  if (!document.startViewTransition) {
+    // Fallback: no transitions, but site still works perfectly
+    return;
+  }
+
+  // Intercept all navigation clicks
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+    if (!link) return;
+    
+    // Only handle internal links
+    if (link.hostname !== window.location.hostname) return;
+    if (link.target === '_blank') return;
+    if (link.hasAttribute('download')) return;
+    
+    e.preventDefault();
+    
+    // Start view transition
+    document.startViewTransition(() => {
+      window.location.href = link.href;
+    });
+  });
+
+  // Handle browser back/forward
+  window.addEventListener('popstate', () => {
+    if (document.startViewTransition) {
+      document.startViewTransition(() => {
+        window.location.reload();
+      });
+    }
+  });
+</script>
+
+<style>
+  /* View transition styles */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.5s;
+  }
+  
+  /* Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation-duration: 0.1s;
+    }
+  }
+</style>
