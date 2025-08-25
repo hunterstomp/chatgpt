@@ -1,0 +1,60 @@
+{
+  "pages": [
+    {
+      "slug": "tmobile-idea-lab",
+      "title": "T-Mobile Idea Lab",
+      "summary": "T-Mobile Idea Lab - Comprehensive UX case study showcasing prototyping of future-ready experiences at the 5G edge including wearables, health telemetry, and digital assistants. Features customer journey mapping, concept-to-prototype UX, and go-to-market validation.",
+      "galleryCount": 54,
+      "file": "src/pages/case-studies/tmobile-idea-lab.mdx"
+    },
+    {
+      "slug": "tmobile-how-to-switch",
+      "title": "T-Mobile Purchase Simplicity: How to Switch",
+      "summary": "Expert UX Designer crafts intuitive, user-centered experiences using AI, ML, AR, VR, IoT. Showcases stellar case studies in responsive design across multiple platforms.",
+      "galleryCount": 27,
+      "file": "src/pages/case-studies/tmobile-how-to-switch.mdx"
+    },
+    {
+      "slug": "atmosfx-media-player",
+      "title": "AtmosFX Media Player",
+      "summary": "AtmosFX Media Player - Comprehensive UX case study showcasing the design and development of a sophisticated media player for AtmosFX's atmospheric content platform. Features user research, wireframes, prototypes, and final TV interface designs.",
+      "galleryCount": 49,
+      "file": "src/pages/case-studies/atmosfx-media-player.mdx"
+    },
+    {
+      "slug": "bmgf",
+      "title": "Bill & Melinda Gates Annual Newsletter",
+      "summary": "Expert UX Designer crafts intuitive, user-centered experiences using AI, ML, AR, VR, IoT. Showcases stellar case studies in responsive design across multiple platforms.",
+      "galleryCount": 28,
+      "file": "src/pages/case-studies/bmgf.mdx"
+    },
+    {
+      "slug": "microsoft-office-365",
+      "title": "Microsoft Office 365",
+      "summary": "Microsoft Office 365 - Comprehensive UX case study showcasing cloud collaboration platform design for Information Workers. Features file sharing, co-editing, permissions, and seamless integration across Microsoft's cloud services ecosystem.",
+      "galleryCount": 60,
+      "file": "src/pages/case-studies/microsoft-office-365.mdx"
+    },
+    {
+      "slug": "microsoft-office-live",
+      "title": "Microsoft Office Live Workspaces",
+      "summary": "Microsoft Office Live - Comprehensive UX case study showcasing the design of Microsoft's web-based productivity platform. Features collaborative workspaces, small business solutions, and early cloud computing interfaces that paved the way for modern Office 365.",
+      "galleryCount": 57,
+      "file": "src/pages/case-studies/microsoft-office-live.mdx"
+    },
+    {
+      "slug": "att-international-roaming",
+      "title": "AT&T International Roaming",
+      "summary": "AT&T International Roaming - Comprehensive UX case study showcasing the design of streamlined international roaming plans and usage tracking. Features customer journey optimization, plan comparison interfaces, and simplified activation flows for global travelers.",
+      "galleryCount": 31,
+      "file": "src/pages/case-studies/att-international-roaming.mdx"
+    },
+    {
+      "slug": "start",
+      "title": "Untitled Document",
+      "summary": "",
+      "galleryCount": 0,
+      "file": "src/pages/case-studies/start.mdx"
+    }
+  ]
+}

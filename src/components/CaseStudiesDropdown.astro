@@ -1,0 +1,16 @@
+---
+const items = [{"slug":"att-international-roaming","title":"AT&T International Roaming","status":"draft"},{"slug":"atmosfx-ecommerce","title":"AtmosFX eCommerce Platform — AtmosFX","status":"draft"},{"slug":"atmosfx-media-player","title":"AtmosFX Media Player","status":"draft"},{"slug":"atmosfx-media-player","title":"AtmosFX Media Player","status":"draft"},{"slug":"bmgf","title":"Bill & Melinda Gates Annual Newsletter","status":"draft"},{"slug":"microsoft-liveworkspace","title":"Microsoft Live Workspace","status":"draft"},{"slug":"microsoft-office-365","title":"Microsoft Office 365","status":"draft"},{"slug":"microsoft-office-live","title":"Microsoft Office Live Workspaces","status":"draft"},{"slug":"tmobile-how-to-switch","title":"T-Mobile How to Switch","status":"draft"},{"slug":"tmobile-idea-lab","title":"T-Mobile Idea Lab","status":"draft"},{"slug":"tmobile-how-to-switch","title":"T-Mobile Purchase Simplicity: How to Switch","status":"draft"},{"slug":"start","title":"Untitled Document","status":"draft"}];
+const visible = items.filter(i => i.status !== "hidden");
+---
+<div class="relative group">
+  <a href="/case-studies" class="inline-flex items-center gap-1">Case Studies</a>
+  <div class="absolute left-0 mt-2 hidden group-hover:block bg-white/95 dark:bg-neutral-900 shadow-lg rounded-xl ring-1 ring-black/10 min-w-[16rem] p-2 backdrop-blur">
+    <ul class="max-h-[60vh] overflow-auto">
+      {visible.map(i => (
+        <li class="px-2 py-1.5 rounded-md hover:bg-black/5 dark:hover:bg-white/10">
+          <a href={"/case-studies/" + i.slug} class="block">{i.title}</a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>

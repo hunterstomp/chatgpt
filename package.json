@@ -44,7 +44,10 @@
     "validate:galleries": "node scripts/validate-galleries.mjs",
     "phase": "bash scripts/git-phase.sh",
     "cases:list": "node scripts/cases-list.mjs",
-    "approve": "node scripts/cases-set.mjs"
+    "approve": "node scripts/cases-set.mjs",
+    "spider": "node scripts/spider-site.mjs",
+    "nav:update": "node scripts/fix-nav.mjs",
+    "autoimport": "npm run spider && npm run nav:update && npm run cases:list"
   },
   "dependencies": {
     "@astrojs/react": "^4.3.0",
