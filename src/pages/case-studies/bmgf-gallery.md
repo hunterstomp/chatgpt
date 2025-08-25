@@ -14,21 +14,12 @@ outcomes:
   - "Reusable patterns for future annual reports"
   - "Improved engagement on key sections"
 gallery:
-  - src: /../assets/images/2015-gates-annual-letter-2-2000x1068-800x427.png
-    alt: 2015 Gates Annual Letter 2 2000x1068 800x427
-    caption: 2015 Gates Annual Letter 2 2000x1068 800x427
-  - src: /../assets/images/2015-gates-annual-letter-2-2000x1068.png
-    alt: 2015 Gates Annual Letter 2 2000x1068
-    caption: 2015 Gates Annual Letter 2 2000x1068
-  - src: /../assets/images/2015-gates-annual-letter-2000x1072-800x429.png
-    alt: 2015 Gates Annual Letter 2000x1072 800x429
-    caption: 2015 Gates Annual Letter 2000x1072 800x429
-  - src: /../assets/images/2015-gates-annual-letter-2000x1072.png
-    alt: 2015 Gates Annual Letter 2000x1072
-    caption: 2015 Gates Annual Letter 2000x1072
-  - src: /../assets/images/hero-bmgf-1276x1754.jpg
-    alt: Hero Bmgf 1276x1754
-    caption: Hero Bmgf 1276x1754
+  - src: "/assets/case-studies/bmgf-gallery/annual-newsletter-hero.webp"
+    alt: "Annual Newsletter Hero"
+    caption: "Annual Newsletter Hero"
+  - src: "/assets/case-studies/bmgf-gallery/hero-annual-newsletter-hero.webp"
+    alt: "Hero Annual Newsletter"
+    caption: "Hero Annual Newsletter"
 ---
 ## Objective
 Create an engaging, interactive annual letter experience that turns complex data into clear, visual stories for a wide audience.

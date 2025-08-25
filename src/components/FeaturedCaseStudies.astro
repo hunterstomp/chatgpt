@@ -26,7 +26,7 @@ const featuredStudies = publishedStudies.length > 0
         const gallery = Array.isArray(study.frontmatter.gallery) ? study.frontmatter.gallery : [];
         const thumbnail = gallery.length > 0 
           ? (typeof gallery[0] === 'string' ? gallery[0] : gallery[0]?.src || '')
-          : '/assets/images/placeholder.jpg';
+          : '/assets/placeholders/case-study-placeholder.svg';
         
         // Fix image paths
         const imageSrc = thumbnail.startsWith('/../') ? thumbnail.replace('/../', '/') : thumbnail;
