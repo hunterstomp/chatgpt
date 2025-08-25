@@ -16,8 +16,8 @@ function normalizeText(s) {
   if (typeof s !== "string") return s;
   // normalize smart quotes + whitespace
   return s
-    .replace(/[""]/g, '"')
-    .replace(/['']/g, "'")
+    .replace(/[""]/g, '"')   // smart double quotes → "
+    .replace(/['']/g, "'")   // smart single quotes → '
     .replace(/\u00A0/g, " ")
     .replace(/\s+/g, " ")
     .trim();
