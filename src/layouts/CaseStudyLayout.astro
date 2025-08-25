@@ -2,10 +2,6 @@
 import ReadingProgress from "@/components/ReadingProgress.astro";
 import Reveal from "@/components/Reveal.astro";
 let { frontmatter } = Astro.props;
-
-// Optional gallery island – use if you already created it
-let hasGalleryIsland = false;
-try { await import("@/components/CaseStudyGallery.astro"); hasGalleryIsland = true; } catch {}
 ---
 <html lang="en">
   <head>
@@ -36,15 +32,28 @@ try { await import("@/components/CaseStudyGallery.astro"); hasGalleryIsland = tr
       <section class="min-w-0">
         {Array.isArray(frontmatter.gallery) && frontmatter.gallery.length > 0 && (
           <>
-            {hasGalleryIsland
-              ? (await import("@/components/CaseStudyGallery.astro")).default({ items: frontmatter.gallery, client: "visible" })
-              : <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                  {frontmatter.gallery.slice(0,9).map(g =>
-                    <a href={g.src} class="group block overflow-hidden rounded-xl bg-white/5">
-                      <img src={g.src} alt={g.alt ?? ""} loading="lazy" decoding="async" class="aspect-[4/3] w-full object-cover group-hover:scale-[1.02] transition" />
-                    </a>
-                  )}
-                </div>}
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {frontmatter.gallery.slice(0,9).map(g => {
+                const src = typeof g === 'string' ? g : g?.src || '';
+                const alt = typeof g === 'string' ? '' : g?.alt || '';
+                const caption = typeof g === 'string' ? '' : g?.caption || '';
+                
+                // Fix image paths that start with /../
+                const imageSrc = src.startsWith('/../') ? src.replace('/../', '/') : src;
+                
+                return (
+                  <a href={imageSrc} class="group block overflow-hidden rounded-xl bg-white/5">
+                    <img 
+                      src={imageSrc} 
+                      alt={alt} 
+                      loading="lazy" 
+                      decoding="async" 
+                      class="aspect-[4/3] w-full object-cover group-hover:scale-[1.02] transition" 
+                    />
+                  </a>
+                );
+              })}
+            </div>
             <hr class="border-white/10 my-8" />
           </>
         )}
