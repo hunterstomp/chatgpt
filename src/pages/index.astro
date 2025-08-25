@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Counter from '../components/Counter.tsx';
 
 // Import case study data (we'll create this)
 const featuredCaseStudies = [
@@ -48,6 +49,7 @@ const featuredCaseStudies = [
       <div class="hero-actions">
         <a href="/case-studies" class="btn btn--primary">View Case Studies</a>
         <a href="/contact" class="btn btn--secondary">Get in Touch</a>
+        <Counter client:idle start={10} />
       </div>
     </div>
     <div class="hero-visual">

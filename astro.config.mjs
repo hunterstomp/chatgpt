@@ -1,8 +1,12 @@
 import { defineConfig } from 'astro/config';
+import react from '@astrojs/react';
 import mdx from '@astrojs/mdx';
 
 export default defineConfig({
-  integrations: [mdx()],
+  integrations: [
+    react(), // enables React islands / .tsx
+    mdx(),   // enables .mdx pages/partials
+  ],
   site: 'https://q10ux.com',
   base: '/',
   build: {
