@@ -11,7 +11,79 @@ outcomes:
   - Improved user experience and engagement
   - Enhanced visual design and accessibility
   - Streamlined user workflows and processes
-gallery: []
+gallery:
+  - src: /case-studies/atmos-fx-media-player-q-10-ux-portfolio/afx-media-player-hero-background-2000x1352.webp
+    alt: Mobirise Website Builder
+    caption: ""
+  - src: /case-studies/atmos-fx-media-player-q-10-ux-portfolio/challengeproblem-160x158.webp
+    alt: Challenge and Problem Analysis
+    caption: ""
+  - src: /case-studies/atmos-fx-media-player-q-10-ux-portfolio/goal-160x158.webp
+    alt: Project Goals and Objectives
+    caption: ""
+  - src: /case-studies/atmos-fx-media-player-q-10-ux-portfolio/people-160x158.webp
+    alt: User Research and Personas
+    caption: ""
+  - src: /case-studies/atmos-fx-media-player-q-10-ux-portfolio/3media-player-design-final-1-1256x1614.webp
+    alt: Style Guide / Symbols Sketch
+    caption: ""
+  - src: /case-studies/atmos-fx-media-player-q-10-ux-portfolio/2-afx-mdp-exploration-17-836x627.webp
+    alt: UX Design Process and Wireframes
+    caption: ""
+  - src: /case-studies/atmos-fx-media-player-q-10-ux-portfolio/2-afx-mdp-exploration-46-836x627.webp
+    alt: Adding Decorations
+    caption: ""
+  - src: /case-studies/atmos-fx-media-player-q-10-ux-portfolio/2-afx-mdp-exploration-33-836x627.webp
+    alt: Creating a Playlist
+    caption: ""
+  - src: /case-studies/atmos-fx-media-player-q-10-ux-portfolio/2-afx-mdp-exploration-46-836x627.webp
+    alt: Creating a Playlist (V2)
+    caption: ""
+  - src: /case-studies/atmos-fx-media-player-q-10-ux-portfolio/2-afx-mdp-exploration-53-836x627.webp
+    alt: Previewing Scene
+    caption: ""
+  - src: /case-studies/atmos-fx-media-player-q-10-ux-portfolio/2-afx-mdp-exploration-66-836x627.webp
+    alt: Filtering
+    caption: ""
+  - src: /case-studies/atmos-fx-media-player-q-10-ux-portfolio/2-afx-mdp-exploration-68-836x627.webp
+    alt: User Flows
+    caption: ""
+  - src: /case-studies/atmos-fx-media-player-q-10-ux-portfolio/2-afx-mdp-exploration-69-836x627.webp
+    alt: Alternate Flows
+    caption: ""
+  - src: /case-studies/atmos-fx-media-player-q-10-ux-portfolio/2-afx-mdp-exploration-17-836x627.webp
+    alt: Mobirise Website Builder
+    caption: ""
+  - src: /case-studies/atmos-fx-media-player-q-10-ux-portfolio/2-afx-mdp-exploration-46-836x627.webp
+    alt: Mobirise Website Builder
+    caption: ""
+  - src: /case-studies/atmos-fx-media-player-q-10-ux-portfolio/2-afx-mdp-exploration-33-836x627.webp
+    alt: Mobirise Website Builder
+    caption: ""
+  - src: /case-studies/atmos-fx-media-player-q-10-ux-portfolio/2-afx-mdp-exploration-46-836x627.webp
+    alt: Mobirise Website Builder
+    caption: ""
+  - src: /case-studies/atmos-fx-media-player-q-10-ux-portfolio/2-afx-mdp-exploration-53-836x627.webp
+    alt: Mobirise Website Builder
+    caption: ""
+  - src: /case-studies/atmos-fx-media-player-q-10-ux-portfolio/2-afx-mdp-exploration-66-836x627.webp
+    alt: Mobirise Website Builder
+    caption: ""
+  - src: /case-studies/atmos-fx-media-player-q-10-ux-portfolio/2-afx-mdp-exploration-68-836x627.webp
+    alt: Mobirise Website Builder
+    caption: ""
+  - src: /case-studies/atmos-fx-media-player-q-10-ux-portfolio/2-afx-mdp-exploration-69-836x627.webp
+    alt: Mobirise Website Builder
+    caption: ""
+  - src: /case-studies/atmos-fx-media-player-q-10-ux-portfolio/3media-player-design-final-2-522x294.webp
+    alt: Dimensions
+    caption: ""
+  - src: /case-studies/atmos-fx-media-player-q-10-ux-portfolio/3media-player-design-final-3-522x294.webp
+    alt: Dimensions
+    caption: ""
+  - src: /case-studies/atmos-fx-media-player-q-10-ux-portfolio/3media-player-design-final-5-522x294.webp
+    alt: Safe Zones
+    caption: ""
 ---
 ## Objective
 Create an engaging user experience that addresses specific user needs and business goals.
