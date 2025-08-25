@@ -1,21 +1,29 @@
 ---
 layout: "@/layouts/EnhancedCaseStudyLayout.astro"
-title: "T-Mobile - UX Case Study | Q10UX Portfolio"
-slug: "tmobile-gallery"
-date: "2025-08-25"
-client: "T-Mobile"
-role: "UX Designer"
+title: T-Mobile - UX Case Study | Q10UX Portfolio
+slug: tmobile-gallery
+date: 2025-08-25
+client: T-Mobile
+role: UX Designer
 tags: []
-summary: "T-Mobile - UX Case Study | Q10UX Portfolio..."
-skills: ["User Research", "Wireframing", "Prototyping", "Visual Design"]
+summary: T-Mobile - UX Case Study | Q10UX Portfolio...
+skills:
+  - User Research
+  - Wireframing
+  - Prototyping
+  - Visual Design
 outcomes:
-  metrics:
-    - "Improved user experience and engagement"
-    - "Enhanced visual design and accessibility"
-    - "Streamlined user workflows and processes"
-  quotes:
-    - "The design work significantly improved our user experience. — Project Manager"
-    - "Clear, intuitive design that our users love. — User Research Lead"
+  - "[object Object]"
+stats:
+  - label: Role
+    value: UX Designer
+  - label: Duration
+    value: 2025-08-25
+ctas:
+  - label: Scroll to Process
+    href: "#process"
+    kind: secondary
+quotes: []
 ---
 
 T-Mobile - UX Case Study | Q10UX Portfolio

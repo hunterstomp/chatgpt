@@ -1,60 +1,67 @@
 ---
-import BaseLayout from './BaseLayout.astro';
-import CaseStudyGallery from '@/components/CaseStudyGallery.astro';
+import ReadingProgress from "@/components/ReadingProgress.astro";
+import Reveal from "@/components/Reveal.astro";
+let { frontmatter } = Astro.props;
 
-const { frontmatter, headings } = Astro.props;
-const images = frontmatter?.gallery ?? [];
-
-// SEO meta
-const title = frontmatter?.title || 'Case Study';
-const description = frontmatter?.summary || 'UX case study by Quentin Little';
-const hero = frontmatter?.hero || '';
+// Optional gallery island – use if you already created it
+let hasGalleryIsland = false;
+try { await import("@/components/CaseStudyGallery.astro"); hasGalleryIsland = true; } catch {}
 ---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{frontmatter.title ?? "Case Study"}</title>
+    <meta name="description" content={frontmatter.summary ?? "UX case study"} />
+  </head>
+  <body class="bg-neutral-950 text-neutral-100">
+    <ReadingProgress />
+    <main class="mx-auto max-w-7xl px-6 py-10 grid gap-10 md:grid-cols-[minmax(16rem,20rem),1fr]">
+      <aside class="md:sticky md:top-24 md:max-h-[75vh] md:overflow-auto space-y-5">
+        <h1 class="text-2xl font-semibold leading-tight">{frontmatter.title}</h1>
+        <div class="grid gap-2 text-sm">
+          <div><span class="text-neutral-400">Client</span><div>{frontmatter.client}</div></div>
+          <div><span class="text-neutral-400">Role</span><div>{frontmatter.role}</div></div>
+          <div><span class="text-neutral-400">Year</span><div>{frontmatter.year}</div></div>
+          {frontmatter.kpi && <div><span class="text-neutral-400">Outcome</span><div>{frontmatter.kpi}</div></div>}
+          {Array.isArray(frontmatter.tags) && frontmatter.tags.length > 0 && (
+            <div class="flex flex-wrap gap-2 pt-2">
+              {frontmatter.tags.map(t => <span class="rounded-full bg-white/10 px-3 py-1 text-xs">{t}</span>)}
+            </div>
+          )}
+        </div>
+        {frontmatter.summary && <p class="text-neutral-300 pt-4 text-sm leading-relaxed">{frontmatter.summary}</p>}
+      </aside>
 
-<BaseLayout title={title} description={description}>
-  <main class="container mx-auto px-4 py-8 max-w-4xl">
-    <!-- Hero Section -->
-    {hero && (
-      <div class="mb-8">
-        <img 
-          src={hero} 
-          alt={`${title} hero image`}
-          class="w-full h-64 md:h-96 object-cover rounded-2xl"
-          loading="eager"
-        />
-      </div>
-    )}
+      <section class="min-w-0">
+        {Array.isArray(frontmatter.gallery) && frontmatter.gallery.length > 0 && (
+          <>
+            {hasGalleryIsland
+              ? (await import("@/components/CaseStudyGallery.astro")).default({ items: frontmatter.gallery, client: "visible" })
+              : <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                  {frontmatter.gallery.slice(0,9).map(g =>
+                    <a href={g.src} class="group block overflow-hidden rounded-xl bg-white/5">
+                      <img src={g.src} alt={g.alt ?? ""} loading="lazy" decoding="async" class="aspect-[4/3] w-full object-cover group-hover:scale-[1.02] transition" />
+                    </a>
+                  )}
+                </div>}
+            <hr class="border-white/10 my-8" />
+          </>
+        )}
 
-    <!-- Title and Meta -->
-    <header class="mb-8">
-      <h1 class="text-4xl md:text-5xl font-bold mb-4">{title}</h1>
-      {frontmatter?.client && (
-        <p class="text-xl text-gray-600 mb-2">Client: {frontmatter.client}</p>
-      )}
-      {frontmatter?.role && (
-        <p class="text-lg text-gray-600 mb-4">Role: {Array.isArray(frontmatter.role) ? frontmatter.role.join(', ') : frontmatter.role}</p>
-      )}
-      {frontmatter?.summary && (
-        <p class="text-xl leading-relaxed text-gray-700 mb-6">{frontmatter.summary}</p>
-      )}
-    </header>
+        <Reveal as="div" class="prose prose-invert max-w-none">
+          <slot />
+        </Reveal>
 
-    <!-- Gallery (auto-renders if frontmatter.gallery exists) -->
-    {images.length > 0 && (
-      <CaseStudyGallery items={images} />
-    )}
-
-    <!-- Content -->
-    <article class="prose prose-lg max-w-none">
-      <slot />
-    </article>
-
-    <!-- Navigation -->
-    <nav class="mt-12 pt-8 border-t border-gray-200">
-      <div class="flex justify-between">
-        <a href="/case-studies" class="btn btn--secondary">← All Case Studies</a>
-        <a href="/contact" class="btn btn--primary">Get in Touch</a>
-      </div>
-    </nav>
-  </main>
-</BaseLayout>
+        {Array.isArray(frontmatter.outcomes) && frontmatter.outcomes.length > 0 && (
+          <div class="mt-10">
+            <h2 class="text-xl font-semibold mb-3">Key Takeaways</h2>
+            <ul class="list-disc pl-5 space-y-2 text-neutral-300">
+              {frontmatter.outcomes.map(o => <li>{o}</li>)}
+            </ul>
+          </div>
+        )}
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,22 +1,30 @@
 ---
 layout: "@/layouts/EnhancedCaseStudyLayout.astro"
-title: "Test"
-slug: "atmosfx-media-player"
-date: "2025-01-15"
-client: "AtmosFX"
-role: "UX Designer,Prototyper"
-hero: "/assets/case-studies/atmosfx-media-player/hero.webp"
+title: Test
+slug: atmosfx-media-player
+date: 2025-01-15
+client: AtmosFX
+role: UX Designer,Prototyper
+hero: /assets/case-studies/atmosfx-media-player/hero.webp
 tags: []
-summary: "User validation"
-skills: ["User Research", "Wireframing", "Prototyping", "Visual Design"]
+summary: User validation
+skills:
+  - User Research
+  - Wireframing
+  - Prototyping
+  - Visual Design
 outcomes:
-  metrics:
-    - "Improved user experience and engagement"
-    - "Enhanced visual design and accessibility"
-    - "Streamlined user workflows and processes"
-  quotes:
-    - "The design work significantly improved our user experience. — Project Manager"
-    - "Clear, intuitive design that our users love. — User Research Lead"
+  - "[object Object]"
+stats:
+  - label: Role
+    value: UX Designer,Prototyper
+  - label: Duration
+    value: 2025-01-15
+ctas:
+  - label: Scroll to Process
+    href: "#process"
+    kind: secondary
+quotes: []
 ---
 
 ## Problem

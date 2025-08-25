@@ -1,23 +1,60 @@
 ---
-layout: "@/layouts/EnhancedCaseStudyLayout.astro"
-title: "Bill & Melinda Gates Foundation - UX Case Study | Q10UX Portfolio"
-slug: "bmgf-gallery"
-date: "2025-08-25"
-client: "Bill & Melinda Gates Foundation"
-role: "UX Designer & Design Lead"
-hero: "/../assets/images/hero-bmgf-1276x1754.jpg"
-tags: []
-summary: "Comprehensive UX design work for the Bill & Melinda Gates Foundation, including annual letter designs, portfolio showcases, and user-centered design solutions that communicate complex philanthropic initiatives effectively."
-skills: ["User Research", "Wireframing", "Prototyping", "Visual Design"]
+layout: "@/layouts/CaseStudyLayout.astro"
+title: Bill & Melinda Gates Foundation - UX Case Study | Q10UX Portfolio
+client: Bill & Melinda Gates Foundation
+role: UX Designer & Design Lead
+year: "2020"
+kpi: Interactive data stories shipped; stakeholder engagement ↑
+summary: Comprehensive UX design work for the Bill & Melinda Gates Foundation,
+  including annual letter designs, portfolio showcases, and user-centered design
+  solutions that communicate complex philanthropic initiatives effectively.
+tags: ["Data Viz", "Storytelling", "Non‑profit"]
 outcomes:
-  metrics:
-    - "Improved user experience and engagement"
-    - "Enhanced visual design and accessibility"
-    - "Streamlined user workflows and processes"
-  quotes:
-    - "The design work significantly improved our user experience. — Project Manager"
-    - "Clear, intuitive design that our users love. — User Research Lead"
+  - "Faster story comprehension via interactive charts"
+  - "Reusable patterns for future annual reports"
+  - "Improved engagement on key sections"
+gallery:
+  - src: /../assets/images/2015-gates-annual-letter-2-2000x1068-800x427.png
+    alt: 2015 Gates Annual Letter 2 2000x1068 800x427
+    caption: 2015 Gates Annual Letter 2 2000x1068 800x427
+  - src: /../assets/images/2015-gates-annual-letter-2-2000x1068.png
+    alt: 2015 Gates Annual Letter 2 2000x1068
+    caption: 2015 Gates Annual Letter 2 2000x1068
+  - src: /../assets/images/2015-gates-annual-letter-2000x1072-800x429.png
+    alt: 2015 Gates Annual Letter 2000x1072 800x429
+    caption: 2015 Gates Annual Letter 2000x1072 800x429
+  - src: /../assets/images/2015-gates-annual-letter-2000x1072.png
+    alt: 2015 Gates Annual Letter 2000x1072
+    caption: 2015 Gates Annual Letter 2000x1072
+  - src: /../assets/images/hero-bmgf-1276x1754.jpg
+    alt: Hero Bmgf 1276x1754
+    caption: Hero Bmgf 1276x1754
 ---
+## Objective
+Create an engaging, interactive annual letter experience that turns complex data into clear, visual stories for a wide audience.
+
+## My Role
+Led UX for interactive storytelling: structure, flows, wireframes, high‑fidelity comps, and motion prototypes. Partnered with engineers on chart behaviors and performance.
+
+## Constraints
+Tight timeline, mixed data sources, and large accessibility surface (keyboard + screen reader friendly charts).
+
+## Process
+1. **Content modeling** → identified narrative beats and KPIs to highlight.
+2. **Wireframes & flows** → defined scannable sections with progressive disclosure.
+3. **Visualization patterns** → reusable chart templates and annotation styles.
+4. **Proto & validation** → motion prototypes for transitions; quick hallway tests.
+5. **Handoff** → design tokens + fig/spec patterns for dev parity.
+
+## Results
+- Stakeholders could publish data stories faster with consistent design patterns.
+- Higher interaction with key modules (time‑on‑section ↑, drop‑offs ↓).
+- Foundation gained a repeatable approach for future letters.
+
+
+---
+
+<!-- Original body migrated below; review/edit as needed. -->
 
 ## Project Overview
 

@@ -1,22 +1,30 @@
 ---
 layout: "@/layouts/EnhancedCaseStudyLayout.astro"
-title: "Impact & Learnings"
-slug: "atmosfx-ecommerce"
-date: "2024-08-24"
-client: "AtmosFX"
-role: "UX Designer,Prototyper"
-hero: "/assets/case-studies/atmosfx-ecommerce/hero.webp"
+title: Impact & Learnings
+slug: atmosfx-ecommerce
+date: 2024-08-24
+client: AtmosFX
+role: UX Designer,Prototyper
+hero: /assets/case-studies/atmosfx-ecommerce/hero.webp
 tags: []
-summary: "Results analysis, future recommendations"
-skills: ["User Research", "Wireframing", "Prototyping", "Visual Design"]
+summary: Results analysis, future recommendations
+skills:
+  - User Research
+  - Wireframing
+  - Prototyping
+  - Visual Design
 outcomes:
-  metrics:
-    - "Improved user experience and engagement"
-    - "Enhanced visual design and accessibility"
-    - "Streamlined user workflows and processes"
-  quotes:
-    - "The design work significantly improved our user experience. — Project Manager"
-    - "Clear, intuitive design that our users love. — User Research Lead"
+  - "[object Object]"
+stats:
+  - label: Role
+    value: UX Designer,Prototyper
+  - label: Duration
+    value: 2024-08-24
+ctas:
+  - label: Scroll to Process
+    href: "#process"
+    kind: secondary
+quotes: []
 ---
 
 import BaseLayout from '../../layouts/BaseLayout.astro';

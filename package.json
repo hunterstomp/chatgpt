@@ -44,6 +44,9 @@
     "validate:galleries": "node scripts/validate-galleries.mjs",
     "fix:frontmatter": "node scripts/fix-frontmatter.mjs",
     "upgrade:layout": "node scripts/upgrade-to-enhanced-layout.mjs",
+    "roll:hero": "node scripts/roll-hero.mjs",
+    "nav:build": "node scripts/nav-build.mjs",
+    "upgrade:case": "node scripts/upgrade-one-case.mjs",
     "prebuild": "node scripts/guard-orphans.mjs && node scripts/fix-frontmatter.mjs",
     "phase": "bash scripts/git-phase.sh",
     "cases:list": "node scripts/cases-list.mjs",
@@ -70,15 +73,15 @@
     "ora": "^7.0.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "uuid": "^9.0.1",
-    "yaml": "^2.8.1"
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@astrojs/mdx": "^2.3.1",
     "astro": "^4.16.19",
     "nodemon": "^3.0.2",
     "sharp": "^0.34.3",
-    "vite": "^7.1.3"
+    "vite": "^7.1.3",
+    "yaml": "^2.8.1"
   },
   "engines": {
     "node": ">=16.0.0"

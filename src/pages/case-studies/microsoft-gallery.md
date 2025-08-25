@@ -1,21 +1,30 @@
 ---
 layout: "@/layouts/EnhancedCaseStudyLayout.astro"
-title: "Microsoft - UX Case Study | Q10UX Portfolio"
-slug: "microsoft-gallery"
-date: "2025-08-25"
-client: "Microsoft"
-role: "UX Designer"
+title: Microsoft - UX Case Study | Q10UX Portfolio
+slug: microsoft-gallery
+date: 2025-08-25
+client: Microsoft
+role: UX Designer
 tags: []
-summary: "Microsoft - UX Case Study | Q10UX Portfolio..."
-skills: ["User Research", "Wireframing", "Prototyping", "Visual Design", "Design Systems"]
+summary: Microsoft - UX Case Study | Q10UX Portfolio...
+skills:
+  - User Research
+  - Wireframing
+  - Prototyping
+  - Visual Design
+  - Design Systems
 outcomes:
-  metrics:
-    - "Improved user productivity by 30%"
-    - "Reduced training time by 50%"
-    - "Enhanced design system adoption"
-  quotes:
-    - "The new interface significantly improved our team's efficiency. — Microsoft PM"
-    - "Intuitive design that requires minimal training. — Training Lead"
+  - "[object Object]"
+stats:
+  - label: Role
+    value: UX Designer
+  - label: Duration
+    value: 2025-08-25
+ctas:
+  - label: Scroll to Process
+    href: "#process"
+    kind: secondary
+quotes: []
 ---
 
 Microsoft - UX Case Study | Q10UX Portfolio

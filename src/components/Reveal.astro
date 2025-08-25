@@ -1,0 +1,16 @@
+---
+const { as = 'div', delay = 0, class: klass = '', ...rest } = Astro.props;
+const Tag = as;
+---
+<Tag class={`opacity-0 translate-y-4 will-change-transform data-[in]:opacity-100 data-[in]:translate-y-0 transition duration-700 ease-out ${klass}`} {...rest} />
+<script>
+  const el = document.currentScript.previousElementSibling;
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced) { el.dataset.in=''; el.style.opacity='1'; el.style.transform='none'; }
+  else {
+    const io = new IntersectionObserver((ents)=>{
+      ents.forEach(e=>{ if(e.isIntersecting){ setTimeout(()=>{ el.dataset.in=''; }, Number(${0})+Number(${0})+Number(delay)); io.unobserve(el); }});
+    },{threshold:0.12});
+    io.observe(el);
+  }
+</script>

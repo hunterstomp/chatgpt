@@ -1,21 +1,30 @@
 ---
 layout: "@/layouts/EnhancedCaseStudyLayout.astro"
-title: "Disney - UX Case Study | Q10UX Portfolio"
-slug: "disney-gallery"
-date: "2025-08-25"
-client: "Disney"
-role: "UX Designer"
+title: Disney - UX Case Study | Q10UX Portfolio
+slug: disney-gallery
+date: 2025-08-25
+client: Disney
+role: UX Designer
 tags: []
-summary: "Disney - UX Case Study | Q10UX Portfolio..."
-skills: ["User Research", "Wireframing", "Prototyping", "Visual Design", "Accessibility"]
+summary: Disney - UX Case Study | Q10UX Portfolio...
+skills:
+  - User Research
+  - Wireframing
+  - Prototyping
+  - Visual Design
+  - Accessibility
 outcomes:
-  metrics:
-    - "Enhanced user engagement metrics"
-    - "Improved accessibility compliance"
-    - "Streamlined user workflows"
-  quotes:
-    - "The design work exceeded our expectations for user experience. — Disney PM"
-    - "Accessible and engaging for all our users. — Accessibility Lead"
+  - "[object Object]"
+stats:
+  - label: Role
+    value: UX Designer
+  - label: Duration
+    value: 2025-08-25
+ctas:
+  - label: Scroll to Process
+    href: "#process"
+    kind: secondary
+quotes: []
 ---
 
 Disney - UX Case Study | Q10UX Portfolio

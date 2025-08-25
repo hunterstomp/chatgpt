@@ -115,7 +115,13 @@ export default function CaseStudyGallery({
   return (
     <div>
       {/* Thumbs */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
+      <div style={{ 
+        display: 'grid', 
+        gridTemplateColumns: 'repeat(2, 1fr)',
+        gap: '1.5rem',
+        '@media (min-width: 640px)': { gridTemplateColumns: 'repeat(3, 1fr)' },
+        '@media (min-width: 1024px)': { gridTemplateColumns: 'repeat(4, 1fr)' }
+      }}>
         {items.map((it, i) => (
           <button
             key={i}
@@ -123,9 +129,18 @@ export default function CaseStudyGallery({
             style={{ 
               position: 'relative', 
               overflow: 'hidden', 
-              borderRadius: '1rem',
-              border: '1px solid rgba(0,0,0,0.1)',
-              cursor: 'pointer'
+              borderRadius: '0.75rem',
+              boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+              cursor: 'pointer',
+              transition: 'transform 0.3s ease, box-shadow 0.3s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'scale(1.03)';
+              e.currentTarget.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.3)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'scale(1)';
+              e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
             }}
             aria-label={`Open image ${i + 1} of ${items.length}`}
           >
@@ -140,7 +155,7 @@ export default function CaseStudyGallery({
                 style={{ 
                   display: 'block', 
                   width: '100%', 
-                  height: '100%', 
+                  height: '160px',
                   objectFit: 'cover' 
                 }}
               />
