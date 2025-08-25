@@ -85,6 +85,7 @@ gallery:
     alt: Microsoft Office 365 - Enterprise file management interface showing cloud
       storage and collaboration features
     caption: ""
+slug: microsoft-office-365-q-10-ux-portfolio
 ---
 ## Objective
 Create an engaging, interactive annual letter experience that turns complex data into clear, visual stories for a wide audience.

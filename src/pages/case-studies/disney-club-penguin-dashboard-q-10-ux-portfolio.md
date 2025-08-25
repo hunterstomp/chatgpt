@@ -10,6 +10,7 @@ tags: []
 outcomes:
   - "[object Object]"
 gallery: []
+slug: disney-club-penguin-dashboard-q-10-ux-portfolio
 ---
 ## Objective
 Create an engaging, interactive annual letter experience that turns complex data into clear, visual stories for a wide audience.

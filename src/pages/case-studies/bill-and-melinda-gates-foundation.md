@@ -96,6 +96,7 @@ gallery:
   - src: /case-studies/bill-and-melinda-gates-foundation/bmgf-0005-6-600x480.webp
     alt: Dimensions
     caption: ""
+slug: bill-and-melinda-gates-foundation
 ---
 ## Objective
 Create an engaging, interactive annual letter experience that turns complex data into clear, visual stories for a wide audience.

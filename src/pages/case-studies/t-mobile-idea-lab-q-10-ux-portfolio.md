@@ -84,6 +84,7 @@ gallery:
   - src: /case-studies/t-mobile-idea-lab-q-10-ux-portfolio/idealab-journey-16-1920x1080.webp
     alt: Q10UX.com Portfolio Image
     caption: ""
+slug: t-mobile-idea-lab-q-10-ux-portfolio
 ---
 ## Objective
 Create an engaging user experience that addresses specific user needs and business goals.

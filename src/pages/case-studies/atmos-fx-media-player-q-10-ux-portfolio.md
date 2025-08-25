@@ -84,6 +84,7 @@ gallery:
   - src: /case-studies/atmos-fx-media-player-q-10-ux-portfolio/3media-player-design-final-3-522x294.webp
     alt: Dimensions
     caption: ""
+slug: atmos-fx-media-player-q-10-ux-portfolio
 ---
 ## Objective
 Create an engaging user experience that addresses specific user needs and business goals.

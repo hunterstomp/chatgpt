@@ -84,6 +84,7 @@ gallery:
   - src: /case-studies/microsoft-office-live-q-10-ux-portfolio/projects-sign-up-and-configurator1202503308246859490-1024x768.webp
     alt: UX Design Process and Wireframes
     caption: ""
+slug: microsoft-office-live-q-10-ux-portfolio
 ---
 ## Objective
 Create an engaging user experience that addresses specific user needs and business goals.

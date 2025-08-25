@@ -98,6 +98,7 @@ gallery:
     alt: AT&T International Roaming - Mobile interface showing international travel
       and roaming services
     caption: ""
+slug: at-amp-t-international-roaming-q-10-ux-portfolio
 ---
 ## Objective
 

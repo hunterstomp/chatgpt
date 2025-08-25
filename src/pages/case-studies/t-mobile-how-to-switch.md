@@ -93,6 +93,7 @@ gallery:
   - src: /case-studies/t-mobile-how-to-switch/image-1-522x1253.webp
     alt: UX Design Process and Wireframes
     caption: ""
+slug: t-mobile-how-to-switch
 ---
 ## Objective
 Create an engaging user experience that addresses specific user needs and business goals.

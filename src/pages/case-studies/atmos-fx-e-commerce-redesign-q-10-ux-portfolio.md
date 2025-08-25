@@ -92,6 +92,7 @@ gallery:
   - src: /case-studies/atmos-fx-e-commerce-redesign-q-10-ux-portfolio/3media-player-design-final-6-714x402.webp
     alt: UX Design Process and Wireframes
     caption: ""
+slug: atmos-fx-e-commerce-redesign-q-10-ux-portfolio
 ---
 ## Objective
 Create an engaging user experience that addresses specific user needs and business goals.
