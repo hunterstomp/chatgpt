@@ -1,0 +1,382 @@
+---
+title: "AtmosFX eCommerce Platform — AtmosFX"
+slug: "atmosfx-ecommerce"
+client: "AtmosFX"
+role: ["UX Designer", "Prototyper"]
+date: "2024-08-24"
+tags: ["eCommerce", "UX Design", "Prototyping", "Accessibility"]
+hero: "/assets/case-studies/atmosfx-ecommerce/hero.webp"
+summary: "Redesigned eCommerce platform increased conversion by 38% and improved accessibility compliance."
+outcomes: { 
+  metrics: ["Conversion rate ↑ 38%", "Cart abandonment ↓ 24%", "Accessibility score ↑ 95%"], 
+  quotes: ["\"The new platform exceeded our expectations for both usability and performance.\" — Product Manager"] 
+}
+phases:
+  - { id: research, title: "Research", summary: "User interviews, analytics review, accessibility audit" }
+  - { id: strategy, title: "Strategy", summary: "Information architecture, user flows, design system" }
+  - { id: ideation, title: "Ideation", summary: "Wireframes, user journey mapping" }
+  - { id: design, title: "Design", summary: "High-fidelity mockups, component library" }
+  - { id: prototyping, title: "Prototyping", summary: "Interactive prototypes, usability testing" }
+  - { id: validation, summary: "User testing, accessibility validation" }
+  - { id: delivery, title: "Delivery", summary: "Design tokens, developer handoff" }
+  - { id: impact, title: "Impact & Learnings", summary: "Results analysis, future recommendations" }
+---
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+<BaseLayout 
+  title="AtmosFX eCommerce Platform - Case Study"
+  description="UX case study: Redesigned AtmosFX eCommerce platform increased conversion by 38% while improving accessibility compliance."
+>
+  <article class="case-study">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <span class="client">{frontmatter.client}</span>
+            <h1>{frontmatter.title}</h1>
+            <p class="summary">{frontmatter.summary}</p>
+            <div class="meta">
+              <div class="role">
+                <strong>Role:</strong> {frontmatter.role.join(', ')}
+              </div>
+              <div class="date">
+                <strong>Date:</strong> {frontmatter.date}
+              </div>
+            </div>
+          </div>
+          <div class="hero-image">
+            <img 
+              src={frontmatter.hero} 
+              alt="AtmosFX eCommerce Platform interface"
+              width="600"
+              height="400"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Outcomes -->
+    <section class="outcomes">
+      <div class="container">
+        <h2>Key Outcomes</h2>
+        <div class="outcomes-grid">
+          <div class="metrics">
+            <h3>Metrics</h3>
+            <ul>
+              {frontmatter.outcomes.metrics.map(metric => (
+                <li>{metric}</li>
+              ))}
+            </ul>
+          </div>
+          <div class="quotes">
+            <h3>Client Feedback</h3>
+            <blockquote>
+              {frontmatter.outcomes.quotes[0]}
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Problem -->
+    <section class="problem">
+      <div class="container">
+        <h2>Problem</h2>
+        <p>
+          AtmosFX's existing eCommerce platform was struggling with low conversion rates and poor accessibility. 
+          Users found the checkout process confusing, and the site failed WCAG 2.1 AA compliance standards. 
+          The business needed a solution that would improve both user experience and accessibility while maintaining 
+          the brand's unique aesthetic.
+        </p>
+        <p>
+          Key challenges included a complex product catalog with seasonal content, international shipping requirements, 
+          and the need to support both desktop and mobile users effectively.
+        </p>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section class="process">
+      <div class="container">
+        <h2>Process</h2>
+        <div class="phases">
+          {frontmatter.phases.map(phase => (
+            <div class="phase">
+              <h3>{phase.title}</h3>
+              <p>{phase.summary}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Solution -->
+    <section class="solution">
+      <div class="container">
+        <h2>Solution</h2>
+        <p>
+          I redesigned the entire eCommerce experience with a focus on accessibility, clear information hierarchy, 
+          and streamlined checkout flow. The solution included:
+        </p>
+        <ul>
+          <li>Simplified navigation with clear product categories</li>
+          <li>Accessible product cards with proper alt text and keyboard navigation</li>
+          <li>Streamlined checkout process with progress indicators</li>
+          <li>Mobile-first responsive design</li>
+          <li>Comprehensive design system with accessibility tokens</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section class="results">
+      <div class="container">
+        <h2>Results</h2>
+        <p>
+          The redesigned platform achieved significant improvements across all key metrics while maintaining 
+          AtmosFX's brand identity and improving accessibility compliance.
+        </p>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <div class="container">
+        <h2>Interested in working together?</h2>
+        <p>Let's discuss how I can help improve your user experience and accessibility.</p>
+        <a href="/contact" class="btn btn--primary">Get in Touch</a>
+      </div>
+    </section>
+  </article>
+
+  <style>
+    .case-study {
+      background: var(--q-bg);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    /* Hero */
+    .hero {
+      padding: 4rem 0;
+      background: var(--q-surface);
+    }
+    
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    
+    .client {
+      color: var(--q-brand-500);
+      font-weight: 600;
+      font-size: 1.125rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: #E8EAED;
+    }
+    
+    .summary {
+      font-size: 1.25rem;
+      line-height: 1.6;
+      color: #A0A0A0;
+      margin-bottom: 2rem;
+    }
+    
+    .meta {
+      display: flex;
+      gap: 2rem;
+      color: #A0A0A0;
+    }
+    
+    .hero-image img {
+      width: 100%;
+      height: auto;
+      border-radius: var(--q-radius-lg);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    
+    /* Outcomes */
+    .outcomes {
+      padding: 4rem 0;
+      background: var(--q-bg);
+    }
+    
+    .outcomes h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 3rem;
+      color: #E8EAED;
+      text-align: center;
+    }
+    
+    .outcomes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+    
+    .metrics h3, .quotes h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #E8EAED;
+    }
+    
+    .metrics ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .metrics li {
+      background: var(--q-surface);
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: var(--q-radius-md);
+      border: 1px solid var(--q-border);
+      color: #E8EAED;
+      font-weight: 500;
+    }
+    
+    blockquote {
+      background: var(--q-surface);
+      padding: 2rem;
+      border-radius: var(--q-radius-lg);
+      border-left: 4px solid var(--q-brand-500);
+      font-style: italic;
+      color: #E8EAED;
+      line-height: 1.6;
+    }
+    
+    /* Sections */
+    .problem, .solution, .results {
+      padding: 4rem 0;
+    }
+    
+    .problem {
+      background: var(--q-surface);
+    }
+    
+    .solution {
+      background: var(--q-bg);
+    }
+    
+    .results {
+      background: var(--q-surface);
+    }
+    
+    h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      color: #E8EAED;
+    }
+    
+    p {
+      font-size: 1.125rem;
+      line-height: 1.6;
+      color: #A0A0A0;
+      margin-bottom: 1.5rem;
+    }
+    
+    ul {
+      color: #A0A0A0;
+      line-height: 1.6;
+    }
+    
+    li {
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Process */
+    .process {
+      padding: 4rem 0;
+      background: var(--q-bg);
+    }
+    
+    .phases {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    
+    .phase {
+      background: var(--q-surface);
+      padding: 2rem;
+      border-radius: var(--q-radius-lg);
+      border: 1px solid var(--q-border);
+    }
+    
+    .phase h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--q-brand-500);
+    }
+    
+    .phase p {
+      color: #A0A0A0;
+      font-size: 1rem;
+    }
+    
+    /* CTA */
+    .cta {
+      padding: 4rem 0;
+      background: var(--q-bg);
+      text-align: center;
+    }
+    
+    .cta h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    
+    .cta p {
+      font-size: 1.125rem;
+      margin-bottom: 2rem;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .outcomes-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .phases {
+        grid-template-columns: 1fr;
+      }
+      
+      .meta {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+  </style>
+</BaseLayout>
