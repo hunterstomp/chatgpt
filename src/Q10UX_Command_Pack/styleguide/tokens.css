@@ -18,3 +18,8 @@ a:focus,button:focus{outline:none; box-shadow:var(--q-shadow-focus)}
 .btn--secondary{--fg:var(--q-brand-500); --bd:var(--q-brand-500)} .btn--secondary:hover{--bg:color-mix(in oklab, var(--q-brand-500) 20%, #000 80%)}
 .btn--tertiary{--fg:#E8EAED; --bd:var(--q-border)} .btn--tertiary:hover{--bg:rgba(255,255,255,.06)}
 .btn--danger{--bg:var(--q-red); --fg:#170000; --bd:transparent} .btn--danger:hover{--bg:color-mix(in oklab, var(--q-red) 90%, black)}
+
+/* Reduce motion support */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

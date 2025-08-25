@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/CaseStudyLayout.astro
+layout: "@/layouts/CaseStudyLayout.astro"
 title: "AtmosFX Media Player"
 slug: "atmosfx-media-player"
 client: "AtmosFX"

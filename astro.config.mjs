@@ -13,6 +13,11 @@ export default defineConfig({
     assets: 'assets',
   },
   vite: {
+    resolve: {
+      alias: {
+        '@': '/src'
+      }
+    },
     css: {
       preprocessorOptions: {
         scss: {
