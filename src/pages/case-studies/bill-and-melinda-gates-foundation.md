@@ -17,6 +17,9 @@ outcomes:
   - Reusable patterns for future annual reports
   - Improved engagement on key sections
 gallery:
+  - src: /case-studies/bill-and-melinda-gates-foundation/q10ux-logo-1-399x202.png
+    alt: Q10UX.com - Portfolio of Quentin Little
+    caption: ""
   - src: /case-studies/bill-and-melinda-gates-foundation/challengeproblem-160x158.webp
     alt: Challenge and Problem Analysis
     caption: ""
@@ -91,9 +94,6 @@ gallery:
     alt: Dimensions
     caption: ""
   - src: /case-studies/bill-and-melinda-gates-foundation/bmgf-0005-6-600x480.webp
-    alt: Dimensions
-    caption: ""
-  - src: /case-studies/bill-and-melinda-gates-foundation/bmgf-0006-7-600x480.webp
     alt: Dimensions
     caption: ""
 ---

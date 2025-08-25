@@ -15,6 +15,9 @@ gallery:
   - src: /case-studies/atmos-fx-media-player-q-10-ux-portfolio/afx-media-player-hero-background-2000x1352.webp
     alt: Mobirise Website Builder
     caption: ""
+  - src: /case-studies/atmos-fx-media-player-q-10-ux-portfolio/q10ux-logo-1-399x202.png
+    alt: Q10UX.com - Portfolio of Quentin Little
+    caption: ""
   - src: /case-studies/atmos-fx-media-player-q-10-ux-portfolio/challengeproblem-160x158.webp
     alt: Challenge and Problem Analysis
     caption: ""
@@ -80,9 +83,6 @@ gallery:
     caption: ""
   - src: /case-studies/atmos-fx-media-player-q-10-ux-portfolio/3media-player-design-final-3-522x294.webp
     alt: Dimensions
-    caption: ""
-  - src: /case-studies/atmos-fx-media-player-q-10-ux-portfolio/3media-player-design-final-5-522x294.webp
-    alt: Safe Zones
     caption: ""
 ---
 ## Objective

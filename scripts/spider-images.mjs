@@ -165,16 +165,18 @@ async function run(){
 
   // seed list from webarchives or live portfolio
   const seeds = [
-    { url: `${LIVE}/`, kind: "home", outDir: path.join(PUB, "hero"), titleHint: "Home" },
-    { url: `${LIVE}/about.html`, kind: "about", outDir: ABOUT_DIR, titleHint: "About" },
-    { url: `${LIVE}/case-studies.html`, kind: "hub", outDir: path.join(PUB,"cases-hub"), titleHint: "Case Studies" },
-    // a few common slugs; script will extract more links from the hub if possible
-    { url: `${LIVE}/tmobile-how-to-switch.html`, kind:"case" },
-    { url: `${LIVE}/microsoft-office-365-new.html`, kind:"case" },
-    { url: `${LIVE}/bmgf.html`, kind:"case" },
-    { url: `${LIVE}/afx-ecommerce.html`, kind:"case" },
-    { url: `${LIVE}/atmosfx-media-player.html`, kind:"case" },
-    { url: `${LIVE}/disney-club-penguin.html`, kind:"case" },
+    { url: `${LIVE}/`, kind: "home", outDir: path.join(PUB, "hero"), titleHint: "Home", webarchiveMatch: "Quentin Little - UX Designer & Prototyper" },
+    { url: `${LIVE}/about.html`, kind: "about", outDir: ABOUT_DIR, titleHint: "About", webarchiveMatch: "About - Quentin Little" },
+    { url: `${LIVE}/case-studies.html`, kind: "hub", outDir: path.join(PUB,"cases-hub"), titleHint: "Case Studies", webarchiveMatch: "Case Studies - Quentin Little" },
+    // case studies with webarchive matches
+    { url: `${LIVE}/tmobile-how-to-switch.html`, kind:"case", webarchiveMatch: "T-Mobile How to Switch" },
+    { url: `${LIVE}/microsoft-office-365-new.html`, kind:"case", webarchiveMatch: "Microsoft Office 365" },
+    { url: `${LIVE}/bmgf.html`, kind:"case", webarchiveMatch: "Bill and Melinda Gates Foundation" },
+    { url: `${LIVE}/afx-ecommerce.html`, kind:"case", webarchiveMatch: "AtmosFX eCommerce Redesign" },
+    { url: `${LIVE}/atmosfx-media-player.html`, kind:"case", webarchiveMatch: "AtmosFX Media Player" },
+    { url: `${LIVE}/att-international-roaming.html`, kind:"case", webarchiveMatch: "AT&T International Roaming" },
+    { url: `${LIVE}/microsoft-office-live.html`, kind:"case", webarchiveMatch: "Microsoft Office Live" },
+    { url: `${LIVE}/tmobile-idea-lab.html`, kind:"case", webarchiveMatch: "T-Mobile Idea Lab" },
   ];
 
   // Try to replace seeds with local .webarchive content when filenames match
@@ -184,8 +186,16 @@ async function run(){
   for (const seed of seeds){
     let html = "", base = seed.url, resMap = null;
     // if a matching webarchive exists, extract first
-    const key = slugify(path.basename(seed.url).replace(/\.(html?)?$/i,"")) || seed.kind;
-    const wa = byName.get(key);
+    let wa = null;
+    if (seed.webarchiveMatch) {
+      // Find webarchive by matching the webarchiveMatch string
+      wa = waFiles.find(f => path.basename(f, ".webarchive").includes(seed.webarchiveMatch));
+    } else {
+      // Fallback to old logic
+      const key = slugify(path.basename(seed.url).replace(/\.(html?)?$/i,"")) || seed.kind;
+      wa = byName.get(key);
+    }
+    
     if (wa){
       console.log("🗂  Extracting from webarchive:", path.basename(wa));
       const out = extractWebarchive(wa);

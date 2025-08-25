@@ -12,6 +12,9 @@ outcomes:
   - Enhanced visual design and accessibility
   - Streamlined user workflows and processes
 gallery:
+  - src: /case-studies/t-mobile-how-to-switch/q10ux-logo-1-399x202.png
+    alt: Q10UX.com - Portfolio of Quentin Little
+    caption: ""
   - src: /case-studies/t-mobile-how-to-switch/challengeproblem-160x158.webp
     alt: Challenge and Problem Analysis
     caption: ""
@@ -88,9 +91,6 @@ gallery:
       switching process
     caption: ""
   - src: /case-studies/t-mobile-how-to-switch/image-1-522x1253.webp
-    alt: UX Design Process and Wireframes
-    caption: ""
-  - src: /case-studies/t-mobile-how-to-switch/image-2-522x1253.webp
     alt: UX Design Process and Wireframes
     caption: ""
 ---

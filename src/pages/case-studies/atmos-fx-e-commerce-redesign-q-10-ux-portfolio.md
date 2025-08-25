@@ -12,6 +12,9 @@ outcomes:
   - Enhanced visual design and accessibility
   - Streamlined user workflows and processes
 gallery:
+  - src: /case-studies/atmos-fx-e-commerce-redesign-q-10-ux-portfolio/q10ux-logo-1-399x202.png
+    alt: Q10UX.com - Portfolio of Quentin Little
+    caption: ""
   - src: /case-studies/atmos-fx-e-commerce-redesign-q-10-ux-portfolio/challengeproblem-160x158.webp
     alt: Challenge and Problem Analysis
     caption: ""
@@ -88,9 +91,6 @@ gallery:
     caption: ""
   - src: /case-studies/atmos-fx-e-commerce-redesign-q-10-ux-portfolio/3media-player-design-final-6-714x402.webp
     alt: UX Design Process and Wireframes
-    caption: ""
-  - src: /case-studies/atmos-fx-e-commerce-redesign-q-10-ux-portfolio/3media-player-design-final-7-522x294.webp
-    alt: Bundles
     caption: ""
 ---
 ## Objective
