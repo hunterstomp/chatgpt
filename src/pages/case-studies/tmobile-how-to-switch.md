@@ -1,30 +1,43 @@
 ---
-layout: "@/layouts/EnhancedCaseStudyLayout.astro"
+layout: "@/layouts/CaseStudyLayout.astro"
 title: T-Mobile How to Switch
-slug: tmobile-how-to-switch
-date: 2025-01-01
 client: T-Mobile How to Switch
 role: UX Designer
-tags: []
+year: 2025-01-01
+kpi: Improved user experience and engagement
 summary: One-line description of what this case study is about.
-skills:
-  - User Research
-  - Wireframing
-  - Prototyping
-  - Visual Design
+tags: []
 outcomes:
-  - "[object Object]"
-stats:
-  - label: Role
-    value: UX Designer
-  - label: Duration
-    value: 2025-01-01
-ctas:
-  - label: Scroll to Process
-    href: "#process"
-    kind: secondary
-quotes: []
+  - Improved user experience and engagement
+  - Enhanced visual design and accessibility
+  - Streamlined user workflows and processes
+gallery: []
 ---
+## Objective
+Create an engaging user experience that addresses specific user needs and business goals.
+
+## My Role
+Led UX design and research: user research, wireframing, prototyping, and visual design. Collaborated with stakeholders and development teams.
+
+## Constraints
+Timeline, technical limitations, and accessibility requirements.
+
+## Process
+1. **User Research** → understanding user needs and pain points
+2. **Information Architecture** → organizing content and functionality
+3. **Wireframing & Prototyping** → creating interactive prototypes
+4. **Visual Design** → high-fidelity designs and design systems
+5. **Testing & Iteration** → user testing and design refinement
+
+## Results
+- Improved user satisfaction and task completion rates
+- Enhanced accessibility and usability
+- Streamlined workflows and processes
+
+
+---
+
+<!-- Original body migrated below; review/edit as needed. -->
 
 ## Problem
 Describe the challenge, user need, or business goal.

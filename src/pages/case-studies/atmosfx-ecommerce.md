@@ -1,31 +1,43 @@
 ---
-layout: "@/layouts/EnhancedCaseStudyLayout.astro"
+layout: "@/layouts/CaseStudyLayout.astro"
 title: Impact & Learnings
-slug: atmosfx-ecommerce
-date: 2024-08-24
 client: AtmosFX
 role: UX Designer,Prototyper
-hero: /assets/case-studies/atmosfx-ecommerce/hero.webp
-tags: []
+year: 2024-08-24
+kpi: Improved user experience and engagement
 summary: Results analysis, future recommendations
-skills:
-  - User Research
-  - Wireframing
-  - Prototyping
-  - Visual Design
+tags: []
 outcomes:
-  - "[object Object]"
-stats:
-  - label: Role
-    value: UX Designer,Prototyper
-  - label: Duration
-    value: 2024-08-24
-ctas:
-  - label: Scroll to Process
-    href: "#process"
-    kind: secondary
-quotes: []
+  - Improved user experience and engagement
+  - Enhanced visual design and accessibility
+  - Streamlined user workflows and processes
+gallery: []
 ---
+## Objective
+Create an engaging user experience that addresses specific user needs and business goals.
+
+## My Role
+Led UX design and research: user research, wireframing, prototyping, and visual design. Collaborated with stakeholders and development teams.
+
+## Constraints
+Timeline, technical limitations, and accessibility requirements.
+
+## Process
+1. **User Research** → understanding user needs and pain points
+2. **Information Architecture** → organizing content and functionality
+3. **Wireframing & Prototyping** → creating interactive prototypes
+4. **Visual Design** → high-fidelity designs and design systems
+5. **Testing & Iteration** → user testing and design refinement
+
+## Results
+- Improved user satisfaction and task completion rates
+- Enhanced accessibility and usability
+- Streamlined workflows and processes
+
+
+---
+
+<!-- Original body migrated below; review/edit as needed. -->
 
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
