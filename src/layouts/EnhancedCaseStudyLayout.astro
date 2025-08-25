@@ -1,0 +1,235 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import CaseStudyGallery from '@/components/CaseStudyGallery.astro';
+import { absUrl } from '@/lib/absUrl';
+
+const { 
+  title, 
+  client, 
+  role, 
+  skills = [], 
+  summary, 
+  hero, 
+  gallery = [], 
+  outcomes = {},
+  quotes = [],
+  date 
+} = Astro.props;
+
+// Convert gallery to proper format for the component
+const images = gallery.map(img => ({
+  src: absUrl(img.src),
+  alt: img.alt || '',
+  caption: img.caption || ''
+}));
+
+// Extract metrics and quotes from outcomes
+const metrics = Array.isArray(outcomes) ? outcomes : outcomes.metrics || [];
+const testimonialQuotes = Array.isArray(quotes) ? quotes : outcomes.quotes || [];
+---
+
+<BaseLayout title={title} description={summary}>
+  <!-- Hero Section -->
+  <section class="hero-section" style="
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(45, 45, 45, 0.8) 100%), 
+                url('${hero ? absUrl(hero) : '/assets/images/backgrounds/default-hero.webp'}');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 4rem 0;
+    margin-bottom: 3rem;
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  ">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="hero-content text-center">
+        <h1 class="text-5xl md:text-7xl font-bold mb-6 text-white">
+          {client || title}
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-300 mb-8">
+          {role || 'UX Design Case Study'}
+        </p>
+        
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+          <div class="stats-card bg-black/20 backdrop-blur-sm rounded-lg p-6 border border-white/10">
+            <div class="text-3xl mb-2">📊</div>
+            <p class="text-lg font-semibold text-white">
+              {gallery.length} Deliverables
+            </p>
+          </div>
+          <div class="stats-card bg-black/20 backdrop-blur-sm rounded-lg p-6 border border-white/10">
+            <div class="text-3xl mb-2">🎯</div>
+            <p class="text-lg font-semibold text-white">
+              User-Centered Design
+            </p>
+          </div>
+          <div class="stats-card bg-black/20 backdrop-blur-sm rounded-lg p-6 border border-white/10">
+            <div class="text-3xl mb-2">📈</div>
+            <p class="text-lg font-semibold text-white">
+              Impactful Solutions
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="container mx-auto px-4 py-8 max-w-6xl">
+    <!-- Project Overview -->
+    <section class="mb-16">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Summary -->
+        <div class="lg:col-span-2">
+          <h2 class="text-3xl font-bold mb-6 text-white">Project Overview</h2>
+          <p class="text-lg leading-relaxed text-gray-300 mb-6">
+            {summary}
+          </p>
+        </div>
+        
+        <!-- Role & Skills -->
+        <div class="space-y-6">
+          {role && (
+            <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
+              <h3 class="text-xl font-semibold mb-4 text-white">Role</h3>
+              <p class="text-gray-300">{role}</p>
+            </div>
+          )}
+          
+          {skills.length > 0 && (
+            <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
+              <h3 class="text-xl font-semibold mb-4 text-white">Skills & Tools</h3>
+              <div class="flex flex-wrap gap-2">
+                {skills.map((skill: string) => (
+                  <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+          
+          {date && (
+            <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
+              <h3 class="text-xl font-semibold mb-4 text-white">Timeline</h3>
+              <p class="text-gray-300">{new Date(date).getFullYear()}</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+
+    <!-- Outcomes & Metrics -->
+    {metrics.length > 0 && (
+      <section class="mb-16">
+        <h2 class="text-3xl font-bold mb-8 text-white text-center">Key Outcomes</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {metrics.map((metric: string) => (
+            <div class="bg-gray-900 rounded-lg p-6 border border-gray-700 text-center">
+              <div class="text-2xl mb-3">✅</div>
+              <p class="text-gray-300">{metric}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Testimonials -->
+    {testimonialQuotes.length > 0 && (
+      <section class="mb-16">
+        <h2 class="text-3xl font-bold mb-8 text-white text-center">What Stakeholders Say</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {testimonialQuotes.map((quote: string) => (
+            <blockquote class="bg-gray-900 rounded-lg p-6 border border-gray-700 italic">
+              <p class="text-gray-300 text-lg">"{quote}"</p>
+            </blockquote>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Gallery Section -->
+    {images.length > 0 && (
+      <section class="mb-16">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4 text-white">
+            {client || 'Project'} - Design Deliverables
+          </h2>
+          <p class="text-xl text-gray-300">
+            Explore the complete design process through wireframes, prototypes, and final designs
+          </p>
+        </div>
+        
+        <CaseStudyGallery items={images} />
+      </section>
+    )}
+
+    <!-- Content -->
+    <article class="prose prose-lg max-w-none prose-invert">
+      <slot />
+    </article>
+
+    <!-- Back to Portfolio -->
+    <div class="text-center mt-16">
+      <a href="/case-studies" class="
+        inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg
+        hover:bg-blue-700 transition-colors duration-200
+      ">
+        ← Back to Portfolio
+      </a>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .hero-section {
+    background-attachment: scroll;
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .hero-section {
+      background-attachment: scroll;
+    }
+  }
+  
+  .stats-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .stats-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+  
+  .prose-invert {
+    color: #e5e7eb;
+  }
+  
+  .prose-invert h1,
+  .prose-invert h2,
+  .prose-invert h3,
+  .prose-invert h4,
+  .prose-invert h5,
+  .prose-invert h6 {
+    color: #ffffff;
+  }
+  
+  .prose-invert p {
+    color: #d1d5db;
+  }
+  
+  .prose-invert strong {
+    color: #ffffff;
+  }
+  
+  .prose-invert a {
+    color: #60a5fa;
+  }
+  
+  .prose-invert a:hover {
+    color: #93c5fd;
+  }
+</style>

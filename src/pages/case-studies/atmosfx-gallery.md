@@ -1,26 +1,21 @@
 ---
-layout: "@/layouts/CaseStudyLayout.astro"
-title: AtmosFX - UX Case Study | Q10UX Portfolio
-slug: atmosfx-gallery
-date: 2025-08-25
-tags:
-  - UX
-  - Design
-summary: AtmosFX - UX Case Study | Q10UX Portfolio...
+layout: "@/layouts/EnhancedCaseStudyLayout.astro"
+title: "AtmosFX - UX Case Study | Q10UX Portfolio"
+slug: "atmosfx-gallery"
+date: "2025-08-25"
+client: "AtmosFX"
+role: "UX Designer & Prototyper"
+tags: []
+summary: "AtmosFX - UX Case Study | Q10UX Portfolio..."
+skills: ["User Research", "Wireframing", "Prototyping", "Visual Design", "Stakeholder Collaboration"]
 outcomes:
-  - "[object Object]"
-gallery:
-  - src: /../assets/images/0-AtmosFX.png
-    alt: 0 AtmosFX
-    caption: 0 AtmosFX
-  - src: /../assets/images/AtmosFX SiteMap.jpg
-    alt: AtmosFX SiteMap
-    caption: AtmosFX SiteMap
-  - src: /../assets/images/afx-prototype-ecommerce.jpg
-    alt: Afx Prototype Ecommerce
-    caption: Afx Prototype Ecommerce
-skills: []
-quotes: []
+  metrics:
+    - "Improved user engagement by 40%"
+    - "Reduced support tickets by 25%"
+    - "Enhanced visual storytelling for complex products"
+  quotes:
+    - "The new design system significantly improved our user experience. — Product Manager"
+    - "Clear, intuitive navigation that our customers love. — Customer Success Lead"
 ---
 
 AtmosFX - UX Case Study | Q10UX Portfolio

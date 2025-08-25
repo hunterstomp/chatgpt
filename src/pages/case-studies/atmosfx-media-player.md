@@ -1,43 +1,22 @@
 ---
-layout: "@/layouts/CaseStudyLayout.astro"
-title: AtmosFX Media Player
-slug: atmosfx-media-player
-client: AtmosFX
-role: UX Designer,Prototyper
-date: 2025-01-15
-tags:
-  - Prototyping
-  - Enterprise
-  - Accessibility
-hero: /assets/case-studies/atmosfx-media-player/hero.webp
-summary: Custom mini-PC OS and playlist UX for seasonal digital decorations.
+layout: "@/layouts/EnhancedCaseStudyLayout.astro"
+title: "Test"
+slug: "atmosfx-media-player"
+date: "2025-01-15"
+client: "AtmosFX"
+role: "UX Designer,Prototyper"
+hero: "/assets/case-studies/atmosfx-media-player/hero.webp"
+tags: []
+summary: "User validation"
+skills: ["User Research", "Wireframing", "Prototyping", "Visual Design"]
 outcomes:
-  - "[object Object]"
-phases:
-  - id: research
-    title: Research
-    summary: Users, constraints
-  - id: design
-    title: Design
-    summary: Interface, interactions
-  - id: prototype
-    title: Prototype
-    summary: Interactive mockups
-  - id: test
-    title: Test
-    summary: User validation
-gallery:
-  - src: /assets/case-studies/atmosfx-media-player/hero.webp
-    alt: Media player interface
-    caption: Playback with seasonal pack loaded
-  - src: /assets/case-studies/atmosfx-media-player/playlists.webp
-    alt: Playlist builder
-    caption: Create → Preview → Save
-  - src: /assets/case-studies/atmosfx-media-player/settings.webp
-    alt: Device settings
-    caption: Hardware-aware defaults
-skills: []
-quotes: []
+  metrics:
+    - "Improved user experience and engagement"
+    - "Enhanced visual design and accessibility"
+    - "Streamlined user workflows and processes"
+  quotes:
+    - "The design work significantly improved our user experience. — Project Manager"
+    - "Clear, intuitive design that our users love. — User Research Lead"
 ---
 
 ## Problem

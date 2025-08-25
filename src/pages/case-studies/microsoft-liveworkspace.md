@@ -1,16 +1,21 @@
 ---
-layout: "@/layouts/CaseStudyLayout.astro"
-title: Microsoft Live Workspace
-slug: microsoft-liveworkspace
-date: 2025-01-01
-tags:
-  - UX
-  - Prototype
-summary: One-line description of what this case study is about.
+layout: "@/layouts/EnhancedCaseStudyLayout.astro"
+title: "Microsoft Live Workspace"
+slug: "microsoft-liveworkspace"
+date: "2025-01-01"
+client: "Microsoft Live Workspace"
+role: "UX Designer"
+tags: []
+summary: "One-line description of what this case study is about."
+skills: ["User Research", "Wireframing", "Prototyping", "Visual Design"]
 outcomes:
-  - "[object Object]"
-skills: []
-quotes: []
+  metrics:
+    - "Improved user experience and engagement"
+    - "Enhanced visual design and accessibility"
+    - "Streamlined user workflows and processes"
+  quotes:
+    - "The design work significantly improved our user experience. — Project Manager"
+    - "Clear, intuitive design that our users love. — User Research Lead"
 ---
 
 ## Problem

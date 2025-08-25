@@ -1,0 +1,5 @@
+# backups & junk
+*.bak
+*.tmp
+*~
+src/pages/**/_*

@@ -43,6 +43,8 @@
     "check": "npm run guard:mobirise && npm run lint:a11y",
     "validate:galleries": "node scripts/validate-galleries.mjs",
     "fix:frontmatter": "node scripts/fix-frontmatter.mjs",
+    "upgrade:layout": "node scripts/upgrade-to-enhanced-layout.mjs",
+    "prebuild": "node scripts/guard-orphans.mjs && node scripts/fix-frontmatter.mjs",
     "phase": "bash scripts/git-phase.sh",
     "cases:list": "node scripts/cases-list.mjs",
     "approve": "node scripts/cases-set.mjs",
