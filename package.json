@@ -40,7 +40,8 @@
     "assets:remap": "node scripts/remap-assets.mjs public/assets/image-remap.json",
     "guard:mobirise": "node scripts/mobirise-guard.mjs",
     "lint:a11y": "node scripts/a11y-sanity.mjs",
-    "check": "npm run guard:mobirise && npm run lint:a11y"
+    "check": "npm run guard:mobirise && npm run lint:a11y",
+    "phase": "bash scripts/git-phase.sh"
   },
   "dependencies": {
     "@sanity/client": "^6.29.1",
