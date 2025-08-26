@@ -3,15 +3,26 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageTransitions from '../../components/PageTransitions.astro';
 import { absUrl } from "@/lib/absUrl";
 
-const items = (await Astro.glob('./*.md*')).map(p => {
+const allFiles = await Astro.glob('./*.md*');
+console.log('Found files:', allFiles.length);
+
+const items = allFiles.map(p => {
   const fm = p.frontmatter ?? {};
   const first = Array.isArray(fm.gallery) && fm.gallery[0]?.src;
-  return {
+  const item = {
     ...fm,
     href: `/case-studies/${fm.slug || p.file.replace(/\.mdx?$/,'')}/`,
-    thumb: absUrl(fm.thumb || first),
+    thumb: absUrl(fm.thumb || first || '/assets/images/placeholders/placeholder.svg'),
+    title: fm.title || 'Case Study',
+    client: fm.client || 'Client',
+    summary: fm.summary || 'A comprehensive UX case study showcasing user-centered design solutions.',
+    tags: fm.tags || []
   };
+  console.log('Processed item:', item.title, item.client);
+  return item;
 });
+
+console.log('Total items:', items.length);
 ---
 
 <BaseLayout
@@ -58,7 +69,7 @@ const items = (await Astro.glob('./*.md*')).map(p => {
               <a href={item.href} class="mobile-case-study-item" data-index={index}>
                 <div class="mobile-case-study-image">
                   <img 
-                    src={item.thumb || '/assets/placeholders/case-study-placeholder.svg'} 
+                    src={item.thumb || '/assets/images/placeholders/placeholder.svg'} 
                     alt={item.title || 'Case Study'} 
                     loading="lazy"
                   />
@@ -88,7 +99,7 @@ const items = (await Astro.glob('./*.md*')).map(p => {
           <a href={item.href} class="case-study-card">
             <div class="case-study-image">
               <img 
-                src={item.thumb || '/assets/placeholders/case-study-placeholder.svg'} 
+                src={item.thumb || '/assets/images/placeholders/placeholder.svg'} 
                 alt={item.title || 'Case Study'} 
                 loading="lazy"
               />
