@@ -43,4 +43,11 @@ node_modules/
 *.bak
 *.tmp
 *~
+
+# Web archives (large files, not needed in repo)
+*.webarchive
+webarchives/
+snippets/*.webarchive
+
+# Astro specific
 src/pages/**/_* 

@@ -1,5 +1,4 @@
 [build]
-  # No build command needed for static site
   publish = "src"
   
 [build.environment]
