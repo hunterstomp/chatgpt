@@ -2842,7 +2842,7 @@ body {
   .mobile-menu .nav-menu {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
     align-items: flex-start;
     list-style: none;
     margin: 0;
@@ -2852,11 +2852,11 @@ body {
   }
   
   .mobile-menu .nav-link {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
-    padding: 1rem 0;
+    padding: 0.75rem 0;
     border-radius: var(--radius);
     transition: all 0.3s ease;
     position: relative;
@@ -2887,7 +2887,7 @@ body {
   
   /* Mobile theme toggle */
   .mobile-theme-toggle {
-    margin: 2rem 0;
+    margin: 1.5rem 0;
     display: flex;
     justify-content: center;
   }
@@ -2898,9 +2898,9 @@ body {
 
   /* Mobile resume button */
   .mobile-menu .btn {
-    margin-top: 1rem;
-    font-size: 1.2rem;
-    padding: 1rem 2rem;
+    margin-top: 0.75rem;
+    font-size: 1.1rem;
+    padding: 0.875rem 1.75rem;
   }
 
   /* Mobile Navigation Dropdown */
@@ -2918,25 +2918,40 @@ body {
   }
 
   .mobile-dropdown-menu .nav-link {
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 0.9rem;
+    font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    padding: 0.75rem 0;
-    color: rgba(232, 234, 237, 0.8);
+    letter-spacing: 0.3px;
+    padding: 0.5rem 0;
+    color: rgba(232, 234, 237, 0.7);
     text-align: left;
     width: 100%;
     transition: all 0.3s ease;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .mobile-dropdown-menu .nav-link::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: rgba(0, 229, 255, 0.5);
+    font-size: 1.2rem;
   }
 
   /* Special styling for "ALL CASE STUDIES" */
   .mobile-dropdown-menu .nav-link--primary {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     font-weight: 700;
     color: #00E5FF;
-    padding: 1rem 0;
+    padding: 0.75rem 0;
     border-bottom: 2px solid rgba(0, 229, 255, 0.3);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
+    padding-left: 0;
+  }
+
+  .mobile-dropdown-menu .nav-link--primary::before {
+    display: none;
   }
 
   .mobile-dropdown-menu .nav-link--primary:hover {
