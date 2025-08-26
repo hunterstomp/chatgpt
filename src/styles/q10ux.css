@@ -2848,14 +2848,14 @@ body {
     margin: 0;
     padding: 0;
     width: 100%;
-    max-width: 300px;
+    max-width: 350px;
   }
   
   .mobile-menu .nav-link {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     padding: 0.75rem 0;
     border-radius: var(--radius);
     transition: all 0.3s ease;
@@ -2863,6 +2863,7 @@ body {
     overflow: hidden;
     text-align: left;
     width: 100%;
+    white-space: nowrap;
   }
   
   .mobile-menu .nav-link::before {
@@ -2903,6 +2904,25 @@ body {
     padding: 0.875rem 1.75rem;
   }
 
+  /* Small mobile adjustments to prevent text wrapping */
+  @media (max-width: 375px) {
+    .mobile-menu .nav-menu {
+      max-width: 320px;
+    }
+    
+    .mobile-menu .nav-link {
+      font-size: 1.2rem;
+    }
+    
+    .mobile-dropdown-menu .nav-link {
+      font-size: 0.8rem;
+    }
+    
+    .mobile-dropdown-menu .nav-link--primary {
+      font-size: 0.95rem;
+    }
+  }
+
   /* Mobile Navigation Dropdown */
   .mobile-dropdown {
     position: relative;
@@ -2918,10 +2938,10 @@ body {
   }
 
   .mobile-dropdown-menu .nav-link {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.2px;
     padding: 0.5rem 0;
     color: rgba(232, 234, 237, 0.7);
     text-align: left;
@@ -2929,6 +2949,7 @@ body {
     transition: all 0.3s ease;
     padding-left: 1.5rem;
     position: relative;
+    white-space: nowrap;
   }
 
   .mobile-dropdown-menu .nav-link::before {
@@ -2941,13 +2962,14 @@ body {
 
   /* Special styling for "ALL CASE STUDIES" */
   .mobile-dropdown-menu .nav-link--primary {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
     color: #00E5FF;
     padding: 0.75rem 0;
     border-bottom: 2px solid rgba(0, 229, 255, 0.3);
     margin-bottom: 0.25rem;
     padding-left: 0;
+    white-space: nowrap;
   }
 
   .mobile-dropdown-menu .nav-link--primary::before {
