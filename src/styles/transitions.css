@@ -1,0 +1,431 @@
+/* Q10UX Transition System - Astro Translation */
+
+/* ========================================
+   TRANSITION VARIABLES
+   ======================================== */
+:root {
+  /* Transition Durations */
+  --transition-instant: 0ms;
+  --transition-fast: 150ms;
+  --transition-normal: 300ms;
+  --transition-slow: 500ms;
+  --transition-slower: 800ms;
+  
+  /* Transition Timing Functions */
+  --ease-linear: linear;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-elastic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* ========================================
+   GLOBAL TRANSITION SETTINGS
+   ======================================== */
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Global transition defaults */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: var(--ease-out);
+  transition-duration: var(--transition-normal);
+}
+
+/* Exclude specific elements from global transitions */
+*:not(.no-transition) {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+}
+
+/* ========================================
+   BUTTON TRANSITIONS
+   ======================================== */
+
+.btn {
+  transition: all var(--transition-fast) var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 229, 255, 0.3);
+}
+
+.btn:active {
+  transform: translateY(0);
+  transition-duration: var(--transition-instant);
+}
+
+.btn:focus {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 2px;
+}
+
+/* Button variants */
+.btn.secondary:hover {
+  box-shadow: 0 8px 24px rgba(255, 51, 102, 0.3);
+}
+
+.btn.ghost:hover {
+  background: var(--muted);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+/* ========================================
+   CARD TRANSITIONS
+   ======================================== */
+
+.card {
+  transition: transform var(--transition-normal) var(--ease-out),
+              box-shadow var(--transition-normal) var(--ease-out),
+              border-color var(--transition-normal) var(--ease-out);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--accent-1);
+}
+
+.card:focus-within {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 2px;
+}
+
+/* ========================================
+   FORM ELEMENT TRANSITIONS
+   ======================================== */
+
+input, textarea, select {
+  transition: border-color var(--transition-fast) var(--ease-out),
+              box-shadow var(--transition-fast) var(--ease-out),
+              background-color var(--transition-fast) var(--ease-out);
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--accent-1);
+  box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.1);
+  outline: none;
+}
+
+/* ========================================
+   NAVIGATION TRANSITIONS
+   ======================================== */
+
+.nav-link {
+  transition: color var(--transition-fast) var(--ease-out),
+              background-color var(--transition-fast) var(--ease-out),
+              transform var(--transition-fast) var(--ease-out);
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent-1);
+  transition: width var(--transition-normal) var(--ease-out);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+.nav-link:hover {
+  color: var(--accent-1);
+  transform: translateY(-1px);
+}
+
+/* ========================================
+   IMAGE TRANSITIONS
+   ======================================== */
+
+img {
+  transition: transform var(--transition-normal) var(--ease-out),
+              filter var(--transition-normal) var(--ease-out);
+}
+
+.img-hover:hover {
+  transform: scale(1.05);
+}
+
+.img-grayscale {
+  filter: grayscale(100%);
+  transition: filter var(--transition-normal) var(--ease-out);
+}
+
+.img-grayscale:hover {
+  filter: grayscale(0%);
+}
+
+/* ========================================
+   MODAL TRANSITIONS
+   ======================================== */
+
+.modal {
+  transition: opacity var(--transition-slow) var(--ease-out),
+              visibility var(--transition-slow) var(--ease-out);
+}
+
+.modal-content {
+  transition: transform var(--transition-slow) var(--ease-bounce),
+              opacity var(--transition-slow) var(--ease-out);
+}
+
+.modal.show .modal-content {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.modal:not(.show) .modal-content {
+  transform: scale(0.9);
+  opacity: 0;
+}
+
+/* ========================================
+   DROPDOWN TRANSITIONS
+   ======================================== */
+
+.dropdown-menu {
+  transition: opacity var(--transition-fast) var(--ease-out),
+              transform var(--transition-fast) var(--ease-out),
+              visibility var(--transition-fast) var(--ease-out);
+  transform-origin: top center;
+}
+
+.dropdown.show .dropdown-menu {
+  opacity: 1;
+  transform: scaleY(1);
+  visibility: visible;
+}
+
+.dropdown:not(.show) .dropdown-menu {
+  opacity: 0;
+  transform: scaleY(0);
+  visibility: hidden;
+}
+
+/* ========================================
+   TOOLTIP TRANSITIONS
+   ======================================== */
+
+.tooltip {
+  transition: opacity var(--transition-fast) var(--ease-out),
+              transform var(--transition-fast) var(--ease-out),
+              visibility var(--transition-fast) var(--ease-out);
+}
+
+.tooltip.show {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+}
+
+.tooltip:not(.show) {
+  opacity: 0;
+  transform: translateY(5px);
+  visibility: hidden;
+}
+
+/* ========================================
+   LOADING STATE TRANSITIONS
+   ======================================== */
+
+.loading {
+  transition: opacity var(--transition-fast) var(--ease-out);
+}
+
+.loading.show {
+  opacity: 1;
+}
+
+.loading:not(.show) {
+  opacity: 0;
+}
+
+/* Skeleton loading */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+/* ========================================
+   THEME TRANSITIONS
+   ======================================== */
+
+/* Theme switching */
+.theme-transition {
+  transition: background-color var(--transition-slow) var(--ease-out),
+              color var(--transition-slow) var(--ease-out),
+              border-color var(--transition-slow) var(--ease-out);
+}
+
+/* ========================================
+   SCROLL-BASED TRANSITIONS
+   ======================================== */
+
+/* Parallax elements */
+.parallax {
+  transition: transform var(--transition-slower) var(--ease-out);
+  will-change: transform;
+}
+
+/* Sticky header */
+.sticky-header {
+  transition: background-color var(--transition-normal) var(--ease-out),
+              box-shadow var(--transition-normal) var(--ease-out),
+              transform var(--transition-normal) var(--ease-out);
+}
+
+.sticky-header.scrolled {
+  background-color: rgba(10, 14, 26, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* ========================================
+   INTERACTIVE TRANSITIONS
+   ======================================== */
+
+/* Ripple effect */
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width var(--transition-fast), height var(--transition-fast);
+}
+
+.ripple:active::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* Bounce on click */
+.bounce-click {
+  transition: transform var(--transition-fast) var(--ease-bounce);
+}
+
+.bounce-click:active {
+  transform: scale(0.95);
+}
+
+/* ========================================
+   UTILITY TRANSITION CLASSES
+   ======================================== */
+
+/* Transition durations */
+.transition-instant { transition-duration: var(--transition-instant); }
+.transition-fast { transition-duration: var(--transition-fast); }
+.transition-normal { transition-duration: var(--transition-normal); }
+.transition-slow { transition-duration: var(--transition-slow); }
+.transition-slower { transition-duration: var(--transition-slower); }
+
+/* Transition timing functions */
+.ease-linear { transition-timing-function: var(--ease-linear); }
+.ease-in { transition-timing-function: var(--ease-in); }
+.ease-out { transition-timing-function: var(--ease-out); }
+.ease-in-out { transition-timing-function: var(--ease-in-out); }
+.ease-bounce { transition-timing-function: var(--ease-bounce); }
+.ease-elastic { transition-timing-function: var(--ease-elastic); }
+
+/* Transition properties */
+.transition-all { transition-property: all; }
+.transition-colors { transition-property: color, background-color, border-color, text-decoration-color, fill, stroke; }
+.transition-opacity { transition-property: opacity; }
+.transition-transform { transition-property: transform; }
+.transition-shadow { transition-property: box-shadow; }
+
+/* No transition */
+.no-transition {
+  transition: none !important;
+}
+
+/* ========================================
+   RESPONSIVE TRANSITIONS
+   ======================================== */
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .card:hover {
+    transform: translateY(-4px);
+  }
+  
+  .btn:hover {
+    transform: translateY(-1px);
+  }
+  
+  .img-hover:hover {
+    transform: scale(1.02);
+  }
+  
+  /* Reduce motion on mobile for better performance */
+  .parallax {
+    transition: none;
+  }
+}
+
+/* ========================================
+   ACCESSIBILITY CONSIDERATIONS
+   ======================================== */
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .parallax {
+    transform: none !important;
+  }
+  
+  .skeleton {
+    animation: none !important;
+  }
+}
+
+/* High contrast mode adjustments */
+@media (prefers-contrast: high) {
+  .btn:hover {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+  
+  .card:hover {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+}

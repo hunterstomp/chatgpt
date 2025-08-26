@@ -1,0 +1,152 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  link?: string;
+  animation?: 'fade-in' | 'slide-up' | 'scale-in' | 'rotate-in';
+  delay?: number;
+  hover?: boolean;
+  class?: string;
+}
+
+const {
+  title,
+  description,
+  image,
+  link,
+  animation = 'slide-up',
+  delay = 0,
+  hover = true,
+  class: className = ''
+} = Astro.props;
+
+const Tag = link ? 'a' : 'div';
+const href = link || undefined;
+---
+
+<Tag 
+  href={href}
+  class:list={[
+    'animated-card',
+    `animation-${animation}`,
+    { 'card-hover': hover },
+    className
+  ]}
+  style={`animation-delay: ${delay}s;`}
+>
+  {image && (
+    <div class="card-image">
+      <img src={image} alt={title} class="img-hover" loading="lazy" />
+    </div>
+  )}
+  
+  <div class="card-content">
+    <h3 class="card-title">{title}</h3>
+    {description && <p class="card-description">{description}</p>}
+  </div>
+  
+  {link && (
+    <div class="card-arrow">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </div>
+  )}
+</Tag>
+
+<style>
+  .animated-card {
+    background: var(--surface);
+    border: 1px solid var(--muted);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all var(--duration-normal) var(--ease-out);
+  }
+
+  .animated-card.animation-fade-in {
+    animation: fadeIn var(--duration-slow) var(--ease-out) forwards;
+  }
+
+  .animated-card.animation-slide-up {
+    animation: slideUp var(--duration-slow) var(--ease-out) forwards;
+  }
+
+  .animated-card.animation-scale-in {
+    animation: scaleIn var(--duration-normal) var(--ease-out) forwards;
+  }
+
+  .animated-card.animation-rotate-in {
+    animation: rotateIn var(--duration-slow) var(--ease-bounce) forwards;
+  }
+
+  .card-image {
+    margin-bottom: 1rem;
+    border-radius: calc(var(--radius) - 4px);
+    overflow: hidden;
+  }
+
+  .card-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform var(--duration-normal) var(--ease-out);
+  }
+
+  .card-content {
+    flex: 1;
+  }
+
+  .card-title {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+  }
+
+  .card-description {
+    color: var(--text);
+    opacity: 0.8;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .card-arrow {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all var(--duration-normal) var(--ease-out);
+  }
+
+  .animated-card:hover .card-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .animated-card {
+      padding: 1rem;
+    }
+    
+    .card-title {
+      font-size: 1.1rem;
+    }
+    
+    .card-arrow {
+      top: 1rem;
+      right: 1rem;
+    }
+  }
+</style>

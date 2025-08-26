@@ -1,0 +1,166 @@
+---
+export interface Props {
+  as?: string;
+  delay?: number;
+  threshold?: number;
+  rootMargin?: string;
+  animation?: 'fade-in' | 'slide-up' | 'slide-down' | 'scale-in' | 'rotate-in';
+  class?: string;
+  children: any;
+}
+
+const {
+  as = 'div',
+  delay = 0,
+  threshold = 0.1,
+  rootMargin = '0px 0px -50px 0px',
+  animation = 'slide-up',
+  class: className = '',
+  children
+} = Astro.props;
+
+const Tag = as;
+---
+
+<Tag 
+  class:list={[
+    'scroll-reveal',
+    `reveal-${animation}`,
+    className
+  ]}
+  data-delay={delay}
+  data-threshold={threshold}
+  data-root-margin={rootMargin}
+>
+  {children}
+</Tag>
+
+<script>
+  class ScrollReveal {
+    constructor() {
+      this.observer = null;
+      this.init();
+    }
+
+    init() {
+      // Check for reduced motion preference
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        this.revealAll();
+        return;
+      }
+
+      this.setupObserver();
+      this.observeElements();
+    }
+
+    setupObserver() {
+      this.observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const element = entry.target;
+            const delay = parseFloat(element.dataset.delay) || 0;
+            
+            setTimeout(() => {
+              element.classList.add('revealed');
+            }, delay * 1000);
+            
+            this.observer.unobserve(element);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+    }
+
+    observeElements() {
+      const elements = document.querySelectorAll('.scroll-reveal');
+      elements.forEach(el => {
+        this.observer.observe(el);
+      });
+    }
+
+    revealAll() {
+      const elements = document.querySelectorAll('.scroll-reveal');
+      elements.forEach(el => {
+        el.classList.add('revealed');
+      });
+    }
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      new ScrollReveal();
+    });
+  } else {
+    new ScrollReveal();
+  }
+
+  // Re-initialize for Astro page transitions
+  document.addEventListener('astro:page-load', () => {
+    new ScrollReveal();
+  });
+</script>
+
+<style>
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Animation variants */
+  .reveal-fade-in {
+    opacity: 0;
+  }
+
+  .reveal-fade-in.revealed {
+    opacity: 1;
+  }
+
+  .reveal-slide-up {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .reveal-slide-up.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-slide-down {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+
+  .reveal-slide-down.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-scale-in {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  .reveal-scale-in.revealed {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .reveal-rotate-in {
+    opacity: 0;
+    transform: rotate(-180deg) scale(0.3);
+  }
+
+  .reveal-rotate-in.revealed {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+</style>

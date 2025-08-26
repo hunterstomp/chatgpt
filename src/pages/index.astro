@@ -1,12 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageTransitions from '../components/PageTransitions.astro';
-
-// Get case studies for portfolio highlights
-const caseStudies = await Astro.glob('/src/pages/case-studies/*.md');
-const publishedStudies = caseStudies
-  .filter(study => study.frontmatter.status === 'published')
-  .slice(0, 8); // Show first 8 case studies
 ---
 
 <BaseLayout 
@@ -15,782 +9,977 @@ const publishedStudies = caseStudies
 >
   <PageTransitions />
   
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-content">
+  <!-- Hero Section with Enhanced Design -->
+  <section class="hero-section">
+    <!-- Background Slideshow - UX Desktops Only -->
+    <div class="slideshow-background">
+      <div class="slide active" style="background-image: url('/assets/images/ux-desktops/IMG_3061.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3060.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3059.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3058.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3057.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3056.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3055.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3054.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3052.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3051.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3049.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3048.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3047.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3046.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3045.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3044.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3043.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3042.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3041.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3040.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3039.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3038.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3037.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3036.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3035.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3034.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3033.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3032.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3031.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3030.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3029.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3028.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3027.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3026.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3025.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3024.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3023.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3022.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3021.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3020.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3019.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3018.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3017.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3016.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3015.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3014.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3013.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3012.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3011.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3010.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3009.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3008.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3007.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3006.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3005.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3004.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3003.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_3001.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_2999.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_2998.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_2997.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_2996.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_2995.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_2994.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_2993.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_2992.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_2991.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_2990.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_2989.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_2988.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_2987.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_2986.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_2985.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_2984.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_2983.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_2982.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_2981.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_2980.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_2979.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_2978.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_2977.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_2976.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_2975.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_2974.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_2973.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_2972.JPG')"></div>
+      <div class="slide" style="background-image: url('/assets/images/ux-desktops/IMG_2971.JPG')"></div>
+    </div>
+    
+    <!-- Enhanced Hero Overlay -->
+    <div class="hero-overlay"></div>
+    
+    <!-- Hero Content - Centered -->
+    <div class="hero-content">
+      <div class="hero-text-content">
         <h1 class="hero-title">
           <span class="hero-title-main">Better Experiences.</span>
           <span class="hero-title-sub">Real Results.</span>
         </h1>
         <p class="hero-subtitle">
-          Where business needs and user needs align,<br>
-          every click is a step toward success.
+          <span class="hero-line-1">Welcome to the UX Portfolio of Quentin Little</span>
+          <span class="hero-line-2">Pioneering user experiences for close to 20 years for startup and enterprise</span>
         </p>
         <div class="hero-cta">
-          <a href="/case-studies" class="btn btn--primary">View Samples</a>
-          <a href="/about" class="btn btn--secondary">About Me</a>
+          <a href="/case-studies" class="btn btn--primary">View Case Studies</a>
+          <a href="/contact" class="btn btn--secondary">Get In Touch</a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Client Logos Section -->
-  <section class="clients">
+  <section class="clients-section">
     <div class="container">
-      <h2 class="clients-title">Worked with the following clients</h2>
-      <div class="clients-grid">
-        <div class="client-logo">Disney</div>
-        <div class="client-logo">Microsoft</div>
-        <div class="client-logo">AtmosFX</div>
-        <div class="client-logo">Office 365</div>
-        <div class="client-logo">Office Live</div>
-        <div class="client-logo">Riverdeep</div>
-        <div class="client-logo">POP</div>
-        <div class="client-logo">BMGF</div>
-        <div class="client-logo">VMC</div>
+      <div class="clients-header">
+        <h2 class="section-title">Trusted by Industry Leaders</h2>
+        <p class="section-subtitle">Creating impactful digital experiences for Fortune 100 companies and innovative startups</p>
+      </div>
+    </div>
+    
+    <!-- Logo Carousel -->
+    <div class="logo-carousel-wrapper">
+      <div class="carousel-container">
+        <div class="carousel-track">
+          <!-- Disney -->
+          <div class="carousel-item">
+            <img src="/assets/logos/DISNEYLOGO.svg" alt="Disney" class="client-logo" loading="lazy">
+          </div>
+          
+          <!-- AT&T -->
+          <div class="carousel-item">
+            <img src="/assets/logos/ATTLOGO.svg" alt="AT&T" class="client-logo" loading="lazy">
+          </div>
+          
+          <!-- Microsoft -->
+          <div class="carousel-item">
+            <img src="/assets/logos/MSFTLOGO.svg" alt="Microsoft" class="client-logo" loading="lazy">
+          </div>
+          
+          <!-- AtmosFX -->
+          <div class="carousel-item">
+            <img src="/assets/logos/POPLOGO.svg" alt="AtmosFX" class="client-logo" loading="lazy">
+          </div>
+          
+          <!-- T-Mobile -->
+          <div class="carousel-item">
+            <img src="/assets/logos/TMOBILELOGO.svg" alt="T-Mobile" class="client-logo" loading="lazy">
+          </div>
+          
+          <!-- Office 365 -->
+          <div class="carousel-item">
+            <img src="/assets/logos/OFFICE365LOGO.svg" alt="Office 365" class="client-logo" loading="lazy">
+          </div>
+          
+          <!-- Duplicate logos for seamless loop -->
+          <!-- Disney -->
+          <div class="carousel-item">
+            <img src="/assets/logos/DISNEYLOGO.svg" alt="Disney" class="client-logo" loading="lazy">
+          </div>
+          
+          <!-- AT&T -->
+          <div class="carousel-item">
+            <img src="/assets/logos/ATTLOGO.svg" alt="AT&T" class="client-logo" loading="lazy">
+          </div>
+          
+          <!-- Microsoft -->
+          <div class="carousel-item">
+            <img src="/assets/logos/MSFTLOGO.svg" alt="Microsoft" class="client-logo" loading="lazy">
+          </div>
+          
+          <!-- AtmosFX -->
+          <div class="carousel-item">
+            <img src="/assets/logos/POPLOGO.svg" alt="AtmosFX" class="client-logo" loading="lazy">
+          </div>
+          
+          <!-- T-Mobile -->
+          <div class="carousel-item">
+            <img src="/assets/logos/TMOBILELOGO.svg" alt="T-Mobile" class="client-logo" loading="lazy">
+          </div>
+          
+          <!-- Office 365 -->
+          <div class="carousel-item">
+            <img src="/assets/logos/OFFICE365LOGO.svg" alt="Office 365" class="client-logo" loading="lazy">
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- UX Designer Section -->
-  <section class="ux-designer">
+  <section class="ux-designer-section">
     <div class="container">
       <div class="ux-content">
-        <h2 class="ux-title">UX Designer & Problem Solver</h2>
-        <p class="ux-subtitle">Turning complexity into clarity</p>
-        
-        <div class="ux-stats">
-          <div class="stat">
-            <div class="stat-number">15+</div>
-            <div class="stat-label">Years Experience</div>
-          </div>
-          <div class="stat">
-            <div class="stat-number">3</div>
-            <div class="stat-label">Fortune 100 Companies</div>
+        <div class="ux-text">
+          <h2 class="section-title">Enterprise UX Designer</h2>
+          <p class="section-subtitle">
+            Specializing in accessibility, design systems, and user research. 
+            I help organizations create digital experiences that are both beautiful and functional.
+          </p>
+          <div class="ux-features">
+            <div class="feature-item">
+              <h3>Accessibility First</h3>
+              <p>Ensuring digital products work for everyone, regardless of ability.</p>
+            </div>
+            <div class="feature-item">
+              <h3>Design Systems</h3>
+              <p>Creating scalable, consistent design foundations for large organizations.</p>
+            </div>
+            <div class="feature-item">
+              <h3>User Research</h3>
+              <p>Data-driven insights to inform design decisions and improve user experience.</p>
+            </div>
           </div>
         </div>
-        
-        <p class="ux-description">
-          I transform complex problems into simple, beautiful solutions that users love and businesses value. My approach combines strategic thinking with hands-on design expertise.
-        </p>
-        
-        <p class="ux-expertise">
-          <strong>Expertise in cutting-edge tech:</strong> AI/ML interfaces, AR/VR experiences, IoT platforms, and emerging technologies. I've led UX teams at Microsoft, T-Mobile, and Disney.
-        </p>
+        <div class="ux-image">
+          <img src="/assets/images/hero-tmobile2-975x1363.webp" alt="UX Design Process" loading="lazy">
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA Section -->
-  <section class="cta-section">
-    <div class="container">
-      <h2 class="cta-title">Ready to create something amazing?</h2>
-      <p class="cta-description">
-        Let's discuss how I can help transform your digital experience. From concept to launch, I bring strategic thinking, technical expertise, and proven results that make a difference.
-      </p>
-      <div class="cta-buttons">
-        <a href="/resume.pdf" class="btn btn--primary">Download Résumé</a>
-        <a href="/case-studies" class="btn btn--secondary">See a Sample Project</a>
-        <a href="/about" class="btn btn--outline">About Quentin</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Portfolio Highlights -->
+  <!-- Portfolio Highlights Section -->
   <section class="portfolio-highlights">
     <div class="container">
-      <h2 class="highlights-title">Portfolio Highlights</h2>
-      <p class="highlights-subtitle">
-        Explore my UX design work across enterprise, consumer, and emerging technologies
-      </p>
-      
-      <div class="highlights-grid">
-        {publishedStudies.map(study => {
-          const slug = study.file.split('/').pop()?.replace('.md', '') || '';
-          const title = study.frontmatter.title || 'Case Study';
-          const client = study.frontmatter.client || 'Client';
-          const summary = study.frontmatter.summary || '';
-          const tags = Array.isArray(study.frontmatter.tags) ? study.frontmatter.tags : [];
-          const gallery = Array.isArray(study.frontmatter.gallery) ? study.frontmatter.gallery : [];
-          const thumbnail = gallery.length > 0
-            ? (typeof gallery[0] === 'string' ? gallery[0] : gallery[0]?.src || '')
-            : '/assets/placeholders/case-study-placeholder.svg';
-
-          return (
-            <a href={`/case-studies/${slug}`} class="highlight-card">
-              <div class="highlight-image">
-                <img src={thumbnail} alt={title} loading="lazy" />
-              </div>
-              <div class="highlight-content">
-                <div class="highlight-client">{client}</div>
-                <h3 class="highlight-title">{title}</h3>
-                <p class="highlight-summary">{summary}</p>
-                <div class="highlight-tags">
-                  {tags.slice(0, 3).map(tag => (
-                    <span class="tag">{tag}</span>
-                  ))}
-                </div>
-              </div>
-            </a>
-          );
-        })}
+      <div class="portfolio-header">
+        <h2 class="section-title">Featured Case Studies</h2>
+        <p class="section-subtitle">Explore detailed case studies showcasing my approach to complex UX challenges</p>
       </div>
-    </div>
-  </section>
-
-  <!-- FAQ Section -->
-  <section class="faq-section">
-    <div class="container">
-      <h2 class="faq-title">F.A.Q.uentify</h2>
-      
-      <div class="faq-grid">
-        <div class="faq-item">
-          <h3 class="faq-question">What's your design process?</h3>
-          <p class="faq-answer">
-            I follow a user-centered design approach: Research → Define → Design → Prototype → Test → Iterate. Each project starts with understanding user needs and business goals, then evolves through collaborative ideation and rigorous testing.
-          </p>
-        </div>
-        
-        <div class="faq-item">
-          <h3 class="faq-question">What industries do you work in?</h3>
-          <p class="faq-answer">
-            I've designed for telecommunications (T-Mobile, AT&T), technology (Microsoft), entertainment (Disney), healthcare, eCommerce, and emerging tech. My experience spans B2B, B2C, and enterprise solutions across multiple platforms.
-          </p>
-        </div>
-        
-        <div class="faq-item">
-          <h3 class="faq-question">Do you work remotely?</h3>
-          <p class="faq-answer">
-            Yes! I'm experienced with remote collaboration and can work effectively across time zones. I use modern tools for design collaboration, user research, and stakeholder communication to ensure seamless project delivery.
-          </p>
-        </div>
-        
-        <div class="faq-item">
-          <h3 class="faq-question">How do I get started?</h3>
-          <p class="faq-answer">
-            Simple! Send me an email at design@q10ux.com or call me at (206) 427-9129. I'll schedule a free consultation to discuss your project goals, timeline, and how I can help bring your vision to life.
-          </p>
-        </div>
-        
-        <div class="faq-item">
-          <h3 class="faq-question">What tools and technologies do you use?</h3>
-          <p class="faq-answer">
-            I'm proficient with Figma, Sketch, Adobe Creative Suite, Axure, and modern prototyping tools. I also work with design systems, component libraries, and collaborate effectively with development teams using tools like Zeplin, InVision, and modern design-to-code workflows.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Stats Section -->
-  <section class="stats-section">
-    <div class="container">
-      <div class="stats-grid">
-        <div class="stat-item">
-          <div class="stat-number">15+</div>
-          <div class="stat-label">Satisfied Clients</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">40+</div>
-          <div class="stat-label">Projects Completed</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">1+</div>
-          <div class="stat-label">Awards Won</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section class="contact-section">
-    <div class="container">
-      <div class="contact-content">
-        <div class="contact-info">
-          <h2 class="contact-title">Get In Touch</h2>
-          <p class="contact-subtitle">
-            Ready to start your next project? Let's connect and create something amazing together.
-          </p>
-          
-          <div class="contact-details">
-            <div class="contact-item">
-              <div class="contact-icon">📞</div>
-              <div class="contact-text">
-                <h4>Phone</h4>
-                <p>+1 (206) 427-9129</p>
-              </div>
-            </div>
-            
-            <div class="contact-item">
-              <div class="contact-icon">✉️</div>
-              <div class="contact-text">
-                <h4>Email</h4>
-                <p>design@q10ux.com</p>
-              </div>
-            </div>
-            
-            <div class="contact-item">
-              <div class="contact-icon">📍</div>
-              <div class="contact-text">
-                <h4>Location</h4>
-                <p>Bellevue, WA</p>
-              </div>
-            </div>
-            
-            <div class="contact-item">
-              <div class="contact-icon">🐙</div>
-              <div class="contact-text">
-                <h4>GitHub</h4>
-                <p>hunterstomp</p>
-              </div>
-            </div>
-            
-            <div class="contact-item">
-              <div class="contact-icon">⏰</div>
-              <div class="contact-text">
-                <h4>Available</h4>
-                <p>Mon-Sun: 9 AM - 9 PM PST</p>
-              </div>
-            </div>
-            
-            <div class="contact-item">
-              <div class="contact-icon">📄</div>
-              <div class="contact-text">
-                <h4>Résumé</h4>
-                <p><a href="/resume.pdf">Download PDF</a></p>
-              </div>
-            </div>
+      <div class="portfolio-grid">
+        <div class="portfolio-card">
+          <div class="card-image">
+            <img src="/assets/images/hero-o365-1034x1421.jpg" alt="Office 365 Case Study" loading="lazy">
+          </div>
+          <div class="card-content">
+            <h3>Office 365 Redesign</h3>
+            <p>Modernizing the productivity suite for millions of users worldwide.</p>
+            <a href="/case-studies/office-365" class="btn btn--primary">View Case Study</a>
           </div>
         </div>
-        
-        <div class="contact-form">
-          <form class="form">
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" id="name" name="name" required minlength="2" />
-            </div>
-            
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" required />
-            </div>
-            
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" required minlength="10" maxlength="1000" rows="5"></textarea>
-              <small>Minimum 10 characters, maximum 1000 characters</small>
-            </div>
-            
-            <button type="submit" class="btn btn--primary">Send Message</button>
-          </form>
+        <div class="portfolio-card">
+          <div class="card-image">
+            <img src="/assets/images/hero-tmobile-howtoswitch-816x1121.webp" alt="T-Mobile Case Study" loading="lazy">
+          </div>
+          <div class="card-content">
+            <h3>T-Mobile How to Switch</h3>
+            <p>Simplifying the carrier switching process for new customers.</p>
+            <a href="/case-studies/tmobile" class="btn btn--primary">View Case Study</a>
+          </div>
+        </div>
+        <div class="portfolio-card">
+          <div class="card-image">
+            <img src="/assets/images/hero-olw-1034x1421.webp" alt="AtmosFX Case Study" loading="lazy">
+          </div>
+          <div class="card-content">
+            <h3>AtmosFX Halloween</h3>
+            <p>Creating immersive digital experiences for seasonal entertainment.</p>
+            <a href="/case-studies/atmosfx" class="btn btn--primary">View Case Study</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact CTA Section -->
+  <section class="contact-cta">
+    <div class="container">
+      <div class="cta-content">
+        <h2 class="section-title">Ready to Create Something Amazing?</h2>
+        <p class="section-subtitle">
+          Let's work together to build digital experiences that make a difference.
+        </p>
+        <div class="cta-buttons">
+          <a href="/case-studies" class="btn btn--primary">View All Case Studies</a>
+          <a href="/contact" class="btn btn--secondary">Get In Touch</a>
         </div>
       </div>
     </div>
   </section>
 
   <style>
+    /* Hero Content Styles */
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 0 2rem;
+      min-height: 80vh;
+      transform: translateY(-8vh);
+    }
+
+    .hero-text-content {
+      max-width: 90vw;
+      width: 100%;
+    }
+
+    .hero-title {
+      font-size: clamp(4rem, 12vw, 8rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 2rem;
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .hero-title-main {
+      display: block;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      text-transform: none;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-title-sub {
+      display: block;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      text-transform: none;
+      letter-spacing: -0.02em;
+      color: var(--accent-1);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      line-height: 1.4;
+      color: #cccccc;
+      margin-bottom: 3rem;
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      text-transform: none;
+      max-width: 80vw;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      text-align: center;
+    }
+
+    .hero-line-1 {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-weight: 100;
+      font-size: 36px;
+      font-style: normal;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-transform: none;
+    }
+
+    .hero-line-2 {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-weight: 100;
+      font-size: 28px;
+      font-style: normal;
+      color: #cccccc;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Hero Stats Section */
+    .hero-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      padding: 2rem;
+      background: rgba(20, 20, 20, 0.8);
+      backdrop-filter: blur(20px);
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--accent-1);
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      text-transform: none;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.875rem;
+      color: #cccccc;
+      margin-top: 0.5rem;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      text-transform: none;
+    }
+
+    /* Enhanced Client Logos Section */
+    .clients-section {
+      padding: 6rem 0;
+      background: var(--surface);
+    }
+
+    .clients-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #ffffff;
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      text-transform: none;
+      letter-spacing: -0.02em;
+    }
+
+    .section-subtitle {
+      font-size: 1.125rem;
+      color: #cccccc;
+      max-width: 600px;
+      margin: 0 auto;
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      text-transform: none;
+    }
+
+    /* Logo Carousel Styles */
+    .logo-carousel-wrapper {
+      position: relative;
+      z-index: 2;
+      margin-top: 2rem;
+    }
+
+    .logo-carousel-wrapper .carousel-container {
+      max-width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .logo-carousel-wrapper .carousel-track {
+      display: flex;
+      animation: logo-scroll 30s linear infinite;
+      width: calc(200px * 12);
+    }
+
+    .logo-carousel-wrapper .carousel-item {
+      flex: 0 0 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 2rem;
+      height: 100px;
+    }
+
+    .logo-carousel-wrapper .client-logo {
+      max-width: 140px;
+      max-height: 60px;
+      width: auto;
+      height: auto;
+      filter: grayscale(100%) brightness(0.7);
+      transition: all 0.3s ease;
+      opacity: 0.8;
+    }
+
+    .logo-carousel-wrapper .client-logo:hover {
+      filter: grayscale(0%) brightness(1);
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    @keyframes logo-scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(calc(-200px * 6));
+      }
+    }
+
+    /* Pause animation on hover */
+    .logo-carousel-wrapper .carousel-container:hover .carousel-track {
+      animation-play-state: paused;
+    }
+
+    /* Enhanced UX Designer Section */
+    .ux-designer-section {
+      padding: 6rem 0;
+      background: var(--bg);
+    }
+
+    .ux-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .ux-text {
+      max-width: 500px;
+    }
+
+    .ux-features {
+      margin-top: 2rem;
+    }
+
+    .feature-item {
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-item h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--accent-1);
+      margin-bottom: 0.5rem;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      text-transform: none;
+    }
+
+    .feature-item p {
+      color: #cccccc;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      text-transform: none;
+    }
+
+    .ux-image img {
+      width: 100%;
+      height: auto;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* Portfolio Highlights Section */
+    .portfolio-highlights {
+      padding: 6rem 0;
+      background: var(--surface);
+    }
+
+    .portfolio-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .portfolio-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .portfolio-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .card-image {
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .portfolio-card:hover .card-image img {
+      transform: scale(1.05);
+    }
+
+    .card-content {
+      padding: 2rem;
+    }
+
+    .card-content h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 1rem;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      text-transform: none;
+    }
+
+    .card-content p {
+      color: #cccccc;
+      margin-bottom: 1.5rem;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      text-transform: none;
+    }
+
+    /* Contact CTA Section */
+    .contact-cta {
+      padding: 6rem 0;
+      background: var(--bg);
+      text-align: center;
+    }
+
+    .cta-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
     /* Container */
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 2rem;
     }
-    
-    /* Hero Section */
-    .hero {
-      min-height: 80vh;
-      display: flex;
-      align-items: center;
-      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-      color: white;
-    }
-    
-    .hero-content {
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    .hero-title {
-      font-size: 4rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-      line-height: 1.1;
-    }
-    
-    .hero-title-main {
-      display: block;
-      color: #ffffff;
-    }
-    
-    .hero-title-sub {
-      display: block;
-      color: #4a9eff;
-    }
-    
-    .hero-subtitle {
-      font-size: 1.25rem;
-      color: #cccccc;
-      margin-bottom: 2rem;
-      line-height: 1.6;
-    }
-    
-    .hero-cta {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    
-    /* Buttons */
-    .btn {
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      border: 2px solid transparent;
-    }
-    
-    .btn--primary {
-      background: #4a9eff;
-      color: white;
-    }
-    
-    .btn--primary:hover {
-      background: #3a8eef;
-      transform: translateY(-2px);
-    }
-    
-    .btn--secondary {
-      background: transparent;
-      color: #4a9eff;
-      border-color: #4a9eff;
-    }
-    
-    .btn--secondary:hover {
-      background: #4a9eff;
-      color: white;
-    }
-    
-    .btn--outline {
-      background: transparent;
-      color: #cccccc;
-      border-color: #cccccc;
-    }
-    
-    .btn--outline:hover {
-      background: #cccccc;
-      color: #1a1a1a;
-    }
-    
-    /* Clients Section */
-    .clients {
-      padding: 4rem 0;
-      background: #f8f9fa;
-    }
-    
-    .clients-title {
-      text-align: center;
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: 2rem;
-      color: #333;
-    }
-    
-    .clients-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 2rem;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    .client-logo {
-      text-align: center;
-      padding: 1rem;
-      font-weight: 600;
-      color: #666;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    
-    /* UX Designer Section */
-    .ux-designer {
-      padding: 6rem 0;
-      background: white;
-    }
-    
-    .ux-content {
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    .ux-title {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: #333;
-    }
-    
-    .ux-subtitle {
-      font-size: 1.25rem;
-      color: #666;
-      margin-bottom: 3rem;
-    }
-    
-    .ux-stats {
-      display: flex;
-      justify-content: center;
-      gap: 4rem;
-      margin-bottom: 2rem;
-    }
-    
-    .stat {
-      text-align: center;
-    }
-    
-    .stat-number {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: #4a9eff;
-    }
-    
-    .stat-label {
-      font-size: 1rem;
-      color: #666;
-      margin-top: 0.5rem;
-    }
-    
+
     .ux-description {
       font-size: 1.125rem;
-      color: #333;
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
-    }
-    
-    .ux-expertise {
-      font-size: 1rem;
-      color: #666;
-      line-height: 1.6;
-    }
-    
-    /* CTA Section */
-    .cta-section {
-      padding: 6rem 0;
-      background: #1a1a1a;
-      color: white;
-      text-align: center;
-    }
-    
-    .cta-title {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-    
-    .cta-description {
-      font-size: 1.125rem;
+      line-height: 1.7;
       color: #cccccc;
       margin-bottom: 2rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      text-transform: none;
     }
-    
+
+    .ux-cta {
+      margin-top: 2rem;
+    }
+
+    .ux-visual {
+      display: flex;
+      justify-content: center;
+    }
+
+    .ux-image-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      max-width: 500px;
+    }
+
+    .ux-image-item {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .ux-image-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .ux-image-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .ux-image-item:first-child {
+      grid-column: 1 / -1;
+    }
+
+    /* Enhanced Portfolio Highlights Section */
+    .portfolio-highlights {
+      padding: 6rem 0;
+      background: var(--surface);
+    }
+
+    .portfolio-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .portfolio-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .portfolio-card:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .portfolio-image {
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .portfolio-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .portfolio-card:hover .portfolio-image img {
+      transform: scale(1.05);
+    }
+
+    .portfolio-content {
+      padding: 1.5rem;
+    }
+
+    .portfolio-client {
+      font-size: 0.875rem;
+      color: var(--accent-1);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      text-transform: none;
+    }
+
+    .portfolio-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: #ffffff;
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      text-transform: none;
+    }
+
+    .portfolio-summary {
+      font-size: 0.875rem;
+      color: #cccccc;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      text-transform: none;
+    }
+
+    .portfolio-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.75rem;
+      background: rgba(0, 229, 255, 0.1);
+      color: var(--accent-1);
+      border-radius: 20px;
+      font-weight: 500;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      text-transform: none;
+    }
+
+    .portfolio-cta {
+      text-align: center;
+    }
+
+    /* Enhanced Contact CTA Section */
+    .contact-cta {
+      padding: 6rem 0;
+      background: var(--bg);
+      text-align: center;
+    }
+
+    .cta-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
     .cta-buttons {
       display: flex;
       gap: 1rem;
       justify-content: center;
       flex-wrap: wrap;
+      margin-top: 2rem;
     }
-    
-    /* Portfolio Highlights */
-    .portfolio-highlights {
-      padding: 6rem 0;
-      background: #f8f9fa;
-    }
-    
-    .highlights-title {
-      text-align: center;
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: #333;
-    }
-    
-    .highlights-subtitle {
-      text-align: center;
-      font-size: 1.125rem;
-      color: #666;
-      margin-bottom: 3rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    
-    .highlights-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 2rem;
-    }
-    
-    .highlight-card {
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      text-decoration: none;
-      color: inherit;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    
-    .highlight-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-    }
-    
-    .highlight-image {
-      height: 200px;
-      overflow: hidden;
-    }
-    
-    .highlight-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    
-    .highlight-content {
-      padding: 1.5rem;
-    }
-    
-    .highlight-client {
-      font-size: 0.875rem;
-      color: #666;
-      margin-bottom: 0.5rem;
-    }
-    
-    .highlight-title {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-      color: #333;
-    }
-    
-    .highlight-summary {
-      font-size: 0.875rem;
-      color: #666;
-      line-height: 1.5;
-      margin-bottom: 1rem;
-    }
-    
-    .highlight-tags {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
-    
-    .tag {
-      font-size: 0.75rem;
-      padding: 0.25rem 0.5rem;
-      background: #e9ecef;
-      color: #495057;
-      border-radius: 4px;
-    }
-    
-    /* FAQ Section */
-    .faq-section {
-      padding: 6rem 0;
-      background: white;
-    }
-    
-    .faq-title {
-      text-align: center;
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 3rem;
-      color: #333;
-    }
-    
-    .faq-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 2rem;
-    }
-    
-    .faq-item {
-      padding: 2rem;
-      background: #f8f9fa;
-      border-radius: 8px;
-    }
-    
-    .faq-question {
-      font-size: 1.125rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      color: #333;
-    }
-    
-    .faq-answer {
-      font-size: 0.875rem;
-      color: #666;
-      line-height: 1.6;
-    }
-    
-    /* Stats Section */
-    .stats-section {
-      padding: 4rem 0;
-      background: #1a1a1a;
-      color: white;
-    }
-    
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      text-align: center;
-    }
-    
-    .stat-item .stat-number {
-      font-size: 3rem;
-      font-weight: 700;
-      color: #4a9eff;
-    }
-    
-    .stat-item .stat-label {
-      font-size: 1rem;
-      color: #cccccc;
-      margin-top: 0.5rem;
-    }
-    
-    /* Contact Section */
-    .contact-section {
-      padding: 6rem 0;
-      background: #f8f9fa;
-    }
-    
-    .contact-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
-    }
-    
-    .contact-title {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: #333;
-    }
-    
-    .contact-subtitle {
-      font-size: 1.125rem;
-      color: #666;
-      margin-bottom: 2rem;
-    }
-    
-    .contact-details {
-      display: grid;
-      gap: 1.5rem;
-    }
-    
-    .contact-item {
-      display: flex;
+
+    /* Button Styles */
+    .btn {
+      display: inline-flex;
       align-items: center;
-      gap: 1rem;
-    }
-    
-    .contact-icon {
-      font-size: 1.5rem;
-      width: 40px;
-      text-align: center;
-    }
-    
-    .contact-text h4 {
-      font-size: 1rem;
+      justify-content: center;
+      padding: 1rem 2rem;
+      border-radius: var(--radius);
       font-weight: 600;
-      margin-bottom: 0.25rem;
-      color: #333;
-    }
-    
-    .contact-text p {
-      font-size: 0.875rem;
-      color: #666;
-    }
-    
-    .contact-text a {
-      color: #4a9eff;
       text-decoration: none;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      text-transform: none;
     }
-    
-    .contact-text a:hover {
-      text-decoration: underline;
+
+    .btn--primary {
+      background: var(--accent-1);
+      color: var(--bg);
     }
-    
-    /* Form */
-    .form {
-      display: grid;
-      gap: 1.5rem;
+
+    .btn--primary:hover {
+      background: #00b8cc;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 229, 255, 0.3);
     }
-    
-    .form-group {
-      display: grid;
-      gap: 0.5rem;
+
+    .btn--secondary {
+      background: transparent;
+      color: var(--text);
+      border: 2px solid rgba(255, 255, 255, 0.2);
     }
-    
-    .form-group label {
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: #333;
+
+    .btn--secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
     }
-    
-    .form-group input,
-    .form-group textarea {
-      padding: 0.75rem;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      font-size: 0.875rem;
-    }
-    
-    .form-group small {
-      font-size: 0.75rem;
-      color: #666;
-    }
-    
-    /* Responsive */
+
+    /* Responsive Design */
     @media (max-width: 768px) {
-      .hero-title {
-        font-size: 2.5rem;
-      }
-      
-      .ux-stats {
-        flex-direction: column;
-        gap: 2rem;
-      }
-      
-      .highlights-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .faq-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .contact-content {
+      .hero-content {
         grid-template-columns: 1fr;
         gap: 2rem;
+        text-align: center;
       }
-      
-      .hero-cta,
+
+      .hero-stats {
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 1.5rem;
+      }
+
+      .stat-item {
+        text-align: center;
+      }
+
+      .stat-number {
+        font-size: 2rem;
+      }
+
+      .ux-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .ux-text {
+        max-width: none;
+        text-align: center;
+      }
+
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+
       .cta-buttons {
         flex-direction: column;
         align-items: center;
       }
+
+      .btn {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      /* Mobile Carousel Adjustments */
+      .logo-carousel-wrapper .carousel-item {
+        flex: 0 0 150px;
+        padding: 0 1rem;
+        height: 80px;
+      }
+
+      .logo-carousel-wrapper .client-logo {
+        max-width: 100px;
+        max-height: 40px;
+      }
+
+      .logo-carousel-wrapper .carousel-track {
+        width: calc(150px * 12);
+      }
+
+      @keyframes logo-scroll {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(calc(-150px * 6));
+        }
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-section {
+        min-height: 600px;
+        padding-top: 80px;
+      }
+
+      .hero-title {
+        font-size: 3rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.25rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .clients-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+
+      .client-logo {
+        padding: 1.5rem;
+      }
+
+      .client-name {
+        font-size: 1rem;
+      }
     }
   </style>
+
+  <!-- Endless Fading Animation Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const slides = document.querySelectorAll('.slide');
+      let currentSlide = 0;
+      const slideInterval = 4000; // 4 seconds per slide
+      
+      function nextSlide() {
+        // Remove active class from current slide
+        slides[currentSlide].classList.remove('active');
+        
+        // Move to next slide
+        currentSlide = (currentSlide + 1) % slides.length;
+        
+        // Add active class to new slide
+        slides[currentSlide].classList.add('active');
+      }
+      
+      // Start the slideshow
+      setInterval(nextSlide, slideInterval);
+    });
+  </script>
 </BaseLayout>

@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Logo Test - Q10UX Portfolio">
+  <main class="logo-test">
+    <div class="container">
+      <h1>Logo Animation Test</h1>
+      <p>Scroll down to see the header logo shrink, then scroll back up to see it enlarge.</p>
+      
+      <!-- Add some content to enable scrolling -->
+      <div class="scroll-content">
+        <div class="spacer" style="height: 200vh; background: linear-gradient(to bottom, var(--surface), var(--bg));">
+          <div style="position: sticky; top: 50%; text-align: center; color: var(--accent-1);">
+            <h2>Scroll Down ↓</h2>
+            <p>Watch the header logo change size</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="logo-info">
+        <h3>Logo Sizes:</h3>
+        <ul>
+          <li><strong>Header Logo (Top):</strong> 160px width (enlarged state)</li>
+          <li><strong>Header Logo (Scrolled):</strong> 120px width (shrunk state)</li>
+          <li><strong>Footer Logo:</strong> 120px width (smaller size)</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .logo-test {
+    padding: 2rem 0;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .logo-info {
+    background: var(--surface);
+    padding: 2rem;
+    border-radius: var(--radius);
+    margin-top: 2rem;
+  }
+  
+  .logo-info ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .logo-info li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--muted);
+  }
+  
+  .logo-info li:last-child {
+    border-bottom: none;
+  }
+</style>
