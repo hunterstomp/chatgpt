@@ -101,6 +101,7 @@ const canonicalUrl = canonical ? new URL(canonical, Astro.site) : Astro.url;
       // Theme toggle functionality
       document.addEventListener('DOMContentLoaded', function() {
         const themeToggle = document.getElementById('theme-toggle');
+        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
         const html = document.documentElement;
         
         // Check for saved theme preference or default to dark
@@ -117,6 +118,10 @@ const canonicalUrl = canonical ? new URL(canonical, Astro.site) : Astro.url;
         
         if (themeToggle) {
           themeToggle.addEventListener('click', toggleTheme);
+        }
+        
+        if (mobileThemeToggle) {
+          mobileThemeToggle.addEventListener('click', toggleTheme);
         }
       });
       
@@ -260,9 +265,8 @@ const canonicalUrl = canonical ? new URL(canonical, Astro.site) : Astro.url;
         <ul class="nav-menu">
           <li><a href="/" class="nav-link">HOME</a></li>
           <li class="mobile-dropdown">
-            <a href="/case-studies" class="nav-link">PORTFOLIO</a>
             <ul class="mobile-dropdown-menu">
-                                     <li><a href="/case-studies" class="nav-link">ALL CASE STUDIES</a></li>
+              <li><a href="/case-studies" class="nav-link nav-link--primary">ALL CASE STUDIES</a></li>
               <li><a href="/case-studies/atmos-fx-e-commerce-redesign-q-10-ux-portfolio" class="nav-link">ATMOSFX E-COMMERCE</a></li>
               <li><a href="/case-studies/atmos-fx-media-player-q-10-ux-portfolio" class="nav-link">ATMOSFX MEDIA PLAYER</a></li>
               <li><a href="/case-studies/at-amp-t-international-roaming-q-10-ux-portfolio" class="nav-link">AT&T INTERNATIONAL ROAMING</a></li>
@@ -277,6 +281,31 @@ const canonicalUrl = canonical ? new URL(canonical, Astro.site) : Astro.url;
           <li><a href="/about" class="nav-link">ABOUT</a></li>
           <li><a href="/contact" class="nav-link">CONTACT</a></li>
         </ul>
+        
+        <!-- Mobile Theme Toggle -->
+        <div class="mobile-theme-toggle">
+          <button class="theme-toggle" aria-label="Toggle light/dark mode" id="mobile-theme-toggle">
+            <div class="toggle-track">
+              <div class="toggle-thumb">
+                <svg class="sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="5"/>
+                  <line x1="12" y1="1" x2="12" y2="3"/>
+                  <line x1="12" y1="21" x2="12" y2="23"/>
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                  <line x1="1" y1="12" x2="3" y2="12"/>
+                  <line x1="21" y1="12" x2="23" y2="12"/>
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+                <svg class="moon-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+              </div>
+            </div>
+          </button>
+        </div>
+        
         <a href="/assets/Quentin-Little-Resume.pdf" class="btn btn--secondary" download>
           Resume
         </a>
