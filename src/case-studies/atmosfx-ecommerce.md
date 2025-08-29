@@ -9,7 +9,7 @@ status: draft
 summary: "Refined catalog, bundling, and cart flows to align content packs with seasonal shopping behavior."
 tags: ["Ecommerce","Navigation","Bundling"]
 gallery:
-  - { src: "/assets/case-studies/atmosfx-ecommerce/hero.webp", alt: "AtmosFX eCommerce hero" }
+  - { src: "/assets/case-studies/atmosfx-ecommerce/ecommerce-redesign-hero.webp", alt: "AtmosFX eCommerce hero" }
 outcomes:
   metrics:
     - "AOV ↑"

@@ -9,7 +9,7 @@ status: draft
 summary: "Mobile‑first switch/porting flow that reassures users and reduces drop‑off."
 tags: ["Telecom","Onboarding","Conversion"]
 gallery:
-  - { src: "/assets/case-studies/tmobile-how-to-switch/hero.webp", alt: "T‑Mobile — How to Switch hero" }
+  - { src: "/assets/case-studies/t-mobile-how-to-switch/image-1-522x1253.webp", alt: "T‑Mobile — How to Switch hero" }
 outcomes:
   metrics:
     - "Conversion speed ↑"

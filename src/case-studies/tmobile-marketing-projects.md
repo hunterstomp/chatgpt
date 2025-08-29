@@ -1,19 +1,17 @@
 ---
-title: "T‑Mobile — Marketing Projects"
+title: "T‑Mobile Marketing Projects"
 slug: "tmobile-marketing-projects"
 client: "T‑Mobile"
 role: "Lead UX Designer"
 duration: "3–12 months"
 tools: ["Figma", "Axure", "Sketch"]
 status: draft
-summary: "Landing pages and flows aligning brand with performance goals."
-tags: ["Marketing","Landing Pages","A/B"]
-gallery:
-  - { src: "/assets/case-studies/tmobile-marketing-projects/hero.webp", alt: "T‑Mobile — Marketing Projects hero" }
+summary: "Marketing campaign management and creative asset workflows."
+tags: ["Marketing","Workflow","Campaigns"]
 outcomes:
   metrics:
-    - "A/B velocity ↑"
-    - "CRO ↑"
+    - "Efficiency ↑"
+    - "Time‑to‑market ↓"
   quotes:
     - 
 ---

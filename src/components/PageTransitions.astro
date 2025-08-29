@@ -3,7 +3,7 @@
 // It's a progressive enhancement - works great when supported, graceful fallback when not
 ---
 
-<script>
+<script client:load>
   // Check if View Transitions API is supported
   if (!document.startViewTransition) {
     // Fallback: no transitions, but site still works perfectly

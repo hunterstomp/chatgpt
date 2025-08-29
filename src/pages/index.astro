@@ -5,7 +5,7 @@ import PageTransitions from '../components/PageTransitions.astro';
 
 <BaseLayout 
   title="Quentin Little - UX Designer & Prototyper"
-  description="Enterprise UX designer specializing in accessibility, design systems, and user research. Case studies from Disney, AT&T, AtmosFX, and Microsoft."
+  description="Enterprise UX designer specializing in accessibility, design systems, and user research. Case studies from AT&T, AtmosFX, Microsoft, and T-Mobile."
 >
   <PageTransitions />
   
@@ -320,6 +320,12 @@ import PageTransitions from '../components/PageTransitions.astro';
       margin-bottom: 2rem;
       color: #ffffff;
       text-align: center;
+      text-shadow: 0 6px 12px rgba(0, 0, 0, 0.8);
+    }
+
+    [data-theme="light"] .hero-title {
+      color: #1a1a1a;
+      text-shadow: 0 6px 12px rgba(255, 255, 255, 0.8);
     }
 
     .hero-title-main {
@@ -341,7 +347,7 @@ import PageTransitions from '../components/PageTransitions.astro';
     .hero-subtitle {
       font-size: clamp(1.5rem, 4vw, 2.5rem);
       line-height: 1.4;
-      color: #cccccc;
+      color: #ffffff;
       margin-bottom: 3rem;
       font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       text-transform: none;
@@ -352,6 +358,12 @@ import PageTransitions from '../components/PageTransitions.astro';
       flex-direction: column;
       gap: 0.5rem;
       text-align: center;
+      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+    }
+
+    [data-theme="light"] .hero-subtitle {
+      color: #1a1a1a;
+      text-shadow: 0 4px 8px rgba(255, 255, 255, 0.7);
     }
 
     .hero-line-1 {
@@ -360,11 +372,14 @@ import PageTransitions from '../components/PageTransitions.astro';
       font-size: 36px;
       font-style: normal;
       letter-spacing: -0.02em;
-      background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: #ffffff;
       text-transform: none;
+      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+    }
+
+    [data-theme="light"] .hero-line-1 {
+      color: #1a1a1a;
+      text-shadow: 0 4px 8px rgba(255, 255, 255, 0.7);
     }
 
     .hero-line-2 {
@@ -372,9 +387,15 @@ import PageTransitions from '../components/PageTransitions.astro';
       font-weight: 100;
       font-size: 28px;
       font-style: normal;
-      color: #cccccc;
+      color: #ffffff;
       text-transform: none;
       letter-spacing: 0;
+      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+    }
+
+    [data-theme="light"] .hero-line-2 {
+      color: #1a1a1a;
+      text-shadow: 0 4px 8px rgba(255, 255, 255, 0.7);
     }
 
     .hero-cta {

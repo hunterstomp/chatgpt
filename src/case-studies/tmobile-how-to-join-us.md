@@ -6,13 +6,12 @@ role: "Lead UX Designer"
 duration: "3–12 months"
 tools: ["Figma", "Axure", "Sketch"]
 status: draft
-summary: "Recruiting microsite clarifying roles, paths, and application steps."
-tags: ["Recruiting","Onboarding"]
-gallery:
-  - { src: "/assets/case-studies/tmobile-how-to-join-us/hero.webp", alt: "T‑Mobile — How to Join Us hero" }
+summary: "Streamlined onboarding flow for new T‑Mobile customers."
+tags: ["Telecom","Onboarding","Conversion"]
 outcomes:
   metrics:
-    - "Drop‑off ↓"
+    - "Completion rate ↑"
+    - "Drop‑offs ↓"
   quotes:
     - 
 ---

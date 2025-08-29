@@ -9,7 +9,7 @@ status: draft
 summary: "Report experience balancing storytelling with credible data visuals."
 tags: ["Nonprofit","Editorial","Data Viz"]
 gallery:
-  - { src: "/assets/case-studies/bmgf-annual-newsletter/hero.webp", alt: "Bill & Melinda Gates Foundation — Annual Newsletter hero" }
+  - { src: "/assets/case-studies/bill-and-melinda-gates-foundation/bill-gates-annual1-816x459.webp", alt: "Bill & Melinda Gates Foundation — Annual Newsletter hero" }
 outcomes:
   metrics:
     - "Completion rate ↑"

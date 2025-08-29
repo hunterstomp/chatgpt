@@ -35,10 +35,6 @@ node_modules/
 .vscode
 # OS specific
 
-# Task files
-# tasks.json
-# tasks/
-
 # backups & junk
 *.bak
 *.tmp
@@ -51,3 +47,7 @@ snippets/*.webarchive
 
 # Astro specific
 src/pages/**/_* 
+
+# Task files
+# tasks.json
+# tasks/ 

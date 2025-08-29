@@ -8,8 +8,6 @@ tools: ["Figma", "Axure", "Sketch"]
 status: draft
 summary: "Patient and clinician tools for longitudinal care tracking."
 tags: ["Health","Data","Workflow"]
-gallery:
-  - { src: "/assets/case-studies/thrivid-health/hero.webp", alt: "Thrivid Health hero" }
 outcomes:
   metrics:
     - "Adherence ↑"

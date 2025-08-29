@@ -1,19 +1,17 @@
 ---
-title: "T‑Mobile — Idea Labs"
+title: "T‑Mobile Idea Labs"
 slug: "tmobile-idea-labs"
 client: "T‑Mobile"
 role: "Lead UX Designer"
 duration: "3–12 months"
 tools: ["Figma", "Axure", "Sketch"]
 status: draft
-summary: "Internal innovation portal to capture, triage, and incubate employee ideas."
-tags: ["Innovation","Workflow","Enterprise"]
-gallery:
-  - { src: "/assets/case-studies/tmobile-idea-labs/hero.webp", alt: "T‑Mobile — Idea Labs hero" }
+summary: "Innovation platform for T‑Mobile employees to submit and collaborate on ideas."
+tags: ["Innovation","Collaboration","Internal Tools"]
 outcomes:
   metrics:
-    - "Time‑to‑feedback ↓"
-    - "Incubation rate ↑"
+    - "Engagement ↑"
+    - "Ideas submitted ↑"
   quotes:
     - 
 ---

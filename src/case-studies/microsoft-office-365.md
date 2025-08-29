@@ -9,7 +9,7 @@ status: draft
 summary: "Patterns and prototypes improving onboarding and cross‑app discoverability within Office 365."
 tags: ["Enterprise","Design System","Onboarding"]
 gallery:
-  - { src: "/assets/case-studies/microsoft-office-365/hero.webp", alt: "Microsoft Office 365 hero" }
+  - { src: "/assets/case-studies/microsoft-office-365-q-10-ux-portfolio/hero-olw-1034x1421.webp", alt: "Microsoft Office 365 hero" }
 outcomes:
   metrics:
     - "Activation ↑"

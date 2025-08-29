@@ -1,19 +1,17 @@
 ---
-title: "T‑Mobile — Plans Comparison"
+title: "T‑Mobile Plans Comparison"
 slug: "tmobile-plans-comparison"
 client: "T‑Mobile"
 role: "Lead UX Designer"
 duration: "3–12 months"
 tools: ["Figma", "Axure", "Sketch"]
 status: draft
-summary: "Readable, scannable plan comparison with realistic totals and perks."
-tags: ["Comparison","Pricing","Table Design"]
-gallery:
-  - { src: "/assets/case-studies/tmobile-plans-comparison/hero.webp", alt: "T‑Mobile — Plans Comparison hero" }
+summary: "Interactive plan comparison tool to help customers choose the right plan."
+tags: ["Telecom","Comparison","Decision Support"]
 outcomes:
   metrics:
-    - "Selection speed ↑"
-    - "Support confusion ↓"
+    - "Conversion ↑"
+    - "Support calls ↓"
   quotes:
     - 
 ---

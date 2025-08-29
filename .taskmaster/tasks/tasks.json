@@ -2,165 +2,202 @@
   "master": {
     "tasks": [
       {
-        "id": 31,
-        "title": "Audit Existing Case Studies for Quality and Deployment Readiness",
-        "description": "Perform a comprehensive audit of all existing case studies to identify strengths, weaknesses, and immediate fixes needed before deployment.",
-        "status": "done",
+        "id": 34,
+        "title": "Upgrade Astro and React Integrations",
+        "description": "Ensure the Astro project and React integration are using the latest stable versions for optimal performance and compatibility.",
+        "details": "Run '@astrojs/upgrade' to update Astro and all official integrations. Use 'npx astro add react' to ensure React is properly integrated. Confirm peer dependencies (react, react-dom) are at latest LTS versions. Update 'astro.config.*' and 'tsconfig.json' as needed.",
+        "testStrategy": "Verify project builds and runs on localhost:4321. Check for deprecation warnings and integration errors in console.",
+        "priority": "high",
         "dependencies": [],
-        "priority": "high",
-        "details": "1. Review all integrated case studies against the 8-phase template for completeness and consistency.\n2. Create a structured audit document with the following sections:\n   - Content completeness (missing sections, incomplete information)\n   - Visual consistency (image quality, layout issues, responsive breakpoints)\n   - Technical issues (broken links, loading problems, console errors)\n   - UX concerns (navigation flow, readability, accessibility)\n3. Prioritize issues as \"Critical\" (blocking deployment), \"Important\" (should fix before launch), or \"Future Enhancement\".\n4. Document specific examples of what's working well to maintain in other case studies.\n5. For critical issues, provide specific recommendations for fixes with code snippets or design adjustments where applicable.\n6. Check image optimization status across all case studies (file size, format, responsive variants).\n7. Verify that all case studies follow the established CSS patterns and don't introduce new inconsistencies.\n8. Ensure all case studies are properly linked from the dropdown menu and navigation system.\n9. Create a summary report highlighting patterns of issues that might affect multiple case studies.",
-        "testStrategy": "1. Create a comprehensive checklist covering all audit criteria (content, visuals, technical, UX).\n2. Manually review each case study against this checklist, documenting findings in the audit document.\n3. Use browser developer tools to identify console errors, network issues, or performance problems.\n4. Test each case study on at least 3 different viewport sizes to verify responsive behavior.\n5. Run automated accessibility checks using tools like axe or Lighthouse.\n6. Validate that all links within case studies work correctly.\n7. Measure and document load times for each case study page.\n8. Have a peer review the audit findings to ensure nothing was missed.\n9. Create a prioritized list of fixes based on severity and impact on deployment readiness.\n10. Verify that the audit document provides clear, actionable information for implementing fixes.",
-        "subtasks": [
-          {
-            "id": 1,
-            "title": "Complete initial site status verification",
-            "description": "Verify production site is live and accessible with proper HTTP status.",
-            "status": "done",
-            "dependencies": [],
-            "details": "",
-            "testStrategy": ""
-          },
-          {
-            "id": 2,
-            "title": "Audit all case studies for existence and proper linking",
-            "description": "Verify all 8 case studies exist and are properly linked in the navigation system. Document file sizes.",
-            "status": "done",
-            "dependencies": [],
-            "details": "All 8 case studies confirmed:\n- Microsoft Office Live (43KB)\n- T-Mobile How to Switch (48KB)\n- T-Mobile Idea Lab (38KB)\n- AT&T International Roaming (39KB)\n- AtmosFX E-commerce (37KB)\n- Bill & Melinda Gates Foundation (38KB)\n- Disney VMC (37KB)\n- Microsoft Office 365 (38KB)",
-            "testStrategy": ""
-          },
-          {
-            "id": 3,
-            "title": "Audit navigation structure and links",
-            "description": "Verify all navigation elements including header dropdown menu, case study links, and resume buttons.",
-            "status": "done",
-            "dependencies": [],
-            "details": "Navigation audit complete:\n- Header navigation with dropdown menu verified\n- All case study links point to existing files\n- Resume pill buttons properly linked to PDF/DOCX files\n- About page link exists",
-            "testStrategy": ""
-          },
-          {
-            "id": 4,
-            "title": "Verify resume file availability and linking",
-            "description": "Confirm both resume file formats exist and are properly linked from the site.",
-            "status": "done",
-            "dependencies": [],
-            "details": "Resume files verified:\n- PDF: QuentinLittle_Resume.pdf (106KB)\n- DOCX: QuentinLittle_Resume.docx (50KB)",
-            "testStrategy": ""
-          },
-          {
-            "id": 5,
-            "title": "Document critical issues and deployment readiness",
-            "description": "Compile findings into a summary report highlighting critical issues and deployment readiness status.",
-            "status": "done",
-            "dependencies": [],
-            "details": "No critical issues found - all essential elements are working. Site is ready for deployment verification.",
-            "testStrategy": ""
-          },
-          {
-            "id": 6,
-            "title": "Create final audit summary and recommendations",
-            "description": "Finalize the audit document with a complete summary of findings and recommendations for next steps.",
-            "status": "done",
-            "dependencies": [],
-            "details": "Audit completed successfully. Next step: Move to Task 32 - Fix any navigation issues (if any found during testing).",
-            "testStrategy": ""
-          }
-        ]
+        "status": "pending",
+        "subtasks": []
       },
       {
-        "id": 32,
-        "title": "Fix Critical Navigation and Link Issues for Case Studies",
-        "description": "Identify and resolve all navigation and link issues to ensure all case studies are accessible, properly connected, and maintain professional presentation.",
-        "status": "done",
-        "dependencies": [
-          31
-        ],
+        "id": 35,
+        "title": "Audit and Fix Portfolio Pages",
+        "description": "Review all portfolio pages for broken links, missing assets, and rendering issues.",
+        "details": "Use automated tools (e.g., Lighthouse, axe-core) and manual inspection to identify broken links, missing images, and layout problems. Fix issues directly in Astro/React components. Ensure all routes resolve correctly.",
+        "testStrategy": "Run automated link and asset checks. Manually test navigation across all pages. Confirm all assets load without errors.",
         "priority": "high",
-        "details": "1. Conduct a comprehensive audit of all navigation elements leading to case studies:\n   - Verify dropdown menu functionality and completeness\n   - Check main navigation links to case study sections\n   - Validate breadcrumb navigation within case studies\n   - Ensure \"Next Project\" and \"Previous Project\" links work correctly\n\n2. Fix identified issues:\n   - Repair any broken or incorrect links in main navigation\n   - Ensure all case studies listed in dropdown menus are properly linked\n   - Implement consistent navigation patterns across all case studies\n   - Add missing links to any case studies not currently accessible\n   - Verify that all links use proper relative paths that will work in production\n\n3. Implement navigation improvements:\n   - Add \"Back to Portfolio\" links at appropriate locations\n   - Ensure case study navigation follows logical progression\n   - Implement smooth scrolling for in-page navigation\n   - Add visual indicators for current page/section in navigation\n\n4. Technical implementation:\n   - Use consistent URL structure for all case studies\n   - Implement proper event tracking for navigation analytics\n   - Ensure all links have appropriate hover/focus states\n   - Test navigation with keyboard-only interaction\n\n5. Documentation:\n   - Document the navigation structure and linking patterns\n   - Create a site map showing all case study connections\n   - Note any special considerations for future case study additions",
-        "testStrategy": "1. Automated testing:\n   - Run automated link checkers to identify broken links\n   - Use Cypress or Playwright to test navigation paths to all case studies\n   - Verify that all case studies are reachable from multiple entry points\n\n2. Manual testing:\n   - Perform systematic click-through testing of all navigation elements\n   - Test dropdown menus on desktop and mobile devices\n   - Verify that breadcrumb navigation accurately reflects site hierarchy\n   - Test keyboard navigation for all links and dropdown menus\n   - Validate that \"Next/Previous\" navigation follows logical sequence\n\n3. Cross-browser and device testing:\n   - Test navigation on Chrome, Firefox, Safari, and Edge\n   - Verify mobile navigation works correctly on iOS and Android devices\n   - Test tablet view navigation and touch interactions\n\n4. Accessibility validation:\n   - Verify all navigation elements are keyboard accessible\n   - Confirm proper ARIA attributes on navigation components\n   - Test with screen readers to ensure navigation is properly announced\n\n5. Documentation validation:\n   - Cross-reference site map with actual implementation\n   - Verify all case studies appear in navigation as expected",
-        "subtasks": [
-          {
-            "id": 1,
-            "title": "Fix Netlify redirects for case study access",
-            "description": "Configure Netlify redirects to properly route to case study pages",
-            "status": "done",
-            "dependencies": [],
-            "details": "",
-            "testStrategy": ""
-          },
-          {
-            "id": 2,
-            "title": "Update navigation path references",
-            "description": "Correct all navigation links from `/src/` to proper paths:\n- Home: `/src/` → `/`\n- Case Studies: `/src/case-studies/` → `/case-studies/`\n- About: `/src/about/` → `/about/`",
-            "status": "done",
-            "dependencies": [],
-            "details": "",
-            "testStrategy": ""
-          },
-          {
-            "id": 3,
-            "title": "Fix about page resource references",
-            "description": "Update CSS and JavaScript links on the about page to use correct paths",
-            "status": "done",
-            "dependencies": [],
-            "details": "",
-            "testStrategy": ""
-          },
-          {
-            "id": 4,
-            "title": "Verify HTTP status for all pages",
-            "description": "Confirm all pages return HTTP 200 status:\n- Home page: HTTP 200 ✓\n- Case studies hub: HTTP 200 ✓\n- Individual case studies: HTTP 200 ✓",
-            "status": "done",
-            "dependencies": [],
-            "details": "",
-            "testStrategy": ""
-          },
-          {
-            "id": 5,
-            "title": "Deploy navigation fixes to production",
-            "description": "Push all navigation fixes to the production environment and verify deployment",
-            "status": "done",
-            "dependencies": [],
-            "details": "",
-            "testStrategy": ""
-          },
-          {
-            "id": 6,
-            "title": "Investigate and fix About page 404 issue",
-            "description": "The About page is still returning a 404 error despite path corrections. Investigate root cause and implement fix.",
-            "status": "done",
-            "dependencies": [],
-            "details": "",
-            "testStrategy": ""
-          },
-          {
-            "id": 7,
-            "title": "Final verification of all navigation elements",
-            "description": "Perform a final comprehensive check of all navigation elements to ensure everything is working correctly before moving to Task 33.",
-            "status": "done",
-            "dependencies": [],
-            "details": "",
-            "testStrategy": ""
-          }
-        ]
+        "dependencies": [
+          34
+        ],
+        "status": "pending",
+        "subtasks": []
       },
       {
-        "id": 33,
-        "title": "Verify Netlify Deployment Quality and Finalize for Deadline",
-        "description": "Perform final verification of the Netlify deployment to ensure professional presentation quality and make any last-minute adjustments before the midnight deadline.",
-        "details": "1. Access the live Netlify deployment and conduct a comprehensive verification:\n   - Verify all pages load correctly with proper styling and assets\n   - Check for any console errors or network issues\n   - Test all interactive elements (navigation, dropdowns, forms)\n   - Validate mobile responsiveness on key breakpoints (320px, 768px, 1024px, 1440px)\n   - Confirm all case studies are accessible and properly formatted\n   - Verify load times are optimized (target < 3s on desktop, < 5s on mobile)\n\n2. Address any critical issues found:\n   - Prioritize fixes based on visibility and impact on professional presentation\n   - Make direct changes in the Netlify dashboard for quick CSS fixes if needed\n   - For more complex issues, implement fixes in the codebase and trigger a new deployment\n\n3. Optimize Netlify settings:\n   - Enable asset optimization (CSS/JS minification, image compression)\n   - Configure proper caching headers\n   - Verify custom domain and SSL settings\n   - Enable Netlify's built-in analytics for post-launch monitoring\n\n4. Document deployment status:\n   - Create a final deployment report noting any known issues and their severity\n   - Document any environment-specific configurations or workarounds\n   - Record performance metrics as a baseline for future reference\n\n5. Prepare communication for stakeholders:\n   - Draft a brief status update confirming deployment completion\n   - Include the live URL and any important notes about the deployment\n   - Note any known limitations or planned future improvements",
-        "testStrategy": "1. Automated verification:\n   - Run Lighthouse tests on key pages (homepage, case study template, contact)\n   - Use axe or similar tools to verify accessibility compliance\n   - Check for broken links using automated tools\n   - Verify proper meta tags and SEO elements\n\n2. Manual testing checklist:\n   - Verify all navigation paths and links work correctly\n   - Test all case studies for proper formatting and content display\n   - Check responsive behavior on multiple devices (or device simulators)\n   - Verify all images load correctly and are properly optimized\n   - Test contact form functionality if applicable\n   - Verify social media links direct to correct profiles\n\n3. Cross-browser verification:\n   - Test on Chrome, Firefox, Safari, and Edge\n   - Verify consistent presentation across browsers\n   - Document any browser-specific issues and their severity\n\n4. Performance validation:\n   - Measure and document page load times\n   - Verify Time to Interactive metrics\n   - Check for any render-blocking resources\n   - Validate image optimization\n\n5. Final approval process:\n   - Conduct a final walkthrough with stakeholder(s) if possible\n   - Document any feedback received\n   - Confirm the site meets professional presentation standards\n   - Get explicit sign-off on deployment quality",
-        "status": "done",
-        "dependencies": [
-          32
-        ],
+        "id": 36,
+        "title": "Implement Responsive Design Enhancements",
+        "description": "Ensure the portfolio is fully responsive across devices and screen sizes.",
+        "details": "Use CSS frameworks like Tailwind CSS (latest v3.x) for utility-first responsive design. Audit existing styles for mobile, tablet, and desktop breakpoints. Refactor components to use responsive classes and media queries.",
+        "testStrategy": "Test on Chrome DevTools device simulator and real devices. Validate layout and usability at multiple breakpoints.",
         "priority": "high",
+        "dependencies": [
+          35
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 37,
+        "title": "Accessibility Compliance Audit & Fixes",
+        "description": "Validate and improve accessibility across the portfolio and case studies.",
+        "details": "Use axe-core and Lighthouse to audit for WCAG 2.2 AA compliance. Refactor components to use semantic HTML, ARIA attributes, and accessible navigation. Ensure keyboard and screen reader support for all interactive elements.",
+        "testStrategy": "Run automated accessibility tests. Manually test with keyboard navigation and screen readers (NVDA, VoiceOver).",
+        "priority": "high",
+        "dependencies": [
+          36
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 38,
+        "title": "Optimize Performance & Core Web Vitals",
+        "description": "Improve site speed, loading times, and Core Web Vitals metrics.",
+        "details": "Leverage Astro's zero-JS-by-default philosophy. Use selective hydration for React components. Optimize images with Astro's built-in image tools. Implement code splitting and lazy loading for heavy components. Audit with Lighthouse and WebPageTest.",
+        "testStrategy": "Run Lighthouse and WebPageTest audits. Confirm LCP, FID, CLS, and TTI are within recommended thresholds.",
+        "priority": "high",
+        "dependencies": [
+          37
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 39,
+        "title": "Verify Admin Backend Functionality",
+        "description": "Test and validate the admin backend system for content management and smart uploads.",
+        "details": "Access the admin server. Test smart upload features, content editing, and flow assignment. Ensure backend API endpoints are secure and functional. Use Postman or Insomnia for API testing.",
+        "testStrategy": "Perform end-to-end tests on admin workflows. Validate API responses and error handling.",
+        "priority": "high",
+        "dependencies": [
+          38
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 40,
+        "title": "Design UX Flow Data Model",
+        "description": "Define backend schema for serial UX flows and phase categorization.",
+        "details": "Extend backend models to support UX phases (Problem, Research, Design, Implementation, Outcomes). Use a relational schema (e.g., PostgreSQL 15.x) or NoSQL (MongoDB 7.x) as appropriate. Include fields for flow steps, progress, and completion status.",
+        "testStrategy": "Write unit tests for model validation. Test CRUD operations for flow entities.",
+        "priority": "high",
+        "dependencies": [
+          39
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 41,
+        "title": "Implement Flow-Based Content Categorization",
+        "description": "Enable backend to categorize and manage case study content by UX phases.",
+        "details": "Add endpoints and admin UI for assigning content to UX phases. Implement bulk assignment features. Ensure data integrity and synchronization with frontend.",
+        "testStrategy": "Test phase assignment via admin UI and API. Validate categorization in database and frontend display.",
+        "priority": "medium",
+        "dependencies": [
+          40
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 42,
+        "title": "Develop Accordion UX Flow Components",
+        "description": "Create responsive, accessible accordion components for serial UX flows using React.",
+        "details": "Use React 18.x and Headless UI (latest) for accessible accordions. Implement step-by-step navigation, progress indicators, and ARIA compliance. Integrate with Astro using selective hydration.",
+        "testStrategy": "Unit test accordion logic. Manually test accessibility and responsiveness. Validate integration in Astro pages.",
+        "priority": "high",
+        "dependencies": [
+          41
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 43,
+        "title": "Build Interactive Flow Visualizations",
+        "description": "Develop interactive visualizations for UX process flows within case studies.",
+        "details": "Use React with D3.js (v7.x) or Visx for process maps and progress indicators. Ensure smooth transitions and animations using Framer Motion (v10.x). Integrate with accordion components.",
+        "testStrategy": "Snapshot and interaction tests for visualizations. Manual animation and transition validation.",
+        "priority": "medium",
+        "dependencies": [
+          42
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 44,
+        "title": "Integrate Serial Flows into Case Studies",
+        "description": "Inject serial flow components and visualizations into existing case study layouts.",
+        "details": "Refactor case study templates to include accordion and visualization components. Ensure flows are dynamically loaded based on backend data. Maintain design system consistency.",
+        "testStrategy": "End-to-end tests for case study rendering. Validate dynamic flow injection and data binding.",
+        "priority": "high",
+        "dependencies": [
+          43
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 45,
+        "title": "Implement Progress Tracking & Completion Indicators",
+        "description": "Add progress tracking and completion indicators for UX flows in case studies.",
+        "details": "Store progress state in backend and sync with frontend. Use React context or Redux Toolkit for state management. Display completion status and progress bars in UI.",
+        "testStrategy": "Unit and integration tests for progress logic. Manual UI validation for indicator accuracy.",
+        "priority": "medium",
+        "dependencies": [
+          44
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 46,
+        "title": "Connect Flows to Backend Content Management",
+        "description": "Ensure frontend UX flows are fully synchronized with backend content management system.",
+        "details": "Implement API calls for fetching, updating, and validating flow data. Use Axios (v1.x) or Fetch API. Handle errors and loading states gracefully. Secure endpoints with JWT or OAuth2.",
+        "testStrategy": "Integration tests for API calls. Manual validation of data sync and error handling.",
+        "priority": "high",
+        "dependencies": [
+          45
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 47,
+        "title": "SEO & Meta Tag Optimization",
+        "description": "Ensure all portfolio and case study pages have proper SEO and meta tags.",
+        "details": "Use Astro's built-in SEO features and React Helmet (v6.x) for dynamic meta tags. Add Open Graph, Twitter Card, and canonical tags. Validate structured data for case studies.",
+        "testStrategy": "Automated SEO audits (Ahrefs, Screaming Frog). Manual inspection of meta tags and structured data.",
+        "priority": "medium",
+        "dependencies": [
+          46
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 48,
+        "title": "Final Testing, QA, and Documentation",
+        "description": "Conduct comprehensive QA, finalize bug fixes, and produce documentation for the portfolio and serial flows.",
+        "details": "Perform regression, usability, and cross-browser testing. Fix outstanding bugs. Write developer and admin documentation using MDX or Astro content collections. Prepare deployment checklist.",
+        "testStrategy": "Full QA cycle. Peer review of documentation. Confirm all success criteria are met.",
+        "priority": "high",
+        "dependencies": [
+          47
+        ],
+        "status": "pending",
         "subtasks": []
       }
     ],
     "metadata": {
       "created": "2025-08-24T10:56:59.816Z",
-      "updated": "2025-08-25T03:34:31.298Z",
+      "updated": "2025-08-29T04:49:03.249Z",
       "description": "Tasks for master context"
     }
   }

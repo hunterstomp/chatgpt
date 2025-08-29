@@ -1,19 +1,17 @@
 ---
-title: "T‑Mobile — Purchase Simplicity"
+title: "T‑Mobile Purchase Simplicity"
 slug: "tmobile-purchase-simplicity"
 client: "T‑Mobile"
 role: "Lead UX Designer"
 duration: "3–12 months"
 tools: ["Figma", "Axure", "Sketch"]
 status: draft
-summary: "Simplified plan/device purchase path to cut cognitive load and improve attach rates."
-tags: ["Telecom","Ecommerce","Simplification"]
-gallery:
-  - { src: "/assets/case-studies/tmobile-purchase-simplicity/hero.webp", alt: "T‑Mobile — Purchase Simplicity hero" }
+summary: "Simplified purchase flow for T‑Mobile products and services."
+tags: ["Telecom","E-commerce","Purchase Flow"]
 outcomes:
   metrics:
-    - "Checkout completion ↑"
-    - "Attach rate ↑"
+    - "Conversion ↑"
+    - "Cart abandonment ↓"
   quotes:
     - 
 ---

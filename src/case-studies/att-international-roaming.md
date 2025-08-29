@@ -9,7 +9,7 @@ status: draft
 summary: "Simplified international roaming selection with clear costs and coverage confidence."
 tags: ["Telecom","Pricing","Decision Support"]
 gallery:
-  - { src: "/assets/case-studies/att-international-roaming/hero.webp", alt: "AT&T International Roaming hero" }
+  - { src: "/assets/case-studies/at-amp-t-international-roaming-q-10-ux-portfolio/hero-att-522x717.webp", alt: "AT&T International Roaming hero" }
 outcomes:
   metrics:
     - "Attach rate ↑"

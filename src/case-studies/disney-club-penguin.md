@@ -6,10 +6,8 @@ role: "Lead UX Designer"
 duration: "3–12 months"
 tools: ["Figma", "Axure", "Sketch"]
 status: draft
-summary: "Experience updates balancing safety, fun, and monetization in a kids’ MMO."
+summary: "Experience updates balancing safety, fun, and monetization in a kids' MMO."
 tags: ["Kids","Safety","MMO"]
-gallery:
-  - { src: "/assets/case-studies/disney-club-penguin/hero.webp", alt: "Disney Club Penguin hero" }
 outcomes:
   metrics:
     - "Retention ↑"

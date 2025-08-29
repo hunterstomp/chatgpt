@@ -13,6 +13,8 @@ outcomes:
   - Streamlined user workflows and processes
 gallery: []
 slug: atmosfx-gallery
+skills: []
+quotes: []
 ---
 ## Objective
 Create an engaging user experience that addresses specific user needs and business goals.
